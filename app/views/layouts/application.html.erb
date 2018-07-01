@@ -11,12 +11,14 @@
   </head>
 
   <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <div class="header" role="banner" data-header-area="acquisition">
     <div class="header-lyt-column">
       <div class="col">
         <div class="header-inner">
           <div class="logo"><a href="/index.html">
-            <img src="/common_a/img/header/logo.png" alt="弥生"></a></div>
+            <img src="/common_a/img/header/logo.png" alt="SILVERION"></a></div>
           <!-- /header-inner --></div>
         <!-- /col --></div>
 
@@ -60,6 +62,13 @@
                         </div>
                       </li>
                       <li data-global-category="interview" style="height: 41px;"><a href="/interview/index.html" style="height: 41px;"><span>個人設定</span></a></li>
+                      <% if user_signed_in?  %>
+                        <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+                      <% else %>
+                        <%= link_to 'sign_up', new_user_registration_path %>
+                        <%= link_to 'login', new_user_session_path %>
+                      <% end %>
+                      
                     </ul>
                   </div>
                 </div>
