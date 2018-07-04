@@ -1,0 +1,2 @@
+class ControllePrivilege < ApplicationRecord
+end
