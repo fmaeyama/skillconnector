@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_063046) do
+ActiveRecord::Schema.define(version: 2018_07_04_235936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 2018_07_03_063046) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "controlle_privileges", comment: "コントロール毎権限設定", force: :cascade do |t|
-    t.bigint "user_privilege_group_id"
-    t.string "controll_name", comment: "操作対象コントロール"
-    t.integer "privilage_type", comment: "{0: 全てのアクションが利用可能, 1: 一部のアクションが利用可能}"
+  create_table "control_privileges", force: :cascade do |t|
+    t.bigint "privilege_group_id"
+    t.string "controller_name"
+    t.integer "privilege_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_privilege_group_id"], name: "index_controlle_privileges_on_user_privilege_group_id"
+    t.index ["privilege_group_id"], name: "index_control_privileges_on_privilege_group_id"
   end
 
   create_table "person_infos", comment: "共通人材情報", force: :cascade do |t|
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_063046) do
   end
 
   add_foreign_key "cmn_properties", "cmn_property_types"
-  add_foreign_key "controlle_privileges", "user_privilege_groups"
+  add_foreign_key "control_privileges", "privilege_groups"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"
 end

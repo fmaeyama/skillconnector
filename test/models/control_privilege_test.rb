@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ControllePrivilegeTest < ActiveSupport::TestCase
+class ControlPrivilegeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

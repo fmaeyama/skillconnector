@@ -18,3 +18,37 @@ CmnPropertyType.find_or_create_by(
 		description: '誕生日の場合、年については0000',
 		property_datatype: :date
 )
+
+privGroup=PrivilegeGroup.find_or_create_by(
+									title: 'system admin',
+									descriptions: 'サイト管理スタッフ'
+)
+
+ControlPrivilege.find_or_create_by(
+										privilege_group_id: privGroup.id,
+										controller_name: 'home',
+										privilege_type: :allow_all
+)
+
+privGroup=PrivilegeGroup.find_or_create_by(
+		title: 'biz admin',
+		descriptions: '企業ユーザー'
+)
+
+ControlPrivilege.find_or_create_by(
+		privilege_group_id: privGroup.id,
+		controller_name: 'home',
+		privilege_type: :allow_all
+)
+
+
+privGroup=PrivilegeGroup.find_or_create_by(
+		title: 'usr',
+		descriptions: 'エンジニア'
+)
+
+ControlPrivilege.find_or_create_by(
+		privilege_group_id: privGroup.id,
+		controller_name: 'home',
+		privilege_type: :allow_all
+)

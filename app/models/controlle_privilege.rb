@@ -1,2 +1,0 @@
-class ControllePrivilege < ApplicationRecord
-end

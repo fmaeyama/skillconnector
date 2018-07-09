@@ -1,0 +1,9 @@
+<h1>CommonUsers#index</h1>
+
+<p><%= @test %> cases</p>
+<ul>
+<% @allusers.each do |user| %>
+	<li><%= user.id %></li>
+	<li><%= user.email %></li>
+<% end %>
+</ul>
