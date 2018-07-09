@@ -3,9 +3,7 @@ class CommonUsersController < ApplicationController
   def index
   #   userの一覧を表示
     @test = "test a"
-    @allusers = User.includes(:person_info).all
-    
-    
+    @allusers = User.all.includes(:person_info)
   end
 
   def add
