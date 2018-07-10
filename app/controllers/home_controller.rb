@@ -1,9 +1,5 @@
 class HomeController < ApplicationController
- # before_action :authenticate_user!
 
-  def rendertext
-    render plain: "最後のチャンスだ"
-  end
   
   def index
     # TODO: 今日のお知らせを表示（期限を切って表示させる）
