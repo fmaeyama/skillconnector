@@ -8,12 +8,12 @@ class HomeController < ApplicationController
     @visiblebizadmin = true;
   end
 
-  # def sysadmin
-  #   render :text => "この釘抜きだと引き抜きにくい"
-  #   # システム管理者メニュー
-  #   # TODO: ユーザー認証により表示させるか、404を表示する
-  #
-  # end
+  def sysadmin
+    render :text => "この釘抜きだと引き抜きにくい"
+    # システム管理者メニュー
+    # TODO: ユーザー認証により表示させるか、404を表示する
+
+  end
 
   def bizadmin
     # 企業管理者メニュー

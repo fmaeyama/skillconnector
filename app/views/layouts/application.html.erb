@@ -1,3 +1,6 @@
+<%
+# sample : https://getbootstrap.com/docs/4.1/examples/offcanvas/#
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,15 +13,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <body class="bg-light">
   <div class="header" role="banner" data-header-area="acquisition">
     <div class="header-lyt-column">
       <div class="col">
         <div class="header-inner">
-          <div class="logo"><a href="/index.html">
-            <img src="/common_a/img/header/logo.png" alt="SILVERION"></a></div>
+          <div class="logo"><a href="/index.html">[Logo.png]
+            <!-- img src="/common_a/img/header/logo.png" alt="SILVERION"--> </a></div>
           <!-- /header-inner --></div>
         <!-- /col --></div>
 
@@ -29,15 +30,17 @@
               <button class="header-menu-txt"><span>メニュー</span></button>
             </div>
             <div class="header-menu-contents" style="opacity: 1;">
+	            <p class="notice"><%= notice %></p>
+	            <p class="alert"><%= alert %></p>
               <div class="header-search">
-                <a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><img src="/common_a/img/header/btn-search-02.png" alt="検索"></a>
+                <a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><!--img src="/common_a/img/header/btn-search-02.png" alt="検索"-->btnsearch.png</a>
                 <div class="header-search-inner">
                   <div class="modal-search">
                     <div class="modal-search-inner">
                       <form name="search_form" action="https://search-yayoi-kk.dga.jp/" class="iSearchAssist" method="GET" onsubmit="return mysearch_ssl(this);">
                         <input title="サイト内検索" type="text" name="kw" value="" class="searchBox ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                         <input type="hidden" name="ie" value="s">
-                        <input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn">
+                        <!--input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn"-->btn-search.png
                       </form>
                       <!-- /modal-search-inner --></div>
                     <!-- /modal-search --></div>
@@ -63,10 +66,10 @@
                       </li>
                       <li data-global-category="interview" style="height: 41px;"><a href="/interview/index.html" style="height: 41px;"><span>個人設定</span></a></li>
                       <% if user_signed_in?  %>
-                        <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+		                    <li class="global-link-list"><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
                       <% else %>
-                        <%= link_to 'sign_up', new_user_registration_path %>
-                        <%= link_to 'login', new_user_session_path %>
+		                    <li class="global-link-list"><%= link_to 'sign_up', new_user_registration_path %>
+			                    <%= link_to 'login', new_user_session_path %></li>
                       <% end %>
                       
                     </ul>
@@ -79,7 +82,18 @@
       </div>
     </div>
   </div>
+  <main role="main" class="container">
+	  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+		  <img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+		  <div class="lh-100">
+			  <h2 class="mb-0 text-white lh-100"><%=@page_title%></h2>
+			  <small>Since 2011</small>
+		  </div>
+	  </div>
+	  <%= yield %>
 
-    <%= yield %>
+  </main>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="2" style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text></svg>
   </body>
 </html>

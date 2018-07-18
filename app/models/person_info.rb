@@ -1,3 +1,5 @@
 class PersonInfo < ApplicationRecord
-	has_one :person_info
+	has_one :user
+
+
 end

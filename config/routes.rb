@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+
+	resources :common_users
   get 'common_users/index'
   get 'common_users/add'
   get 'common_users/details'
-  get 'common_userindex/add'
-  get 'common_userindex/details'
   devise_for :users
   get 'home/index'
   get 'home/sysadmin'
