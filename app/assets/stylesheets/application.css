@@ -5263,7 +5263,7 @@ button.bg-dark:focus {
 .d-none {
   display: none !important; }
 
-.d-inline {
+.d-inline, .app-data-label, .app-data-content {
   display: inline !important; }
 
 .d-inline-block {
@@ -5281,7 +5281,7 @@ button.bg-dark:focus {
 .d-table-cell {
   display: table-cell !important; }
 
-.d-flex {
+.d-flex, .app-datablock {
   display: -ms-flexbox !important;
   display: flex !important; }
 
@@ -5474,7 +5474,7 @@ button.bg-dark:focus {
   -ms-flex-direction: row !important;
   flex-direction: row !important; }
 
-.flex-column {
+.flex-column, .app-datablock {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 

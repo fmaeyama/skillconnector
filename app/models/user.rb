@@ -1,4 +1,3 @@
-include ActionView::Helpers::AssetTagHelper
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -13,8 +12,8 @@ class User < ApplicationRecord
   def getUserImages
 
     imageHash = {}
-    imageHash["main"]=image_path("icons/noimage.svg")
-    imageHash[:sub_image]=image_path("icons/noimage.svg")
+    imageHash["main"]="icons/noImage.jpg"
+    imageHash[:sub_image]="icons/sample-image.jpg"
     return imageHash
 
   end

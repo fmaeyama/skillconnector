@@ -8,6 +8,8 @@
   @extend .mb-0;
   @extend .small;
   @extend .border-bottom;
+  @extend .d-flex;
+  @extend .flex-column;
 }
 
 .app-data-title{
@@ -15,7 +17,9 @@
   
 }
 .app-data-label{
+  @extend .d-inline;
 }
-.app-data-uneditable{
+.app-data-content{
+  @extend .d-inline;
 }
 
