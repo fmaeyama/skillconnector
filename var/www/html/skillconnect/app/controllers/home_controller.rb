@@ -12,6 +12,29 @@ class HomeController < ApplicationController
 
   def sysadmin
     # システム管理者メニュー
+    @link = {
+        'ユーザー管理' => [
+            { title:"ログインユーザー一覧", controller:"common_users" , action:"index"},
+            { title:"ログインユーザー新規作成", controller:"common_users" , action:"add"},
+            { title:"登録者情報作成・編集", controller:"common_users", action:"index"}],
+        '権限管理'=>[
+            {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
+            {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
+        t(:cmn_dict.business)+'管理'=>[
+            {title: t(:cmn_dict.business)+'一覧',controller:"businesses", action:"index"},
+            [title: t(:cmn_dict.business)+'新規作成',controller:"businesses", action:"new"]],
+        t(:cmn_dict.property)+'管理'=>[
+            {title: t(:cmn_dict.property)+'一覧', controller:"properties", action:"index"},
+            {title: t(:cmn_dict.property)+'新規作成', controller:"properties", action:"new"}
+        ],
+        t(:cmn_dict.project)+'管理'=>[
+            {title: t(:cmn_dict.project)+'管理', controller: 'projects', action: "index" },
+            {title: t(:cmn_dict.project)+'管理', controller: 'projects', action: "index" },
+        ]
+
+        ]
+
+    }
     # TODO: ユーザー認証により表示させるか、404を表示する
     @visibleSysadmin = true;
     @visiblebizadmin = true;
@@ -25,10 +48,11 @@ class HomeController < ApplicationController
 
   def bizadmin
     # 企業管理者メニュー
-    link = [
-        { title:"ユーザー管理", contoller:"user" , action:"getList"},
-        { title:"", contoller:"" , action:""}
-    ]
+    @link = {'ユーザー管理' => [
+              { title:"ログインユーザー一覧", controller:"common_users" , action:"biz_index"},
+              { title:"ログインユーザー新規作成", controller:"common_users" , action:"biz_useradd"},
+              { title:"登録者情報作成・編集", controller:"common_users", action:"biz_index"}]}
+
     @visibleSysadmin = true;
     @visiblebizadmin = true;
     @currentIndex = 'bizadmin'
@@ -44,16 +68,22 @@ class HomeController < ApplicationController
     @currentIndex = 'useradmin'
     @page_title = "SILVERION menu"
     @title = '技術者メニュー'
+    @link = {'ユーザー管理' => [
+        { title:"基本情報・プロフィール編集", controller:"common_users" , action:"index"},
+        { title:"スキル編集・登録", controller:"common_users" , action:"add"},
+        { title:"パスワード変更", controller:"common_users", action:"new"}]
+    }
 
     render action: 'index'
   end
 
   private
   def getSysadminMenu()
-    link = [
-        { title:"ユーザー管理", contoller:"user" , action:"getList"},
-        { title:"", contoller:"" , action:""}
-    ]
+    @link = {'ユーザー管理' => [
+        { title:"ログインユーザー一覧", contoller:"common_users" , action:"index"},
+        { title:"ログインユーザー新規作成", contoller:"common_users" , action:"add"},
+        { title:"登録者情報作成・編集", controller:"common_users", action:"new"}]
+    }
 
   end
 
