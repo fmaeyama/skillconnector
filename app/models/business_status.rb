@@ -1,0 +1,2 @@
+class BusinessStatus < ApplicationRecord
+end

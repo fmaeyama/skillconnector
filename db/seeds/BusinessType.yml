@@ -1,0 +1,5 @@
+- name: 汎用系全般
+  status: 1
+
+- name: オープン系全般
+  status: 1

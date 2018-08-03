@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'projects/index'
+  get 'projects/new'
+  get 'projects/detail'
+  get 'properties/index'
+  get 'properties/new'
+  get 'businesses/index'
+  get 'businesses/new'
 	resources :common_users
   get 'common_users/index'
   get 'common_users/add'

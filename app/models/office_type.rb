@@ -1,0 +1,2 @@
+class OfficeType < ApplicationRecord
+end

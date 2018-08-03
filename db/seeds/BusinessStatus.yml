@@ -1,0 +1,29 @@
+- name: 準備中
+  description: 技術者のアサインが不可の状態
+  sort_id: 10
+  group_id: 0
+  status: 1
+
+- name: 受付中
+  description: 技術者のアサインが可能な状態
+  sort_id: 20
+  group_id: 1
+  status: 1
+
+- name: 受付停止中
+  description: 技術者のアサインが不可の状態。将来的に受付可能
+  sort_id: 30
+  group_id: 2
+  status: 1
+
+- name: 受付締切
+  description: 技術者のアサインが不可の状態。
+  sort_id: 40
+  group_id: 2
+  status: 1
+
+- name: 削除準備中
+  description: 技術者のアサインが不可の状態
+  sort_id: 50
+  group_id: 0
+  status: 1
