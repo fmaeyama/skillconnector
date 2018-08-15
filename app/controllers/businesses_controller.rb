@@ -9,8 +9,4 @@ class BusinessesController < ApplicationController
   def edit_own
 
   end
-
-	def contact_list
-
-	end
 end

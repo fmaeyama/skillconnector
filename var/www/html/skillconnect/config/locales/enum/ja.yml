@@ -7,3 +7,7 @@ ja:
     business: '企業'
     property: '属性'
     project: '案件'
+  contact_types:
+   email: 'e-mail'
+   tel: 'tel'
+   fax: 'fax'

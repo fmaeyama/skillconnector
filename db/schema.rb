@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_03_084932) do
+ActiveRecord::Schema.define(version: 2018_08_15_063233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "adresses", comment: "汎用住所項目", force: :cascade do |t|
+  create_table "addresses", comment: "汎用住所項目", force: :cascade do |t|
     t.string "postal_code", comment: "郵便番号（ハイフン無し）"
     t.bigint "prefecture_id"
-    t.string "adress", comment: "市区町村以下番地まで"
+    t.string "address", comment: "市区町村以下番地まで"
     t.string "building", comment: "ビル名以下"
     t.string "about_this", comment: "アドレス説明"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["prefecture_id"], name: "index_adresses_on_prefecture_id"
+    t.index ["prefecture_id"], name: "index_addresses_on_prefecture_id"
   end
 
   create_table "business_statuses", comment: "業務進行状態", force: :cascade do |t|
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 2018_08_03_084932) do
     t.index ["privilege_group_id"], name: "index_control_privileges_on_privilege_group_id"
   end
 
+  create_table "office_contacts", comment: "事業所連絡先", force: :cascade do |t|
+    t.bigint "office_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_office_contacts_on_contact_id"
+    t.index ["office_id"], name: "index_office_contacts_on_office_id"
+  end
+
   create_table "office_statuses", comment: "事業所契約状態", force: :cascade do |t|
     t.string "name", comment: "表示名称"
     t.string "description", comment: "詳細"
@@ -130,6 +139,7 @@ ActiveRecord::Schema.define(version: 2018_08_03_084932) do
   end
 
   create_table "offices", comment: "事業所", force: :cascade do |t|
+    t.string "cd", null: false, comment: "事業所CODE"
     t.string "name", null: false, comment: "事業所名称"
     t.string "name_kana", null: false, comment: "事業所読み仮名"
     t.string "long_name", null: false, comment: "事業所正式名称"
@@ -144,6 +154,7 @@ ActiveRecord::Schema.define(version: 2018_08_03_084932) do
     t.date "expire_schedule", default: "9999-12-31", comment: "データ削除予定日"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cd"], name: "index_offices_on_cd", unique: true
     t.index ["office_status_id"], name: "index_offices_on_office_status_id"
     t.index ["office_types_id"], name: "index_offices_on_office_types_id"
     t.index ["parent_id"], name: "index_offices_on_parent_id"
@@ -212,7 +223,7 @@ ActiveRecord::Schema.define(version: 2018_08_03_084932) do
   add_foreign_key "businesses", "offices"
   add_foreign_key "cmn_properties", "cmn_property_types"
   add_foreign_key "control_privileges", "privilege_groups"
-  add_foreign_key "offices", "adresses", column: "primary_address_id"
+  add_foreign_key "offices", "addresses", column: "primary_address_id"
   add_foreign_key "offices", "contacts", column: "primary_contact_id"
   add_foreign_key "offices", "offices", column: "parent_id"
   add_foreign_key "user_privilege_groups", "privilege_groups"

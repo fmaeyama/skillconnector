@@ -1,0 +1,168 @@
+<!-- create or edit Office -->
+
+<div class="my-3 p-3 bg-white rounded box-shadow">
+
+	<%= form_for(@office, url: url_for(controller: "office", action: "new")) do |f| %>
+		<div class="row">
+			<% #契約状態 → office statuses のドロップダウン%>
+			<div class="col-4">
+				<%= f.collection_select :office_status_id, @officeStatuses, :id, :name, size: 100 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :cd, '事業所コード：' %><%= f.text_field :cd, size: 15 %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<%= f.label :name, '事業所表示名：' %><%= f.text_field :name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :name_kana, '表示名よみがな：' %>:<%= f.text_field :name_kana, size: 30 %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<%= f.label :long_name, '事業所正式名称：' %><%= f.text_field :long_name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :long_name_kana, '正式名称よみがな' %><%= f.text_field :middle_name, size: 30 %>
+			</div>
+		</div>
+		<div class="row">
+			<% #事業所種別→ラジオボタンで選択：異なる種別に対しては別事業所とする方針 %>
+			<div class="col-4">
+				<%= f.text_field :office_type_id, size: 30 %>
+			</div>
+		</div>
+
+		<%= f.hidden :parent_id %>
+		<%=  fields_for(@office.parent) do |parent| %>
+		<div class="row">
+			<% #上位事業所 : モーダルで検索→入力 %>
+			<div class="col-4">
+				<%= parent.label :cd, '親事業所コード：' %><%= parent.text_field :cd, size: 15, readonly:"readonly" %>
+			</div>
+			<div class="col-4">
+				<%= parent.label :name, '親事業所：' %><%= parent.text_field :name, size: 30, readonly:"readonly" %>
+			</div>
+			<div class="col-1">
+				<%= button_tag 'Search ',type:'button', onclick:'SearchParentOffice()' %>
+			</div>
+		</div>
+		<% end %>
+		<script>
+			function SearchParentOffice(){
+				alert('need to be implement')
+			}
+		</script>
+
+		<% if Office.group(:child).count > 0 then%>
+		<div class="row border border-primary">
+			<div class="col-sm-10">
+				<h3>この事業所を親とする事業所</h3>
+				<%= @office.children.each do |child| %>
+					<div class="row">
+						<div class="col-3">
+							<%= child.label :cd, 'コード：' %><%= childt.text_field :cd, size: 15, readonly:"readonly" %>
+						</div>
+						<div class="col-4">
+							<%= child.label :name, '事業所名：' %><%= childt.text_field :cd, size: 15, readonly:"readonly" %>
+						</div>
+						<div class="col-2">
+							<%= button_tag '詳細', type:'button',onclick:'showDetail('+child.cd+');' %>
+						</div>
+						<div class="col-2">
+							<%= button_tag '独立', type:'button',onclick:'detachOffice('+child.cd+');' %>
+						</div>
+					</div>
+				<% end %>
+
+			</div>
+		</div>
+		<script>
+			function showDetail(office_code){
+				alert('NYI');
+			}
+			function detachOffice(office_code){
+				alert('NYI');
+			}
+		</script>
+		<% end %>
+
+
+
+		<%=  fields_for(@office.primary_address) do |address| %>
+		<div class="row border border-primary">
+			<div class="col-sm-10">
+				<h3>事業所所在地</h3>
+				<div class="row">
+					<div class="col-4">
+						<%= address.label :postal_code, '郵便番号：' %><%= address.text_field :postal_code, size: 50 %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<%= address.label :prefecture, '都道府県' %><%= address.collection_select :prefecture, Prefecture.all, size: 30 %>
+					</div>
+					<div class="col-5">
+						<%= child.label :address, '市区町村・番地' %><%= childt.text_field :address, size: 100 %>
+					</div>
+					<div class="col-4">
+						<%= child.label :building, '建物名' %><%= childt.text_field :building, size: 80 %>
+					</div>
+				</div>
+				<% #追加住所は一旦許容しない %>
+			</div>
+		</div>
+		<% end %>
+
+		<%= fields_for(@office.primary_contact) do |contact| %>
+		<div class="row border border-primary">
+			<div class="col-sm-10">
+				<% #代表連絡先 %>
+				<div class="row">
+					<div class="col-4">
+						<%= contact.label :contact_name, '連絡先名称：' %><%= contact.text_field :contact_name, size: 100 %>
+					</div>
+					<div class="col-4">
+						<%= contact.label :contact_kana, 'ふりがな：' %><%= contact.text_field :contact_kana, size: 100 %>
+					</div>
+					<div class="col-4">
+						<%= contact.label :title, '連絡先説明：' %><%= contact.text_field :title, size: 100 %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<%= contact.label :contact_type, '種別：', class:'invisible' %><%= f.select :contact_type, contact.contact_type.to_a.map {|s| [t("contact_types.#{s[0]}"),s[1]]} %>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-4">
+				<%= f.label :kana_last_name, '姓（カナ）' %><%= f.text_field :first_name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :kana_last_name, '名(カナ)' %><%= f.text_field :kana_last_name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :kana_middle_name, 'ミドルネーム(カナ)' %><%= f.text_field :kana_middle_name, size: 30 %>
+			</div>
+		</div>
+		<div class="row">
+			<%= f.label :user_status, '属性情報の有効性' %><%= f.select :user_status, PersonInfo.user_statuses.to_a.map {|s| [t("cmn_enum.status.#{s[0]}"),s[1]]} %>
+		</div>
+		<div class="row">
+			<%= f.label :memo, 'メモ' %><%= f.text_area :memo, size: "100x20" %>
+		</div>
+		<div class="row">
+			<%= f.label :created_at %><%= f.text_field :created_at, size: 50, readonly:true %>
+			<%= f.label :updated_at %><%= f.text_field :updated_at, size: 50, readonly:true %>
+		</div>
+
+	<% end %>
+</div>
+

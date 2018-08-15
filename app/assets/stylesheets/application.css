@@ -10605,5 +10605,11 @@ iframe {
 @media only screen and (max-width: 640px) {
   .sp-none {
     display: none !important; } }
+.app-notice {
+  color: green; }
+
+.app-alert {
+  color: red;
+  font-weight: bold; }
 
 /*# sourceMappingURL=application.css.map */
