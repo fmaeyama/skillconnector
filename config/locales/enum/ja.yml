@@ -9,5 +9,5 @@ ja:
     project: '案件'
   contact_types:
    email: 'e-mail'
-   tel: 'tel'
-   fax: 'fax'
+   tel: 'TEL'
+   fax: 'FAX'
