@@ -1,0 +1,47 @@
+- name: 潜在顧客
+  description: コンタクト前、もしくは営業が始まっていない状態
+  sort_id: 10
+  group_id: 0
+  status: 1
+
+- name: ブラックリスト
+  description: コンタクト見合わせ
+  sort_id: 40
+  group_id: 0
+  status: 1
+
+- name: 見込み顧客
+  description: コンタクト済みだが契約はまだ
+  sort_id: 20
+  group_id: 0
+  status: 1
+
+- name: 準備中
+  description: 契約がほぼ決まり、こちらの登録等を行っている状態
+  sort_id: 30
+  group_id: 1
+  status: 1
+
+- name: アクティブ
+  description: 案件の請け塚が可能な状態
+  sort_id: 40
+  group_id: 1
+  status: 1
+
+- name: 活動休止中
+  description: 案件の受付停止中
+  sort_id: 40
+  group_id: 2
+  status: 1
+
+- name: 削除準備中
+  description: 技術者のアサインが不可の状態
+  sort_id: 50
+  group_id: 3
+  status: 1
+
+- name: 削除済み
+  description: 表示・技術者のアサインが不可の状態
+  sort_id: 50
+  group_id: 3
+  status: 0

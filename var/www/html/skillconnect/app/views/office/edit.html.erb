@@ -2,7 +2,7 @@
 
 <div class="my-3 p-3 bg-white rounded box-shadow">
 
-	<%= form_for(@office, url: url_for(controller: "office", action: "new")) do |f| %>
+	<%= form_for(:office, url: url_for(controller: "office", action: "new")) do |f| %>
 		<div class="row">
 			<% #契約状態 → office statuses のドロップダウン %>
 			<div class="col-4">

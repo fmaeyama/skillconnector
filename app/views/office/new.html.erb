@@ -1,0 +1,39 @@
+<!-- create or edit Office -->
+
+<div class="my-3 p-3 bg-white rounded box-shadow">
+
+	<%= form_for(:office, url: url_for(controller: "office", action: "new")) do |f| %>
+		<div class="row">
+			<% #契約状態 → office statuses のドロップダウン %>
+			<div class="col-2">
+				<%= f.collection_select :office_status_id, @officeStatuses, :id, :name, size: 100 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :cd, '事業所コード：' %><%= f.text_field :cd, size: 15 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :office_type_id, '事業所種別：' %>
+				<%= f.collection_select :office_type_id, OfficeType.all, :id,  :name,  size: 30 %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<%= f.label :name, '事業所表示名：' %><%= f.text_field :name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :name_kana, '表示名よみがな：' %><%= f.text_field :name_kana, size: 30 %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<%= f.label :long_name, '事業所正式名称：' %><%= f.text_field :long_name, size: 30 %>
+			</div>
+			<div class="col-4">
+				<%= f.label :long_name_kana, '正式名称よみがな:' %><%= f.text_field :middle_name, size: 30 %>
+			</div>
+		</div>
+
+
+	<% end %>
+</div>
+

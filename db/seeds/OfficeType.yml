@@ -1,0 +1,12 @@
+- name: 本部(統括）
+  status: 1
+
+- name: 支社・グループ（親が存在する）
+  status: 1
+
+- name: 個人
+  status: 1
+
+- name: 業界団体など
+  status: 1
+

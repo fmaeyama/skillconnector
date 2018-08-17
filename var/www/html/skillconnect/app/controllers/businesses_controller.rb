@@ -1,12 +1,18 @@
 class BusinessesController < ApplicationController
-  def index
+	def index
 #    @list = businesses.
-  end
+	end
 
-  def new
-  end
+	def new
+	end
 
-  def edit_own
+	def edit_own
 
-  end
+	end
+
+	def contact_list
+
+	end
+
+
 end

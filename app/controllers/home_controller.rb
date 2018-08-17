@@ -4,22 +4,24 @@ class HomeController < ApplicationController
     # システム管理者メニュー
     @link = {
         'ユーザー管理' => [
-            { title:"ログインユーザー一覧", controller:"common_users" , action:"index"},
-            { title:"ログインユーザー新規作成", controller:"common_users" , action:"add"},
-            { title:"登録者情報作成・編集", controller:"common_users", action:"index"}],
-        '権限管理'=>[
+            {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
+            {title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
+            {title: "登録者情報作成・編集", controller: "common_users", action: "index"}],
+        '権限管理' => [
             {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
             {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
-        t(:business, scope:[:cmn_dict])+'管理'=>[
-            {title: t(:business, scope:[:cmn_dict])+'一覧',controller:"businesses", action:"index"},
-            [title: t(:business, scope:[:cmn_dict])+'新規作成',controller:"businesses", action:"new"]],
-        t(:property, scope:[:cmn_dict])+'管理'=>[
-            {title: t(:property, scope:[:cmn_dict])+'一覧', controller:"properties", action:"index"},
-            {title: t(:property, scope:[:cmn_dict])+'新規作成', controller:"properties", action:"new"}
-        ],
-        t(:project, scope:[:cmn_dict])+'管理'=>[
-            {title: t(:project, scope:[:cmn_dict])+'一覧', controller: 'projects', action: "index" },
-            {title: t(:project, scope:[:cmn_dict])+'新規作成', controller: 'projects', action: "index" }]
+        t(:office, scope: [:cmn_dict]) + '管理' => [
+            {title: t(:office, scope: [:cmn_dict]) + '一覧', controller: "office", action: "index"},
+            {title: t(:office, scope: [:cmn_dict]) + '新規作成', controller: "office", action: "new"}],
+        t(:business, scope: [:cmn_dict]) + '管理' => [
+            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "businesses", action: "index"},
+            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "businesses", action: "new"}],
+        t(:property, scope: [:cmn_dict]) + '管理' => [
+            {title: t(:property, scope: [:cmn_dict]) + '一覧', controller: "properties", action: "index"},
+            {title: t(:property, scope: [:cmn_dict]) + '新規作成', controller: "properties", action: "new"}],
+        t(:project, scope: [:cmn_dict]) + '管理' => [
+            {title: t(:project, scope: [:cmn_dict]) + '一覧', controller: 'projects', action: "index"},
+            {title: t(:project, scope: [:cmn_dict]) + '新規作成', controller: 'projects', action: "new"}]
     }
     # TODO: ユーザー認証により表示させるか、404を表示する
     @visibleSysadmin = true;
@@ -82,11 +84,11 @@ class HomeController < ApplicationController
     @page_title = "SILVERION menu"
     @title = '総合メニュー'
     if @visiblesysadmin then
-      sysadmin
+      sysadmin and return
     end
 
     if @visiblebizadmin then
-      sysadmin
+      sysadmin and return
     end
 
     user

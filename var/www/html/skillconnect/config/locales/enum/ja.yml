@@ -4,7 +4,8 @@ ja:
       disabled: '使用しない'
       enabled: '使用する'
   cmn_dict:
-    business: '企業'
+    office: '事業所'
+    business: '業務'
     property: '属性'
     project: '案件'
   contact_types:

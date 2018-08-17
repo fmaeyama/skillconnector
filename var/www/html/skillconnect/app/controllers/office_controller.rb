@@ -23,6 +23,11 @@ class OfficeController < ApplicationController
 	end
 
 	# 詳細編集
+	def new
+		@officeStatuses = OfficeStatus.all
+	end
+
+	# 詳細編集
 	def edit
 		@officeStatuses = OfficeStatus.all
 	end
