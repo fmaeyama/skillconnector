@@ -25,11 +25,40 @@ class OfficeController < ApplicationController
 	# 詳細編集
 	def new
 		@officeStatuses = OfficeStatus.all
+		@officeType = OfficeType.all
+		@office = Office.new
+		if request.post? then
+			@office.attributes=officeParams
+
+			respond_to do |format|
+				if @office.save!
+					format.html {redirect_to({action: 'edit', id:@office.id}, notice: 'Successfully created')}
+					format.json {render :show, status: :created, location: @office}
+				else
+					format.html {render :new, notice: 'error'}
+					format.json {render json:format, status: :unprocessable_entity}
+				end
+			end
+		else
+			@office.office_status_id=OfficeStatus.select(:id).first(1)
+			@office.office_types_id=OfficeType.select(:id).first(1)
+		end
 	end
 
 	# 詳細編集
 	def edit
 		@officeStatuses = OfficeStatus.all
+		@officeType = OfficeType.all
+		@office=Office.find(params[:id])
+		render new
 	end
+
+	private
+	def officeParams
+		params.require(:office).permit(
+			:id,  :office_status_id, :cd, :office_types_id, :name,  :name_kana,  :long_name,  :long_name_kana
+		)
+	end
+
 
 end
