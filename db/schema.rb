@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_063233) do
     t.string "long_name", null: false, comment: "事業所正式名称"
     t.string "long_name_kana", null: false, comment: "事業所正式名称読み仮名"
     t.bigint "parent_id", comment: "上位事業所"
-    t.bigint "office_types_id", comment: "事業所種別"
+    t.bigint "office_type_id", comment: "事業所種別"
     t.bigint "primary_address_id", comment: "代表住所"
     t.bigint "primary_contact_id", comment: "代表連絡先"
     t.bigint "office_status_id", comment: "事業所契約状態"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_063233) do
     t.datetime "updated_at", null: false
     t.index ["cd"], name: "index_offices_on_cd", unique: true
     t.index ["office_status_id"], name: "index_offices_on_office_status_id"
-    t.index ["office_types_id"], name: "index_offices_on_office_types_id"
+    t.index ["office_type_id"], name: "index_offices_on_office_type_id"
     t.index ["parent_id"], name: "index_offices_on_parent_id"
     t.index ["primary_address_id"], name: "index_offices_on_primary_address_id"
     t.index ["primary_contact_id"], name: "index_offices_on_primary_contact_id"

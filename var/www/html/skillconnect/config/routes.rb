@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 	get 'office/index'
 	get 'office/new'
 	post 'office/new(.:format)', to: 'office#new'
-	get 'office/edit'
 	get 'office/:id', to: 'office#edit'
 
 	resources :common_users

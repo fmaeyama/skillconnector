@@ -1,7 +1,6 @@
 <!-- create or edit Office -->
 
 <div class="my-3 p-3 bg-white rounded box-shadow">
-	<h3><%= notice %></h3>
 
 	<%= form_for(@office, url: url_for(controller: "office", action: "new")) do |f| %>
 		<div class="row">
@@ -13,8 +12,8 @@
 				<%= f.label :cd, '事業所コード：' %><%= f.text_field :cd%>
 			</div>
 			<div class="col-6">
-				<%= f.label :office_types_id, '事業所種別：' %>
-				<%= f.collection_select :office_types_id, @officeType, :id,  :name%>
+				<%= f.label :office_type_id, '事業所種別：' %>
+				<%= f.collection_select :office_type_id, @officeType, :id,  :name%>
 			</div>
 		</div>
 		<div class="row">
@@ -33,7 +32,75 @@
 				<%= f.label :long_name_kana, '正式名称よみがな:' %><%= f.text_field :long_name_kana, size: 30 %>
 			</div>
 		</div>
-		<div class="row justify-content-end">
+
+		<div class="row border border-primary align-items-center py-2 mx-2">
+			<div class="col-sm-10">
+				<%= hidden_field :office, :parent_id %>
+
+				<%= fields_for(@office.parent) do |parent| %>
+					<div class="row">
+						<% #上位事業所 : モーダルで検索→入力 %>
+						<div class="col-7">
+							<%= parent.label :cd, '親事業所コード：' %><%= parent.text_field :cd, size: 15, readonly: "readonly" %>
+							<%= button_tag 'Search ', type: 'button', onclick: 'SearchParentOffice()' %>
+						</div>
+						<div class="col-5">
+							親事業所：<%= @office.parent.nil? ? '[未定義]' : @office.parent.name %>
+						</div>
+					</div>
+				<% end %>
+
+			</div>
+			<script>
+				function SearchParentOffice() {
+					alert('need to be implement')
+				}
+			</script>
+
+		</div>
+
+		<div class="row border border-primary align-items-center py-2 mx-2">
+		<% if @office.children.count > 0 then %>
+				<div class="col-sm-10">
+					<h3>この事業所を親とする事業所</h3>
+					<%= @office.children.each do |child| %>
+						<div class="row">
+							<div class="col-3">
+								<%= child.label :cd, 'コード：' %><%= childt.text_field :cd, size: 15, readonly: "readonly" %>
+							</div>
+							<div class="col-4">
+								<%= child.label :name, '事業所名：' %><%= childt.text_field :cd, size: 15, readonly: "readonly" %>
+							</div>
+							<div class="col-2">
+								<%= button_tag '詳細', type: 'button', onclick: 'showDetail(' + child.cd + ');' %>
+							</div>
+							<div class="col-2">
+								<%= button_tag '独立', type: 'button', onclick: 'detachOffice(' + child.cd + ');' %>
+							</div>
+						</div>
+					<% end %>
+
+				</div>
+		<% else %>
+			<div class="col-sm-10">
+				<h3>この事業所を親とする事業所:なし</h3>
+
+			</div>
+
+		<% end %>
+		</div>
+		<script>
+			function showDetail(office_code) {
+				alert('NYI');
+			}
+
+			function detachOffice(office_code) {
+				alert('NYI');
+			}
+		</script>
+
+
+		<div class="row justify-content-end align-items-center" style="height: 50px">
 			<div class="col-4">
 				<span class="float-md-right"><%= f.submit %></span>
 			</div>

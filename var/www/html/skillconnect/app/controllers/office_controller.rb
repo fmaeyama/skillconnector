@@ -5,7 +5,8 @@ class OfficeController < ApplicationController
 
 	  if request.post? then
 			cond_list = [name: CondEnum::LIKE, name_kana: CondEnum::LIKE,
-			               long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE, parent_id: 'equal', office_status_id: 'in']
+			               long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
+						parent_id: 'equal', office_status_id: 'in']
 			cond = self.createCondition(params,cond_list)
 			# find by name: like
 			@office = Office.where(cond)
@@ -41,7 +42,7 @@ class OfficeController < ApplicationController
 			end
 		else
 			@office.office_status_id=OfficeStatus.select(:id).first(1)
-			@office.office_types_id=OfficeType.select(:id).first(1)
+			@office.office_type_id=OfficeType.select(:id).first(1)
 		end
 	end
 
@@ -50,13 +51,13 @@ class OfficeController < ApplicationController
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office=Office.find(params[:id])
-		render new
+		render action: 'new'
 	end
 
 	private
 	def officeParams
 		params.require(:office).permit(
-			:id,  :office_status_id, :cd, :office_types_id, :name,  :name_kana,  :long_name,  :long_name_kana
+			:id,  :office_status_id, :cd, :office_type_id, :name,  :name_kana,  :long_name,  :long_name_kana
 		)
 	end
 

@@ -7,7 +7,7 @@ class CreateOffices < ActiveRecord::Migration[5.2]
       t.string :long_name, null:false, comment: "事業所正式名称"
       t.string :long_name_kana, null:false, comment: "事業所正式名称読み仮名"
       t.references :parent, foreign_key: {to_table: :offices},comment: "上位事業所"
-      t.references :office_types, comment: "事業所種別"
+      t.references :office_type, comment: "事業所種別"
       t.references :primary_address, foreign_key: {to_table: :addresses}, comment: "代表住所"
       t.references :primary_contact, foreign_key: {to_table: :contacts}, comment: "代表連絡先"
       t.references :office_status, comment: "事業所契約状態"
