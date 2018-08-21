@@ -479,7 +479,7 @@ pre code {
   margin-right: auto;
   margin-left: auto; }
 
-.row {
+.row, .sl-border-primary {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -5173,7 +5173,7 @@ button.bg-dark:focus {
 .bg-transparent {
   background-color: transparent !important; }
 
-.border {
+.border, .sl-border-primary {
   border: 1px solid #dee2e6 !important; }
 
 .border-top {
@@ -5203,7 +5203,7 @@ button.bg-dark:focus {
 .border-left-0 {
   border-left: 0 !important; }
 
-.border-primary {
+.border-primary, .sl-border-primary {
   border-color: #007bff !important; }
 
 .border-secondary {
@@ -5546,7 +5546,7 @@ button.bg-dark:focus {
   -ms-flex-align: end !important;
   align-items: flex-end !important; }
 
-.align-items-center {
+.align-items-center, .sl-border-primary {
   -ms-flex-align: center !important;
   align-items: center !important; }
 
@@ -6335,7 +6335,7 @@ button.bg-dark:focus {
 .mx-1 {
   margin-left: 0.25rem !important; }
 
-.m-2 {
+.m-2, .sl-border-primary {
   margin: 0.5rem !important; }
 
 .mt-2,
@@ -6453,7 +6453,8 @@ button.bg-dark:focus {
   padding: 0.5rem !important; }
 
 .pt-2,
-.py-2 {
+.py-2,
+.sl-border-primary {
   padding-top: 0.5rem !important; }
 
 .pr-2,
@@ -6461,7 +6462,8 @@ button.bg-dark:focus {
   padding-right: 0.5rem !important; }
 
 .pb-2,
-.py-2 {
+.py-2,
+.sl-border-primary {
   padding-bottom: 0.5rem !important; }
 
 .pl-2,

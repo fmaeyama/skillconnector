@@ -31,3 +31,12 @@
   color: red;
   font-weight: bold;
 }
+
+.sl-border-primary{
+  @extend .row;
+  @extend .border;
+  @extend .border-primary;
+  @extend .align-items-center;
+  @extend .py-2;
+  @extend .m-2;
+}

@@ -33,7 +33,7 @@
 			</div>
 		</div>
 
-		<div class="row border border-primary align-items-center py-2 mx-2">
+		<div class="sl-border-primary">
 			<div class="col-sm-10">
 				<%= hidden_field :office, :parent_id %>
 
@@ -59,7 +59,7 @@
 
 		</div>
 
-		<div class="row border border-primary align-items-center py-2 mx-2">
+		<div class="sl-border-primary">
 		<% if @office.children.count > 0 then %>
 				<div class="col-sm-10">
 					<h3>この事業所を親とする事業所</h3>
@@ -83,7 +83,8 @@
 				</div>
 		<% else %>
 			<div class="col-sm-10">
-				<h3>この事業所を親とする事業所:なし</h3>
+				<h3>この事業所を親とする事業所</h3>
+				<p>なし</p>
 
 			</div>
 
@@ -99,12 +100,69 @@
 			}
 		</script>
 
+		<%= f.fields_for(:primary_address) do |address| %>
+
+			<div class="sl-border-primary">
+				<div class="col-sm-10">
+					<h3>事業所所在地</h3>
+					<div class="row">
+						<div class="col-5">
+							<%= address.label :postal_code, '郵便番号：' %><%= address.text_field :postal_code %>
+						</div>
+						<div class="col-3">
+							<%= address.label :prefecture_id, '都道府県' %>
+							<%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, size: 30 %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<%= address.label :address, '市区町村・番地:' %><%= address.text_field :address, style:"width:70%" %>
+						</div>
+						<div class="col-6">
+							<%= address.label :building, '建物名:' %><%= address.text_field :building, style:"width:70%"     %>
+						</div>
+					</div>
+					<% #追加住所は一旦許容しない %>
+				</div>
+			</div>
+		<% end %>
+
+		<%= f.fields_for(:primary_contact) do |contact| %>
+			<div class="sl-border-primary">
+				<div class="col-sm-10">
+					<div class="row">
+						<h3>主な連絡先</h3>
+						<div class="row">
+							<div class="col-6">
+								<%= contact.label :contact_name, '連絡先名称：' %><%= contact.text_field :contact_name, size: 50 %>
+							</div>
+							<div class="col-6">
+								<%= contact.label :contact_kana, 'ふりがな：' %><%= contact.text_field :contact_kana, size: 50 %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7">
+								<%= contact.label :title, '連絡先説明：' %><%= contact.text_field :title, size: 100 %>
+							</div>
+							<div class="col-4">
+								<%= contact.label :contact_type, '種別：', class: 'invisible' %><%= contact.select :contact_type, Contact.contact_types.to_a.map {|s| [t("contact_types.#{s[0]}"), s[1]]} %>
+								<%= button_tag '連絡先追加', type: 'button', onclick: 'addNewContact();' %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
 
 		<div class="row justify-content-end align-items-center" style="height: 50px">
 			<div class="col-4">
 				<span class="float-md-right"><%= f.submit %></span>
 			</div>
+			<div class="col-4">
+				<%= button_tag '新規事業所作成', type: 'button', onclick: "location.href=\'#{url_for(controller:'office', action:'new')}\'"%>
+			</div>
 		</div>
-	<% end %>
+
+<% end %>
 </div>
 

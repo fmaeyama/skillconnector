@@ -29,20 +29,37 @@ class OfficeController < ApplicationController
 		@officeType = OfficeType.all
 		@office = Office.new
 		if request.post? then
-			@office.attributes=officeParams
 
-			respond_to do |format|
-				if @office.save!
-					format.html {redirect_to({action: 'edit', id:@office.id}, notice: 'Successfully created')}
+			begin
+				Office.transaction do
+					@office.attributes = officeParams
+					@address = Address.new
+					@contact = Contact.new
+					@address.attributes = Address.addressParams(params, :primary_address)
+					@address.about_this = 'Primary Address of ' + @office.cd
+					@address.save!
+					@contact.attributes = Contact.permitParams(params, :primary_contact)
+					@contact.save!
+					@office.primary_contact_id = @contact.id
+					@office.primary_address_id = @address.id
+					@office.save!
+				end
+				respond_to do |format|
+					format.html {redirect_to({action: 'edit', id: @office.id}, notice: 'Successfully created')}
 					format.json {render :show, status: :created, location: @office}
-				else
-					format.html {render :new, notice: 'error'}
-					format.json {render json:format, status: :unprocessable_entity}
+				end
+			rescue => e
+				respond_to do |format|
+					format.html {render :new, notice: e.message}
+					format.json {render json: format, status: :unprocessable_entity}
 				end
 			end
+
 		else
 			@office.office_status_id=OfficeStatus.select(:id).first(1)
 			@office.office_type_id=OfficeType.select(:id).first(1)
+			@office.primary_address = Address.new
+			@office.primary_contact = Contact.new
 		end
 	end
 
@@ -57,9 +74,11 @@ class OfficeController < ApplicationController
 	private
 	def officeParams
 		params.require(:office).permit(
-			:id,  :office_status_id, :cd, :office_type_id, :name,  :name_kana,  :long_name,  :long_name_kana
+			:id,  :office_status_id, :cd, :office_type_id, :name,  :name_kana,  :long_name,  :long_name_kana,
+			:parent_id, :privary_address_id
 		)
 	end
+
 
 
 end
