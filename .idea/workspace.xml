@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17447f41-fb79-42bd-9a49-77104127e37e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/skillconnect.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/skillconnect.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/office_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/office_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/contact.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/contact.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/office.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/office.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/app/controllers/office_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/app/controllers/office_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/app/models/office.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/app/models/office.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/config/application.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -168,7 +163,7 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="address.rb" pinned="false" current-in-tab="true">
+              <file leaf-file-name="address.rb" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/models/address.rb">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="85">
@@ -177,11 +172,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="office.rb" pinned="false" current-in-tab="false">
+              <file leaf-file-name="office.rb" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/models/office.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="153">
-                      <caret line="9" selection-start-line="9" selection-end-line="9" />
+                    <state relative-caret-position="204">
+                      <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
                     </state>
                   </provider>
                 </entry>
@@ -266,20 +261,29 @@
         <splitter split-orientation="horizontal" split-proportion="0.45">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="office_controller.rb" pinned="false" current-in-tab="false">
+              <file leaf-file-name="office_controller.rb" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/controllers/office_controller.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="170">
-                      <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+                    <state relative-caret-position="816">
+                      <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="contact.rb" pinned="false" current-in-tab="true">
+              <file leaf-file-name="application_helper.rb" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="51">
+                      <caret line="3" selection-start-line="3" selection-end-line="3" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="contact.rb" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/models/contact.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="85">
-                      <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+                    <state relative-caret-position="119">
+                      <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
                     </state>
                   </provider>
                 </entry>
@@ -332,18 +336,27 @@
               <file leaf-file-name="instrumenter.rb" pinned="false" current-in-tab="false">
                 <entry file="file://$USER_HOME$/.RubyMine2018.1/system/ruby_stubs/1526456945/-2083698379/gems/activesupport-5.2.0/lib/active_support/notifications/instrumenter.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="476">
+                    <state relative-caret-position="111">
                       <caret line="28" selection-start-line="28" selection-end-line="28" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/views/office/index.html.erb">
+              <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1615">
+                      <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="application_record.rb" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
                   <provider selected="true" editor-type-id="text-editor" />
                 </entry>
               </file>
-              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="true">
+              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/views/office/new.html.erb">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="714">
@@ -437,10 +450,10 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/models/address.rb" />
         <option value="$PROJECT_DIR$/app/views/office/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/office.rb" />
         <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/office_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/contact.rb" />
+        <option value="$PROJECT_DIR$/app/models/office.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/office_controller.rb" />
       </list>
     </option>
   </component>
@@ -498,7 +511,33 @@
               <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
               <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="devise" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
@@ -625,12 +664,12 @@
       <workItem from="1534762858434" duration="2958000" />
       <workItem from="1534766141472" duration="4080000" />
       <workItem from="1534826902182" duration="15735000" />
-      <workItem from="1534951137037" duration="2726000" />
+      <workItem from="1534951137037" duration="4613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304144000" />
+    <option name="totallyTimeSpent" value="306031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -732,13 +771,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.RubyMine2018.1/system/ruby_stubs/1526456945/-2083698379/gems/bootsnap-1.3.0/lib/bootsnap/load_path_cache/loaded_features_index.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/projects_controller.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -857,13 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/common_users/details.html.erb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -901,13 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/office_type.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -927,16 +945,6 @@
           <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/office/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
@@ -963,20 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.RubyMine2018.1/system/ruby_stubs/1526456945/-2083698379/gems/activesupport-5.2.0/lib/active_support/notifications/instrumenter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/office.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -1029,17 +1023,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/office_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/contact.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+        <state relative-caret-position="119">
+          <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/contact.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/office.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/office/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.RubyMine2018.1/system/ruby_stubs/1526456945/-2083698379/gems/activesupport-5.2.0/lib/active_support/notifications/instrumenter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/office_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
         </state>
       </provider>
     </entry>

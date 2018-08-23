@@ -8,5 +8,8 @@ class Office < ApplicationRecord
   has_many :contacts, through: :office_contacts
   has_many :businesses
 
+  accepts_nested_attributes_for :primary_address
+  accepts_nested_attributes_for :primary_contact
+
 
 end

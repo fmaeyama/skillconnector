@@ -35,11 +35,11 @@ class OfficeController < ApplicationController
 					@office.attributes = officeParams
 					@address = Address.new
 					@contact = Contact.new
-					@address.attributes = Address.addressParams(params[:office], :primary_address)
+					@address.attributes = Address.addressParams(params[:office], :primary_address_attributes)
 					@address.about_this = 'Primary Address of ' + @office.cd
 					@address.save!
 				end
-					@contact.attributes = Contact.permitParams(params[:office]  , :primary_contact)
+					@contact.attributes = Contact.permitParams(params[:office]  , :primary_contact_attributes)
 					@contact.save!
 					@office.primary_contact_id = @contact.id
 					@office.primary_address_id = @address.id
@@ -48,12 +48,12 @@ class OfficeController < ApplicationController
 					format.html {redirect_to({action: 'edit', id: @office.id}, notice: 'Successfully created')}
 					format.json {render :show, status: :created, location: @office}
 				end
-			# rescue => e
-			# 	str = e.message
-			# 	respond_to do |format|
-			# 		format.html {render :new, notice: str}
-			# 		format.json {render json: format, status: :unprocessable_entity}
-			# 	end
+			rescue => e
+				flash.now[:alert]=e.message
+				respond_to do |format|
+					format.html {render 'new'}
+					format.json {render json: format, status: :unprocessable_entity}
+				end
 			end
 
 		else
