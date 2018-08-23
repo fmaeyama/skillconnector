@@ -35,24 +35,25 @@ class OfficeController < ApplicationController
 					@office.attributes = officeParams
 					@address = Address.new
 					@contact = Contact.new
-					@address.attributes = Address.addressParams(params, :primary_address)
+					@address.attributes = Address.addressParams(params[:office], :primary_address)
 					@address.about_this = 'Primary Address of ' + @office.cd
 					@address.save!
-					@contact.attributes = Contact.permitParams(params, :primary_contact)
+				end
+					@contact.attributes = Contact.permitParams(params[:office]  , :primary_contact)
 					@contact.save!
 					@office.primary_contact_id = @contact.id
 					@office.primary_address_id = @address.id
 					@office.save!
-				end
 				respond_to do |format|
 					format.html {redirect_to({action: 'edit', id: @office.id}, notice: 'Successfully created')}
 					format.json {render :show, status: :created, location: @office}
 				end
-			rescue => e
-				respond_to do |format|
-					format.html {render :new, notice: e.message}
-					format.json {render json: format, status: :unprocessable_entity}
-				end
+			# rescue => e
+			# 	str = e.message
+			# 	respond_to do |format|
+			# 		format.html {render :new, notice: str}
+			# 		format.json {render json: format, status: :unprocessable_entity}
+			# 	end
 			end
 
 		else
@@ -75,7 +76,11 @@ class OfficeController < ApplicationController
 	def officeParams
 		params.require(:office).permit(
 			:id,  :office_status_id, :cd, :office_type_id, :name,  :name_kana,  :long_name,  :long_name_kana,
-			:parent_id, :privary_address_id
+			:parent_id, :privary_address_id,  :primary_contact_id,
+			# primary_contact: [:contact_name, :contact_kana, :title,
+			# 	:contact_type, :contact_value],
+			# primary_address: [:id,:postal_code,:prefecture_id,:address,:building,:about_this],
+			:primary_parent
 		)
 	end
 
