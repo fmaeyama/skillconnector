@@ -130,29 +130,104 @@
 		<%= f.fields_for(:primary_contact) do |contact| %>
 			<div class="sl-border-primary">
 				<div class="col-sm-10">
+					<h3>主な連絡先</h3>
 					<div class="row">
-						<h3>主な連絡先</h3>
-						<div class="row">
-							<div class="col-6">
-								<%= contact.label :contact_name, '連絡先名称：' %><%= contact.text_field :contact_name, size: 50 %>
-							</div>
-							<div class="col-6">
-								<%= contact.label :contact_kana, 'ふりがな：' %><%= contact.text_field :contact_kana, size: 50 %>
-							</div>
+						<div class="col-6">
+							<%= contact.label :contact_name, '連絡先名称：' %><%= contact.text_field :contact_name, size: 50 %>
 						</div>
-						<div class="row">
-							<div class="col-7">
-								<%= contact.label :title, '連絡先説明：' %><%= contact.text_field :title, size: 100 %>
-							</div>
-							<div class="col-4">
-								<%= contact.label :contact_type, '種別：', class: 'invisible' %><%= contact.select :contact_type, Contact.contact_types.to_a.map {|s| [t("contact_types.#{s[0]}"), s[1]]} %>
-								<%= button_tag '連絡先追加', type: 'button', onclick: 'addNewContact();' %>
-							</div>
+						<div class="col-6">
+							<%= contact.label :contact_kana, 'ふりがな：' %><%= contact.text_field :contact_kana, size: 50 %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-7">
+							<%= contact.label :title, '連絡先説明：' %><%= contact.text_field :title, size: 100 %>
+						</div>
+						<div class="col-4">
+							<%= contact.label :contact_type, '種別：', class: 'invisible' %><%= contact.select :contact_type, Contact.contact_types.to_a.map {|s| [t("contact_types.#{s[0]}"), s[1]]} %>
+							<%= button_tag '連絡先追加', type: 'button', onclick: 'addNewContact();' %>
 						</div>
 					</div>
 				</div>
 			</div>
 		<% end %>
+		<% if @office.contacts.count > 0 %>
+			<% each(:contacts) do |officeContact| %>
+				<div class="sl-border-primary">
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="col-4">
+								<%= officeContact.label :title, '連絡先説明：' %><%= officeContact.text_field :title, size: 100 %>
+							</div>
+							<div class="col-3">
+								<%= officeContact.label :contact_type, '種別：', class: 'invisible' %><%= f.select :contact_type, officeContact.contact_type.to_a.map {|s| [t("contact_types.#{s[0]}"), s[1]]} %>
+							</div>
+							<%= button_tag '連絡先削除', type: 'button', onclick: 'deleteContact(' + officeContact.id + ');' %>
+						</div>
+						<div class="row">
+							<div class="col-4">
+								<%= officeContact.label :contact_name, '連絡先名称：' %><%= officeContact.text_field :contact_name, size: 100 %>
+							</div>
+							<div class="col-4">
+								<%= officeContact.label :contact_kana, 'ふりがな：' %><%= officeContact.text_field :contact_kana, size: 100 %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+
+		<div class="sl-border-primary">
+			<div class="col-sm-10">
+				<h3>募集業務</h3>
+				<% if @office.businesses.count > 0 %>
+					<% each(@office.businesses) do |business| %>
+						<div class="row">
+							<div class="col-3">
+								<%= business.label :business_type_id, '業務種別', class: "invisible" %>
+								<%= business.collection_select :business_type_id, BusinessTypes, :id, :name, readonly: "readonly" %>
+							</div>
+							<div class="col-4">
+								<%= business.label :name, '業務タイトル：', class: "invisible" %>
+								<%= business.text_field :name, size: 100 %>
+							</div>
+							<div class="col-4">
+								<% button_tag "詳細", type: "button", onclick: "editBusiness(#{business.id})" %>
+								<% button_tag "削除", type: "button", onclick: "deleteBusiness(#{business.id})" %>
+							</div>
+						</div>
+					<% end %>
+				<% else %>
+				<% end %>
+				<div class="row">
+					<div class="col-4">
+						<% button_tag "業務追加", type: "button", onclick: "addBusiness()" %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function editBusiness(business_id) {
+				alert("editBusiness NYI");
+			}
+
+			function deleteBusiness(business_id) {
+				alert("delete Business NYI");
+			}
+
+			function addBusiness() {
+				alert("add Business NYI");
+			}
+		</script>
+
+		<div class="row justify-content-end align-items-center" style="height: 50px">
+			<div class="col-4">
+				<span class="float-md-right"><%= f.submit %></span>
+			</div>
+			<div class="col-4">
+				<%= button_tag '連絡先追加', type: 'button', onclick: "location.href=\'#{url_for(controller:'office', action:'new')}\'"%>
+			</div>
+		</div>
 
 		<div class="row justify-content-end align-items-center" style="height: 50px">
 			<div class="col-4">

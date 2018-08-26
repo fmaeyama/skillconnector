@@ -5,7 +5,7 @@ class Office < ApplicationRecord
   belongs_to :primary_address, class_name:'Address', optional: true
   belongs_to :primary_contact, class_name:'Contact', optional: true
   belongs_to :office_status
-  has_many :contacts, through: :office_contacts
+  has_and_belongs_to_many :contacts
   has_many :businesses
 
   accepts_nested_attributes_for :primary_address

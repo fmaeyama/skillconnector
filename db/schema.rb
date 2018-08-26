@@ -101,6 +101,11 @@ ActiveRecord::Schema.define(version: 2018_08_15_063233) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts_offices", id: false, force: :cascade do |t|
+    t.bigint "contact_id", null: false
+    t.bigint "office_id", null: false
+  end
+
   create_table "control_privileges", force: :cascade do |t|
     t.bigint "privilege_group_id"
     t.string "controller_name"
@@ -108,15 +113,6 @@ ActiveRecord::Schema.define(version: 2018_08_15_063233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["privilege_group_id"], name: "index_control_privileges_on_privilege_group_id"
-  end
-
-  create_table "office_contacts", comment: "事業所連絡先", force: :cascade do |t|
-    t.bigint "office_id"
-    t.bigint "contact_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_office_contacts_on_contact_id"
-    t.index ["office_id"], name: "index_office_contacts_on_office_id"
   end
 
   create_table "office_statuses", comment: "事業所契約状態", force: :cascade do |t|
