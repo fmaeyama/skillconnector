@@ -20,6 +20,9 @@ class OfficeController < ApplicationController
 
 	# 一覧表表示
 	def list
+		@offices = Office.all
+
+		@res_cnt = @offices.count
 
 	end
 
@@ -28,6 +31,7 @@ class OfficeController < ApplicationController
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office = Office.new
+		@title = t('cmn_dict.office')+'新規作成'
 		if request.post? then
 
 			begin
@@ -66,6 +70,7 @@ class OfficeController < ApplicationController
 
 	# 詳細編集
 	def edit
+		@title = t('cmn_dict.office')+'＃'+params[:id]
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office=Office.find(params[:id])

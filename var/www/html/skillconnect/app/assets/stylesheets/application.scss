@@ -40,3 +40,19 @@
   @extend .py-2;
   @extend .m-2;
 }
+
+.sl-row-border-secondary{
+  @extend .row;
+  @extend .border;
+  @extend .border-secondary;
+  @extend .align-items-center;
+  @extend .py-2;
+  @extend .m-2;
+}
+
+.sl-row-rightAlign{
+  @extend .row;
+  @extend .justify-content-end;
+  @extend .align-items-center;
+  height: 50px;
+}

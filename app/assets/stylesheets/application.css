@@ -479,7 +479,7 @@ pre code {
   margin-right: auto;
   margin-left: auto; }
 
-.row, .sl-border-primary {
+.row, .sl-border-primary, .sl-row-border-secondary, .sl-row-rightAlign {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -5173,7 +5173,7 @@ button.bg-dark:focus {
 .bg-transparent {
   background-color: transparent !important; }
 
-.border, .sl-border-primary {
+.border, .sl-border-primary, .sl-row-border-secondary {
   border: 1px solid #dee2e6 !important; }
 
 .border-top {
@@ -5206,7 +5206,7 @@ button.bg-dark:focus {
 .border-primary, .sl-border-primary {
   border-color: #007bff !important; }
 
-.border-secondary {
+.border-secondary, .sl-row-border-secondary {
   border-color: #6c757d !important; }
 
 .border-success {
@@ -5522,7 +5522,7 @@ button.bg-dark:focus {
   -ms-flex-pack: start !important;
   justify-content: flex-start !important; }
 
-.justify-content-end {
+.justify-content-end, .sl-row-rightAlign {
   -ms-flex-pack: end !important;
   justify-content: flex-end !important; }
 
@@ -5546,7 +5546,7 @@ button.bg-dark:focus {
   -ms-flex-align: end !important;
   align-items: flex-end !important; }
 
-.align-items-center, .sl-border-primary {
+.align-items-center, .sl-border-primary, .sl-row-border-secondary, .sl-row-rightAlign {
   -ms-flex-align: center !important;
   align-items: center !important; }
 
@@ -6335,7 +6335,7 @@ button.bg-dark:focus {
 .mx-1 {
   margin-left: 0.25rem !important; }
 
-.m-2, .sl-border-primary {
+.m-2, .sl-border-primary, .sl-row-border-secondary {
   margin: 0.5rem !important; }
 
 .mt-2,
@@ -6454,7 +6454,8 @@ button.bg-dark:focus {
 
 .pt-2,
 .py-2,
-.sl-border-primary {
+.sl-border-primary,
+.sl-row-border-secondary {
   padding-top: 0.5rem !important; }
 
 .pr-2,
@@ -6463,7 +6464,8 @@ button.bg-dark:focus {
 
 .pb-2,
 .py-2,
-.sl-border-primary {
+.sl-border-primary,
+.sl-row-border-secondary {
   padding-bottom: 0.5rem !important; }
 
 .pl-2,
@@ -10613,5 +10615,8 @@ iframe {
 .app-alert {
   color: red;
   font-weight: bold; }
+
+.sl-row-rightAlign {
+  height: 50px; }
 
 /*# sourceMappingURL=application.css.map */

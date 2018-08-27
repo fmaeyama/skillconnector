@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	get 'businesses/edit_own'
 	get 'businesses/contact_list'
 
-	get 'office/index'
+	get 'office/index', to:'office#list'
 	get 'office/new'
 	post 'office/new(.:format)', to: 'office#new'
 	get 'office/:id', to: 'office#edit'
