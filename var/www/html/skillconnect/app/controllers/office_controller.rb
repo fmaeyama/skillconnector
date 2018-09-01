@@ -4,17 +4,19 @@ class OfficeController < ApplicationController
 	def index
 
 	  if request.post? then
-			cond_list = [name: CondEnum::LIKE, name_kana: CondEnum::LIKE,
+			cond_list = [name: CondEnum::LIKE, cd: CondEnum::EQ,
 			               long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
 						parent_id: 'equal', office_status_id: 'in']
 			cond = self.createCondition(params,cond_list)
 			# find by name: like
-			@office = Office.where(cond)
-	  else
-			@office = Office.all
+			@offices = Office.where(cond)
 	  end
 
-		@office = Office.all
+	  if (@offices.nil?) then
+		  @offices = Office.all
+	  end
+
+	  @res_cnt = @offices.count
 
 	end
 

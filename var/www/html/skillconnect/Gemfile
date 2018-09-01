@@ -44,6 +44,10 @@ gem 'jquery-rails'
 # MIT License https://github.com/brainspec/enumerize
 gem 'enumerize'
 
+# As of version 3.0.0, Draper is only compatible with Rails 5 / Ruby 2.2 and later.
+# https://github.com/drapergem/draper
+gem 'draper'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
