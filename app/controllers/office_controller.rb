@@ -1,29 +1,33 @@
 class OfficeController < ApplicationController
-	@var = OfficeDecorator.new
+
+	def initialize
+		super
+		@var = OfficeDecorator.new
+	end
 
 	# 一覧表示
 	def index
-		@var.title = t('cmn_sentence.listTitle', model:@var.model_name)
-	  if request.post? then
+		@var.title = t('cmn_sentence.listTitle', model: @var.model_name)
+		if request.post? then
 			cond_list = [name: CondEnum::LIKE, cd: CondEnum::EQ,
-			               long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
-						parent_id: 'equal', office_status_id: 'in']
-			cond = self.createCondition(params,cond_list)
+				long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
+				parent_id: 'equal', office_status_id: 'in']
+			cond = self.createCondition(params, cond_list)
 			# find by name: like
 			@offices = Office.where(cond)
-	  end
+		end
 
-	  if (@offices.nil?) then
-		  @offices = Office.all
-	  end
+		if (@offices.nil?) then
+			@offices = Office.all
+		end
 
-	  @var.view_count = @offices.count
+		@var.view_count = @offices.count
 
 	end
 
 	# 一覧表表示
 	def list
-		@var.title = t('cmn_sentence.listTitle', model:@var.model_name)
+		@var.title = t('cmn_sentence.listTitle', model: @var.model_name)
 		@offices = Office.all
 
 		@var.view_count = @offices.count
@@ -35,7 +39,7 @@ class OfficeController < ApplicationController
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office = Office.new
-		@var.title = t('cmn_sentence.newTitle', model:@var.model_name)
+		@var.title = t('cmn_sentence.newTitle', model: @var.model_name)
 		if request.post? then
 
 			begin
@@ -47,17 +51,17 @@ class OfficeController < ApplicationController
 					@address.about_this = 'Primary Address of ' + @office.cd
 					@address.save!
 				end
-					@contact.attributes = Contact.permitParams(params[:office]  , :primary_contact_attributes)
-					@contact.save!
-					@office.primary_contact_id = @contact.id
-					@office.primary_address_id = @address.id
-					@office.save!
+				@contact.attributes = Contact.permitParams(params[:office], :primary_contact_attributes)
+				@contact.save!
+				@office.primary_contact_id = @contact.id
+				@office.primary_address_id = @address.id
+				@office.save!
 				respond_to do |format|
 					format.html {redirect_to({action: 'edit', id: @office.id}, notice: 'Successfully created')}
 					format.json {render :show, status: :created, location: @office}
 				end
 			rescue => e
-				flash.now[:alert]=e.message
+				flash.now[:alert] = e.message
 				respond_to do |format|
 					format.html {render 'new'}
 					format.json {render json: format, status: :unprocessable_entity}
@@ -65,8 +69,8 @@ class OfficeController < ApplicationController
 			end
 
 		else
-			@office.office_status_id=OfficeStatus.select(:id).first(1)
-			@office.office_type_id=OfficeType.select(:id).first(1)
+			@office.office_status_id = OfficeStatus.select(:id).first(1)
+			@office.office_type_id = OfficeType.select(:id).first(1)
 			@office.primary_address = Address.new
 			@office.primary_contact = Contact.new
 		end
@@ -74,25 +78,25 @@ class OfficeController < ApplicationController
 
 	# 詳細編集
 	def edit
-		@title = t('cmn_dict.office')+'＃'+params[:id]
+		@title = t('cmn_dict.office') + '＃' + params[:id]
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
-		@office=Office.find(params[:id])
+		@office = Office.find(params[:id])
 		render action: 'new'
 	end
 
 	private
-	def officeParams
-		params.require(:office).permit(
-			:id,  :office_status_id, :cd, :office_type_id, :name,  :name_kana,  :long_name,  :long_name_kana,
-			:parent_id, :privary_address_id,  :primary_contact_id,
-			# primary_contact: [:contact_name, :contact_kana, :title,
-			# 	:contact_type, :contact_value],
-			# primary_address: [:id,:postal_code,:prefecture_id,:address,:building,:about_this],
-			:primary_parent
-		)
-	end
 
+		def officeParams
+			params.require(:office).permit(
+				:id, :office_status_id, :cd, :office_type_id, :name, :name_kana, :long_name, :long_name_kana,
+				:parent_id, :privary_address_id, :primary_contact_id,
+				# primary_contact: [:contact_name, :contact_kana, :title,
+				# 	:contact_type, :contact_value],
+				# primary_address: [:id,:postal_code,:prefecture_id,:address,:building,:about_this],
+				:primary_parent
+			)
+		end
 
 
 end

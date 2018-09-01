@@ -46,7 +46,7 @@ class CommonUsersController < ApplicationController
 	end
 
 	private
-	def get_list(arrBizid=null)
+	def get_list(arrBizid=nil)
 		allusers = User.all.includes(:person_info)
 		return allusers
 
