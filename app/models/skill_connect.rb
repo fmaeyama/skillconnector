@@ -1,0 +1,2 @@
+class SkillConnect < ApplicationRecord
+end

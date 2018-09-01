@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :skill_connects
 	get 'privilege/assign_role'
 	get 'projects/index'
 	get 'projects/new'
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
 	get 'businesses/edit_own'
 	get 'businesses/contact_list'
 
-	get 'office/index', to:'office#list'
+	get 'office/index', to:'office#index'
+	get 'office/list', to:'office#list'
 	get 'office/new'
 	post 'office/new(.:format)', to: 'office#new'
 	get 'office/:id', to: 'office#edit'

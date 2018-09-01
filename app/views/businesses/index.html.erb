@@ -1,2 +1,42 @@
-<h1>Businesses#index</h1>
-<p>Find me in app/views/businesses/index.html.erb</p>
+<h1><%= t('cmn_dict.business')+'一覧' %></h1>
+
+<div class="my-3 p-3 bg-white rounded box-shadow">
+	<h6 class="border-bottom border-gray pb-2 mb-0">表示件数<%= @res_cnt %>件</h6>
+	<%=form_tag('edit') do %>
+		<div class="media-body app-datablock">
+			<%= label_tag('keyword') %><%= text_field_tag('keyword') %>
+		</div>
+		<div class="d-flex justify-content-end">
+			<%= submit_tag('search!') %>
+		</div>
+	<% end %>
+
+
+	<% 	@businesses.each do |bussiness| %>
+		<div class="media text-muted pt-3">
+			<div class="media-body app-datablock">
+				<div class="app-data-title">
+					id: <span id="business-id-<%=business.id%>"> <%=business.id%></span>
+					<span id="business-name-<%=business.id%>"> <%=business.name%></span>
+					(<span id="business-desc-<%=business.id%>"> <%=business.description%></span>)
+				</div>
+				<div class="d-block p-4">
+					<% if office.parent.blank? then
+					%>
+						<div class="d-flex justify-content-end">
+							<button type="button" id="assosiate_person" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"> 親事業所紐付け </button>
+						</div>
+					<% else %>
+						<%= offie.parent.cd %> : <%= office.parent.name %>
+					<% end %>
+				</div>
+			</div>
+
+		</div>
+	<% end %>
+
+	<small class="d-block text-right mt-3">
+		<a href="#">All updates</a>
+	</small>
+</div>
+

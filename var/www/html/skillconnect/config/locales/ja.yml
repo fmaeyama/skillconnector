@@ -6,3 +6,7 @@ ja:
   activerecord:
     models:
       office: '事業所'
+  cmn_sentence:
+    listTitle: '%{model}一覧'
+    newTitle: '新規%{model}作成'
+    editTitle: '%{model}編集 #%{id}'

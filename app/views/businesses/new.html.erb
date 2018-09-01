@@ -1,2 +1,8 @@
-<h1>Businesses#new</h1>
-<p>Find me in app/views/businesses/new.html.erb</p>
+<h1> <%= @title %></h1>
+<div class="my-3 p-3 bg-white rounded box-shadow">
+	<%=  form_for(@business, url:url_for(controller:'businesses', action: 'new' )) do |f| %>
+	<% end %>
+
+
+
+</div>

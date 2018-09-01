@@ -1,28 +1,32 @@
 class OfficeController < ApplicationController
+	@var = OfficeDecorator.new
 
 	# 一覧表示
 	def index
-
+		@var.title = t('cmn_sentence.listTitle', model:@var.model_name)
 	  if request.post? then
-			cond_list = [name: CondEnum::LIKE, name_kana: CondEnum::LIKE,
+			cond_list = [name: CondEnum::LIKE, cd: CondEnum::EQ,
 			               long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
 						parent_id: 'equal', office_status_id: 'in']
 			cond = self.createCondition(params,cond_list)
 			# find by name: like
-			@office = Office.where(cond)
-	  else
-			@office = Office.all
+			@offices = Office.where(cond)
 	  end
 
-		@office = Office.all
+	  if (@offices.nil?) then
+		  @offices = Office.all
+	  end
+
+	  @var.view_count = @offices.count
 
 	end
 
 	# 一覧表表示
 	def list
+		@var.title = t('cmn_sentence.listTitle', model:@var.model_name)
 		@offices = Office.all
 
-		@res_cnt = @offices.count
+		@var.view_count = @offices.count
 
 	end
 
@@ -31,7 +35,7 @@ class OfficeController < ApplicationController
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office = Office.new
-		@title = t('cmn_dict.office')+'新規作成'
+		@var.title = t('cmn_sentence.newTitle', model:@var.model_name)
 		if request.post? then
 
 			begin

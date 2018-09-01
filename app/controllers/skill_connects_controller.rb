@@ -1,0 +1,2 @@
+class SkillConnectsController < ApplicationController
+end

@@ -28,3 +28,4 @@
 /.idea/*
 /var/*
 *.lock
+.idea/workspace.xml
