@@ -57,8 +57,8 @@ class ApplicationController < ActionController::Base
 		cond = []
 		condArr = []
 		params.each do |col, val|
-			unless (val.blank?)
-				case whereList[col]
+			if (not (val.blank?) and (whereList.key?(col.to_sym)))
+				case whereList[col.to_sym]
 					when CondEnum::LIKE
 						cond << col.to_s + ' like ?'
 						condArr << val
