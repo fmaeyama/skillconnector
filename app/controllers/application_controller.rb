@@ -53,23 +53,37 @@ class ApplicationController < ActionController::Base
 		@class_permission[controll]
 	end
 
-	def createCondition(params, whereList)
+	def createCondition(model, params, whereList, freeword)
 		cond = []
-		foreach params do |col, val|
-			case whereList(col)
-				when CondEnum::LIKE
-					break
-				when CondEnum::EQ
-					break
-				when CondEnum::IN
-					break
-				when CondEnum::FROM
-					break
-				when CondEnum::TO
-					break
+		condArr = []
+		params.each do |col, val|
+			unless (val.blank?)
+				case whereList[col]
+					when CondEnum::LIKE
+						cond << col.to_s + ' like ?'
+						condArr << val
+						break
+					when CondEnum::EQ
+						cond << col.to_s + ' = ?'
+						condArr << val
+						break
+					when CondEnum::IN
+						cond << col.to_s + ' in (' + val.join(",") + ")"
+						break
+					when CondEnum::FROM
+						cond << col.to_s + ' > ?'
+						condArr << val
+						break
+					when CondEnum::TO
+						cond >> col.to_s + ' < ?'
+						condArr << val
+						break
+					else
+						break
+				end
 			end
 		end
-		return cond
+		model.where(cond.join(' and '),condArr)
 	end
 	
 	

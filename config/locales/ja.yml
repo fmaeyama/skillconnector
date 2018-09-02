@@ -10,3 +10,12 @@ ja:
     listTitle: '%{model}一覧'
     newTitle: '新規%{model}作成'
     editTitle: '%{model}編集 #%{id}'
+  cmn_dict:
+    office: '事業所'
+    business: '業務'
+    property: '属性'
+    project: '案件'
+    search: '検索'
+    freeword: 'フリーワード'
+    stauts: 'Status'
+    all_for_select: 'ALL'

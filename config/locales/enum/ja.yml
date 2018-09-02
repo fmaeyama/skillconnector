@@ -3,12 +3,7 @@ ja:
     status:
       disabled: '使用しない'
       enabled: '使用する'
-  cmn_dict:
-    office: '事業所'
-    business: '業務'
-    property: '属性'
-    project: '案件'
   contact_types:
-   email: 'e-mail'
-   tel: 'TEL'
-   fax: 'FAX'
+    email: 'e-mail'
+    tel: 'TEL'
+    fax: 'FAX'
