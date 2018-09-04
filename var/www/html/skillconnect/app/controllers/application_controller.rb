@@ -53,25 +53,52 @@ class ApplicationController < ActionController::Base
 		@class_permission[controll]
 	end
 
-	def createCondition(params, whereList)
-		cond = []
-		foreach params do |col, val|
-			case whereList(col)
-				when CondEnum::LIKE
-					break
-				when CondEnum::EQ
-					break
-				when CondEnum::IN
-					break
-				when CondEnum::FROM
-					break
-				when CondEnum::TO
-					break
+	def createCondition(params, whereList, freeword)
+		cond = ["1=1"]
+		condArr = []
+		find_cond = {}
+		params.each do |col, val|
+			unless val.blank?
+				next unless whereList.key?(col.to_sym)
+				find_cond[col]=val
+				case whereList[col.to_sym]
+					when CondEnum::LIKE
+						cond << col.to_s + ' like ?'
+						condArr << '%'+val+'%'
+					when CondEnum::EQ
+						cond << col.to_s + ' = ?'
+						condArr << val
+					when CondEnum::IN
+						cond << col.to_s + ' in (' + val.join(",") + ")"
+					when CondEnum::FROM
+						cond << col.to_s + ' > ?'
+						condArr << val
+					when CondEnum::TO
+						cond >> col.to_s + ' < ?'
+						condArr << val
+					else
+						next # 何もしない
+				end
 			end
 		end
-		return cond
+
+		freekey = freeword.keys[0].to_s
+		unless (params[freekey].blank?)
+			tmp_str = getFreewordSearchStringFromArray(freeword.values[0], params[freekey])
+			cond << "(" + tmp_str + ")"
+		end
+
+		cond = cond << condArr if condArr.count > 0
+		condStr = [cond.join(' and ')].flatten
+		{cond_arr: condStr, cond_param: find_cond}
 	end
 	
-	
+	private
+
+	def getFreewordSearchStringFromArray(arr,word)
+		retunr '1=1' if arr.count == 0
+		res = arr.join(" LIKE '%%" + word + "%%' or ")
+		res +=  " LIKE '%%" + word + "%%'"
+	end
 	
 	end

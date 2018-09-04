@@ -12,10 +12,13 @@ class OfficeController < ApplicationController
 			cond_list = {name: CondEnum::LIKE, cd: CondEnum::EQ,
 				long_name: CondEnum::LIKE, long_name_kana: CondEnum::LIKE,
 				parent_id: CondEnum::EQ, office_status_id: CondEnum::IN}
-			free_word = {keyword: [:name,  :cd,  :long_name,  :long_name_kana]}
-			@offices = self.createCondition(Office, params, cond_list, free_word)
+			free_word = {keyword: ['name',  'cd',  'long_name',  'long_name_kana']}
+			condSet = self.createCondition(params, cond_list, free_word)
 			# find by name: like
-			@offices.order('cd')
+			@offices = Office.where(condSet[:cond_arr]).order('cd')
+			@var.search_cond = condSet[:cond_param]
+		else
+			@var.search_cond = nil
 		end
 
 		if (@offices.nil?) then
