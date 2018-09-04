@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
 		params.each do |col, val|
 			unless val.blank?
 				next unless whereList.key?(col.to_sym)
-				find_cond[col]=val
+				find_cond[col.to_sym]=val
 				case whereList[col.to_sym]
 					when CondEnum::LIKE
 						cond << col.to_s + ' like ?'
@@ -84,12 +84,17 @@ class ApplicationController < ActionController::Base
 
 		freekey = freeword.keys[0].to_s
 		unless (params[freekey].blank?)
+			find_cond[freekey.to_sym] =params[freekey]
 			tmp_str = getFreewordSearchStringFromArray(freeword.values[0], params[freekey])
 			cond << "(" + tmp_str + ")"
 		end
+		if condArr.count > 0
+			cond = [cond.join(' and '),condArr]
+		else
+			cond [cond.join ( ' and ')]
+		end
 
-		cond = cond << condArr if condArr.count > 0
-		condStr = [cond.join(' and ')].flatten
+		condStr = cond.flatten
 		{cond_arr: condStr, cond_param: find_cond}
 	end
 	
