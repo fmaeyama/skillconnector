@@ -1,8 +1,93 @@
-<h1> <%= @title %></h1>
+<h1> <%= @var.title %></h1>
 <div class="my-3 p-3 bg-white rounded box-shadow">
-	<%=  form_for(@business, url:url_for(controller:'businesses', action: 'new' )) do |f| %>
+	<%= form_for(@business, url: url_for(controller: 'businesses', action: 'new')) do |f| %>
+		<div class="row">
+			<div class="col-2">
+				<%= f.collection_select :business_status_id, @var.business_statuses, :id, :name %>
+			</div>
+			<div class="col-2">
+				<%= f.collection_select :business_type_id, @var.business_types, :id, :name %>
+			</div>
+			<div class="col-8">
+				<%= f.label :name, '業務タイトル' %><%= f.text_field :name %>
+				<% if @business.parent.blank? %>
+					<%= button_tag t(
+						'cmn_sentence.searchButton',
+						model: Business.human_attribute_name(:parent)),
+						onclick: 'SearchParentBusiness()'
+					 %>
+				<% else %>
+					<span class="sl-title"><%= Business.human_attribute_name(:parent) %>:</span>
+					<span class="sl-content" id="parent_business"><%= f.parent_business.name %></span>
+				<% end %>
+			</div>
+		</div>
+		<div class="sl-border-primary">
+			<div class="col-12">
+				<% if @business.office.blank? %>
+					<div class="row">
+						<div class="col-8">
+							<span class="sl-title"><%= Business.human_attribute_name(:parent) %>:紐付け無し</span>
+						</div>
+						<div class="col-4">
+							<%= button_tag t('cmn_sentence.searchButton',model: Business.human_attribute_name(:office)) %>
+						</div>
+					</div>
+				<% else %>
+					<%=  fields_for @business.office do |office| %>
+						<%= f.hidden_field :office_id %>
+						<div class="row">
+							<div class="col-8">
+								<span class="sl-title">事業所:</span>
+								<span class="sl-content" id="office_name"><%= office.cd %> <%= office.name %> (<%= office.name_kana %>)</span>
+							</div>
+							<div class="col-4">
+								<%= button_tag t('cmn_sentence.searchButton',model: Business.human_attribute_name(:office)) %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-8">
+								<span class="sl-title">正式名称:</span>
+								<span class="sl-content" id="office_long_name"><%= office.long_name %>(<%= office.long_name_kana %>)</span>
+							</div>
+							<div class="col-8">
+								<span class="sl-title">事業所種別:</span>
+								<span class="sl-content" id="office_type"><%= office.office_type.name %></span>
+								<span class="sl-title">住所:</span>
+								<span class="sl-content" id="office_type"><%= office.primary_address.address %></span>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<%= f.label :description, '業務タイトル' %>
+				<%= f.text_area :description, class:"sl-large-input" %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<%= f.label :welcome, '歓迎技術者' %>
+				<%= f.text_area :welcome, class:"sl-large-input" %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<%= f.label :max_quantity, '受入可能人数' %>
+				<%= f.number_field :max_quantity, class:"sl-small-field" %>名
+			</div>
+			<div class="col-3">
+				<%= f.label :proper_quantity, '希望募集人数' %>
+				<%= f.number_field :proper_quantity, class:"sl-small-field" %>名
+			</div>
+			<div class="col-4">
+				<%= f.label :budget, '予算' %>
+				<%= f.number_field :budget %>円
+			</div>
+		</div>
 	<% end %>
-
 
 
 </div>

@@ -1,11 +1,10 @@
 class BusinessDecorator < SkillConnectDecorator
 	delegate_all
+	attr_reader :business_types, :business_statuses
 
-	attr_writer :business_types, :business_status
 	def initialize
-		super
-		self.model_name = t('cmn_dict.business')
-		@business_type = BusinessType.all
-		@business_status = BusinessStatus.all
+		@business_types = BusinessType.active
+		@business_statuses = BusinessStatus.active
+		self.model_name = I18n.t('cmn_dict.business')
 	end
 end

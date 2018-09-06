@@ -6,10 +6,16 @@ ja:
   activerecord:
     models:
       office: '事業所'
+      businnes: '事業'
+    attributes:
+      business:
+        office: '募集事業所'
+        parent: '親業務'
   cmn_sentence:
     listTitle: '%{model}一覧'
     newTitle: '新規%{model}作成'
     editTitle: '%{model}編集 #%{id}'
+    searchButton: '%{model} 検索'
   cmn_dict:
     office: '事業所'
     business: '業務'

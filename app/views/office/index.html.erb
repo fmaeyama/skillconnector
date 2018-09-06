@@ -3,32 +3,13 @@
 <div class="container">
 	<div class="sl-row-rightAlign">
 		<div class="col-4">
-			<h6 class="border-bottom border-gray pb-2 mb-0">表示件数<%= @res_cnt %>件</h6>
+			<h6 class="border-bottom border-gray pb-2 mb-0">表示件数<%= @var.view_count %>件</h6>
 		</div>
 	</div>
 	<div class="sl-border-primary">
 		<div class="col-12">
 			<%=form_tag do %>
-				<div class="row">
-					<div class="col-4">
-						<%= label_tag('name', '事業所名:') %><%= text_field_tag(:name, getParamCondVal(@var.search_cond,:name)) %>
-					</div>
-					<div class="col-4">
-						<%= label_tag('cd', '事業所CD:') %><%= text_field_tag(:cd, getParamCondVal(@var.search_cond,:cd)) %>
-					</div>
-					<div class="col-4">
-						<%= label_tag 'office_status_id', t('Status')+':' %>
-						<%= select_tag 'office_status_id', options_from_collection_for_select(@var.officeStatus,:id, :name),include_blank: t("cmn_dict.all_for_select") %>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-8">
-						<%= label_tag('keyword', t('cmn_dict.freeword')+':') %><%= text_field_tag(:keyword, getParamCondVal(@var.search_cond,:keyword), size: 50) %>
-					</div>
-					<div class="col-4">
-						<%= submit_tag(t('cmn_dict.search')+':') %>
-					</div>
-				</div>
+				<% render 'office_search' # views/office/_office_search.html.erb %>
 			<% end %>
 		</div>
 	</div>

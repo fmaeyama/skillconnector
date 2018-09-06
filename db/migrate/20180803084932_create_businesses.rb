@@ -10,7 +10,7 @@ class CreateBusinesses < ActiveRecord::Migration[5.2]
       t.references :parent_business, foreing_key: {to_table: :businesses}, null:true, comment: "親業務"
       t.integer :max_quantity, comment: "受入可能人数"
       t.integer :proper_quantity, comment: "希望募集人数"
-      t.money :budet, comment: "予算"
+      t.money :budget, comment: "予算"
       t.date :open_date, default: -> {'CURRENT_DATE'}, comment: "受付開始日"
       t.date :enable_date, default: -> {'CURRENT_DATE'}, comment: "受入可能日"
       t.date :end_date, default: '9999-12-31', comment: "受付締切日"

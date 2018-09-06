@@ -1,5 +1,5 @@
 <!-- create or edit Office -->
-<h1> <%= @title %></h1>
+<h1> <%= @var.title %></h1>
 <div class="my-3 p-3 bg-white rounded box-shadow">
 
 	<%= form_for(@office, url: url_for(controller: "office", action: "new")) do |f| %>
@@ -66,10 +66,10 @@
 					<%= @office.children.each do |child| %>
 						<div class="row">
 							<div class="col-3">
-								<%= child.label :cd, 'コード：' %><%= childt.text_field :cd, size: 15, readonly: "readonly" %>
+								<%= child.label :cd, 'コード：' %><%= child.text_field :cd, size: 15, readonly: "readonly" %>
 							</div>
 							<div class="col-4">
-								<%= child.label :name, '事業所名：' %><%= childt.text_field :cd, size: 15, readonly: "readonly" %>
+								<%= child.label :name, '事業所名：' %><%= child.text_field :cd, size: 15, readonly: "readonly" %>
 							</div>
 							<div class="col-2">
 								<%= button_tag '詳細', type: 'button', onclick: 'showDetail(' + child.cd + ');' %>
@@ -243,4 +243,4 @@
 
 <% end %>
 </div>
-
+<% render partial 'search_parent', layout: 'bootstrap_modal', locals: {modalSCDecorator: mcd} %>

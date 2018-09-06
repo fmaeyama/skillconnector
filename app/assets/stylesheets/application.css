@@ -10619,4 +10619,17 @@ iframe {
 .sl-row-rightAlign {
   height: 50px; }
 
+.sl-content, .sl-title {
+  white-space: nowrap;
+  padding: 0 1em; }
+
+.sl-title {
+  font-weight: bold; }
+
+.sl-large-input {
+  width: 90%; }
+
+.sl-small-field {
+  width: 5em; }
+
 /*# sourceMappingURL=application.css.map */

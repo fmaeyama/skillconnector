@@ -56,3 +56,20 @@
   @extend .align-items-center;
   height: 50px;
 }
+
+.sl-content{
+  white-space: nowrap;
+  padding: 0 1em;
+}
+.sl-title{
+  @extend .sl-content;
+  font-weight: bold;
+}
+
+.sl-large-input{
+  width: 90%;
+}
+
+.sl-small-field{
+  width: 5em
+}

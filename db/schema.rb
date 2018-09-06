@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
 
   create_table "business_types", comment: "業務種別", force: :cascade do |t|
     t.string "name", comment: "業務種別名称"
-    t.bigint "parent_id_id", comment: "親業務種別"
+    t.bigint "parent_id", comment: "親業務種別"
     t.boolean "status", comment: "cmn_enum.status"
     t.date "disable_from", default: "9999-12-31", null: false, comment: "新規利用停止日"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id_id"], name: "index_business_types_on_parent_id_id"
+    t.index ["parent_id"], name: "index_business_types_on_parent_id"
   end
 
   create_table "businesses", comment: "業務", force: :cascade do |t|
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
     t.bigint "parent_business_id", comment: "親業務"
     t.integer "max_quantity", comment: "受入可能人数"
     t.integer "proper_quantity", comment: "希望募集人数"
-    t.money "budet", scale: 2, comment: "予算"
+    t.money "budget", scale: 2, comment: "予算"
     t.date "open_date", default: -> { "CURRENT_DATE" }, comment: "受付開始日"
     t.date "enable_date", default: -> { "CURRENT_DATE" }, comment: "受入可能日"
     t.date "end_date", default: "9999-12-31", comment: "受付締切日"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "business_types", "business_types", column: "parent_id_id"
+  add_foreign_key "business_types", "business_types", column: "parent_id"
   add_foreign_key "businesses", "offices"
   add_foreign_key "cmn_properties", "cmn_property_types"
   add_foreign_key "control_privileges", "privilege_groups"

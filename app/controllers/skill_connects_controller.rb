@@ -1,2 +1,0 @@
-class SkillConnectsController < ApplicationController
-end
