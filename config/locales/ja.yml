@@ -8,9 +8,12 @@ ja:
       office: '事業所'
       businnes: '事業'
     attributes:
+      office:
+        business: '募集事業'
       business:
         office: '募集事業所'
         parent: '親業務'
+        business_type: '業務種別'
   cmn_sentence:
     listTitle: '%{model}一覧'
     newTitle: '新規%{model}作成'

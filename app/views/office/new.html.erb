@@ -188,36 +188,12 @@
 
 		<div class="sl-border-primary">
 			<div class="col-sm-10">
-				<h3>募集業務</h3>
-				<% if @office.businesses.count > 0 %>
-					<% @office.businesses.each do |business| %>
-						<div class="row">
-							<div class="col-3">
-								<%= business.label :business_type_id, '業務種別', class: "invisible" %>
-								<%= business.collection_select :business_type_id, BusinessTypes, :id, :name, readonly: "readonly" %>
-							</div>
-							<div class="col-4">
-								<%= business.label :name, '業務タイトル：', class: "invisible" %>
-								<%= business.text_field :name, size: 100 %>
-							</div>
-							<div class="col-4">
-								<%= button_tag "詳細", type: "button", onclick: "editBusiness(#{business.id})" %>
-								<%= button_tag "削除", type: "button", onclick: "deleteBusiness(#{business.id})" %>
-							</div>
-						</div>
-					<% end %>
-				<% else %>
-					<div class="row">
-						<div class="col-4">
-							<span>登録無し</span>
-						</div>
-					</div>
-				<% end %>
-				<div class="sl-row-rightAlign">
-					<div class="col-2">
-						<%= button_tag "業務追加", type: "button", onclick: "addBusiness()" %>
-					</div>
-				</div>
+				<%= render "businesses/business_listparts",
+					businesses:@office.businesses,
+					title:Office.human_attribute_name(:business),
+					office_id:@office.id,
+					f:f
+				%>
 			</div>
 		</div>
 		<script>
