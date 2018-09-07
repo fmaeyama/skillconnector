@@ -31,7 +31,11 @@ class BusinessesController < ApplicationController
 	end
 
 	def edit
-
+		@var.title = I18n.t("cmn_sentence.editTitle",
+						model: I18n.t("cmn_dict.business"),
+						id: params[:id])
+		@business = Business.find(params[:id])
+		render action: "new"
 	end
 
 	def edit_own
@@ -47,7 +51,7 @@ class BusinessesController < ApplicationController
 		def insert_new_business(params)
 			begin
 				Business.transaction do
-					@business.attributes = Business.business_params(params, :businees)
+					@business.attributes = Business.business_params(params, :business)
 					@business.save!
 					respond_to do |format|
 						format.html {redirect_to(action: 'edit', id: @business.id)}
@@ -55,6 +59,7 @@ class BusinessesController < ApplicationController
 					end
 				end
 			rescue => e
+				raise e if Rails.env == "development"
 				flash.now[:alert] = e.message
 				respond_to do |format|
 					format.html {render 'new'}

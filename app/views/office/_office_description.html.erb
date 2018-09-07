@@ -1,0 +1,57 @@
+<% # required office: office object, title: title for object,  %>
+<div class="col-12">
+	<% if office.blank? %>
+		<div class="row">
+			<div class="col-8">
+				<span class="sl-title">
+					<%= title %>:紐付け無し
+				</span>
+			</div>
+			<div class="col-4">
+				<%= button_tag t('cmn_sentence.searchButton', model: title) %>
+			</div>
+		</div>
+	<% else %>
+		<%= fields_for office do |of| %>
+			<div class="row">
+				<div class="col-12">
+					<%= link_to controller:"office", action:"edit", id:office.id do %>
+					<h3><%= title %></h3>
+					<% end %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-8">
+					<span class="sl-title">事業所:</span>
+					<span class="sl-content" id="office_name">
+									<%= office.cd %> <%= office.name %>
+						(<%= office.name_kana %>)
+								</span>
+				</div>
+				<div class="col-4">
+					<%= button_tag t('cmn_sentence.searchButton', model: title) %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-8">
+					<span class="sl-title">正式名称:</span>
+					<span class="sl-content" id="office_long_name">
+						<%= office.long_name %>(<%= office.long_name_kana %>)</span>
+				</div>
+				<div class="col-8">
+					<span class="sl-title">事業所種別:</span>
+					<span class="sl-content" id="office_type">
+						<%= office.office_type.name %>
+					</span>
+					<span class="sl-title">住所:</span>
+					<span class="sl-content" id="office_type">
+						<%= office.primary_address.postal_code_for_print %>
+						<%= office.primary_address.prefecture.name %>
+						<%= office.primary_address.address %>
+						<%= office.primary_address.building %>
+					</span>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>

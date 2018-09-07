@@ -154,7 +154,7 @@
 					<div class="col-sm-12">
 						<h4>その他の連絡先</h4>
 						<% if @office.contacts.count > 0 %>
-							<% each(:contacts) do |officeContact| %>
+							<% @office.contacts.each do |officeContact| %>
 								<div class="col-sm-12">
 									<div class="row">
 										<div class="col-8">
@@ -190,7 +190,7 @@
 			<div class="col-sm-10">
 				<h3>募集業務</h3>
 				<% if @office.businesses.count > 0 %>
-					<% each(@office.businesses) do |business| %>
+					<% @office.businesses.each do |business| %>
 						<div class="row">
 							<div class="col-3">
 								<%= business.label :business_type_id, '業務種別', class: "invisible" %>
@@ -243,4 +243,4 @@
 
 <% end %>
 </div>
-<% render partial 'search_parent', layout: 'bootstrap_modal', locals: {modalSCDecorator: mcd} %>
+<% # render partial 'search_parent', layout: 'bootstrap_modal', locals: {modalSCDecorator: mcd} %>
