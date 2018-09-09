@@ -21,9 +21,11 @@
 			<div class="media-body app-datablock">
 				<div class="app-data-title">
 					id: <span id="office-id-<%=office.id%>"> <%=office.id%></span>
-					cd: <span id="office-cd-<%=office.cd%>"> <%=office.cd%></span>
-					<span id="office-name-<%=office.name%>"> <%=office.name%></span>
-					(<span id="office-name-<%=office.name_kana%>"> <%=office.name%></span>)
+					<%= link_to controller:"office", action:"edit", id:office.id do %>
+						<span id="office-cd-<%=office.cd%>"> <%=office.cd%></span>
+						<span id="office-name-<%=office.name%>"> <%=office.name%></span>
+						(<span id="office-name-<%=office.name_kana%>"> <%=office.name%></span>)
+					<% end %>
 				</div>
 				<div class="d-block p-4">
 					<% if office.parent.blank? then

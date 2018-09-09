@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><%= @var.nil? ? "SkillConnect" : @var.title %>></title>
+	<title><%= @var.nil? ? "SkillConnect" : @var.title %></title>
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag %>
 
@@ -95,12 +95,19 @@
 	</div>
 </div>
 <main role="main" class="container" style="min-width: 800px">
-	<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+	<div class="d-flex align-items-end p-3 my-3 text-white-50 bg-purple rounded box-shadow">
 		<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
-		<div class="lh-100">
-			<h1 class="mb-0 text-white lh-100">
-				<% concat(@page_title.nil? ? "SILVERION" : @page_title) %></h1>
+		<div class="d-flex mb-0 text-white lh-100">
+			<h1>
+				SILVERION <%= @var.nil? ? "" : @var.title %>
+			</h1>
+		</div>
+
+		<div class="d-flex lh-100">
 			<small>Since 2018</small>
+		</div>
+		<div class="d-flex mx-5">
+			<%= @var.nav_menu unless @var.nil? %>
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -124,7 +131,7 @@
 				<p class="alert app-alert"><%= alert %></p>
 			</div>
 		</div>
-	<% end  %>
+	<% end %>
 	<%= yield %>
 
 </main>

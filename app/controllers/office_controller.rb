@@ -3,6 +3,10 @@ class OfficeController < ApplicationController
 	def initialize
 		super
 		@var = OfficeDecorator.new
+		@var.link = {
+			I18n.t("cmn_sentence.listTitle", model:Office.model_name.human)=>{controller:"office", action:"index"},
+			I18n.t("cmn_sentence.newTitle", model:Office.model_name.human)=>{controller:"office", action:"new"}
+		}
 	end
 
 	# 一覧表示
@@ -82,7 +86,7 @@ class OfficeController < ApplicationController
 
 	# 詳細編集
 	def edit
-		@title = t('cmn_dict.office') + '＃' + params[:id]
+		@var.title = I18n.t("cmn_sentence.editTitle", model:Office.model_name.human,id: params[:id])
 		@officeStatuses = OfficeStatus.all
 		@officeType = OfficeType.all
 		@office = Office.find(params[:id])

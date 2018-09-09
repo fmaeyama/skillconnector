@@ -28,3 +28,6 @@ ja:
     freeword: 'フリーワード'
     stauts: 'Status'
     all_for_select: 'ALL'
+    menu_new: "new"
+    menu_list: "list"
+    menu_table: "table"
