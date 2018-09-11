@@ -7,3 +7,11 @@ ja:
     email: 'e-mail'
     tel: 'TEL'
     fax: 'FAX'
+  engineer_status_group:
+    disapprove: '紹介不可(未確認)'
+    approved: '紹介可能'
+    caution: '要注意'
+  hope_strength:
+    few: '出来れば'
+    middle: '普通'
+    hight: '是非'

@@ -1,0 +1,16 @@
+# 2018/9/11
+
+rails generate model engineer_hiring engineer:reference office:references hiring_position:string hiring_devision:string hiring_memo:string hiring_contact:references hired_from:date hired_until:date status:integer
+rails generate model engineer_person_info engineer:references person_info:references
+rails generate model skill name:string description:string parent:references sort:integer
+rails generate model career engineer:references description:string career_from:date career_at:string
+rails generate model engineer_hope_business engineer:references business_type:references skill:references title:string description:string hope_since:date hope_strength:integer
+
+rails generate model offer_status name:string description:string sort:integer group:references
+rails generate model offer business:references  title:string  description:string offer_status:references want_from:date want_until:date work_at:string
+rails generate model offer_skill offer:referenses skill:references
+rails generate model proposal offer:references engineer:references offered_staff:references office_contact:references history:string
+
+rails destroy model proposal
+rails destroy model offer_skills
+rails destroy model offer

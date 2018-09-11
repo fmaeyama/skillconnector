@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_064828) do
+ActiveRecord::Schema.define(version: 2018_09_11_124948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
     t.index ["parent_business_id"], name: "index_businesses_on_parent_business_id"
   end
 
+  create_table "careers", comment: "経歴", force: :cascade do |t|
+    t.bigint "engineer_id"
+    t.bigint "skill_id"
+    t.string "description", comment: "経歴詳細"
+    t.date "career_from", comment: "経験歴（開始時期)"
+    t.string "career_at", comment: "主な職場"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_id"], name: "index_careers_on_engineer_id"
+    t.index ["skill_id"], name: "index_careers_on_skill_id"
+  end
+
   create_table "cmn_properties", comment: "属性情報", force: :cascade do |t|
     t.bigint "cmn_property_type_id"
     t.text "contents", null: false, comment: "属性値"
@@ -113,6 +125,75 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["privilege_group_id"], name: "index_control_privileges_on_privilege_group_id"
+  end
+
+  create_table "engineer_hirings", comment: "技術者雇用所属(派遣元)", force: :cascade do |t|
+    t.bigint "engineer_id"
+    t.bigint "office_id", comment: "技術者雇用先（派遣元）"
+    t.string "hiring_position", comment: "雇用先役職"
+    t.string "hiring_division", comment: "雇用先所属"
+    t.string "hiring_memo", comment: "技術者雇用メモ"
+    t.bigint "hiring_contact_id", comment: "派遣元連絡先"
+    t.date "hired_from", comment: "雇用開始時期"
+    t.date "hired_until", comment: "退職(予定)日"
+    t.integer "status", comment: "雇用関係"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_id"], name: "index_engineer_hirings_on_engineer_id"
+    t.index ["hiring_contact_id"], name: "index_engineer_hirings_on_hiring_contact_id"
+    t.index ["office_id"], name: "index_engineer_hirings_on_office_id"
+  end
+
+  create_table "engineer_hope_businesses", comment: "技術者志向", force: :cascade do |t|
+    t.bigint "engineer_id"
+    t.bigint "business_type_id", comment: "従事したい業務"
+    t.bigint "skill_id", comment: "発揮したい技能"
+    t.string "description", comment: "志望業務内容"
+    t.date "hope_since", comment: "希望開始時期"
+    t.integer "hope_strength", comment: "志向度合い"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_type_id"], name: "index_engineer_hope_businesses_on_business_type_id"
+    t.index ["engineer_id"], name: "index_engineer_hope_businesses_on_engineer_id"
+    t.index ["skill_id"], name: "index_engineer_hope_businesses_on_skill_id"
+  end
+
+  create_table "engineer_person_infos", comment: "技術者個人情報", force: :cascade do |t|
+    t.bigint "engineer_id"
+    t.bigint "person_info_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_id"], name: "index_engineer_person_infos_on_engineer_id"
+    t.index ["person_info_id"], name: "index_engineer_person_infos_on_person_info_id"
+  end
+
+  create_table "engineer_registration_types", comment: "技術者流入種別", force: :cascade do |t|
+    t.string "name", comment: "流入種別"
+    t.string "description", comment: "流入種別詳細"
+    t.integer "sort", comment: "並び順"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "engineer_status_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "sort"
+    t.integer "group", comment: "表示フラグ, cmn_enum.group"
+    t.date "disable_from", default: "9999-12-31"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "engineers", comment: "技術者", force: :cascade do |t|
+    t.string "eng_cd", comment: "技術者登録コード"
+    t.bigint "engineer_registration_type_id", comment: "技術者流入種別"
+    t.string "registration_memo", comment: "流入情報補足"
+    t.bigint "engineer_status_type_id", comment: "技術者紹介可能状況"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_registration_type_id"], name: "index_engineers_on_engineer_registration_type_id"
+    t.index ["engineer_status_type_id"], name: "index_engineers_on_engineer_status_type_id"
   end
 
   create_table "office_statuses", comment: "事業所契約状態", force: :cascade do |t|
@@ -193,6 +274,16 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", comment: "技能", force: :cascade do |t|
+    t.string "name", comment: "タイトル"
+    t.string "description", comment: "技能詳細"
+    t.bigint "parent_id", comment: "親技能"
+    t.integer "sort"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_skills_on_parent_id"
+  end
+
   create_table "user_privilege_groups", comment: "ログインユーザー毎権限設定", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "privilege_group_id"
@@ -222,11 +313,23 @@ ActiveRecord::Schema.define(version: 2018_09_01_064828) do
 
   add_foreign_key "business_types", "business_types", column: "parent_id"
   add_foreign_key "businesses", "offices"
+  add_foreign_key "careers", "engineers"
   add_foreign_key "cmn_properties", "cmn_property_types"
   add_foreign_key "control_privileges", "privilege_groups"
+  add_foreign_key "engineer_hirings", "contacts", column: "hiring_contact_id"
+  add_foreign_key "engineer_hirings", "engineers"
+  add_foreign_key "engineer_hirings", "offices"
+  add_foreign_key "engineer_hope_businesses", "business_types"
+  add_foreign_key "engineer_hope_businesses", "engineers"
+  add_foreign_key "engineer_hope_businesses", "skills"
+  add_foreign_key "engineer_person_infos", "engineers"
+  add_foreign_key "engineer_person_infos", "person_infos"
+  add_foreign_key "engineers", "engineer_registration_types"
+  add_foreign_key "engineers", "engineer_status_types"
   add_foreign_key "offices", "addresses", column: "primary_address_id"
   add_foreign_key "offices", "contacts", column: "primary_contact_id"
   add_foreign_key "offices", "offices", column: "parent_id"
+  add_foreign_key "skills", "skills", column: "parent_id"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"
 end

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 	get 'common_users/details'
 	get 'common_users/assign_role'
 
+	resources :engineer
+
 	devise_for :users
 	get 'home/index'
 	get 'home/sysadmin'

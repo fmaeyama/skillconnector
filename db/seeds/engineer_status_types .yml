@@ -1,0 +1,49 @@
+- id: 1
+  name: 意思未確認
+  description: Webからの登録、または人づてなどでの仮登録で本人未接触
+  sort: 10
+  status: 0
+
+- id: 2
+  name: 様子見登録
+  description: 接触完了：向こうから気が向くまで定期的に意思確認
+  sort: 20
+  status: 0
+
+- id: 3
+  name: 求職中（詳細なし）
+  description: 個人情報やキャリアなど埋まっていない項目がある。積極的にはマッチングしない。一斉メールのみ
+  sort: 30
+  status: 2
+
+- id: 4
+  name: 求職中（BtoB）
+  description: BtoBの紹介で就業中のため、個別に案件提案は不可
+  sort: 40
+  status: 1
+
+- id: 5
+  name: 求職中(一般)
+  description: 制約無し、積極的に提案可能
+  sort: 50
+  status: 1
+
+- id: 6
+  name: 紹介入職中
+  description: 紹介により入職中。契約状況を要確認
+  sort: 60
+  status: 2
+
+- id: 7
+  name: 音信不通
+  description: 1ヶ月音信確認出来ないため、一旦凍結中
+  sort: 70
+  status: 2
+
+- id: 8
+  name: 削除依頼
+  description: 個人情報保護法による削除要求有り
+  sort: 80
+  status: 0
+
+

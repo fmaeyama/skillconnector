@@ -1,5 +1,55 @@
-- name: 汎用系全般
+
+- id: 1
+  name: 基幹系全般
+  parent_id: 1
   status: 1
 
-- name: オープン系全般
+- id: 2
+  name: 基幹系・集中処理システム
+  parent_id: 1
+  status: 1
+
+- id: 3
+  name: 基幹系・分散処理システム
+  parent_id: 1
+  status: 1
+
+- id: 4
+  name: 移動情報処理システム
+  parent_id: 4
+  status: 1
+
+- id: 5
+  name: 社内システム全般
+  parent_id: 5
+  status: 1
+
+- id: 6
+  name: バックヤードシステム
+  parent_id: 5
+  status: 1
+
+- id: 7
+  name: 情報系システム
+  parent_id: 5
+  status: 1
+
+- id: 8
+  name: 通信系処理システム
+  parent_id: 8
+  status: 1
+
+- id: 9
+  name: Webシステム全般
+  parent_id: 9
+  status: 1
+
+- id: 10
+  name: BtoC システム
+  parent_id: 9
+  status: 1
+
+- id: 11
+  name: BtoB システム
+  parent_id: 9
   status: 1

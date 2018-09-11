@@ -1,0 +1,15 @@
+- id: 1
+  name: 人事部より
+  description: 人事部よりの人材情報
+  sort: 10
+
+- id: 2
+  name: Web流入
+  description: Webサイトからの流入
+  sort: 20
+
+- id: 3
+  name: その他
+  description: その他
+  sort: 30
+
