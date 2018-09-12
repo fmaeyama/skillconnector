@@ -29,3 +29,6 @@
 /var/**
 *.lock
 .idea/workspace.xml
+.idea/modules.xml
+.idea/workspace.xml
+var/www/html/skillconnect/app/assets/stylesheets/application.scss

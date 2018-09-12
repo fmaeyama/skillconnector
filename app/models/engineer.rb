@@ -9,8 +9,8 @@ class Engineer < ApplicationRecord
 	has_many :engineer_hope_businesses
 
 	def init_new_instance(params)
-		self.engineer_registration_type = EngineerRegistrationType.select(:id).first(1)
-		self.engineer_status_type = EngineerStatusType.select(:id).first(1)
+		self.engineer_registration_type_id = EngineerRegistrationType.select(:id).first(1)
+		self.engineer_status_type_id = EngineerStatusType.select(:id).first(1)
 
 	end
 

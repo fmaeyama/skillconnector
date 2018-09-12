@@ -3,6 +3,10 @@ class EngineerController < ApplicationController
 	def initialize
 		super
 		@var = EngineerDecorator.new
+		@var.link = {
+			I18n.t("cmn_sentence.listTitle", model:Engineer.model_name.human)=>{controller:"engineer", action:"index"},
+			I18n.t("cmn_sentence.newTitle", model:Engineer.model_name.human)=>{controller:"engineer", action:"new"}
+		}
 	end
 
 	def index
@@ -52,5 +56,27 @@ class EngineerController < ApplicationController
 
 	def destroy
 
+	end
+
+	private
+
+	def insert_new_engineer(params)
+		begin
+			Engineer.transaction do
+				@engineer.attributes = Engineer.engineer_params(params, :engineer)
+				@engineer.save!
+				respond_to do |format|
+					format.html {redirect_to(action: 'edit', id: @engineer.id)}
+					format.json {render :show, status: :created, location: @engineer}
+				end
+			end
+			rescue => e
+				raise e if Rails.env == 'developmment'
+				respond_to do |format|
+					format.html {render 'new'}
+					format.json {render json: format, status: :unprocessable_entity}
+				end
+
+		end
 	end
 end
