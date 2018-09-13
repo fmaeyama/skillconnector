@@ -29,7 +29,7 @@ ja:
       engineer:
         eng_cd: '技術者登録コード'
         registration_memo: '流入情報補足'
-        engineer_person_info: '技術者個人情報'
+        person_info: '技術者個人情報'
       engineer_hiring:
         office: '技術者雇用先（派遣元）'
         hiring_position: '雇用先役職'

@@ -190,10 +190,12 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
     t.bigint "engineer_registration_type_id", comment: "技術者流入種別"
     t.string "registration_memo", comment: "流入情報補足"
     t.bigint "engineer_status_type_id", comment: "技術者紹介可能状況"
+    t.bigint "person_info_id", comment: "技術者個人情報"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["engineer_registration_type_id"], name: "index_engineers_on_engineer_registration_type_id"
     t.index ["engineer_status_type_id"], name: "index_engineers_on_engineer_status_type_id"
+    t.index ["person_info_id"], name: "index_engineers_on_person_info_id"
   end
 
   create_table "office_statuses", comment: "事業所契約状態", force: :cascade do |t|
@@ -326,6 +328,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
   add_foreign_key "engineer_person_infos", "person_infos"
   add_foreign_key "engineers", "engineer_registration_types"
   add_foreign_key "engineers", "engineer_status_types"
+  add_foreign_key "engineers", "person_infos"
   add_foreign_key "offices", "addresses", column: "primary_address_id"
   add_foreign_key "offices", "contacts", column: "primary_contact_id"
   add_foreign_key "offices", "offices", column: "parent_id"

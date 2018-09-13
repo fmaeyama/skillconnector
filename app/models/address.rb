@@ -14,4 +14,13 @@ class Address < ApplicationRecord
 		"〒"+self.postal_code[1,3] +
 			"-"+ self.postal_code[4,self.postal_code.length]
 	end
+
+	def location_long
+		self.postal_code_for_print + self.prefecture.name + self.address + self.building
+	end
+
+	def location_short
+		self.prefecture.name + self.address
+	end
+
 end

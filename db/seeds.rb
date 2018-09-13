@@ -58,7 +58,7 @@ Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
 	puts yaml_filename
 
 	targetmodel=File.basename(yaml_filename,".yml").classify.constantize
-	ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name}")
+	ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name} CASCADE")
 
 	puts targetmodel
 
