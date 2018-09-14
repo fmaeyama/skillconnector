@@ -5,19 +5,20 @@ ja:
       update: "%{model}更新"
   activerecord:
     models:
-      office: '事業所'
       business: '事業'
+      career: '経歴'
+      contact: '連絡先'
       engineer: '技術者'
+      engineer_hiring: '技術者雇用所属(派遣元)'
+      engineer_hope_business: '技術者志向'
+      engineer_person_info: '技術者個人情報'
       engineer_registration_type: '技術者流入種別'
       engineer_status_type: '技術者紹介可能状況'
-      engineer_hiring: '技術者雇用所属(派遣元)'
-      engineer_person_info: '技術者個人情報'
-      career: '経歴'
       skill: '技能'
-      engineer_hope_business: '技術者志向'
-      offer_status: '求人状況'
       offer: '求人'
       offer_skill: '求人に必要な技能'
+      offer_status: '求人状況'
+      office: '事業所'
       propsal: '提案'
     attributes:
       office:
@@ -64,6 +65,7 @@ ja:
     editTitle: '%{model}編集 #%{id}'
     searchButton: '%{model} 検索'
     history: '%{year}年%{month}ヶ月'
+    select_prompt: '%{model}を選択'
   cmn_dict:
     office: '事業所'
     business: '業務'

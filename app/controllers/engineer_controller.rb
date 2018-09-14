@@ -33,10 +33,6 @@ class EngineerController < ApplicationController
 
 	def create
 		insert_new_engineer(params)
-		begin
-
-		rescue =>e
-		end
 	end
 
 	def show
@@ -44,14 +40,22 @@ class EngineerController < ApplicationController
 	end
 
 	def edit
-		@var.title = I18n.t("cmn_sentence.editTitle",model:Engineer.model_name.human)
-		@engineer = Engineer.find(prams[:id])
+		@var.title = I18n.t("cmn_sentence.editTitle",
+			model:Engineer.model_name.human,
+			id:params[:id]
+		)
+		@engineer = Engineer.find(params[:id])
 		render action: "new"
 
 	end
 
 	def update
-
+		@var.title = I18n.t("cmn_sentence.editTitle",
+			model:Engineer.model_name.human,
+			id:params[:id]
+		)
+		@engineer = Engineer.find(params[:id])
+		render action: "new"
 	end
 
 	def destroy
@@ -61,22 +65,20 @@ class EngineerController < ApplicationController
 	private
 
 	def insert_new_engineer(params)
-		begin
-			Engineer.transaction do
-				@engineer.attributes = Engineer.engineer_params(params, :engineer)
-				@engineer.save!
-				respond_to do |format|
-					format.html {redirect_to(action: 'edit', id: @engineer.id)}
-					format.json {render :show, status: :created, location: @engineer}
-				end
+		@engineer = Engineer.new
+		Engineer.transaction do
+			@engineer.attributes = Engineer.parameters(params, :engineer)
+			@engineer.save!
+			respond_to do |format|
+				format.html {redirect_to(action: 'edit', id: @engineer.id)}
+				format.json {render :show, status: :created, location: @engineer}
 			end
-			rescue => e
-				raise e if Rails.env == 'developmment'
-				respond_to do |format|
-					format.html {render 'new'}
-					format.json {render json: format, status: :unprocessable_entity}
-				end
-
+		end
+	rescue => e
+		raise e if Rails.env == 'development'
+		respond_to do |format|
+			format.html {render 'new'}
+			format.json {render json: format, status: :unprocessable_entity}
 		end
 	end
 end

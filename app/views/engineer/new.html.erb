@@ -2,7 +2,7 @@
 <div class="y-3 p-3 bg-white rounded bo-shadow">
 	<%= form_for @engineer, url: url_for(controller: 'engineer', action: 'create') do |f| %>
 		<div class="row">
-			<div class="col-2">
+			<div class="col-3">
 				<%= f.collection_select :engineer_status_type_id, @var.engineer_status_types, :id, :name %>
 			</div>
 			<div class="col-2">
@@ -45,7 +45,7 @@
 		</div>
 		<div class="sl-border-primary">
 			<div class="col-12">
-				<h3><%= Engineer.human_attribute_name("engineer_hiring") %></h3>
+				<h3><%= EngineerHiring.model_name.human %></h3>
 				<% if @engineer.engineer_hiring.nil? then %>
 					<div class="sl-row-rightAlign">
 						<div class="col-3">
@@ -53,77 +53,10 @@
 						</div>
 					</div>
 				<% else %>
-					<%= f.hidden_field :office_id %>
-					<%= f.fields_for :engineer_hiring do |hiring| %>
-						<div class="row">
-							<div class="col-4">
-								<%= hiring.select :status,
-									ApplicationRecord.cmn_statuses.to_a.map{
-										|s| [t("cmn_enum.status.#{s[0]}"),s[1]]
-									} %>
-							</div>
-							<div class="col-8">
-								<span class="sl-title">
-									<%= Office.model_name.human  %>
-								</span>
-								<span class="sl-content">
-									<%= @engineer.office.cd %>
-								</span>
-								<span class="sl-content">
-									<%= @engineer.office.long_name %>
-									(<%= @engineer.office.location_short %>)
-								</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								<%= hiring.label :hiring_position,
-									EngineerHiring.human_attribute_name("hiring_position"),
-									class: "sl-auto-input"  %>
-								<%= hiring.text_field :hiring_position, class: "sl-auto-input" %>
-							</div>
-							<div class="col-6">
-								<%= hiring.label :hiring_division,
-									EngineerHiring.human_attribute_name("hiring_division"),
-									class: "sl-auto-input"  %>
-								<%= hiring.text_field :hiring_division, class: "sl-auto-input"  %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								<div class="row">
-									<div class="col-12">
-										<%= hiring.label :hiring_contact,
-											EngineerHiring.human_attribute_name("hiring_contact")
-										%>
-										<%= hiring.collection_select :hiring_contact,
-											Contact.includes(:offices).where(offices:{id: @engineer.engineer_hiring.office_id}),
-											:id,  :contact_name
-										%>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12">
-										<%= hiring.label :hired_from,
-											EngineerHiring.human_attribute_name("hired_from") %>
-										<%= hiring.date_field :hired_from%>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12">
-										<%= hiring.label :hired_until,
-											EngineerHiring.human_attribute_name("hired_until") %>
-										<%= hiring.date_field :hired_until%>
-									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<%= hiring.label :hiring_memo  %>
-								<%= hiring.text_area :hiring_memo, size: "20x50" %>
-							</div>
-						</div>
+					<%= f.fields_for :engineer_hiring do |e_hiring| %>
+					<%= render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office %>
 					<% end %>
-				<% end %>
+			<% end %>
 			</div>
 		</div>
 		<div class="sl-border-primary">
@@ -136,6 +69,10 @@
 				engineer_hope_businesses
 			</div>
 		</div>
+		<div class="sl-row-rightAlign">
+			<div class="col-3"><%= f.submit %></div>
+		</div>
+
 	<% end %>
 
 </div>

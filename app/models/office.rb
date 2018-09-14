@@ -7,6 +7,7 @@ class Office < ApplicationRecord
 	belongs_to :office_status
 	has_and_belongs_to_many :contacts
 	has_many :businesses
+	has_one :engineer_hiring
 
 	accepts_nested_attributes_for :primary_address
 	accepts_nested_attributes_for :primary_contact
