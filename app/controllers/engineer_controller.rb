@@ -28,11 +28,21 @@ class EngineerController < ApplicationController
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
 		@engineer=Engineer.new
-		@engineer.init_new_instance(params)
+		@engineer.init_new_instance
 	end
 
 	def create
 		insert_new_engineer(params)
+		respond_to do |format|
+			format.html {redirect_to action: "edit", id: @engineer.id}
+			format.json {render :show, status: :created, location: @engineer}
+		end
+	rescue => e
+		raise e if Rails.env == 'development'
+		respond_to do |format|
+			format.html {render 'new'}
+			format.json {render json: format, status: :unprocessable_entity}
+		end
 	end
 
 	def show
@@ -66,19 +76,10 @@ class EngineerController < ApplicationController
 
 	def insert_new_engineer(params)
 		@engineer = Engineer.new
+		@engineer.init_new_instance
 		Engineer.transaction do
 			@engineer.attributes = Engineer.parameters(params, :engineer)
 			@engineer.save!
-			respond_to do |format|
-				format.html {redirect_to(action: 'edit', id: @engineer.id)}
-				format.json {render :show, status: :created, location: @engineer}
-			end
-		end
-	rescue => e
-		raise e if Rails.env == 'development'
-		respond_to do |format|
-			format.html {render 'new'}
-			format.json {render json: format, status: :unprocessable_entity}
 		end
 	end
 end

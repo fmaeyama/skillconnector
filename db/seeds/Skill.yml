@@ -1,0 +1,54 @@
+- :id: 0
+  :name: 技術全般
+  :description: 最上位親のグループ名
+  :parent_id: 0
+
+- :id: 1
+  :name: 基幹システム
+  :description: 各会社の基幹業務に合わせたシステムの構築
+  :parent_id: 0
+
+- :id: 2
+  :name: 基幹系・集中処理システム
+  :description: ホストを中心とした技能
+  :parent_id: 1
+
+- :id: 3
+  :name: 基幹系・分散処理システム
+  :description: Web系の業務システムなど
+  :parent_id: 1
+
+- :id: 4
+  :name: 移動情報処理システム
+  :description: モバイル系のシステム
+  :parent_id: 0
+
+- :id: 5
+  :name: バックエンド社内システム
+  :description: 非基幹系業務システムの開発・構築
+  :parent_id: 0
+
+- :id: 6
+  :name: 情報系社内システム
+  :description: メールやファイル管理などの業務での共通情報基盤の主に構築・メンテナンス
+  :parent_id: 0
+
+- :id: 7
+  :name: 通信系処理システム
+  :description: ネットワークシステムの開発・構築
+  :parent_id: 0
+
+- :id: 8
+  :name: Webシステム全般
+  :description: 主にブラウザで操作するシステム全般
+  :parent_id: 0
+
+- :id: 9
+  :name: BtoC Webシステム
+  :description: Webシステムの内一般顧客向けのシステム・サービスの開発
+  :parent_id: 8
+
+- :id: 10
+  :name: BtoB Webシステム
+  :description: Webシステムの内、企業担当者向けのシステム・サービスの開発
+  :parent_id: 8

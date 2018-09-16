@@ -1,6 +1,6 @@
 <h2><%= @var.title %></h2>
 <div class="y-3 p-3 bg-white rounded bo-shadow">
-	<%= form_for @engineer, url: url_for(controller: 'engineer', action: 'create') do |f| %>
+	<%= form_for @engineer, url: url_for(controller: 'engineer', action: 'create', mothod: "post") do |f| %>
 		<div class="row">
 			<div class="col-3">
 				<%= f.collection_select :engineer_status_type_id, @var.engineer_status_types, :id, :name %>
@@ -61,7 +61,18 @@
 		</div>
 		<div class="sl-border-primary">
 			<div class="col-5">
-				career
+				<%= Career.model_name.human %>
+			</div>
+			<%= @engineer.careers.each do |career| %>
+			<div class="sl-row-border-secondary">
+				<%= career.label :skill_id, Skill.model_name.human %>
+				<%= career.collection_select :skill_id %>
+
+			</div>
+			<% end %>
+			<%= hidden_field "career-count", @engineer.careers.count + 1 %>
+			<div class="sl-row-rightAlign">
+				<%= button_tag t("cmn_sentence.add_form_title", model: Career.model_name.human) %>
 			</div>
 		</div>
 		<div class="sl-border-primary">

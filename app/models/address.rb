@@ -16,11 +16,15 @@ class Address < ApplicationRecord
 	end
 
 	def location_long
-		self.postal_code_for_print + self.prefecture.name + self.address + self.building
+
+		self.postal_code_for_print +
+			(self.prefectre.blank? ? "":self.prefecture.name) +
+			self.address + self.building
 	end
 
 	def location_short
-		self.prefecture.name + self.address
+		(self.prefecture.blank? ? "":self.prefecture.name) +
+			self.address
 	end
 
 end

@@ -6,21 +6,18 @@ class Engineer < ApplicationRecord
 	belongs_to :person_info, autosave: true
 	has_many :careers
 	has_many :engineer_hope_businesses
+	accepts_nested_attributes_for :engineer_hiring, :person_info
 
-
-	def init_new_instance(params)
-		set_default_value
-	end
 
 	def self.parameters(param_hash,key)
 		param_hash.require(key).permit(
 			:eng_cd,:engineer_registration_type_id,
 			:registration_memo,:engineer_status_type_id,
-			"PersonInfo" => [
+			:person_info_attributes => [
 				:last_name,:first_name,:middle_name,
 				:kana_last_name,:kana_first_name, :kana_middle_name
 			],
-			"EngineerHiring" => [
+			:engineer_hiring_attributes => [
 				:office_id,:hiring_position,:hiring_division,
 				:hiring_memo, :hiring_contact_id,
 				:hired_from, :hired_until,:status
@@ -28,12 +25,17 @@ class Engineer < ApplicationRecord
 		)
 	end
 
+	def init_new_instance
+		set_default_value
+	end
+
 	private
 	def set_default_value
-		self.build_engineer_hiring
+		self.build_engineer_hiring(office: Office.first)
 		self.build_person_info
-		self.office = Office.first
 		self.engineer_registration_type_id = EngineerRegistrationType.select(:id).first
 		self.engineer_status_type_id = EngineerStatusType.select(:id).first
+		self.careers.build
+		self.engineer_hope_businesses.build
 	end
 end

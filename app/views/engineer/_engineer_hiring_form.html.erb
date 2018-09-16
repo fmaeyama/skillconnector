@@ -4,7 +4,7 @@
 	<div class="col-3">
 		<%= hiring.select :status,
 			ApplicationRecord.cmn_statuses.to_a.map {
-				|s| [t("cmn_enum.status.#{s[0]}"), s[1]]
+				|s| [t("cmn_enum.status.#{s[0]}"), s[0]]
 			} %>
 	</div>
 	<div class="col-9">
