@@ -1,3 +1,5 @@
+- sql: SELECT setval('business_statuses_id_seq'::regclass,1,false)
+
 - name: 準備中
   description: 技術者のアサインが不可の状態
   sort_id: 10

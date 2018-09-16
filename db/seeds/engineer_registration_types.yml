@@ -1,3 +1,5 @@
+- sql: SELECT setval('engineer_registration_types_id_seq'::regclass,1,false)
+
 - id: 1
   name: 人事部より
   description: 人事部よりの人材情報

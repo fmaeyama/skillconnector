@@ -47,22 +47,46 @@
 						= render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office
 
 		.sl-border-primary
-			.col-5
-				= Career.model_name.human
-			= @engineer.careers.each do |engineer_career|
-				= fields_for engineer_career do |career|
+			.col-12
+				%h3= Career.model_name.human
+				-# = @engineer.careers.each do |engineer_career|
+				= fields_for :careers do |career|
 					.sl-row-border-secondary
-						= career.label :skill_id, Skill.model_name.human
-						= career.collection_select :skill_id, @var.skills, :id, :names
-
+						.col-12
+							.row
+								.col-4.d-flex.flex-column
+									.px-1
+										= career.collection_select :skill_id, @var.skills, :id, :name
+									.px-1
+										= career.label :career_from, Career.human_attribute_name("career_from")
+									.px-1
+										= career.date_field :career_from, value:Date.today
+									.px-1
+										= career.label :career_at,
+											Career.human_attribute_name("career_at"),
+											class:"sl-auto-input"
+									.px-1
+										= career.text_field :career_at, class:"sl-auto-input"
+								.col-8.d-flex.flex-column
+									.p-1
+										= career.label :description, Career.human_attribute_name("description")
+									.p-1
+										= career.text_area :description, class:"sl-large"
 			= hidden_field "career-count", @engineer.careers.count + 1
 
 			.sl-row-rightAlign
+				.col-12.align-content-end
 				= button_tag t("cmn_sentence.add_form_title", model: Career.model_name.human)
 
 		.sl-border-primary
-			.col-5
-				engineer_hope_businesses
+			.col-12
+				%h3=EngineerHopeBusiness.model_name.human
+				= @engineer.engineer_hope_businesses.each do |hope_obj|
+					= fields_for :engineer_hope_businesses, hope_obj do |hope|
+						.sl-row-border-secondary
+							.col-4
+								= hope.collection_select :business_type_id,
+								 @var.business_types, :id, :name
 
 		.sl-row-rightAlign
 			.col-3

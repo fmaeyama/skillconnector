@@ -32,3 +32,11 @@
 .idea/modules.xml
 .idea/workspace.xml
 var/www/html/skillconnect/app/assets/stylesheets/application.scss
+var/www/html/skillconnect/app/assets/stylesheets/application.scss
+var/www/html/skillconnect/app/assets/stylesheets/application.scss
+var/www/html/skillconnect/app/controllers/application_controller.rb
+var/www/html/skillconnect/app/controllers/businesses_controller.rb
+var/www/html/skillconnect/app/controllers/office_controller.rb
+var/www/html/skillconnect/app/models/address.rb
+var/www/html/skillconnect/app/models/business.rb
+var/www/html/skillconnect/app/models/business_status.rb

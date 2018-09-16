@@ -7,6 +7,9 @@ class Engineer < ApplicationRecord
 	has_many :careers
 	has_many :engineer_hope_businesses
 	accepts_nested_attributes_for :engineer_hiring, :person_info
+	accepts_nested_attributes_for :careers, :engineer_hope_businesses,
+		allow_destroy: true
+	after_initialize :set_default_value, if: :new_record?
 
 
 	def self.parameters(param_hash,key)
@@ -21,12 +24,12 @@ class Engineer < ApplicationRecord
 				:office_id,:hiring_position,:hiring_division,
 				:hiring_memo, :hiring_contact_id,
 				:hired_from, :hired_until,:status
-			]
-		)
-	end
+			],
+			:careers_attributes => [
 
-	def init_new_instance
-		set_default_value
+			],
+			:engineer_hope_businesses_attribues => []
+		)
 	end
 
 	private
@@ -36,6 +39,6 @@ class Engineer < ApplicationRecord
 		self.engineer_registration_type_id = EngineerRegistrationType.select(:id).first
 		self.engineer_status_type_id = EngineerStatusType.select(:id).first
 		self.careers.build
-		self.engineer_hope_businesses.build
+#		self.engineer_hope_businesses.build
 	end
 end

@@ -1,6 +1,7 @@
 # JIS X 0402 で定義されている都道府県コードと都道府県名をベースに
 # コードがゼロから始まるもの(09 など)を 1 ケタにしたもの
 # from https://github.com/chocoby/jp_prefecture/blob/master/data/prefecture.yml
+- sql: SELECT setval('prefectures_id_seq'::regclass,1,false)
 
 - :name: 北海道
   :name_e: hokkaido

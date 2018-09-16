@@ -60,12 +60,16 @@ Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
 	targetmodel=File.basename(yaml_filename,".yml").classify.constantize
 	ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name} CASCADE")
 
-	puts targetmodel
-
 	File.open(yaml_filename) do |load_target_yaml|
 		records = YAML.load(load_target_yaml)
 		records.each do |record|
-			targetmodel.create(record)
+			puts record
+			if record.has_key? "sql"
+				ActiveRecord::Base.connection.execute(record["sql"])
+			else
+				model = targetmodel.create(record)
+				model.save!
+			end
 		end
 	end
 end

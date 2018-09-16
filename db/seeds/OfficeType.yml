@@ -1,3 +1,5 @@
+- sql: SELECT setval('office_types_id_seq'::regclass,1,false)
+
 - name: 本部(統括）
   status: 1
 

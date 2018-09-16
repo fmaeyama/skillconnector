@@ -1,3 +1,5 @@
+- sql: SELECT setval('engineer_status_types_id_seq'::regclass,1,false)
+
 - id: 1
   name: 意思未確認
   description: Webからの登録、または人づてなどでの仮登録で本人未接触

@@ -1,7 +1,7 @@
 class Career < ApplicationRecord
 	belongs_to :engineer
 	belongs_to :skill
-	after_initialize set_default_value, if: :new_recored?
+	after_initialize :set_default_value, if: :new_record?
 
 	def history
 		return '' if history.blank?

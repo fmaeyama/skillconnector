@@ -1,3 +1,4 @@
+- sql: SELECT setval('business_types_id_seq'::regclass,1,false)
 
 - id: 1
   name: 基幹系全般

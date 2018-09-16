@@ -28,7 +28,7 @@ class EngineerController < ApplicationController
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
 		@engineer=Engineer.new
-		@engineer.init_new_instance
+		@engineer.engineer_hope_businesses.build
 	end
 
 	def create
@@ -76,7 +76,6 @@ class EngineerController < ApplicationController
 
 	def insert_new_engineer(params)
 		@engineer = Engineer.new
-		@engineer.init_new_instance
 		Engineer.transaction do
 			@engineer.attributes = Engineer.parameters(params, :engineer)
 			@engineer.save!

@@ -1,3 +1,5 @@
+- sql: SELECT setval('office_statuses_id_seq'::regclass,1,false)
+
 - name: 潜在顧客
   description: コンタクト前、もしくは営業が始まっていない状態
   sort_id: 10
