@@ -1,9 +1,0 @@
-ja:
-  cmn_enum:
-    status:
-      disabled: '使用しない'
-      enabled: '使用する'
-  contact_types:
-    email: 'e-mail'
-    tel: 'TEL'
-    fax: 'FAX'

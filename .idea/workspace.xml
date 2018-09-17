@@ -2,22 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17447f41-fb79-42bd-9a49-77104127e37e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/engineer/new.html.haml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/seeds/Skill.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/engineer_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/engineer_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/decorators/engineer_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/engineer_decorator.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/address.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/address.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/business_type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/business_type.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/career.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/career.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/engineer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/engineer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/person_info.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/person_info.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/skill.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/skill.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/engineer/new.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/locales/ja.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/ja.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/engineer/new.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/engineer/new.html.haml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/BusinessStatus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/BusinessStatus.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/BusinessType.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/BusinessType.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/OfficeStatus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/OfficeStatus.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/OfficeType.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/OfficeType.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/Skill.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/Skill.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/engineer_registration_types.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/engineer_registration_types.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/engineer_status_types.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/engineer_status_types.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds/prefecture.yml" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds/prefecture.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/app/assets/stylesheets/application.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/app/controllers/application_controller.rb" afterDir="false" />
@@ -38,6 +43,8 @@
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/BUsinessType.yml" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/BUsinessType.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/OfficeStatus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/OfficeStatus.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/OfficeType.yml" beforeDir="false" afterPath="$PROJECT_DIR$/var/www/html/skillconnect/db/seeds/OfficeType.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -201,73 +208,38 @@
         <splitter split-orientation="vertical" split-proportion="0.59574467">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="engineer.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/models/engineer.rb">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="156">
-                      <caret line="28" selection-start-line="28" selection-end-line="29" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="career.rb" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/app/models/career.rb">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="25">
-                      <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
               <file leaf-file-name="ja.yml" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/config/locales/ja.yml">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="72">
-                      <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+                    <state relative-caret-position="413">
+                      <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="_engineer_hiring_form.html.erb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb">
+              <file leaf-file-name="engineer.rb" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/models/engineer.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="95">
-                      <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-                      <folding>
-                        <element signature="e#1345#1407#0#ruby" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="120">
+                      <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="engineer_controller.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/controllers/engineer_controller.rb">
+              <file leaf-file-name="application.scss" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="236">
-                      <caret line="81" selection-start-line="81" selection-end-line="81" />
-                      <folding>
-                        <element signature="e#235#299#0" expanded="true" />
-                        <element signature="e#1099#1163#0" expanded="true" />
-                        <element signature="e#1260#1350#0" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="350">
+                      <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="engineer_decorator.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/decorators/engineer_decorator.rb">
+              <file leaf-file-name="business_type.rb" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/models/business_type.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="204">
-                      <caret line="12" selection-start-line="12" selection-end-line="12" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="engineer_registration_type.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/models/engineer_registration_type.rb">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="51">
-                      <caret line="3" selection-start-line="3" selection-end-line="3" />
+                    <state relative-caret-position="85">
+                      <caret line="5" selection-start-line="5" selection-end-line="5" />
                     </state>
                   </provider>
                 </entry>
@@ -276,7 +248,7 @@
                 <entry file="file://$PROJECT_DIR$/app/models/skill.rb">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="34">
-                      <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+                      <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
                     </state>
                   </provider>
                 </entry>
@@ -285,47 +257,11 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="schema.rb" pinned="false" current-in-tab="false">
+              <file leaf-file-name="schema.rb" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/db/schema.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="340">
+                    <state relative-caret-position="3554">
                       <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="prefecture.yml" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/db/seeds/prefecture.yml">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="68">
-                      <caret line="4" selection-start-line="4" selection-end-line="8" selection-end-column="12" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/config/routes.rb">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="100">
-                      <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="office.rb" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/models/office.rb">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="119">
-                      <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="Skill.yml" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/db/seeds/Skill.yml">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="10">
-                      <caret line="3" selection-start-line="3" selection-end-line="4" />
                     </state>
                   </provider>
                 </entry>
@@ -333,8 +269,17 @@
               <file leaf-file-name="ja.yml" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/config/locales/enum/ja.yml">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="73">
+                    <state relative-caret-position="90">
                       <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="engineer_decorator.rb" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/decorators/engineer_decorator.rb">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="170">
+                      <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
                     </state>
                   </provider>
                 </entry>
@@ -350,8 +295,8 @@
               <file leaf-file-name="new.html.haml" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/views/engineer/new.html.haml">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="58">
-                      <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
+                    <state relative-caret-position="179">
+                      <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
                     </state>
                   </provider>
                 </entry>
@@ -369,16 +314,16 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
+              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/views/office/new.html.erb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="2295">
+                    <state relative-caret-position="221">
                       <caret line="153" column="43" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="true">
+              <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/views/businesses/new.html.erb">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="969">
@@ -390,7 +335,7 @@
               <file leaf-file-name="businesses_controller.rb" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/controllers/businesses_controller.rb">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="550">
+                    <state relative-caret-position="1105">
                       <caret line="67" selection-start-line="63" selection-end-line="67" />
                     </state>
                   </provider>
@@ -481,16 +426,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/office/_office_description.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/businesses/_business_description.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/office/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/office_controller.rb" />
-        <option value="$PROJECT_DIR$/app/decorators/skill_connect_decorator.rb" />
         <option value="$PROJECT_DIR$/app/views/office/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/db/seeds/BusinessType.yml" />
         <option value="$PROJECT_DIR$/db/seeds/engineer_status_types .yml" />
-        <option value="$PROJECT_DIR$/db/seeds/engineer_registration_types.yml" />
         <option value="$PROJECT_DIR$/db/migrate/20180909090144_create_engineer_offices.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180909090230_create_careers.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180909211456_create_offers.rb" />
@@ -514,24 +452,31 @@
         <option value="$PROJECT_DIR$/app/models/engineer_status_type.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180909083827_create_engineer_status_types.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180909090122_create_engineers.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/db/seeds/engineer_status_types.yml" />
         <option value="$PROJECT_DIR$/app/models/office.rb" />
         <option value="$PROJECT_DIR$/app/models/engineer_hiring.rb" />
         <option value="$PROJECT_DIR$/app/models/person_info.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/engineer_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/engineer/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/decorators/engineer_decorator.rb" />
-        <option value="$PROJECT_DIR$/db/seeds/Skill.yml" />
-        <option value="$PROJECT_DIR$/app/models/skill.rb" />
         <option value="$PROJECT_DIR$/config/locales/ja.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/models/engineer.rb" />
         <option value="$PROJECT_DIR$/app/models/address.rb" />
-        <option value="$PROJECT_DIR$/app/views/engineer/new.html.haml" />
+        <option value="$PROJECT_DIR$/db/seeds/prefecture.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/Skill.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/BusinessStatus.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/BusinessType.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/engineer_status_types.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/OfficeType.yml" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/db/seeds/engineer_registration_types.yml" />
+        <option value="$PROJECT_DIR$/db/seeds/OfficeStatus.yml" />
         <option value="$PROJECT_DIR$/app/models/career.rb" />
+        <option value="$PROJECT_DIR$/app/models/skill.rb" />
+        <option value="$PROJECT_DIR$/app/decorators/engineer_decorator.rb" />
+        <option value="$PROJECT_DIR$/app/models/business_type.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/engineer_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/engineer.rb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
+        <option value="$PROJECT_DIR$/app/views/engineer/new.html.haml" />
       </list>
     </option>
   </component>
@@ -559,9 +504,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="170" />
-    <option name="y" value="1019" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="11" />
+    <option name="y" value="-859" />
     <option name="width" value="1931" />
     <option name="height" value="618" />
   </component>
@@ -573,6 +518,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -590,6 +536,12 @@
               <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillconnect" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="skillconnect" type="b2602c69:ProjectViewProjectNode" />
@@ -637,7 +589,6 @@
         </subPane>
       </pane>
       <pane id="RailsProjectView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -837,11 +788,12 @@
       <workItem from="1536582920947" duration="27114000" />
       <workItem from="1536903249834" duration="647000" />
       <workItem from="1536918078084" duration="30341000" />
+      <workItem from="1537081621177" duration="13297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475344000" />
+    <option name="totallyTimeSpent" value="488641000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -853,21 +805,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="170" y="1019" width="1931" height="618" extended-state="0" />
+    <frame x="-8" y="-1088" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49962825" weight="0.32927758" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5187431" side_tool="true" weight="0.19802591" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49840087" weight="0.26749435" />
+      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49840087" weight="0.26746726" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49929428" weight="0.329863" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48987207" weight="0.1419214" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4812569" visible="true" weight="0.44748858" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48347107" visible="true" weight="0.11010155" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48987207" visible="true" weight="0.1419214" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4812569" weight="0.2128821" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48218828" visible="true" weight="0.13726571" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932826" weight="0.329891" />
       <window_info id="Structure" order="1" sideWeight="0.51296043" side_tool="true" weight="0.14232409" />
-      <window_info id="Favorites" order="2" sideWeight="0.5165289" side_tool="true" visible="true" weight="0.11010155" />
+      <window_info id="Favorites" order="2" sideWeight="0.5178117" side_tool="true" visible="true" weight="0.13726571" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48720682" weight="0.23346898" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -875,24 +827,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932826" weight="0.329891" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4876923" visible="true" weight="0.19790518" />
       <window_info id="Structure" order="1" sideWeight="0.51296043" side_tool="true" weight="0.14232409" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49962825" weight="0.32927758" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49929428" weight="0.329863" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48987207" weight="0.4040632" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932826" weight="0.329891" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4812569" visible="true" weight="0.19802591" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5187431" side_tool="true" visible="true" weight="0.19802591" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49929428" weight="0.329863" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48720682" weight="0.26749435" />
       <window_info anchor="bottom" id="File Transfer" order="10" sideWeight="0.49840087" weight="0.26862302" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -960,39 +913,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migreantion_memo.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="6" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20180911124028_create_skills.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="37" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/decorators/office_decorator.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/business_status.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/office_status.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20180802220710_create_office_statuses.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20180909083827_create_engineer_status_types.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1035,13 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20180911124324_create_careers.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1052,45 +965,12 @@
     <entry file="file://$PROJECT_DIR$/app/models/contact.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds/engineer_registration_types.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds/engineer_status_types .yml" />
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="72" selection-start-line="59" selection-start-column="72" selection-end-line="59" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/office.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/office/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="153" column="43" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/engineer/_engineer_hiring.html.erb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/engineer/_engineer_hiring.html.erb" />
     <entry file="file://$PROJECT_DIR$/app/controllers/businesses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
+        <state relative-caret-position="1105">
           <caret line="67" selection-start-line="63" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds/engineer_status_types.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
@@ -1116,13 +996,6 @@
         <state relative-caret-position="-17" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/enum/ja.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/business.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1139,7 +1012,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="187">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
@@ -1151,51 +1024,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/engineer_hiring.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="e#1345#1407#0#ruby" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds/prefecture.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/engineer_registration_type.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/skill.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -1206,23 +1041,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/ja.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/engineer/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="87" selection-start-line="2" selection-end-line="87" />
-          <folding>
-            <element signature="e#2563#2595#1#ruby" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/engineer/new.html.erb" />
     <entry file="file://$PROJECT_DIR$/app/views/application/_bootstrap_modal.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1237,50 +1056,177 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/decorators/engineer_decorator.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/office.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="119">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/engineer_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/engineer_hiring.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-          <folding>
-            <element signature="e#235#299#0" expanded="true" />
-            <element signature="e#1099#1163#0" expanded="true" />
-            <element signature="e#1260#1350#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/engineer/new.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/models/prefecture.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds/prefecture.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
+        <state relative-caret-position="34">
+          <caret line="4" lean-forward="true" selection-start-line="3" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/engineer.rb">
+    <entry file="file://$PROJECT_DIR$/db/seeds/BusinessStatus.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="28" selection-start-line="28" selection-end-line="29" />
+        <state>
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/career.rb">
+    <entry file="file://$PROJECT_DIR$/db/seeds/BusinessType.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        <state>
+          <caret column="36" selection-start-column="36" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds/Skill.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="3" selection-start-line="3" selection-end-line="4" />
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="2" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds/engineer_status_types.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds/OfficeStatus.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds/engineer_registration_types.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/engineer/_engineer_hiring_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds/OfficeType.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/enum/ja.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/skill.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/office/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="153" column="43" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/business_type.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/decorators/engineer_decorator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/engineer_hope_business.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/career.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="4" lean-forward="true" selection-start-line="3" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3554">
+          <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/engineer_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/ja.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/engineer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/engineer/new.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
         </state>
       </provider>
     </entry>
