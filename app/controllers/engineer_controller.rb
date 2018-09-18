@@ -27,12 +27,14 @@ class EngineerController < ApplicationController
 
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
+		@var.mode="new"
 		@engineer=Engineer.new
 		@engineer.engineer_hope_businesses.build
 	end
 
 	def create
-		insert_new_engineer(params)
+		@engineer=Engineer.new
+		save_engineer(params)
 		respond_to do |format|
 			format.html {redirect_to action: "edit", id: @engineer.id}
 			format.json {render :show, status: :created, location: @engineer}
@@ -54,18 +56,25 @@ class EngineerController < ApplicationController
 			model:Engineer.model_name.human,
 			id:params[:id]
 		)
+		@var.mode = params[:id]
 		@engineer = Engineer.find(params[:id])
 		render action: "new"
 
 	end
 
 	def update
-		@var.title = I18n.t("cmn_sentence.editTitle",
-			model:Engineer.model_name.human,
-			id:params[:id]
-		)
 		@engineer = Engineer.find(params[:id])
-		render action: "new"
+		save_engineer(params)
+		respond_to do |format|
+			format.html {redirect_to action: "edit", id: params[:id]}
+			format.json {render :show, status: :created, location: @engineer}
+		end
+	rescue => e
+		raise e if Rails.env == 'development'
+		respond_to do |format|
+			format.html {redirect_to action: "edit", id: params[:id]}
+			format.json {render json: format, status: :unprocessable_entity}
+		end
 	end
 
 	def destroy
@@ -74,8 +83,7 @@ class EngineerController < ApplicationController
 
 	private
 
-	def insert_new_engineer(params)
-		@engineer = Engineer.new
+	def save_engineer(params)
 		Engineer.transaction do
 			@engineer.attributes = Engineer.parameters(params, :engineer)
 			@engineer.save!

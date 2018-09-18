@@ -6,9 +6,10 @@ class Engineer < ApplicationRecord
 	belongs_to :person_info, autosave: true
 	has_many :careers
 	has_many :engineer_hope_businesses
-	accepts_nested_attributes_for :engineer_hiring, :person_info
-	accepts_nested_attributes_for :careers, :engineer_hope_businesses,
-		allow_destroy: true
+	accepts_nested_attributes_for :engineer_hiring, :person_info, update_only: true
+	accepts_nested_attributes_for :careers, allow_destroy: true,
+		reject_if: proc {|attr| attr['skill_id'].blank? }
+	accepts_nested_attributes_for  :engineer_hope_businesses, allow_destroy: true, reject_if: :all_blank
 	after_initialize :set_default_value, if: :new_record?
 
 
@@ -21,14 +22,16 @@ class Engineer < ApplicationRecord
 				:kana_last_name,:kana_first_name, :kana_middle_name
 			],
 			:engineer_hiring_attributes => [
-				:office_id,:hiring_position,:hiring_division,
+				:office_id, :hiring_position,:hiring_division,
 				:hiring_memo, :hiring_contact_id,
 				:hired_from, :hired_until,:status
 			],
 			:careers_attributes => [
-
+				:id, :skill_id, :career_from, :career_at,:description,:_destroy
 			],
-			:engineer_hope_businesses_attribues => []
+			:engineer_hope_businesses_attributes => [
+				:id, :_destroy
+			]
 		)
 	end
 

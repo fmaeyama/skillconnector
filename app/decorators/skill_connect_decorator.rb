@@ -1,6 +1,6 @@
 class SkillConnectDecorator < Draper::Decorator
 	delegate_all
-	attr_accessor :title, :view_count, :model_name, :search_cond, :link
+	attr_accessor :title, :view_count, :model_name, :search_cond, :link, :mode
 
 	# @var.link = {
 	#     I18n.t("cmn_sentence.listTitle", model:Office.model_name.human)=>{controller:"office", action:"index"},

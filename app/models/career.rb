@@ -12,6 +12,7 @@ class Career < ApplicationRecord
 
 	private
 	def set_default_value
-		self.skill = Skill.first
+		self.career_at = Date.today
+		#self.skill = Skill.first
 	end
 end

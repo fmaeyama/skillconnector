@@ -67,6 +67,7 @@ ja:
     history: '%{year}年%{month}ヶ月'
     select_prompt: '%{model}を選択'
     add_form_title: '%{model}入力欄の追加'
+    deleteTitle: '%{model}削除'
   cmn_dict:
     office: '事業所'
     business: '業務'
