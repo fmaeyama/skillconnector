@@ -3,61 +3,61 @@
 - sql: SELECT setval('skills_id_seq'::regclass,1,false)
 
 - id: 1
-  name: 基幹システム
-  description: 各会社の基幹業務に合わせたシステムの構築
+  name: プロジェクトマネージャー
+  description: システム構築・保守等のマネージメント
   parent_id: 0
   sort: 1
 
 - id: 2
-  name: 基幹系・集中処理システム
-  description: ホストを中心とした技能
+  name: PMO
+  description: プロジェクト進行の専門職
   parent_id: 1
   sort: 2
 
 - id: 3
-  name: 基幹系・分散処理システム
-  description: Web系の業務システムなど
-  parent_id: 1
+  name: 設計
+  description: プログラム作成のためのドキュメント作成
+  parent_id: 0
   sort: 3
 
 - id: 4
-  name: 移動情報処理システム
-  description: モバイル系のシステム
-  parent_id: 0
+  name: 要件定義・システム設計
+  description: 主に基本設計分野の設計
+  parent_id: 3
   sort: 4
 
 - id: 5
-  name: バックエンド社内システム
-  description: 非基幹系業務システムの開発・構築
-  parent_id: 0
+  name: 詳細設計
+  description: 内部設計
+  parent_id: 3
   sort: 5
 
 - id: 6
-  name: 情報系社内システム
-  description: メールやファイル管理などの業務での共通情報基盤の主に構築・メンテナンス
+  name: プログラミング
+  description: 仕様に従ってソースコードを構築
   parent_id: 0
   sort: 6
 
 - id: 7
-  name: 通信系処理システム
-  description: ネットワークシステムの開発・構築
-  parent_id: 0
+  name: COBOLプログラミング
+  description: 仕様に従ってCOBOLソースコードの作成
+  parent_id: 6
   sort: 7
 
 - id: 8
-  name: Webシステム全般
-  description: 主にブラウザで操作するシステム全般
-  parent_id: 0
+  name: Cプログラミング
+  description: 仕様に従ってCソースコードの作成
+  parent_id: 6
   sort: 8
 
 - id: 9
-  name: BtoC Webシステム
-  description: Webシステムの内一般顧客向けのシステム・サービスの開発
-  parent_id: 8
+  name: C++プログラミング
+  description: 仕様に従ってC++ソースコードの作成
+  parent_id: 6
   sort: 9
 
 - id: 10
-  name: BtoB Webシステム
-  description: Webシステムの内、企業担当者向けのシステム・サービスの開発
-  parent_id: 8
+  name: Javaプログラミング
+  description: 仕様に従ってJavaソースコードの作成
+  parent_id: 6
   sort: 10

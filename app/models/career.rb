@@ -1,6 +1,6 @@
 class Career < ApplicationRecord
 	belongs_to :engineer
-	belongs_to :skill
+	belongs_to :skill, required:false
 	after_initialize :set_default_value, if: :new_record?
 
 	def history
@@ -12,7 +12,7 @@ class Career < ApplicationRecord
 
 	private
 	def set_default_value
-		self.career_at = Date.today
+		self.career_from = Date.today
 		#self.skill = Skill.first
 	end
 end

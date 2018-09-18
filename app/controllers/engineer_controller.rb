@@ -29,7 +29,6 @@ class EngineerController < ApplicationController
 		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
 		@var.mode="new"
 		@engineer=Engineer.new
-		@engineer.engineer_hope_businesses.build
 	end
 
 	def create

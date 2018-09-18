@@ -30,7 +30,8 @@ class Engineer < ApplicationRecord
 				:id, :skill_id, :career_from, :career_at,:description,:_destroy
 			],
 			:engineer_hope_businesses_attributes => [
-				:id, :_destroy
+				:id, :_destroy,:business_type_id,:skill_id,:hope_since,:hope_strength,
+				:description
 			]
 		)
 	end
@@ -42,6 +43,6 @@ class Engineer < ApplicationRecord
 		self.engineer_registration_type_id = EngineerRegistrationType.select(:id).first
 		self.engineer_status_type_id = EngineerStatusType.select(:id).first
 		self.careers.build
-#		self.engineer_hope_businesses.build
+		self.engineer_hope_businesses.build
 	end
 end

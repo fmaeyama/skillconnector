@@ -10638,8 +10638,12 @@ label.sl-auto-input {
 input.sl-auto-input {
   width: 69%; }
 
+div.sl-large {
+  width: 100%;
+  height: 100%; }
+
 textarea.sl-large {
   width: 100%;
-  height: 10em; }
+  height: 100%; }
 
 /*# sourceMappingURL=application.css.map */

@@ -53,21 +53,19 @@
 				%h3= Career.model_name.human
 				= f.fields_for :careers do |career|
 					-render "career_input_parts", child: career, var:@var
-
-			.sl-row-rightAlign
-				.col-12.align-content-end
-					= hidden_field_tag "career-count", @engineer.careers.count + 1
-					= link_to_add_fields t("cmn_sentence.add_form_title", model:Career.model_name.human), f, :careers, @var
+				.sl-row-rightAlign
+					.col-12.align-content-end
+						= link_to_add_fields t("cmn_sentence.add_form_title", model:Career.model_name.human), f, :careers, @var
 
 		.sl-border-primary
-			.col-12
+			.col-12.engineer_hope_business_holder
 				%h3=EngineerHopeBusiness.model_name.human
-				= @engineer.engineer_hope_businesses.each do |hope_obj|
-					= fields_for :engineer_hope_businesses, hope_obj do |hope|
-						.sl-row-border-secondary
-							.col-4
-								= hope.collection_select :business_type_id,
-								 @var.business_types, :id, :name
+				= f.fields_for :engineer_hope_businesses do |hope|
+					- render "engineer_hope_business_input_parts", child:hope, var:@var
+				.sl-row-rightAlign
+					.col-12.align-content-end
+						= link_to_add_fields t("cmn_sentence.add_form_title", model:EngineerHopeBusiness.model_name.human),
+						 f, :engineer_hope_businesses, @var
 
 		.sl-row-rightAlign
 			.col-3
