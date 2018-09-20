@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_124948) do
+ActiveRecord::Schema.define(version: 2018_09_18_214155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,6 +198,38 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
     t.index ["person_info_id"], name: "index_engineers_on_person_info_id"
   end
 
+  create_table "offer_skills", comment: "求人に必要な技能", force: :cascade do |t|
+    t.bigint "offer_id"
+    t.bigint "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_offer_skills_on_offer_id"
+    t.index ["skill_id"], name: "index_offer_skills_on_skill_id"
+  end
+
+  create_table "offer_statuses", comment: "求人状況", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "sort"
+    t.integer "group", comment: "表示フラグ, cmn_enum.group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offers", comment: "求人", force: :cascade do |t|
+    t.bigint "business_id", comment: "事業"
+    t.string "title", comment: "案件名"
+    t.string "description"
+    t.bigint "offer_status_id", comment: "求人状況"
+    t.date "start_from", default: -> { "CURRENT_DATE" }
+    t.date "want_until", default: "9999-12-31", comment: "募集終了日"
+    t.string "work_at", comment: "Work at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_offers_on_business_id"
+    t.index ["offer_status_id"], name: "index_offers_on_offer_status_id"
+  end
+
   create_table "office_statuses", comment: "事業所契約状態", force: :cascade do |t|
     t.string "name", comment: "表示名称"
     t.string "description", comment: "詳細"
@@ -271,6 +303,20 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "proposals", comment: "Proposal", force: :cascade do |t|
+    t.bigint "offer_id", comment: "求人"
+    t.bigint "engineer_id", comment: "技術者"
+    t.bigint "offered_staff_id", comment: "担当スタッフ"
+    t.bigint "office_contact_id", comment: "Office contacts"
+    t.string "history"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_id"], name: "index_proposals_on_engineer_id"
+    t.index ["offer_id"], name: "index_proposals_on_offer_id"
+    t.index ["offered_staff_id"], name: "index_proposals_on_offered_staff_id"
+    t.index ["office_contact_id"], name: "index_proposals_on_office_contact_id"
+  end
+
   create_table "skill_connects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -284,6 +330,14 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_skills_on_parent_id"
+  end
+
+  create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|
+    t.bigint "person_info_id"
+    t.string "history"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
   end
 
   create_table "user_privilege_groups", comment: "ログインユーザー毎権限設定", force: :cascade do |t|
@@ -329,10 +383,19 @@ ActiveRecord::Schema.define(version: 2018_09_11_124948) do
   add_foreign_key "engineers", "engineer_registration_types"
   add_foreign_key "engineers", "engineer_status_types"
   add_foreign_key "engineers", "person_infos"
+  add_foreign_key "offer_skills", "offers"
+  add_foreign_key "offer_skills", "skills"
+  add_foreign_key "offers", "businesses"
+  add_foreign_key "offers", "offer_statuses"
   add_foreign_key "offices", "addresses", column: "primary_address_id"
   add_foreign_key "offices", "contacts", column: "primary_contact_id"
   add_foreign_key "offices", "offices", column: "parent_id"
+  add_foreign_key "proposals", "contacts", column: "office_contact_id"
+  add_foreign_key "proposals", "engineers"
+  add_foreign_key "proposals", "offers"
+  add_foreign_key "proposals", "staffs", column: "offered_staff_id"
   add_foreign_key "skills", "skills", column: "parent_id"
+  add_foreign_key "staffs", "person_infos"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"
 end

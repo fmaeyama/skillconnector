@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 	get 'common_users/assign_role'
 
 	resources :engineer
+	resources :business
 
 	devise_for :users
 	get 'home/index'

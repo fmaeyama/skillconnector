@@ -1,0 +1,26 @@
+- sql: insert into offer_statuses (id, name, description, sort, group) = (0,"状況", "最上位の親グループ", 1, 0)
+
+- id: 1
+  name: 受付不可
+  description: 受付不可
+  sort: 1
+  group: 0
+
+- id: 2
+  name: 受付可
+  description: 受付可能
+  sort: 1
+  group: 0
+
+- id: 3
+  name: 要確認
+  description: 受付可能かどうか不明
+  sort: 1
+  group: 0
+
+- id: 2
+  name: ヒアリング中
+  description: ヒアリング状態
+  sort: 1
+  group: 1
+

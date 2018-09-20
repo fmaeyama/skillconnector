@@ -15,6 +15,7 @@ ja:
       engineer_registration_type: '技術者流入種別'
       engineer_status_type: '技術者紹介可能状況'
       skill: '技能'
+      staff: 'SKILLCONNECTメンバー'
       offer: '求人'
       offer_skill: '求人に必要な技能'
       offer_status: '求人状況'
@@ -55,6 +56,15 @@ ja:
         description: '志望業務内容'
         hope_since: '希望開始時期'
         hope_strength: '志向度合い'
+      offer:
+        title: '案件名'
+        description: '詳細内容'
+        start_from: '入場希望時期'
+        want_until: '募集終了日'
+        wart_at: '勤務地'
+      proposal:
+        offered_staff: '担当スタッフ'
+        office_contact: '企業側担当'
 
 
 
