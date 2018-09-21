@@ -1,0 +1,16 @@
+%h1= t('cmn_sentence.listTitle',model:Staff.model_name.human)
+
+.my-3.p-3.bg-white.rounded.box-shadow
+	%h6.border-bottom.border-gray.pb-2.mb-0
+		="表示件数#{@var.view_count}件"
+	=form_tag 'edit' do
+		.media-body.app-datablock
+			= label_tag('keyword')
+			= text_field_tag('keyword')
+		.d-flex.justify-content-end
+			= submit_tag('search!')
+	=render partial:'staff_list_part', collection:@staffs
+
+	%small.d-block.text-right.mt-3
+		=link_to("All updates","javascript:void(0)")
+

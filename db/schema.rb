@@ -303,7 +303,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "proposals", comment: "Proposal", force: :cascade do |t|
+  create_table "proposals", comment: "提案", force: :cascade do |t|
     t.bigint "offer_id", comment: "求人"
     t.bigint "engineer_id", comment: "技術者"
     t.bigint "offered_staff_id", comment: "担当スタッフ"

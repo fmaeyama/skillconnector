@@ -10,7 +10,7 @@ class EngineerController < ApplicationController
 	end
 
 	def index
-		@var.title = t('cmn_sentence.newTitle',model:Engineer.model_name.human)
+		@var.title = t('cmn_sentence.listTitle',model:Engineer.model_name.human)
 		if request.post?
 			cond_list = {cd: CondEnum::LIKE}
 			free_word = {keyword: [:eng_cd, :person_info, ]}
@@ -21,7 +21,7 @@ class EngineerController < ApplicationController
 			@var.search_cond = nil
 		end
 
-		@engineers = Engineer.all if @engineers.nil?
+		@engineers = Engineer.all if @var.search_cond.nil?
 		@var.view_count = @engineers.count
 	end
 

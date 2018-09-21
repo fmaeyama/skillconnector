@@ -1,4 +1,4 @@
-- sql: insert into offer_statuses (id, name, description, sort, group) = (0,"状況", "最上位の親グループ", 1, 0)
+- sql: insert into offer_statuses (id, name, description, sort, group) = (0,"状況", "最上位の親グループ", 1, "disapprove")
 
 - id: 1
   name: 受付不可
@@ -23,4 +23,3 @@
   description: ヒアリング状態
   sort: 1
   group: 1
-

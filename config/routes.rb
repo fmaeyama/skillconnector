@@ -30,6 +30,9 @@ Rails.application.routes.draw do
 
 	resources :engineer
 	resources :business
+	resources :staff
+	resources :offer
+	resources :proposal
 
 	devise_for :users
 	get 'home/index'

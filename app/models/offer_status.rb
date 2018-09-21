@@ -1,4 +1,6 @@
 class OfferStatus < ApplicationRecord
-	enum group: ApplicationRecord.cmn_groups
+	enum offer_group: ApplicationRecord.cmn_groups
+
+	scope :enable,->{order("group, sort")}
 
 end

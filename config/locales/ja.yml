@@ -20,7 +20,7 @@ ja:
       offer_skill: '求人に必要な技能'
       offer_status: '求人状況'
       office: '事業所'
-      propsal: '提案'
+      proposal: '提案'
     attributes:
       office:
         business: '募集事業'

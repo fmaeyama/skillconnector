@@ -6,6 +6,7 @@ rails generate model skill name:string description:string parent:references sort
 rails generate model career engineer:references description:string career_from:date career_at:string
 rails generate model engineer_hope_business engineer:references business_type:references skill:references title:string description:string hope_since:date hope_strength:integer
 
+rails generate model staff person_info:references history:references
 rails generate model offer_status name:string description:string sort:integer group:references
 rails generate model offer business:references  title:string  description:string offer_status:references want_from:date want_until:date work_at:string
 rails generate model offer_skill offer:referenses skill:references
@@ -14,3 +15,6 @@ rails generate model proposal offer:references engineer:references offered_staff
 rails destroy model proposal
 rails destroy model offer_skills
 rails destroy model offer
+
+rails generate controller staff
+rails generate controller offer
