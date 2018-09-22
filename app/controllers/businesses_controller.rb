@@ -25,7 +25,7 @@ class BusinessesController < ApplicationController
 		end
 
 		@businesses = Business.all if @business.nil?
-		@var.view_counter = @businesses.count
+		@var.view_count = @businesses.count
 	end
 
 	# ?office_id=?で親の事業所idがわたる

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 	get 'office/list', to: 'office#list'
 	get 'office/new'
 	post 'office/new(.:format)', to: 'office#new'
+	patch 'office/update(.:format)', to: 'office#update'
 	get 'office/:id', to: 'office#edit'
 
 	resources :common_users

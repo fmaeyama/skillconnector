@@ -1,6 +1,7 @@
 class OfferStatus < ApplicationRecord
-	enum offer_group: ApplicationRecord.cmn_groups
+	has_one :parent, class_name: "OfferStatus", foreign_key:"parent_id"
+	has_many :children, class_name:"OfferStatus", foreign_key: "parent_id"
 
-	scope :enable,->{order("group, sort")}
+	scope :enable,->{order("parent_id, sort")}
 
 end

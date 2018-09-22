@@ -4,7 +4,7 @@ class CreateOfferStatuses < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :description
       t.integer :sort
-      t.integer :group, comment:"表示フラグ, cmn_enum.group"
+      t.references :parent, foreign_key:{to_table: :offer_statuses}
 
       t.timestamps
     end

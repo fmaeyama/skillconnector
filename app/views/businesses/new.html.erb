@@ -41,15 +41,19 @@
 			</div>
 		</div>
 		<div class="sl-border-primary">
-			<div class="row">
-				<div class="col-12">
-					<%=t('cmn_sentence.listTitle',model:Offer.model_name.human) %>
-					<%= link_to t('cmn_sentence.newTitle', model:Offer.model_name.human),
-						url_for(controller:'offer', action:'new', business_id:@business.id),
-						class:'btn btn^primary'
-					%>
-					<%=render partial: 'offer/offer', collection:@business.offers %>
+			<div class="col-12">
+				<div class="row">
+					<div class="col-6">
+						<h3><%=t('cmn_sentence.listTitle',model:Offer.model_name.human) %></h3>
+					</div>
+					<div class="col-6">
+						<%= link_to t('cmn_sentence.newTitle', model:Offer.model_name.human),
+							url_for(controller:'offer', action:'new', business_id:@business.id),
+							class:'btn btn^primary'
+						%>
+					</div>
 				</div>
+				<%= helper_call_offer_title_if_exists %>
 			</div>
 		</div>
 		<div class="sl-border-primary">
@@ -62,6 +66,4 @@
 			<div class="col-3"><%= f.submit %></div>
 		</div>
 	<% end %>
-
-
 </div>

@@ -19,7 +19,7 @@ class Business < ApplicationRecord
 		self.business_status_id = BusinessStatus.select(:id).first(1)
 		self.business_type_id = BusinessType.select(:id).first(1)
 		if params.key?("office_id")
-			self.office = Office.find(params["office_id"])
+			self.office_id=params["office_id"]
 		end
 
 	end

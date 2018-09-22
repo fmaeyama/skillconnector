@@ -79,6 +79,7 @@ ja:
     add_form_title: '%{model}入力欄の追加'
     deleteTitle: '%{model}削除'
     otherTitie: 'その他の%{model}'
+    noRelatedTitle: '関連がある%{model}はありません'
   cmn_dict:
     office: '事業所'
     business: '業務'
