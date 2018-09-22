@@ -5,7 +5,9 @@ class OfferController < ApplicationController
 		@var = OfferDecorator.new
 		@var.link = {
 			I18n.t("cmn_sentence.listTitle", model:Offer.model_name.human)=>{controller:"offer", action:"index"},
-			I18n.t("cmn_sentence.newTitle", model:Engineer.model_name.human)=>{controller:"offer", action:"new"}
+			I18n.t("cmn_sentence.newTitle", model:Engineer.model_name.human)=>{controller:"offer", action:"new"},
+			I18n.t('cmn_sentence.listTitle',model: Office.model_name.human) => {controller:'office', action:'index'},
+			I18n.t('cmn_sentence.listTitle', model: Business.model_name.human) => {controller:'business', action: 'index'}
 		}
 	end
 
@@ -30,7 +32,6 @@ class OfferController < ApplicationController
 		@var.mode="new"
 		bus_id = params[:business_id].blank? ? Business.select(:id).first(1) : params[:business_id]
 		@offer=Offer.new(business_id: bus_id)
-		@offer.business = Business.find(bus_id)[0]
 	end
 
 	def create

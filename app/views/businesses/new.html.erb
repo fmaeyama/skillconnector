@@ -2,14 +2,10 @@
 <div class="my-3 p-3 bg-white rounded box-shadow">
 	<%= form_for(@business, url: url_for(controller: 'businesses', action: 'new')) do |f| %>
 		<div class="row">
-			<div class="col-2">
-				<%= f.collection_select :business_status_id, @var.business_statuses, :id, :name %>
-			</div>
-			<div class="col-2">
-				<%= f.collection_select :business_type_id, @var.business_types, :id, :name %>
-			</div>
-			<div class="col-8">
-				<%= f.label :name, '業務タイトル' %><%= f.text_field :name %>
+			<div class="col-12">
+				<%= f.collection_select :business_status_id, @var.business_statuses, :id, :name, class:'px-4' %>
+				<%= f.collection_select :business_type_id, @var.business_types, :id, :name, class:'px-4'  %>
+				<%= f.label :name, '業務タイトル' %><%= f.text_field :name, class:'px-4'  %>
 				<% if @business.parent.blank? %>
 					<%= button_tag t(
 						'cmn_sentence.searchButton',
@@ -35,17 +31,25 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-3">
-				<%= f.label :max_quantity, '受入可能人数' %>
+			<div class="col-12">
+				<%= f.label :max_quantity, '受入可能人数', class:'px-4' %>
 				<%= f.number_field :max_quantity, class:"sl-small-field" %>名
-			</div>
-			<div class="col-3">
-				<%= f.label :proper_quantity, '希望募集人数' %>
+				<%= f.label :proper_quantity, '希望募集人数', class:'px-4'  %>
 				<%= f.number_field :proper_quantity, class:"sl-small-field" %>名
-			</div>
-			<div class="col-4">
-				<%= f.label :budget, '予算' %>
+				<%= f.label :budget, '予算', class:'px-4'  %>
 				<%= f.number_field :budget %>円
+			</div>
+		</div>
+		<div class="sl-border-primary">
+			<div class="row">
+				<div class="col-12">
+					<%=t('cmn_sentence.listTitle',model:Offer.model_name.human) %>
+					<%= link_to t('cmn_sentence.newTitle', model:Offer.model_name.human),
+						url_for(controller:'offer', action:'new', business_id:@business.id),
+						class:'btn btn^primary'
+					%>
+					<%=render partial: 'offer/offer', collection:@business.offers %>
+				</div>
 			</div>
 		</div>
 		<div class="sl-border-primary">

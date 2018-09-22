@@ -1,7 +1,7 @@
 class Business < ApplicationRecord
 	has_one :parent, class_name: "Business", foreign_key: "parent_business_id"
-	has_many :child, class_name: "Business", foreign_key: "parent_business_id"
-	has_many :offer
+	has_many :children, class_name: "Business", foreign_key: "parent_business_id"
+	has_many :offers
 	belongs_to :business_type
 	belongs_to :business_status
 	belongs_to :office

@@ -9,7 +9,7 @@
 			= text_field_tag('keyword')
 		.d-flex.justify-content-end
 			= submit_tag('search!')
-	=render partial:'staff_list_part', collection:@staffs
+	=render partial:'staff_list_part', collection:@staffs, as: 'staff'
 
 	%small.d-block.text-right.mt-3
 		=link_to("All updates","javascript:void(0)")

@@ -8,4 +8,8 @@ class Offer < ApplicationRecord
 			:start_from, :want_until, :work_at
 		)
 	end
+
+	def brothers
+		Offer.where(business_id: self.business_id).where.not(id: self.id)
+	end
 end

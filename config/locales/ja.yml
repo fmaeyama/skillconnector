@@ -78,6 +78,7 @@ ja:
     select_prompt: '%{model}を選択'
     add_form_title: '%{model}入力欄の追加'
     deleteTitle: '%{model}削除'
+    otherTitie: 'その他の%{model}'
   cmn_dict:
     office: '事業所'
     business: '業務'

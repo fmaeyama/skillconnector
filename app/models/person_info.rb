@@ -13,8 +13,8 @@ class PersonInfo < ApplicationRecord
 
 	def getFullKana
 		self.kana_last_name +
-			self.kana_first_name.blank? ? " " :
-			" #{self.kana_middle_name} " +
+			(self.kana_first_name.blank? ? " " :
+			" #{self.kana_middle_name} ") +
 			self.kana_first_name
 	end
 
