@@ -1,5 +1,5 @@
 .d-flex
-	=form_tag url_for(controller:'business',action:'search'), remote:true do
+	=form_tag({controller: 'business', action: 'search'}, remote:true) do
 		.px-3
 			=text_field_tag 'search-field'
 		.px-3
