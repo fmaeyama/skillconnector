@@ -1,4 +1,4 @@
-class BusinessesController < ApplicationController
+class BusinessController < ApplicationController
 
 	def initialize
 		super
@@ -51,6 +51,9 @@ class BusinessesController < ApplicationController
 
 	def contact_list
 
+	end
+
+	def search
 	end
 
 	private

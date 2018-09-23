@@ -1,6 +1,6 @@
 <h2> <%= @var.title %></h2>
 <div class="my-3 p-3 bg-white rounded box-shadow">
-	<%= form_for(@business, url: url_for(controller: 'businesses', action: 'new')) do |f| %>
+	<%= form_for(@business, url: url_for(controller: 'business', action: 'new')) do |f| %>
 		<div class="row">
 			<div class="col-12">
 				<%= f.collection_select :business_status_id, @var.business_statuses, :id, :name, class:'px-4' %>
