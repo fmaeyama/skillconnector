@@ -22,6 +22,11 @@
 					= f.label :title
 				.px-1
 					= f.text_field :title
+				.px-1
+					= f.collection_select :offer_status_id, @var.offer_statuses, :id,  :name,
+					 include_blank:t('cmn_sentence.select_prompt', model:OfferStatus.model_name.human)
+				.px-1
+					= f.date_select :start_from
 	-# その他の求人
 	.sl-border-primary
 		.col-12
