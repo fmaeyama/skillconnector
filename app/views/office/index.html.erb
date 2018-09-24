@@ -38,7 +38,7 @@
 					<% end %>
 				</div>
 				<div class="d-block p-4">
-					<%= link_to({controller:"businesses", action:"new", office_id: office.id} ) do %>
+					<%= link_to({controller:"business", action:"new", office_id: office.id} ) do %>
 					<%= button_tag t('cmn_sentence.newTitle', model: t('cmn_dict.business')) %>
 						<% end %>
 

@@ -31,6 +31,7 @@ class BusinessController < ApplicationController
 	# ?office_id=?で親の事業所idがわたる
 	def new
 		@var.title = t('cmn_sentence.newTitle', model: t('cmn_dict.business'))
+		@var.mode = "new"
 		@business = Business.new
 		return insert_new_business(params) if request.post?
 		@business.init_new_instance(params)
@@ -41,11 +42,12 @@ class BusinessController < ApplicationController
 		@var.title = I18n.t("cmn_sentence.editTitle",
 						model: I18n.t("cmn_dict.business"),
 						id: params[:id])
+		@var.mode = params[:id]
 		@business = Business.find(params[:id])
-		render action: "new"
+		render "new"
 	end
 
-	def edit_own
+	def update
 
 	end
 
@@ -54,9 +56,23 @@ class BusinessController < ApplicationController
 	end
 
 	def search
+		@businesses = search_by_post(@var)
+		@businesses = Business.all if @businesses.size == 0
+		@msg = 'Search done!'
+	rescue => e
+		logger.debug(e)
+		@msg=e.message
 	end
 
 	private
+
+		def search_by_post(var)
+			cond_list = {name: CondEnum::LIKE, business_type_id: CondEnum::EQ}
+			free_word = {keyword: [:description, :welcome]}
+			cond_set = self.createCondition(params, cond_list, free_word)
+			var.search_cond = cond_set[:cond_param]
+			Business.where(cond_set[:cond_arr])
+		end
 
 		def insert_new_business(params)
 			begin

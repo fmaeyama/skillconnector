@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
 		if condArr.count > 0
 			cond = [cond.join(' and '),condArr]
 		else
-			cond [cond.join ( ' and ')]
+			cond = [cond.join(' and ')]
 		end
 
 		condStr = cond.flatten
@@ -101,7 +101,7 @@ class ApplicationController < ActionController::Base
 	private
 
 	def getFreewordSearchStringFromArray(arr,word)
-		retunr '1=1' if arr.count == 0
+		return '1=1' if arr.count == 0
 		res = arr.join(" LIKE '%%" + word + "%%' or ")
 		res +=  " LIKE '%%" + word + "%%'"
 	end

@@ -1,7 +1,7 @@
 <% # title: "募集業務", businesses: collection, office_id: 親office %>
 <h3><%= title %></h3>
 <% if businesses.count > 0 %>
-	<%= render partial: "businesses/business_description", collection: businesses, as:"business" %>
+	<%= render partial: "business/business_description", collection: businesses, as:"business" %>
 <% else %>
 	<div class="row">
 		<div class="col-4">
@@ -11,7 +11,7 @@
 <% end %>
 <div class="sl-row-rightAlign">
 	<div class="col-2">
-		<%= link_to controller:"businesses", action:"new", office_id:office_id do %>
+		<%= link_to controller:"business", action:"new", office_id:office_id do %>
 			<%= button_tag "業務追加", type: "button" %>
 		<% end %>
 	</div>

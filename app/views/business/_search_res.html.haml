@@ -1,0 +1,9 @@
+.row
+	.col-12
+		= "#{@businesses.size}件 : "
+		=@msg
+- unless @businesses.nil?
+	- @businesses.each do |bus|
+		.row
+			.col-12
+				=bus.id

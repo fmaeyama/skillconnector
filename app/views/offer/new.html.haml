@@ -13,7 +13,7 @@
 						= link_to t('cmn_sentence.listTitle',model:Office.model_name.human), {controller: 'office', action:'index'}, class:"mx-2", target:"_blank"
 						= button_tag t('cmn_sentence.searchButton', model:Business.model_name.human), type:"button", class:'btn btn-primary', data:{toggle:'modal',target:'#bootstrapModal'}
 			- else
-				= render partial: 'businesses/business_description', locals: { business: @offer.business }
+				= render partial: 'business/business_description', locals: { business: @offer.business }
 	- # 求人フォーム
 	= form_for @offer, url: (@var.mode=="new" ? url_for(action: 'create') : url_for(action:'update',id:@var.mode)) do |f|
 		.row

@@ -60,7 +60,7 @@ class OfferController < ApplicationController
 		)
 		@var.mode = params[:id]
 		@offer = Offer.find(params[:id])
-		render action: "new"
+		render "new"
 
 	end
 

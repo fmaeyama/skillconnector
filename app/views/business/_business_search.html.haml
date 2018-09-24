@@ -1,8 +1,7 @@
 .d-flex
 	=form_tag({controller: 'business', action: 'search'}, remote:true) do
 		.px-3
-			=text_field_tag 'search-field'
+			=text_field_tag 'keyword'
 		.px-3
 			=submit_tag t('cmn_sentence.searchButton',model:Business.model_name.human)
 #search_list.d-flex
-	Search Result
