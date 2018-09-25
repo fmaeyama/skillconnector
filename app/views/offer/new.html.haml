@@ -19,14 +19,33 @@
 		.row
 			.col-6.d-flex.flex-column
 				.px-1
-					= f.label :title
+					= f.label :title, Offer.human_attribute_name('title')
 				.px-1
 					= f.text_field :title
+				.px-1
+					= f.label :work_at, Offer.human_attribute_name('work_at')
+				.px-1
+					= f.date_select :work_at
 				.px-1
 					= f.collection_select :offer_status_id, @var.offer_statuses, :id,  :name,
 					 include_blank:t('cmn_sentence.select_prompt', model:OfferStatus.model_name.human)
 				.px-1
+					= f.label :start_from, Offer.human_attribute_name('start_from')
+				.px-1
 					= f.date_select :start_from
+				.px-1
+					= f.label :start_from, Offer.human_attribute_name('want_until')
+				.px-1
+					= f.date_select :want_until
+			.col-6.d-flex.flex-column
+				.px-1
+					= f.label :description, Offer.human_attribute_name('description')
+				.px-1.sl-large
+					= f.text_area :description, class:'sl-large'
+		.row
+			.col-12
+				= f.submit class:'mx-2'
+				= link_to t('offer_sentence.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human)
 	-# その他の求人
 	.sl-border-primary
 		.col-12

@@ -18,3 +18,4 @@ rails destroy model offer
 
 rails generate controller staff
 rails generate controller offer
+rails generate controller proposal
