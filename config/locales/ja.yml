@@ -65,10 +65,6 @@ ja:
       proposal:
         offered_staff: '担当スタッフ'
         office_contact: '企業側担当'
-
-
-
-
   cmn_sentence:
     listTitle: '%{model}一覧'
     newTitle: '新規%{model}作成'
@@ -92,6 +88,5 @@ ja:
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
-  offer_sentence:
-    no_business: '%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。'
-    proposal: '%{engineer}'を検索して%{proposal}'
+    offer_no_business: '%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。'
+    offer_proposal: '%{engineer}'を検索して%{proposal}'

@@ -12,4 +12,12 @@ module BusinessHelper
 				class:"col-md-8 col-md-offset-2")
 		end
 	end
+
+	def get_business_link
+		concat "id:"
+		concat content_tag(:span, self.id,id:"business-id-#{self.id}")
+		concat content_tag(:span, self.name, id:"business-name-#{self.name}" )
+
+
+	end
 end

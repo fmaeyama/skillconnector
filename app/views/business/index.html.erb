@@ -12,7 +12,7 @@
 	<% end %>
 
 
-	<% 	@businesses.each do |bussiness| %>
+	<% 	@businesses.each do |business| %>
 		<div class="media text-muted pt-3">
 			<div class="media-body app-datablock">
 				<div class="app-data-title">
@@ -21,13 +21,13 @@
 					(<span id="business-desc-<%=business.id%>"> <%=business.description%></span>)
 				</div>
 				<div class="d-block p-4">
-					<% if office.parent.blank? then
+					<% if business.office.blank? then
 					%>
 						<div class="d-flex justify-content-end">
 							<button type="button" id="assosiate_person" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"> 親事業所紐付け </button>
 						</div>
 					<% else %>
-						<%= offie.parent.cd %> : <%= office.parent.name %>
+						<%= business.office.cd %> : <%= business.office.name %>
 					<% end %>
 				</div>
 			</div>
