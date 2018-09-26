@@ -88,5 +88,8 @@ ja:
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
-    offer_no_business: '%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。'
-    offer_proposal: '%{engineer}'を検索して%{proposal}'
+  offer:
+    new:
+      no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
+      proposal: '%{engineer}を検索して%{proposal}'
+

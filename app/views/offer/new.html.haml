@@ -7,7 +7,7 @@
 			- if @offer.business.nil?
 				.row
 					.col-12
-						= t('offer_no_business',office:Office.model_name.human,business:Business.model_name.human)
+						= t('.no_business', office:Office.model_name.human,business:Business.model_name.human)
 				.sl-row-rightAlign
 					.col-6
 						= link_to t('cmn_sentence.listTitle',model:Office.model_name.human), {controller: 'office', action:'index'}, class:"mx-2", target:"_blank"
@@ -46,7 +46,7 @@
 			.col-4.align-content-end
 				= f.submit class:'mx-2'
 				- if @offer.persisted?
-					= link_to t('offer_proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human)
+					= link_to t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human)
 	-# その他の求人
 	.sl-border-primary
 		.col-12

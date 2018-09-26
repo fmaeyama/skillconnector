@@ -16,18 +16,20 @@
 		<div class="media text-muted pt-3">
 			<div class="media-body app-datablock">
 				<div class="app-data-title">
-					id: <span id="business-id-<%=business.id%>"> <%=business.id%></span>
-					<span id="business-name-<%=business.id%>"> <%=business.name%></span>
-					(<span id="business-desc-<%=business.id%>"> <%=business.description%></span>)
+					<%=  get_business_link(business) %>
 				</div>
 				<div class="d-block p-4">
+					<h4><%= Business.human_attribute_name("office") %></h4>
 					<% if business.office.blank? then
 					%>
 						<div class="d-flex justify-content-end">
 							<button type="button" id="assosiate_person" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"> 親事業所紐付け </button>
 						</div>
 					<% else %>
-						<%= business.office.cd %> : <%= business.office.name %>
+						<div class="sl-content">
+							<%= business.office.cd %> : <%= business.office.name %>
+							( <%=business.office.primary_address.location_long %> )
+						</div>
 					<% end %>
 				</div>
 			</div>

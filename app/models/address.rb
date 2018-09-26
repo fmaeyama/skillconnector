@@ -18,7 +18,7 @@ class Address < ApplicationRecord
 	def location_long
 
 		self.postal_code_for_print +
-			(self.prefectre.blank? ? "":self.prefecture.name) +
+			(self.prefecture.blank? ? "":self.prefecture.name) +
 			self.address + self.building
 	end
 

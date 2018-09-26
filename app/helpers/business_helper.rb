@@ -13,11 +13,16 @@ module BusinessHelper
 		end
 	end
 
-	def get_business_link
-		concat "id:"
-		concat content_tag(:span, self.id,id:"business-id-#{self.id}")
-		concat content_tag(:span, self.name, id:"business-name-#{self.name}" )
-
-
+	def get_business_link(business)
+		content_tag :h3 do
+			concat "id:"
+			concat content_tag(:span, business.id,id:"business-id-#{business.id}", class:"sl-content")
+			concat link_to(content_tag(:span, business.name, id:"business-name-#{business.id}", class:"sl-title" ),url_for(action:"edit", id:business.id))
+			concat "("
+			concat content_tag(:span, business.description,id:"business-name-#{business.id}", class:"sl-content" )
+			concat ")"
+		end
 	end
+
+
 end
