@@ -5,6 +5,7 @@
 		.col-12
 			=Business.model_name.human
 			- if @offer.business.nil?
+				-bus_id=-1
 				.row
 					.col-12
 						= t('.no_business', office:Office.model_name.human,business:Business.model_name.human)
@@ -13,9 +14,11 @@
 						= link_to t('cmn_sentence.listTitle',model:Office.model_name.human), {controller: 'office', action:'index'}, class:"mx-2", target:"_blank"
 						= button_tag t('cmn_sentence.searchButton', model:Business.model_name.human), type:"button", class:'btn btn-primary', data:{toggle:'modal',target:'#bootstrapModal'}
 			- else
+				-bus_id = @offer.business_id
 				= render partial: 'business/business_description', locals: { business: @offer.business }
 	- # 求人フォーム
 	= form_for @offer, url: (@var.mode=="new" ? url_for(action: 'create') : url_for(action:'update',id:@var.mode)) do |f|
+		=f.hidden_field :business_id, value:bus_id
 		.row
 			.col-4.d-flex.flex-column
 				.px-1
@@ -46,11 +49,13 @@
 			.col-4.align-content-end
 				= f.submit class:'mx-2'
 				- if @offer.persisted?
-					= link_to t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human)
+					- @var.offer_object = @offer
+					= button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human), type:"button", class:'btn', data:{toggle:'modal',target:'#bootstrapModalforEngineer'}
 	-# その他の求人
 	.sl-border-primary
 		.col-12
 			=t('cmn_sentence.otherTitie',model:Offer.model_name.human)
 			=render partial: 'offer', collection: @offer.brothers
 	-# modal object
-	=render partial: 'business/business_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var}
+	=render partial: 'business/business_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModal"}
+	=render partial: 'engineer/engineer_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModalforEngineer"}

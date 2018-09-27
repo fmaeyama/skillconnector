@@ -35,8 +35,8 @@ class OfferController < ApplicationController
 	end
 
 	def create
-		@engineer=Offer.new
-		save_engineer(params)
+		@offer=Offer.new
+		save_offer(params)
 		respond_to do |format|
 			format.html {redirect_to action: "edit", id: @offer.id}
 			format.json {render :show, status: :created, location: @offer}
