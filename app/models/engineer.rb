@@ -36,6 +36,27 @@ class Engineer < ApplicationRecord
 		)
 	end
 
+	def get_engineer_hiring
+		return I18n.t("cmn_dict.personalContract") if self.engineer_hiring.nil?
+		I18n.t("cmn_dict.corporateContract") + self.engineer_hiring.office.get_long_name
+	end
+
+	def get_career_summary
+		result = []
+		self .careers.each do |career|
+			result << career.name
+		end
+		result.join(",")
+	end
+
+	def get_hope_business_summary
+		result =[]
+		self .engineer_hope_businesses do |hope|
+			result<<hope.name
+		end
+		result.join(",")
+	end
+
 	private
 	def set_default_value
 		self.build_engineer_hiring(office: Office.first)

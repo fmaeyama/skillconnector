@@ -17,5 +17,8 @@ class Office < ApplicationRecord
 
 	end
 
+	def get_long_name
+		"#{self .cd}:#{self .name}(#{self .location_short})"
+	end
 
 end

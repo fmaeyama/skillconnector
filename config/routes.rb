@@ -8,13 +8,6 @@ Rails.application.routes.draw do
 	get 'properties/index'
 	get 'properties/new'
 
-	get 'business/index'
-	get 'business/new'
-	post 'business/new'
-	get 'business/edit'
-	get 'business/edit_own'
-	get 'business/contact_list'
-	post 'business/search'
 
 	get 'office/index', to: 'office#index'
 	post 'office/index(.:format)', to: 'office#index'
@@ -31,7 +24,15 @@ Rails.application.routes.draw do
 	get 'common_users/assign_role'
 
 	resources :engineer
+	post 'engineer/search'
 	resources :business
+	get 'business/index'
+	get 'business/new'
+	post 'business/new'
+	get 'business/edit'
+	get 'business/edit_own'
+	get 'business/contact_list'
+	post 'business/search'
 	resources :staff
 	resources :offer
 	resources :proposal

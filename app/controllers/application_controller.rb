@@ -19,8 +19,11 @@ class ApplicationController < ActionController::Base
 	@privilegeLevel = 0
 	
 	attr_accessor :class_permission
-	
-	
+
+	rescue_from 'ActionView::Template::Error' do |exception|
+		render xml: exception, status: 500
+	end
+
 	def setAuthentication
 		if user_signed_in? then
 			@user = current_user

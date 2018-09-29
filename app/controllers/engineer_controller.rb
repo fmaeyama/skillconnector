@@ -61,6 +61,22 @@ class EngineerController < ApplicationController
 
 	end
 
+	def search
+		@var.title =t("cmn_sentence.searchResult",model:Engineer.model_name.human)
+		@var.mode = params[:offer_id]
+		cond_list = {cd: CondEnum::LIKE}
+		free_word = {keyword: [:eng_cd ]}
+		cond_set = self.createCondition(params, cond_list,free_word)
+		@engineers = Engineer.where(cond_set[:cond_arr])
+		@var.search_cond = cond_set[:cond_param]
+		if @engineers.size == 0
+			@var.modal_dlg_message = t("cmn_sentence.noResult")
+			@engineers = Engineer.all
+		end
+	rescue => e
+		@var.modal_dlg_message = e.message
+	end
+
 	def update
 		@engineer = Engineer.find(params[:id])
 		save_engineer(params)

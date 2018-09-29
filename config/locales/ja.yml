@@ -70,12 +70,14 @@ ja:
     newTitle: '新規%{model}作成'
     editTitle: '%{model}編集 #%{id}'
     searchButton: '%{model} 検索'
+    searchResult: '%{model} 検索結果'
     history: '%{year}年%{month}ヶ月'
     select_prompt: '%{model}を選択'
     add_form_title: '%{model}入力欄の追加'
     deleteTitle: '%{model}削除'
     otherTitie: 'その他の%{model}'
     noRelatedTitle: '関連がある%{model}はありません'
+    noResult: '検索結果は0件でした。全件を取得しました。'
   cmn_dict:
     office: '事業所'
     business: '業務'
@@ -85,6 +87,8 @@ ja:
     freeword: 'フリーワード'
     stauts: 'Status'
     all_for_select: 'ALL'
+    personalContract : '個人契約'
+    corporateContract : '法人契約'
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
