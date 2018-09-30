@@ -46,8 +46,6 @@ class OfficeController < ApplicationController
 
 	# 詳細編集
 	def new
-		@officeStatuses = OfficeStatus.all
-		@officeType = OfficeType.all
 		@office = Office.new
 		@var.title = t('cmn_sentence.newTitle', model: @var.model_name)
 		@var.mode = "new"

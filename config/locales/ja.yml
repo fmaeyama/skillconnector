@@ -28,6 +28,11 @@ ja:
         office: '募集事業所'
         parent: '親業務'
         business_type: '業務種別'
+      contact:
+        contact_name: '担当者名'
+        contact_kana: '担当者ふりがな'
+        contact_type: '連絡先種別'
+        contact_value: '（番号など）'
       engineer:
         eng_cd: '技術者登録コード'
         registration_memo: '流入情報補足'

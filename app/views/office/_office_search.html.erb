@@ -7,8 +7,8 @@
 		<%= label_tag('cd', '事業所CD:') %><%= text_field_tag(:cd, getParamCondVal(@var.search_cond,:cd)) %>
 	</div>
 	<div class="col-4">
-		<%= label_tag 'office_status_id', t('Status')+':' %>
-		<%= select_tag 'office_status_id', options_from_collection_for_select(@var.officeStatus,:id, :name),include_blank: t("cmn_dict.all_for_select") %>
+		<%= label_tag 'office_status_id', 'Status:' %>
+		<%= select_tag 'office_status_id', options_from_collection_for_select(@var.office_statuses,:id, :name),include_blank: t("cmn_dict.all_for_select") %>
 	</div>
 </div>
 <div class="row">
