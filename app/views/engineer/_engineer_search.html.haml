@@ -1,6 +1,7 @@
 .d-flex
 	=form_tag({controller: 'engineer', action: 'search'}, remote:true) do
-		= hidden_field_tag 'offer_id', modal_var.offer_object.id
+		- unless modal_var.offer_object.blank?
+			= hidden_field_tag 'offer_id', modal_var.offer_object.id
 		.px-3
 			%span.sl-title
 				= t("cmn_dict.freeword")
