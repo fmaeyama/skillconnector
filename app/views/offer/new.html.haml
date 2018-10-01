@@ -58,4 +58,5 @@
 			=render partial: 'offer', collection: @offer.brothers
 	-# modal object
 	=render partial: 'business/business_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModal"}
-	=render partial: 'engineer/engineer_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModalforEngineer"}
+	- if @offer.persisted?
+		=render partial: 'engineer/engineer_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModalforEngineer"}
