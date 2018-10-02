@@ -97,6 +97,7 @@ ja:
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
+    not_defined: "未設定"
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"

@@ -1,6 +1,6 @@
 class Engineer < ApplicationRecord
 	has_one :engineer_registration_type
-	has_one :engineer_status_type
+	belongs_to :engineer_status_type
 	has_one :engineer_hiring, autosave: true
 	has_one :office, through: :engineer_hiring
 	belongs_to :person_info, autosave: true
@@ -55,6 +55,11 @@ class Engineer < ApplicationRecord
 			result<<hope.name
 		end
 		result.join(",")
+	end
+
+	def get_status
+		return I18n.t("cmn_dict.not_defined") if self .engineer_status_type.blank?
+		self.engineer_status_type.name
 	end
 
 	private

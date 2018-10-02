@@ -11,17 +11,20 @@
 		- eng_result.each do |engineer|
 			.row
 				.col-12
-					= engineer.eng_cd + "[#{engineer.engineer_status_type.name}]"
+					= engineer.eng_cd +    "[#{engineer.get_status}]"
 					= link_to(engineer.person_info.getFullName,url_for(controller: "proposal", action:"new",offer:offer_id, engineer:engineer.id))
-				.col-12
-					= engineer.get_engineer_hiring
-				.col-12
-					%span.sl-title
-						= Career.model_name.human
-					%span.sl-content
-						= engineer.get_career_summary
-				.col-12
-					%span.sl-title
-						=EngineerHopeBusiness.model_name.human
-					%span.sl-content
-						=engineer.get_hope_business_summary
+				- if false
+					.col-12
+						= engineer.get_engineer_hiring
+					.col-12
+						%span.sl-title
+							= Career.model_name.human
+						%span.sl-content
+							= engineer.get_career_summary
+					.col-12
+						%span.sl-title
+							=EngineerHopeBusiness.model_name.human
+						%span.sl-content
+							=engineer.get_hope_business_summary
+				- else
+					TEST
