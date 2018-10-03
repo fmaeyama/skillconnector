@@ -81,6 +81,7 @@ ja:
     add_form_title: '%{model}入力欄の追加'
     deleteTitle: '%{model}削除'
     otherTitie: 'その他の%{model}'
+    menuParents: '%{model}管理'
     noRelatedTitle: '関連がある%{model}はありません'
     noResult: '検索結果は0件でした。全件を取得しました。'
   cmn_dict:

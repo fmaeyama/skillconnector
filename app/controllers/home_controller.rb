@@ -14,14 +14,17 @@ class HomeController < ApplicationController
             {title: t(:office, scope: [:cmn_dict]) + '一覧', controller: "office", action: "index"},
             {title: t(:office, scope: [:cmn_dict]) + '新規作成', controller: "office", action: "new"}],
         t(:business, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "businesses", action: "index"},
-            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "businesses", action: "new"}],
+            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "business", action: "index"},
+            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "business", action: "new"}],
+        t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
         t(:property, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:property, scope: [:cmn_dict]) + '一覧', controller: "properties", action: "index"},
-            {title: t(:property, scope: [:cmn_dict]) + '新規作成', controller: "properties", action: "new"}],
+            {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}],
         t(:project, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:project, scope: [:cmn_dict]) + '一覧', controller: 'projects', action: "index"},
-            {title: t(:project, scope: [:cmn_dict]) + '新規作成', controller: 'projects', action: "new"}]
+            {title: t("cmn_sentence.listTitle", model: Proposal.model_name.human) , controller: "proposal", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Proposal.model_name.human) , controller: "proposal", action: "new"}]
     }
     # TODO: ユーザー認証により表示させるか、404を表示する
     @visibleSysadmin = true;
