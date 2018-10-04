@@ -66,6 +66,7 @@ class EngineerController < ApplicationController
 
 	def search
 		@var.title =t("cmn_sentence.searchResult",model:Engineer.model_name.human)
+		@var.model_name=Offer.model_name.human
 		@var.mode = params[:offer_id]
 		cond_list = {cd: CondEnum::LIKE}
 		free_word = {keyword: [:eng_cd ]}
