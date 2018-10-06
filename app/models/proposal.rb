@@ -11,4 +11,16 @@ class Proposal < ApplicationRecord
 	def other_offers
 		Offer.joins(:proposals).where({proposals:{engineer_id: self .engineer_id}}).where.not({proposals:{id:self .id}})
 	end
+
+	def display_name
+
+	end
+
+	def self.parameters(params, key)
+		params.require(key).permit(
+			:offer_id, :engineer_id, :offered_staff_id, :office_contact_id,
+			:history
+		)
+	end
+
 end

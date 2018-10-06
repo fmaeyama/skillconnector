@@ -5,7 +5,7 @@ class Staff < ApplicationRecord
 
 	enum status: {inactive: 0, active: 1, dormant: 2}
 
-	scope :enable, -> {where('enable_from < ? and disable_from <?', Date.today, Date.today).order('staff_cd')}
+	scope :enable, -> {where('enable_from <= ? and disable_from >?', Date.today, Date.today).order('staff_cd')}
 
 	def self.getNewCode
 		id = 0
@@ -26,7 +26,7 @@ class Staff < ApplicationRecord
 
 	def get_display_name
 		return "" if self.person_info.nil?
-		"[#{self.person_info.staff_cd}] #{self.person_info.getFullName}"
+		"[#{self.staff_cd}] #{self.person_info.getFullName}"
 	end
 
 	private

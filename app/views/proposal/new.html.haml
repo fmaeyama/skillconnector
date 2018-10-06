@@ -51,6 +51,7 @@
 				.px-1
 					= f.label :history, Proposal.human_attribute_name('history')
 				.px-1.sl-large
+					-@proposal.history = Date.today.strftime + "\n" + (@proposal.history.blank? ? "": @proposal.history)
 					= f.text_area :history, class:'sl-large'
 		.sl-row-rightAlign
 			.col-4.align-content-end

@@ -6,6 +6,5 @@ module ProposalHelper
 		return result if proposal.offer.business.nil?
 		return result if proposal.offer.business.office.nil?
 		Contact.office_contact(proposal.offer.business.office.id)
-
 	end
 end
