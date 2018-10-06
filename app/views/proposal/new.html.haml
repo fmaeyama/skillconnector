@@ -35,7 +35,8 @@
 				= render partial: 'engineer/engineer_description', locals:{engineer: @proposal.engineer}
 	- # 提案フォーム
 	= form_for @proposal, url: (@var.mode=="new" ? url_for(action: 'create') : url_for(action:'update',id:@var.mode)) do |f|
-		=f.hidden_field :business_id, value:bus_id
+		=f.hidden_field :offer_id, value:offer_id
+		=f.hidden_field :engineer_id, value:engineer_id
 		.row
 			.col-4.d-flex.flex-column
 				.px-1

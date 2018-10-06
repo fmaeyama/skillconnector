@@ -5,10 +5,10 @@ class Proposal < ApplicationRecord
 	belongs_to :office_contact, class_name: 'Contact'
 
 	def other_engineers
-		Engineer.joins(:proposals).where("proposals.offer_id=?", self.offer_id).not({proposals: {id:self .id}})
+		Engineer.joins(:proposals).where("proposals.offer_id=?", self.offer_id).where.not({proposals: {id:self .id}})
 	end
 
 	def other_offers
-		Offers.joins(:proposals).where({proposals:{engineer_id: self .engineer_id}}).not({proposals:{id:self .id}})
+		Offer.joins(:proposals).where({proposals:{engineer_id: self .engineer_id}}).where.not({proposals:{id:self .id}})
 	end
 end

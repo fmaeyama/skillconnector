@@ -32,7 +32,9 @@ class ProposalController < ApplicationController
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Proposal.model_name.human)
 		@var.mode="new"
-		@proposal=Proposal.new
+		offer_id = params.has_key?(:offer) ? params[:offer] : -1
+		engineer_id = params.has_key?(:engineer) ? params[:engineer] : -1
+		@proposal=Proposal.new(offer_id: offer_id, engineer_id: engineer_id)
 	end
 
 	def create
