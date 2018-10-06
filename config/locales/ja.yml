@@ -55,6 +55,10 @@ ja:
         name: 'タイトル'
         description: '技能詳細'
         parent: '親技能'
+      staff:
+        staff_cd: 'スタッフコード'
+        enable_from: '入職（予定）日'
+        disable_from: '離職日'
       engineer_hope_business:
         business_type: '従事したい業務'
         skill: '発揮したい技能'
@@ -76,6 +80,7 @@ ja:
     editTitle: '%{model}編集 #%{id}'
     searchButton: '%{model} 検索'
     searchResult: '%{model} 検索結果'
+    untieButton: '%{model}-%{model2}関連削除'
     history: '%{year}年%{month}ヶ月'
     select_prompt: '%{model}を選択'
     add_form_title: '%{model}入力欄の追加'
@@ -84,6 +89,7 @@ ja:
     menuParents: '%{model}管理'
     noRelatedTitle: '関連がある%{model}はありません'
     noResult: '検索結果は0件でした。全件を取得しました。'
+    no_selected: '選択されていません'
   cmn_dict:
     office: '事業所'
     business: '業務'
@@ -103,4 +109,8 @@ ja:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
       proposal: '%{engineer}を検索して%{proposal}'
+  proposal:
+    new:
+      no_offer: "%{office} -> %{business} -> %{offer} より登録してください。もしくは既存のものを検索して下さい。"
+      no_engineer: "新規%{engineer}を登録するか、登録済みの%{engineer}を検索してください。"
 

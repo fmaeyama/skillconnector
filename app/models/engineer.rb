@@ -6,6 +6,7 @@ class Engineer < ApplicationRecord
 	belongs_to :person_info, autosave: true
 	has_many :careers
 	has_many :engineer_hope_businesses
+	has_many :proposals
 	accepts_nested_attributes_for :engineer_hiring, :person_info, update_only: true
 	accepts_nested_attributes_for :careers, allow_destroy: true,
 		reject_if: proc {|attr| attr['skill_id'].blank? }

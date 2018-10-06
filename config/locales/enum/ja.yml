@@ -15,3 +15,7 @@ ja:
     few: '出来れば'
     middle: '普通'
     hight: '是非'
+  staff_status:
+    inactive: '休止'
+    active: '活動中'
+    dormant: '休眠中'

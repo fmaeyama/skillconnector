@@ -10,6 +10,9 @@ class HomeController < ApplicationController
         '権限管理' => [
             {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
             {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
+        t("cmn_sentence.menuParents", model:Staff.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Staff.model_name.human) , controller: "staff", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Staff.model_name.human) , controller: "staff", action: "new"}],
         t(:office, scope: [:cmn_dict]) + '管理' => [
             {title: t(:office, scope: [:cmn_dict]) + '一覧', controller: "office", action: "index"},
             {title: t(:office, scope: [:cmn_dict]) + '新規作成', controller: "office", action: "new"}],
@@ -19,10 +22,10 @@ class HomeController < ApplicationController
         t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
             {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
             {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
-        t(:property, scope: [:cmn_dict]) + '管理' => [
+        t("cmn_sentence.menuParents", model:Offer.model_name.human) => [
             {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
             {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}],
-        t(:project, scope: [:cmn_dict]) + '管理' => [
+        t("cmn_sentence.menuParents", model:Proposal.model_name.human) => [
             {title: t("cmn_sentence.listTitle", model: Proposal.model_name.human) , controller: "proposal", action: "index"},
             {title: t("cmn_sentence.newTitle", model: Proposal.model_name.human) , controller: "proposal", action: "new"}]
     }

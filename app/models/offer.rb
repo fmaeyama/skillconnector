@@ -1,6 +1,7 @@
 class Offer < ApplicationRecord
   belongs_to :business
   belongs_to :offer_status
+  has_many :proposals
 
 	def self.parameters(param_hash,key)
 		param_hash.require(key).permit(
