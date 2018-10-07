@@ -41,8 +41,8 @@ class ProposalController < ApplicationController
 		@proposal=Proposal.new
 		save_proposal(params)
 		respond_to do |format|
-			format.html {redirect_to action: "edit", id: @engineer.id}
-			format.json {render :show, status: :created, location: @engineer}
+			format.html {redirect_to action: "edit", id: @proposal.id}
+			format.json {render :show, status: :created, location: @proposal}
 		end
 	rescue => e
 		raise e if Rails.env == 'development'

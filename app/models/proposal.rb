@@ -2,7 +2,7 @@ class Proposal < ApplicationRecord
 	belongs_to :offer
 	belongs_to :engineer
 	belongs_to :offered_staff, class_name: 'Staff'
-	belongs_to :office_contact, class_name: 'Contact'
+	belongs_to :office_contact, class_name: 'Contact', required: false
 
 	def other_engineers
 		Engineer.joins(:proposals).where("proposals.offer_id=?", self.offer_id).where.not({proposals: {id:self .id}})
