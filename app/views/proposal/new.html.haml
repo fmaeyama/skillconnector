@@ -59,16 +59,16 @@
 	-# その他の提案技術者
 	.sl-border-primary
 		.col-12
-			=t('cmn_sentence.otherTitie',model:Engineer.model_name.human)
-			- if @proposal.other_engineers.count > 0
-				=render partial: 'engineer/engineer_description', collection: @proposal.other_engineers, as: "engineer"
+			=t('.other_engineer')
+			- if @proposal.other_engineers.size > 0
+				=render partial: 'engineer/engineer_proposals', collection: @proposal.other_engineers, as: "engineer"
 			- else
 				= t('cmn_sentence.noResult', model:Engineer.model_name.human)
 	.sl-border-primary
 		.col-12
-			=t('cmn_sentence.otherTitie',model:Offer.model_name.human)
-			- if @proposal.other_offers.count > 0
-				=render partial: 'offer/offer_description', collection: @proposal.other_offers, as: "offer"
+			=t('.other_offer')
+			- if @proposal.other_offers.size > 0
+				=render partial: 'offer/offer_proposal', collection: @proposal.other_offers, as: "offer"
 			- else
 				= t('cmn_sentence.noResult',model:Offer.model_name.human)
 	-# modal object

@@ -113,4 +113,6 @@ ja:
     new:
       no_offer: "%{office} -> %{business} -> %{offer} より登録してください。もしくは既存のものを検索して下さい。"
       no_engineer: "新規%{engineer}を登録するか、登録済みの%{engineer}を検索してください。"
+      other_engineer: "同じ求人を持つ技術者"
+      other_offer: "この技術者の他の求人"
 
