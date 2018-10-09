@@ -7,6 +7,8 @@
 		</div>
 	</div>
 
+	<span> <%= current_user.email %></span>
+
 	<div class="my-3 p-3 bg-white rounded box-shadow">
 		<h3 class="border-bottom border-grayu pb-2 mb-0">サイトメニュー</h3>
 		<% @link.each do |key, url_pair| %>
@@ -25,5 +27,4 @@
 	</div>
 
 
-	<span> <%= current_user.email %></span>
 </div>

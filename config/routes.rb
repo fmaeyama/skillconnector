@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 	get 'home/index'
 	get 'home/sysadmin'
 	get 'home/bizadmin'
-	get 'home/useradmin'
+	get 'home/user'
 	get 'home', to: 'home#index'
 
 	root to: 'home#index'

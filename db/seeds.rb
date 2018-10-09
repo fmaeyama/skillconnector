@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 CmnPropertyType.find_or_create_by(
 		title:'住所・郵便番号',
 		description: '都道府県、住所、郵便番号はaddressモデルからの取得とする',
@@ -17,40 +18,6 @@ CmnPropertyType.find_or_create_by(
 		title:'生年月日',
 		description: '誕生日の場合、年については0000',
 		property_datatype: :date
-)
-
-privGroup=PrivilegeGroup.find_or_create_by(
-									title: 'system admin',
-									descriptions: 'サイト管理スタッフ'
-)
-
-ControlPrivilege.find_or_create_by(
-										privilege_group_id: privGroup.id,
-										controller_name: 'home',
-										privilege_type: :allow_all
-)
-
-privGroup=PrivilegeGroup.find_or_create_by(
-		title: 'biz admin',
-		descriptions: '企業ユーザー'
-)
-
-ControlPrivilege.find_or_create_by(
-		privilege_group_id: privGroup.id,
-		controller_name: 'home',
-		privilege_type: :allow_all
-)
-
-
-privGroup=PrivilegeGroup.find_or_create_by(
-		title: 'usr',
-		descriptions: 'エンジニア'
-)
-
-ControlPrivilege.find_or_create_by(
-		privilege_group_id: privGroup.id,
-		controller_name: 'home',
-		privilege_type: :allow_all
 )
 
 Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|

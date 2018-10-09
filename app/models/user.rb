@@ -7,6 +7,7 @@ class User < ApplicationRecord
 	has_many :privilege_groups, through: :user_privilege_groups
 	belongs_to :person_info, required: false
 
+	attr_accessor :privilage_level
 	def getUserImages
 
 		imageHash = {}
@@ -15,5 +16,6 @@ class User < ApplicationRecord
 		return imageHash
 
 	end
+
 
 end
