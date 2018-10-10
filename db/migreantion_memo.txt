@@ -21,3 +21,5 @@ rails generate controller offer
 rails generate controller proposal
 
 rails generate migration AddStaffCdToStaffs staff_cd:string
+
+rails generate decorator CommonUser

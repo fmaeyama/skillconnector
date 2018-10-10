@@ -8,6 +8,7 @@ ja:
       business: '事業'
       career: '経歴'
       contact: '連絡先'
+      control_privilege: 'ロールごとの実行権限'
       engineer: '技術者'
       engineer_hiring: '技術者雇用所属(派遣元)'
       engineer_hope_business: '技術者志向'
@@ -21,6 +22,7 @@ ja:
       offer_status: '求人状況'
       office: '事業所'
       proposal: '提案'
+      user: 'ユーザー'
     attributes:
       office:
         business: '募集事業'
@@ -92,7 +94,7 @@ ja:
     no_selected: '選択されていません'
   cmn_dict:
     office: '事業所'
-    business: '業務'
+    business: '事業'
     property: '属性'
     project: '案件'
     search: '検索'
@@ -105,6 +107,7 @@ ja:
     menu_list: "list"
     menu_table: "table"
     not_defined: "未設定"
+    update: '更新'
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
@@ -115,4 +118,7 @@ ja:
       no_engineer: "新規%{engineer}を登録するか、登録済みの%{engineer}を検索してください。"
       other_engineer: "同じ求人を持つ技術者"
       other_offer: "この技術者の他の求人"
+  common_users:
+    assign_role:
+      title: '権限一覧'
 
