@@ -1,5 +1,5 @@
 class Engineer < ApplicationRecord
-	has_one :engineer_registration_type
+	belongs_to :engineer_registration_type
 	belongs_to :engineer_status_type
 	has_one :engineer_hiring, autosave: true
 	has_one :office, through: :engineer_hiring

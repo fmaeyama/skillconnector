@@ -19,7 +19,7 @@ class ProposalController < ApplicationController
 			cond_list = {cd: CondEnum::LIKE}
 			free_word = {keyword: [:eng_cd, :person_info ]}
 			cond_set = self.createCondition(params, cond_list,free_word)
-			@engineers = Proposal.where(cond_set[:cond_arr])
+			@proposals = Proposal.where(cond_set[:cond_arr])
 			@var.search_cond = cond_set[:cond_param]
 		else
 			@var.search_cond = nil

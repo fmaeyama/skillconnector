@@ -12,8 +12,12 @@ class Proposal < ApplicationRecord
 		Offer.select("offers.*","proposals.id as proposalid").joins(:proposals).where({proposals:{engineer_id: self .engineer_id}}).where.not({proposals:{id:self .id}})
 	end
 
-	def display_name
-
+	def description
+		res = ""
+		res += self .engineer.person_info.getFullName unless self.engineer.person_info.blank?
+		res += " "
+		res += self.offer.title unless self .offer.blank?
+		return res
 	end
 
 	def self.parameters(params, key)
