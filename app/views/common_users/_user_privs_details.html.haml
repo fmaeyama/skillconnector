@@ -1,0 +1,9 @@
+.row
+	.col-12
+		= form_tag({controller:'common_users', action:'priv_update'}, remote:true) do
+			= hidden_field "user_priv", "user_id", value:user_priv.id
+			%span.sl-title
+				= user_priv.email
+			= select "user_priv", "priv_id", @var.privileges.collect{|p| [p.title,p.id]}, include_blank: true, selected: user_priv.privilege_group_id
+			= submit_tag t('cmn_dict.update')
+			%div{id:"#message-#{user_priv.id}"}

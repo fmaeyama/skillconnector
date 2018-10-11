@@ -5,27 +5,30 @@ class HomeController < ApplicationController
     @link = {
         'ユーザー管理' => [
             {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
-            {title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
-            {title: "登録者情報作成・編集", controller: "common_users", action: "index"}],
-        '権限管理' => [
+            #{title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
+            #{title: "登録者情報作成・編集", controller: "common_users", action: "index"},
             {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
             {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
-        t(:office, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:office, scope: [:cmn_dict]) + '一覧', controller: "office", action: "index"},
-            {title: t(:office, scope: [:cmn_dict]) + '新規作成', controller: "office", action: "new"}],
-        t(:business, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "businesses", action: "index"},
-            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "businesses", action: "new"}],
-        t(:property, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:property, scope: [:cmn_dict]) + '一覧', controller: "properties", action: "index"},
-            {title: t(:property, scope: [:cmn_dict]) + '新規作成', controller: "properties", action: "new"}],
-        t(:project, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:project, scope: [:cmn_dict]) + '一覧', controller: 'projects', action: "index"},
-            {title: t(:project, scope: [:cmn_dict]) + '新規作成', controller: 'projects', action: "new"}]
+        t("cmn_sentence.menuParents", model:Staff.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Staff.model_name.human) , controller: "staff", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Staff.model_name.human) , controller: "staff", action: "new"}],
+        t("cmn_sentence.menuParents", model:Office.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model:Office.model_name.human), controller: "office", action: "index"},
+            {title: t("cmn_sentence.newTitle", model:Office.model_name.human), controller: "office", action: "new"}],
+        t("cmn_sentence.menuParents", model:Business.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model:Business.model_name.human), controller: "business", action: "index"},
+            {title: t("cmn_sentence.newTitle", model:Business.model_name.human), controller: "business", action: "new"}],
+        t("cmn_sentence.menuParents", model:Offer.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}],
+        t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
+        t("cmn_sentence.menuParents", model:Proposal.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Proposal.model_name.human) , controller: "proposal", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Proposal.model_name.human) , controller: "proposal", action: "new"}]
     }
     # TODO: ユーザー認証により表示させるか、404を表示する
-    @visibleSysadmin = true;
-    @visiblebizadmin = true;
     @currentIndex = 'sysadmin'
     @page_title = "SILVERION menu"
     @title = 'システム管理者メニュー'
@@ -37,23 +40,17 @@ class HomeController < ApplicationController
   def bizadmin
     # 企業管理者メニュー
     @link = {
-        'ユーザー管理' => [
-            { title:"ログインユーザー一覧", controller:"common_users" , action:"biz_index"},
-            { title:"ログインユーザー新規作成", controller:"common_users" , action:"biz_useradd"},
-            { title:"登録者情報作成・編集", controller:"common_users", action:"biz_index"}],
-        t(:business, scope:[:cmn_dict])+'管理'=>[
-            {title: t(:business, scope:[:cmn_dict])+'編集',controller:"businesses", action:"edit_own"},
-            {title: t(:business, scope:[:cmn_dict])+'連絡先一覧・編集',controller:"businesses", action:"contact_list"}
-        ],
-        t(:project, scope:[:cmn_dict])+'管理'=>[
-            {title: t("cmn_dict.project")+'一覧', controller: 'projects', action: "index" },
-            {title: t("cmn_dict.project")+'詳細', controller: 'projects', action: "detail" },
-            {title: t(:project,scope:[:cmn_dict])+'新規作成', controller: 'projects', action: "index" }]
-
+        t(:business, scope: [:cmn_dict]) + '管理' => [
+            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "business", action: "index"},
+            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "business", action: "new"}],
+        t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
+        t("cmn_sentence.menuParents", model:Offer.model_name.human) => [
+            {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
+            {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}]
     }
 
-    @visibleSysadmin = true;
-    @visiblebizadmin = true;
     @currentIndex = 'bizadmin'
     @page_title = "SILVERION menu"
     @title = '求人管理者メニュー'
@@ -62,15 +59,13 @@ class HomeController < ApplicationController
   end
 
   def user
-    @visibleSysadmin = true;
-    @visiblebizadmin = true;
     @currentIndex = 'useradmin'
     @page_title = "SILVERION menu"
     @title = '技術者メニュー'
     @link = {'ユーザー管理' => [
-        { title:"基本情報・プロフィール編集", controller:"common_users" , action:"edit_own_info"},
-        { title:"スキル編集・登録", controller:"common_users" , action:"edit_skills"},
-        { title:"パスワード変更", controller:"common_users", action:"new"}]
+        {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
+        {title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
+        {title: "登録者情報作成・編集", controller: "common_users", action: "index"}]
     }
 
     render action: 'index'
@@ -79,15 +74,16 @@ class HomeController < ApplicationController
   def index
     # TODO: 今日のお知らせを表示（期限を切って表示させる）
     # TODO: 権限に応じて、sysadmin, bizadminのメニューを表示（Expanded)
-    @visibleSysadmin = true;
-    @visiblebizadmin = true;
+    set_privilage
+    visible_sysadmin = true if current_user.privilage_level >= PRIV_SYSADMIN
+    visible_bizadmin = true if current_user.privilage_level >= PRIV_BIZADMIN
     @page_title = "SILVERION menu"
     @title = '総合メニュー'
-    if @visiblesysadmin then
+    if visible_sysadmin then
       sysadmin and return
     end
 
-    if @visiblebizadmin then
+    if visible_bizadmin then
       sysadmin and return
     end
 

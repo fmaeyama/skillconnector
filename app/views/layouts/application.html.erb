@@ -33,17 +33,17 @@
 					</div>
 					<div class="header-menu-contents" style="opacity: 1;">
 						<div class="header-search">
-							<a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><!--img src="/common_a/img/header/btn-search-02.png" alt="検索"-->
-								btnsearch.png</a>
+							<!--a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><img src="/common_a/img/header/btn-search-02.png" alt="検索">
+								btnsearch.png</a-->
 							<div class="header-search-inner">
 								<div class="modal-search">
 									<div class="modal-search-inner">
-										<form name="search_form" action="https://search-yayoi-kk.dga.jp/" class="iSearchAssist" method="GET" onsubmit="return mysearch_ssl(this);">
+										<!--form-- name="search_form" action="https://search-yayoi-kk.dga.jp/" class="iSearchAssist" method="GET" onsubmit="return mysearch_ssl(this);">
 											<input title="サイト内検索" type="text" name="kw" value="" class="searchBox ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
 											<input type="hidden" name="ie" value="s">
-											<!--input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn"-->
+											<input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn">
 											btn-search.png
-										</form>
+										</form-->
 										<!-- /modal-search-inner --></div>
 									<!-- /modal-search --></div>
 								<!-- /header-search-inner --></div>
@@ -59,21 +59,21 @@
 										<% if user_signed_in? %>
 											<li class="global-dropdown global-toggle is-current" style="height: 41px;">
 												<div class="global-toggle-hook-wrap">
-													<%= link_to('システム設定', id: 'link-to-sysadmin', controller: '/home', action: 'sysadmin', style: 'height: 41px;') %>
+													<%= link_to('システム設定', {controller: 'home', action: 'sysadmin'}, id: 'link-to-sysadmin',style: 'height: 41px;') %>
 												</div>
 											</li>
 											<li class="global-dropdown global-toggle" style="height: 41px;">
 												<div class="global-toggle-hook-wrap">
-													<%= link_to('求人設定', id: 'link-to-bizadmin', controller: '/home', action: 'bizadmin', style: 'height: 41px;') %>
+													<%= link_to('求人設定',{controller: 'home', action: 'bizadmin'}, id: 'link-to-bizadmin',  style: 'height: 41px;') %>
 												</div>
 											</li>
 											<li class="global-dropdown global-toggle" style="height: 41px;">
 												<div class="global-toggle-hook-wrap">
-													<%= link_to('個人設定', id: 'link-to-useradmin', controller: '/home', action: 'useradmin', style: 'height: 41px;') %>
+													<%= link_to('個人設定', {controller: 'home', action: 'user'},id: 'link-to-useradmin',  style: 'height: 41px;') %>
 												</div>
 											</li>
 											<li class="global-link-list">
-												<%= link_to 'logout', destroy_user_session_path, method: :delete %>
+												<%= link_to 'logout:'+current_user.email , destroy_user_session_path, method: :delete %>
 											</li>
 										<% else %>
 											<li class="global-link-list">

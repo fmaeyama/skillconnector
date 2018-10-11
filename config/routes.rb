@@ -17,11 +17,12 @@ Rails.application.routes.draw do
 	patch 'office/update(.:format)', to: 'office#update'
 	get 'office/:id', to: 'office#edit'
 
-	resources :common_users
 	get 'common_users/index'
 	get 'common_users/add'
 	get 'common_users/details'
 	get 'common_users/assign_role'
+	get 'common_users/new'
+	post 'common_users/priv_update'
 
 	resources :engineer
 	post 'engineer/search'
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
 	get 'home/index'
 	get 'home/sysadmin'
 	get 'home/bizadmin'
-	get 'home/useradmin'
+	get 'home/user'
 	get 'home', to: 'home#index'
 
 	root to: 'home#index'

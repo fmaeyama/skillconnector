@@ -23,13 +23,12 @@
 					id: <span id="office-id-<%=office.id%>"> <%=office.id%></span>
 					<%= link_to controller:"office", action:"edit", id:office.id do %>
 						<span id="office-cd-<%=office.cd%>"> <%=office.cd%></span>
-						<span id="office-name-<%=office.name%>"> <%=office.name%></span>
-						(<span id="office-name-<%=office.name_kana%>"> <%=office.name%></span>)
+						<span id="office-name-<%=office.cd%>"> <%=office.name%></span>
+						(<span id="office-name-kana-<%=office.cd%>"> <%=office.name_kana%></span>)
 					<% end %>
 				</div>
 				<div class="d-block p-4">
-					<% if office.parent.blank? then
-					%>
+					<% if office.parent.blank? %>
 						<div class="d-flex justify-content-end">
 							<button type="button" id="assosiate_person" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"> 親事業所紐付け </button>
 						</div>

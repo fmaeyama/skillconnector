@@ -1,6 +1,12 @@
 class Contact < ApplicationRecord
 	has_and_belongs_to_many :offices
-	enum contact_types: {email:0,tel:1,fax:2}
+	enum contact_type: {email:0,tel:1,fax:2}
+
+	scope :office_contact, -> (office_id){joins(:offices).where("offices.id = ?", office_id)}
+
+	def display_name
+		"#{self .contact_name} (#{self .title})"
+	end
 
 	def self.permitParams(params, key)
 		params.require(key).permit(

@@ -8,6 +8,7 @@ ja:
       business: '事業'
       career: '経歴'
       contact: '連絡先'
+      control_privilege: 'ロールごとの実行権限'
       engineer: '技術者'
       engineer_hiring: '技術者雇用所属(派遣元)'
       engineer_hope_business: '技術者志向'
@@ -21,6 +22,7 @@ ja:
       offer_status: '求人状況'
       office: '事業所'
       proposal: '提案'
+      user: 'ユーザー'
     attributes:
       office:
         business: '募集事業'
@@ -28,6 +30,11 @@ ja:
         office: '募集事業所'
         parent: '親業務'
         business_type: '業務種別'
+      contact:
+        contact_name: '担当者名'
+        contact_kana: '担当者ふりがな'
+        contact_type: '連絡先種別'
+        contact_value: '（番号など）'
       engineer:
         eng_cd: '技術者登録コード'
         registration_memo: '流入情報補足'
@@ -50,6 +57,10 @@ ja:
         name: 'タイトル'
         description: '技能詳細'
         parent: '親技能'
+      staff:
+        staff_cd: 'スタッフコード'
+        enable_from: '入職（予定）日'
+        disable_from: '離職日'
       engineer_hope_business:
         business_type: '従事したい業務'
         skill: '発揮したい技能'
@@ -71,16 +82,19 @@ ja:
     editTitle: '%{model}編集 #%{id}'
     searchButton: '%{model} 検索'
     searchResult: '%{model} 検索結果'
+    untieButton: '%{model}-%{model2}関連削除'
     history: '%{year}年%{month}ヶ月'
     select_prompt: '%{model}を選択'
     add_form_title: '%{model}入力欄の追加'
     deleteTitle: '%{model}削除'
     otherTitie: 'その他の%{model}'
+    menuParents: '%{model}管理'
     noRelatedTitle: '関連がある%{model}はありません'
     noResult: '検索結果は0件でした。全件を取得しました。'
+    no_selected: '選択されていません'
   cmn_dict:
     office: '事業所'
-    business: '業務'
+    business: '事業'
     property: '属性'
     project: '案件'
     search: '検索'
@@ -92,8 +106,19 @@ ja:
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
+    not_defined: "未設定"
+    update: '更新'
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
       proposal: '%{engineer}を検索して%{proposal}'
+  proposal:
+    new:
+      no_offer: "%{office} -> %{business} -> %{offer} より登録してください。もしくは既存のものを検索して下さい。"
+      no_engineer: "新規%{engineer}を登録するか、登録済みの%{engineer}を検索してください。"
+      other_engineer: "同じ求人を持つ技術者"
+      other_offer: "この技術者の他の求人"
+  common_users:
+    assign_role:
+      title: '権限一覧'
 

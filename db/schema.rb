@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_214155) do
+ActiveRecord::Schema.define(version: 2018_10_05_233431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -338,6 +338,10 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
     t.string "history"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "staff_cd", comment: "スタッフコード"
+    t.date "enable_from", comment: "入職（予定）日"
+    t.date "disable_from", default: "9999-12-31", comment: "離職日"
+    t.integer "status", comment: "staff_enum.staff_status"
     t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
   end
 

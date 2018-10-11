@@ -1,11 +1,11 @@
 class OfficeDecorator < SkillConnectDecorator
   delegate_all
 
-  attr_reader :officeStatus, :officeType
+  attr_reader :office_statuses, :office_types
 
   def initialize
-    @officeStatus = OfficeStatus.active
-    @officeType = OfficeType.active
+    @office_statuses = OfficeStatus.active
+    @office_types = OfficeType.active
     self.model_name = I18n.t('cmn_dict.office')
   end
 end

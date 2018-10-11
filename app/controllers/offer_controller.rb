@@ -30,7 +30,7 @@ class OfferController < ApplicationController
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Offer.model_name.human)
 		@var.mode="new"
-		bus_id = params[:business_id].blank? ? Business.select(:id).first(1) : params[:business_id]
+		bus_id = params[:business_id].blank? ? -1 : params[:business_id]
 		@offer=Offer.new(business_id: bus_id)
 	end
 
@@ -60,6 +60,7 @@ class OfferController < ApplicationController
 		)
 		@var.mode = params[:id]
 		@offer = Offer.find(params[:id])
+		@var.offer_object = @offer
 		render "new"
 
 	end

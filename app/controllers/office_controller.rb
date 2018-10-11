@@ -7,7 +7,8 @@ class OfficeController < ApplicationController
 			I18n.t("cmn_sentence.listTitle", model:Office.model_name.human)=>{controller:"office", action:"index"},
 			I18n.t("cmn_sentence.newTitle", model:Office.model_name.human)=>{controller:"office", action:"new"},
 			I18n.t('cmn_sentence.listTitle',model: Business.model_name.human) => {controller:'business', action:'index'},
-			I18n.t('cmn_sentence.listTitle', model: Offer.model_name.human) => {controller:'offer', action: 'index'}
+			I18n.t('cmn_sentence.listTitle', model: Offer.model_name.human) => {controller:'offer', action: 'index'},
+			I18n.t("cmn_sentence.listTitle", model:Engineer.model_name.human) => {controller:'engineer', action: 'index'}
 		}
 	end
 
@@ -46,8 +47,6 @@ class OfficeController < ApplicationController
 
 	# 詳細編集
 	def new
-		@officeStatuses = OfficeStatus.all
-		@officeType = OfficeType.all
 		@office = Office.new
 		@var.title = t('cmn_sentence.newTitle', model: @var.model_name)
 		@var.mode = "new"
