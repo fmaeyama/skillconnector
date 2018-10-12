@@ -20,6 +20,16 @@ CmnPropertyType.find_or_create_by(
 		property_datatype: :date
 )
 
+=begin
+# if required
+
+UserPrivilegeGroup.find_or_create_by(
+	id: 1,
+	user_id: 1,
+	privilege_group_id: 1
+)
+=end
+
 Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
 
 	puts yaml_filename
