@@ -1,4 +1,4 @@
 class PrivilegeGroup < ApplicationRecord
 	has_many :control_privileges
-	belongs_to :user
+	has_many :users, through: :user_privilege_groups
 end

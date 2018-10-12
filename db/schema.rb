@@ -211,9 +211,10 @@ ActiveRecord::Schema.define(version: 2018_10_05_233431) do
     t.string "name"
     t.string "description"
     t.integer "sort"
-    t.integer "group", comment: "表示フラグ, cmn_enum.group"
+    t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_offer_statuses_on_parent_id"
   end
 
   create_table "offers", comment: "求人", force: :cascade do |t|
@@ -389,6 +390,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_233431) do
   add_foreign_key "engineers", "person_infos"
   add_foreign_key "offer_skills", "offers"
   add_foreign_key "offer_skills", "skills"
+  add_foreign_key "offer_statuses", "offer_statuses", column: "parent_id"
   add_foreign_key "offers", "businesses"
   add_foreign_key "offers", "offer_statuses"
   add_foreign_key "offices", "addresses", column: "primary_address_id"

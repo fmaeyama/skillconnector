@@ -8,16 +8,16 @@
 
 
 CmnPropertyType.find_or_create_by(
-		title:'住所・郵便番号',
-		description: '都道府県、住所、郵便番号はaddressモデルからの取得とする',
-		property_datatype: :class_id,
-		data_class: 'address'
+	title: '住所・郵便番号',
+	description: '都道府県、住所、郵便番号はaddressモデルからの取得とする',
+	property_datatype: :class_id,
+	data_class: 'address'
 )
 
 CmnPropertyType.find_or_create_by(
-		title:'生年月日',
-		description: '誕生日の場合、年については0000',
-		property_datatype: :date
+	title: '生年月日',
+	description: '誕生日の場合、年については0000',
+	property_datatype: :date
 )
 
 =begin
@@ -30,11 +30,14 @@ UserPrivilegeGroup.find_or_create_by(
 )
 =end
 
-Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
+def build_pre_required_table(table_name)
+	build_data_from_file("#{Rails.root}/db/seeds/#{table_name}.yml")
+end
 
+def build_data_from_file(yaml_filename)
 	puts yaml_filename
 
-	targetmodel=File.basename(yaml_filename,".yml").classify.constantize
+	targetmodel = File.basename(yaml_filename, ".yml").classify.constantize
 	ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name} CASCADE")
 
 	File.open(yaml_filename) do |load_target_yaml|
@@ -49,4 +52,13 @@ Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
 			end
 		end
 	end
+
 end
+
+build_pre_required_table("PrivilegeGroup")
+
+
+Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
+	build_data_from_file(yaml_filename)
+end
+

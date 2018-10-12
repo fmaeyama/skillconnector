@@ -1,13 +1,13 @@
-- sql: SELECT setval('privilage_groups_id_seq'::regclass,1,false)
+- sql: SELECT setval('privilege_groups_id_seq'::regclass,1,false)
 
 - id: 1
   title: system admin
-  description: サイト管理スタッフ
+  descriptions: サイト管理スタッフ
 
 - id: 2
   title: biz admin
-  description: 企業ユーザ
+  descriptions: 企業ユーザ
 
 - id: 3
   title: usr
-  description: エンジニア
+  descriptions: エンジニア
