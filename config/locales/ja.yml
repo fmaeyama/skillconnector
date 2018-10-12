@@ -21,6 +21,7 @@ ja:
       offer_skill: '求人に必要な技能'
       offer_status: '求人状況'
       office: '事業所'
+      person_info: '個人属性'
       proposal: '提案'
       user: 'ユーザー'
     attributes:
@@ -121,4 +122,5 @@ ja:
   common_users:
     assign_role:
       title: '権限一覧'
+    login_user_not_assosiated: 'ログインユーザーに個人情報が割り当てられていません'
 

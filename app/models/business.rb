@@ -25,7 +25,7 @@ class Business < ApplicationRecord
 	end
 
 	def get_parent_business_name
-		retunr if self.parent_id == 0
+		return if self.parent_id == 0
 		self.parent.name
 	end
 end
