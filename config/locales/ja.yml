@@ -73,7 +73,7 @@ ja:
         description: '詳細内容'
         start_from: '入場希望時期'
         want_until: '募集終了日'
-        wart_at: '勤務地'
+        wort_at: '勤務地'
       proposal:
         offered_staff: '担当スタッフ'
         office_contact: '企業側担当'
