@@ -56,6 +56,8 @@ def build_data_from_file(yaml_filename)
 end
 
 build_pre_required_table("PrivilegeGroup")
+build_pre_required_table("HatLevel")
+build_pre_required_table("SkillLevel")
 
 
 Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|

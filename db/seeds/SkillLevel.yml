@@ -1,0 +1,11 @@
+- id: 1
+  name: スキル1
+  description: 業界でのくくり
+
+- id: 2
+  name: スキル2
+  description: システム種別
+
+- id: 3
+  name: スキル3
+  description: 言語

@@ -3,6 +3,7 @@ class Proposal < ApplicationRecord
 	belongs_to :engineer
 	belongs_to :offered_staff, class_name: 'Staff'
 	belongs_to :office_contact, class_name: 'Contact', required: false
+	scope :related_office, -> {joins(:offer).joins(:business).joins(:office)}
 
 	def other_engineers
 		Engineer.select("engineers.*", "proposals.id as proposalid").joins(:proposals).where("proposals.offer_id=?", self.offer_id).where.not({proposals: {id:self .id}})
@@ -10,6 +11,13 @@ class Proposal < ApplicationRecord
 
 	def other_offers
 		Offer.select("offers.*","proposals.id as proposalid").joins(:proposals).where({proposals:{engineer_id: self .engineer_id}}).where.not({proposals:{id:self .id}})
+	end
+
+
+	def get_related_office_id
+		office=Office.joins(businesses:[offers: [:proposals]]).where("proposals.id=?",self.id)
+		return -1 if office.size == 0
+		office.first!.id
 	end
 
 	def description

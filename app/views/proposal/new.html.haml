@@ -46,7 +46,7 @@
 				.px-1
 					= f.label :office_contact_id, Proposal.human_attribute_name('office_contact')
 				.px-1
-					= f.collection_select :office_contact_id, helper_get_office_contacts(@proposal), :id, :name, include_blank:t("cmn_sentence.no_selected")
+					= f.collection_select :office_contact_id, helper_get_office_contacts(@proposal), :id, :contact_name, include_blank:t("cmn_sentence.no_selected")
 			.col-8.d-flex.flex-column
 				.px-1
 					= f.label :history, Proposal.human_attribute_name('history')
