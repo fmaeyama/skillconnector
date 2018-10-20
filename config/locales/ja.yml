@@ -17,8 +17,10 @@ ja:
       engineer_status_type: '要員紹介可能状況'
       hat: '役割'
       hat_level: '役割階層'
+      hat_type: '役割種別'
       skill: '技能'
       skill_level: '技能階層'
+      skill_type: '技能種別'
       staff: 'SKILLCONNECTメンバー'
       offer: '求人'
       offer_skill: '求人に必要な技能'
@@ -59,6 +61,7 @@ ja:
         history: '経験歴'
       hat:
         parent_hat: '役割グループ'
+        hat_reference: '役割参照元'
       skill:
         name: 'タイトル'
         description: '技能詳細'

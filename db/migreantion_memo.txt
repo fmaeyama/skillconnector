@@ -26,20 +26,7 @@ rails generate decorator CommonUser
 
 rails generate model hat_level name:string description:string
 rails generate model hat name:string description:string hat_level:referenses parent_hat:referenses status:integer deleted_at:date
+rails generate model hat_types name:string description:string hat_level:referenses parent_hat:referenses status:integer deleted_at:date
 rails generate model skill_level name:string description:string
 
-
-rails generate model hat
-  create_table "offers", comment: "求人", force: :cascade do |t|
-    t.bigint "business_id", comment: "事業"
-    t.string "title", comment: "案件名"
-    t.string "description"
-    t.bigint "offer_status_id", comment: "求人状況"
-    t.date "start_from", default: -> { "CURRENT_DATE" }
-    t.date "want_until", default: "9999-12-31", comment: "募集終了日"
-    t.string "work_at", comment: "Work at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["business_id"], name: "index_offers_on_business_id"
-    t.index ["offer_status_id"], name: "index_offers_on_offer_status_id"
-  end
+rails generate controller hat

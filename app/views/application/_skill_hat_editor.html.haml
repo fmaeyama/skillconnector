@@ -1,0 +1,9 @@
+-# var.skill, var.hat: offer object
+Hat Description
+.sl-border-primary
+	.col-12
+		= Hat.model_name.human
+		.sl-row-border-secondary
+		= link_to controller:"proposal", action:"edit", id:offer.proposalid do
+			= "Offer:[#{offer.id}]#{offer.title}"
+Skill Description

@@ -1,7 +1,9 @@
 - id: 1
   name: 役割1
   description: 社内外区分
+  constraint: onlyone
 
 - id: 2
   name: 役割2
   description: プロジェクトでの役割
+  constraint: free
