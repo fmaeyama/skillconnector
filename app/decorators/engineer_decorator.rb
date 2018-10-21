@@ -1,5 +1,6 @@
 class EngineerDecorator < SkillConnectDecorator
 	delegate_all
+	include SkillHatContainer
 
 	attr_reader :engineer_registration_types, :engineer_status_types,
 		:skills, :business_types

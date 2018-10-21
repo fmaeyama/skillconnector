@@ -1,3 +1,16 @@
+module SkillHatContainer
+	attr_reader :hat_decorator, :skill_decorator, :hats_hash
+
+	def initialized
+		@hat_decorator = HatDecorator.new
+		#@skill_decorator = SkillDecorator.new
+	end
+
+	def build_hats_hash(model,id)
+		@hats_hash=Hat.hats_hash(model,id,@hat_decorator)
+	end
+end
+
 class SkillConnectDecorator < Draper::Decorator
 	delegate_all
 	attr_accessor :title, :modal_title,  :view_count, :model_name, :search_cond, :link, :mode, :modal_dlg_message

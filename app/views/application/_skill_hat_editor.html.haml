@@ -1,9 +1,13 @@
 -# var.skill, var.hat: offer object
+-# var.hat_types
+- var = BusinessDecorator.new
 Hat Description
 .sl-border-primary
 	.col-12
 		= Hat.model_name.human
-		.sl-row-border-secondary
-		= link_to controller:"proposal", action:"edit", id:offer.proposalid do
-			= "Offer:[#{offer.id}]#{offer.title}"
+			.col-12
+				- var.hats_hash.each do |hl_key, hl_val|
+					.sl-row-border-secondary
+						= hl_val.name
+						= collection_select 'skill[1]', 'skill_type_id', var.hat_decorator.hat_types[hl_key], :id,  :name, include_blank: true
 Skill Description

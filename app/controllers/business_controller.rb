@@ -32,6 +32,7 @@ class BusinessController < ApplicationController
 	def new
 		@var.title = t('cmn_sentence.newTitle', model: t('cmn_dict.business'))
 		@var.mode = "new"
+		@var.build_hats_hash(Business,-1)
 		@business = Business.new
 		return insert_new_business(params) if request.post?
 		@business.init_new_instance(params)

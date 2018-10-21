@@ -1,7 +1,7 @@
 class HatDecorator < ApplicationDecorator
   delegate_all
 
-  attr_readonly :hat_types, :hat_levels
+  attr_reader :hat_types, :hat_levels
 
   def initialize
     @hat_levels = Hash[HatLevel.all.map{|hl| [hl.id, hl]}]
