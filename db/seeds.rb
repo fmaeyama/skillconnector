@@ -20,15 +20,15 @@ CmnPropertyType.find_or_create_by(
 	property_datatype: :date
 )
 
-=begin
 # if required
 
-UserPrivilegeGroup.find_or_create_by(
-	id: 1,
-	user_id: 1,
-	privilege_group_id: 1
-)
-=end
+def create_first_admin
+	UserPrivilegeGroup.find_or_create_by(
+		id: 1,
+		user_id: 1,
+		privilege_group_id: 1
+	)
+end
 
 def build_pre_required_table(table_name)
 	build_data_from_file("#{Rails.root}/db/seeds/#{table_name}.yml")
@@ -59,6 +59,7 @@ build_pre_required_table("PrivilegeGroup")
 build_pre_required_table("HatLevel")
 build_pre_required_table("SkillLevel")
 
+create_first_admin
 
 Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
 	build_data_from_file(yaml_filename)

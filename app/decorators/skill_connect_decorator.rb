@@ -1,7 +1,7 @@
 module SkillHatContainer
 	attr_reader :hat_decorator, :skill_decorator, :hats_hash
 
-	def initialized
+	def initialize
 		@hat_decorator = HatDecorator.new
 		#@skill_decorator = SkillDecorator.new
 	end

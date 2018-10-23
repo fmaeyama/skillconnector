@@ -1,13 +1,23 @@
 -# var.skill, var.hat: offer object
 -# var.hat_types
-- var = BusinessDecorator.new
+- #var = BusinessDecorator.new
 Hat Description
 .sl-border-primary
 	.col-12
 		= Hat.model_name.human
-			.col-12
-				- var.hats_hash.each do |hl_key, hl_val|
-					.sl-row-border-secondary
-						= hl_val.name
-						= collection_select 'skill[1]', 'skill_type_id', var.hat_decorator.hat_types[hl_key], :id,  :name, include_blank: true
-Skill Description
+		.col-12
+			- var.hats_hash.each do |hl_key, hl_val|
+				.sl-row-border-secondary.hat_holder
+					.col-12
+						.row
+							.col-12
+								%span{class:"sl_title"}
+									- title=var.hat_decorator.hat_levels[hl_key].name
+									= title
+						.key_hat_holder
+							.hat_holder
+								= render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var}
+							.row
+								.offset-10
+									= sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new, key: hl_key, var: var
+	Skill Description

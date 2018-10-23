@@ -12,14 +12,14 @@ class Hat < ApplicationRecord
 	def self.hats_hash(model, id, hat_decorator)
 		hats_hash = Hash.new
 		var = hat_decorator
-
+		id = id.to_i
 		if id > 0
-			focused = Hat.includes(:hat_type).where("hat_reference_type=", model.class_name+"_type").group_by{|ht| ht.hat_type.hat_level_id}
+			focused = Hat.includes(:hat_type).where("hat_reference_type=? and hat_reference_id=?", model.name, id).group_by{|ht| ht.hat_type.hat_level_id}
 		end
 
 		var.hat_levels.each do |hl_key, hl_val|
 			hats_hash[hl_key] = Array.new
-			unless focused.nil? || focused[hl_key].size == 0
+			unless focused.nil? || !focused.key?(hl_key) || focused[hl_key].size == 0
 				hats_hash[hl_key] << focused[hl_key]
 			end
 			hat_obj = Hat.new
@@ -29,5 +29,26 @@ class Hat < ApplicationRecord
 
 		hats_hash
 
+	end
+
+	def self.update_by_reference(model, id, params)
+		params.require(:hat)
+
+		params[:hat].each do |st_key, hat_arr|
+			hat_arr.each do |key,hat|
+				if (key[0,2] == "new") || (hat["id"].to_i==-1)
+					next if hat["_destroy"].to_i == 1
+					bus = model.find(id)
+					@hat = bus.hats.create()
+				else
+					@hat = Hat.find(hat["id"])
+					(@hat.destroy && next) if hat["_destroy"] == 1
+					next if (hat["hat_type_id"] == @hat.hat_type_id.to_s) && (hat["memo"] == @hat.memo)
+				end
+				@hat.hat_type_id = hat["hat_type_id"].to_i
+				@hat.memo = hat["memo"]
+				@hat.save!
+			end
+		end
 	end
 end

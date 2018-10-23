@@ -4,6 +4,7 @@ class BusinessDecorator < SkillConnectDecorator
 	include SkillHatContainer
 
 	def initialize
+		super
 		@business_types = BusinessType.active
 		@business_statuses = BusinessStatus.active
 		self.model_name = I18n.t('cmn_dict.business')

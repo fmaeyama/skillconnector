@@ -44,12 +44,25 @@ class BusinessController < ApplicationController
 						model: I18n.t("cmn_dict.business"),
 						id: params[:id])
 		@var.mode = params[:id]
+		@var.build_hats_hash(Business,params[:id])
 		@business = Business.find(params[:id])
+
 		render "new"
 	end
 
 	def update
-
+		@business = Business.find(params[:id])
+		save_business(params)
+		respond_to do |format|
+			format.html {redirect_to action: "edit", id: params[:id]}
+			format.json {render :show, status: :created, location: @offer}
+		end
+	rescue => e
+		raise e if Rails.env == 'development'
+		respond_to do |format|
+			format.html {redirect_to action: "edit", id: params[:id]}
+			format.json {render json: format, status: :unprocessable_entity}
+		end
 	end
 
 	def contact_list
@@ -79,6 +92,7 @@ class BusinessController < ApplicationController
 			begin
 				Business.transaction do
 					@business.attributes = Business.business_params(params, :business)
+					Hat.update_by_reference(Business,@business.id,params)
 					@business.save!
 					respond_to do |format|
 						format.html {redirect_to(action: 'edit', id: @business.id)}
@@ -94,6 +108,14 @@ class BusinessController < ApplicationController
 				end
 			end
 
+		end
+
+		def save_business(params)
+			Business.transaction do
+				@business.attributes = Business.business_params(params, :business)
+				Hat.update_by_reference(Business,@business.id,params)
+				@business.save!
+			end
 		end
 
 end

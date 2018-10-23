@@ -30,3 +30,10 @@ rails generate model hat_types name:string description:string hat_level:referens
 rails generate model skill_level name:string description:string
 
 rails generate controller hat
+
+ rails test test/controllers/businesses_controller_test.rb
+
+
+
+
+

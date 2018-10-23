@@ -59,8 +59,9 @@ ja:
         career_from: '経験歴（開始時期)'
         career_at: '主な職場'
         history: '経験歴'
-      hat:
+      hat_type:
         parent_hat: '役割グループ'
+        memo: '備考'
         hat_reference: '役割参照元'
       skill:
         name: 'タイトル'

@@ -16,4 +16,14 @@ module SkillConnectsHelper
 		end
 		link_to(name, 'javascript:void(0)', class:model_str+"_add_fields", data: {id: id, fields: fields.gsub("\n", "")})
 	end
+
+	def sc_helper_link_to_add_parts(part_title, part_name, *hash_params)
+		p " ** hash_params : "
+		p  hash_params
+		id = SecureRandom.urlsafe_base64(8)
+		temp_hash = {num: "new-#{id}"}
+		temp_hash.merge!(hash_params[0])
+		fields = render partial: "#{part_name}_input_parts", locals:temp_hash
+		link_to(part_title,'javascript:void(0)', class:part_name+"_add_fields btn btn-secondary", data:{id:id, fields:fields.gsub("\n","")})
+	end
 end
