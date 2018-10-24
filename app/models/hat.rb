@@ -14,13 +14,13 @@ class Hat < ApplicationRecord
 		var = hat_decorator
 		id = id.to_i
 		if id > 0
-			focused = Hat.includes(:hat_type).where("hat_reference_type=? and hat_reference_id=?", model.name, id).group_by{|ht| ht.hat_type.hat_level_id}
+			focused = model.find(id).hats.group_by{|ht| ht.hat_type.hat_level_id}
 		end
 
 		var.hat_levels.each do |hl_key, hl_val|
 			hats_hash[hl_key] = Array.new
 			unless focused.nil? || !focused.key?(hl_key) || focused[hl_key].size == 0
-				hats_hash[hl_key] << focused[hl_key]
+				hats_hash[hl_key].concat(focused[hl_key])
 			end
 			hat_obj = Hat.new
 			hat_obj.init_level =hl_val

@@ -1,0 +1,2 @@
+class HatSupplement < ApplicationRecord
+end
