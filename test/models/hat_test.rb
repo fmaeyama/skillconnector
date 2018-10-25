@@ -28,20 +28,38 @@ class HatTest < ActiveSupport::TestCase
 
 	test "check hat_hash method for existed Business with no Hats" do
 		puts "　**  test hat_hash method for existed Business with no Hats"
+
+		office = Office.find_or_create_by(cd:"TEST001", name:"TESTname", name_kana:"てすとかな",
+			long_name:"TestLongName", long_name_kana:"ながいなまえのかな",
+			office_status_id:1, office_type_id:1)
+		bus = Business.where(id:1)
+		if bus.nil?
+			bus = Business.new(id:1,"business_status_id"=>"2",
+				"business_type_id"=>"2",
+				"name"=>"POSレジ開発",
+				"description"=>"顧客管理システムの開発です",
+				"welcome"=>"要件定義、COBOL",
+				"max_quantity"=>"3",
+				"proper_quantity"=>"3",
+				"budget"=>"1000000.0")
+			bus.office = office
+			bus.save!
+		end
+
 		hat_array = Hat.hats_hash Business,1, @hat_decorator_obj
 		p hat_array
-		hat_array.each do |hl_key, hl_val|
+		hat_array[:levels].each do |hl_key, hl_val|
 			p hl_val
 			hl_val.each do |hat|
 				p hat.hat_type
 			end
 		end
 
-		assert_equal hat_array.size, 2
-		assert_equal hat_array[1][0].level.id, 1
-		assert_nil hat_array[1][0].hat_type
-		assert_equal hat_array[2][0].level.id, 2
-		assert_nil hat_array[2][0].hat_type
+		assert_equal hat_array[:levels].size, 2
+		assert_equal hat_array[:levels][1][0].level.id, 1
+		assert_nil hat_array[:levels][1][0].hat_type
+		assert_equal hat_array[:levels][2][0].level.id, 2
+		assert_nil hat_array[:levels][2][0].hat_type
 
 	end
 
@@ -50,11 +68,11 @@ class HatTest < ActiveSupport::TestCase
 		puts "　○　check for hat_hash result"
 		p hat_array
 
-		assert_equal hat_array.size, 2
-		assert_equal hat_array[1][0].level.id, 1
-		assert_nil hat_array[1][0].hat_type
-		assert_equal hat_array[2][0].level.id, 2
-		assert_nil hat_array[2][0].hat_type
+		assert_equal hat_array[:levels].size, 2
+		assert_equal hat_array[:levels][1][0].level.id, 1
+		assert_nil hat_array[:levels][1][0].hat_type
+		assert_equal hat_array[:levels][2][0].level.id, 2
+		assert_nil hat_array[:levels][2][0].hat_type
 
 	end
 
@@ -88,7 +106,7 @@ class HatTest < ActiveSupport::TestCase
 		@bus.office_id=@office.id
 		Business.transaction do
 			@bus.save!
-			Hat.update_by_reference(Business,@bus.id,params)
+			Hat.update_by_reference(Business,@bus.id,params, @hat_decorator_obj)
 		end
 
 	end

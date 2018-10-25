@@ -3,7 +3,7 @@ class EngineerDecorator < SkillConnectDecorator
 	include SkillHatContainer
 
 	attr_reader :engineer_registration_types, :engineer_status_types,
-		:skills, :business_types
+		:skills, :business_types, :career_hats
 	def initialize
 		self.model_name = Engineer.model_name.human
 		@engineer_registration_types = EngineerRegistrationType.enable

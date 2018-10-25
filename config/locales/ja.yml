@@ -63,6 +63,8 @@ ja:
         parent_hat: '役割グループ'
         memo: '備考'
         hat_reference: '役割参照元'
+      hat:
+        hat_supplement: '役割補足'
       skill:
         name: 'タイトル'
         description: '技能詳細'
