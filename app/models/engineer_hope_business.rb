@@ -1,4 +1,7 @@
 class EngineerHopeBusiness < ApplicationRecord
+
+	include HatSkillContainer
+
 	belongs_to :engineer
 	belongs_to :business_type,required:false
 	belongs_to :skill,required:false

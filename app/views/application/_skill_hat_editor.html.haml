@@ -1,4 +1,4 @@
--# var.skill, var.hat: offer object
+-# var.hats_hash, var.hat_levels, var.hat_types
 -# var.hat_types
 - #var = BusinessDecorator.new
 Hat Description
@@ -11,14 +11,14 @@ Hat Description
 					.row
 						.col-12
 							%span{class:"sl-title"}
-								- title=var.hat_decorator.hat_levels[hl_key].name
+								- title=var.hat_levels[hl_key].name
 								= title
 					.key_hat_holder
 						.hat_holder
 							= render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var}
 						.row
 							.offset-10
-								= sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_decorator.hat_levels[hl_key]), key: hl_key, var: var
+								= sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_levels[hl_key]), key: hl_key, var: var
 		.row
 			.col-12
 				%span{class:'sl-title'}

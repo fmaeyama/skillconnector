@@ -11,6 +11,7 @@ module SkillConnectsHelper
 		model_str = association.to_s.singularize
 		new_object = f.object.send(association).klass.new
 		id = new_object.object_id
+		new_object.associate_to_hat_skill(var) if new_object.is_a?(HatSkillContainer)
 		fields = f.fields_for(association, new_object, child_index:id) do |builder|
 			render(model_str+'_input_parts', child:builder, var: var)
 		end
@@ -18,8 +19,6 @@ module SkillConnectsHelper
 	end
 
 	def sc_helper_link_to_add_parts(part_title, part_name, *hash_params)
-		p " ** hash_params : "
-		p  hash_params[0][:hat].level
 		id = SecureRandom.urlsafe_base64(8)
 		temp_hash = {num: "new-#{id}"}
 		temp_hash.merge!(hash_params[0])

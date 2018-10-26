@@ -93,7 +93,7 @@ class BusinessController < ApplicationController
 			begin
 				Business.transaction do
 					@business.attributes = Business.business_params(params, :business)
-					Hat.update_by_reference(Business,@business.id,params)
+					Hat.update_by_reference(Business,@business.id,params,@var)
 					@business.save!
 					respond_to do |format|
 						format.html {redirect_to(action: 'edit', id: @business.id)}
@@ -114,7 +114,7 @@ class BusinessController < ApplicationController
 		def save_business(params)
 			Business.transaction do
 				@business.attributes = Business.business_params(params, :business)
-				Hat.update_by_reference(Business,@business.id,params,@var.hat_decorator)
+				Hat.update_by_reference(Business,@business.id,params,@var)
 				@business.save!
 			end
 		end

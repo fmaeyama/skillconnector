@@ -34,6 +34,7 @@ rails generate controller hat
  rails test test/controllers/businesses_controller_test.rb
 
 rails generate model hat_supplement hat_supplemental:reference{polymorphic} memo:string
+rails generate decorator HatSkill
 
 
 

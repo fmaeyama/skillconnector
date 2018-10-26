@@ -1,6 +1,5 @@
 %h2=@var.title
 .y-3.p-3.bg-white.rounded.box-shadow
-	-
 	=form_for  @engineer,
 	 url: (@var.mode=="new"?url_for(action: 'create'):url_for(action:'update',id:@var.mode)) do |f|
 		.row

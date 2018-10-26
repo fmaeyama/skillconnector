@@ -6,18 +6,18 @@ class HatTest < ActiveSupport::TestCase
 	# end
 
 	setup do
-		@hat_decorator_obj = HatDecorator.new
+		@var = BusinessDecorator.new
 	end
 
 	test "check hat container for new object" do
-		hl = @hat_decorator_obj.hat_levels
+		hl = @var.hat_levels
 		puts "　**  test .. check for hat_levels"
 
 		assert_equal hl[1].name, '役割1'
 		assert_equal hl[2].name, '役割2'
 
 		puts "check for hat_types"
-		ht = @hat_decorator_obj.hat_types
+		ht = @var.hat_types
 		p ht
 		assert_equal ht.size, 2
 
@@ -33,7 +33,8 @@ class HatTest < ActiveSupport::TestCase
 			long_name:"TestLongName", long_name_kana:"ながいなまえのかな",
 			office_status_id:1, office_type_id:1)
 		bus = Business.where(id:1)
-		if bus.nil?
+		p bus
+		if bus.none?
 			bus = Business.new(id:1,"business_status_id"=>"2",
 				"business_type_id"=>"2",
 				"name"=>"POSレジ開発",
@@ -46,8 +47,7 @@ class HatTest < ActiveSupport::TestCase
 			bus.save!
 		end
 
-		hat_array = Hat.hats_hash Business,1, @hat_decorator_obj
-		p hat_array
+		hat_array = Hat.hats_hash Business,1, @var
 		hat_array[:levels].each do |hl_key, hl_val|
 			p hl_val
 			hl_val.each do |hat|
@@ -64,7 +64,7 @@ class HatTest < ActiveSupport::TestCase
 	end
 
 	test "check hat_hash method for new Business" do
-		hat_array = Hat.hats_hash Business,-1, @hat_decorator_obj
+		hat_array = Hat.hats_hash Business,-1, @var
 		puts "　○　check for hat_hash result"
 		p hat_array
 
@@ -106,7 +106,7 @@ class HatTest < ActiveSupport::TestCase
 		@bus.office_id=@office.id
 		Business.transaction do
 			@bus.save!
-			Hat.update_by_reference(Business,@bus.id,params, @hat_decorator_obj)
+			Hat.update_by_reference(Business,@bus.id,params, @var)
 		end
 
 	end

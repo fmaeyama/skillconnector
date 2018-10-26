@@ -1,4 +1,7 @@
 class Career < ApplicationRecord
+
+	include HatSkillContainer
+
 	belongs_to :engineer
 	belongs_to :skill, required:false
 	after_initialize :set_default_value, if: :new_record?

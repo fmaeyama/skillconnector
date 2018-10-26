@@ -53,7 +53,8 @@ class Hat < ApplicationRecord
 		params[:hat].each do |st_key, hat_arr|
 			Hat.hat_supplement_updater(hat_arr) && next if st_key == 'hat_supplement'
 			flg_level_saved = false
-			hl=hat_decorator.hat_levels[st_key]
+			hl=hat_decorator.hat_levels
+			hl=hl[st_key.to_i]
 			hat_arr.each do |key,hat|
 				if (key[0,2] == "new") || (hat["id"].to_i==-1)
 					next if hat["_destroy"].to_i == 1

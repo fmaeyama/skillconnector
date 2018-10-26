@@ -7,7 +7,7 @@
 		.row
 			.col-auto
 				%span{class:"sl_content"}
-					= collection_select "hat[#{key}][#{num}]", 'hat_type_id', var.hat_decorator.hat_types[key], :id,  :name, include_blank: t("cmn_sentence.no_selected", model:Hat.model_name.human), selected: selected_id
+					= collection_select "hat[#{key}][#{num}]", 'hat_type_id', var.hat_types[key], :id,  :name, include_blank: t("cmn_sentence.no_selected", model:Hat.model_name.human), selected: selected_id
 			.col-auto
 				%span{class:"sl_title"}
 					= HatType.human_attribute_name("memo")

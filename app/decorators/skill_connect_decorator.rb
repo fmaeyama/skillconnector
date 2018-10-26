@@ -1,13 +1,13 @@
 module SkillHatContainer
-	attr_reader :hat_decorator, :skill_decorator, :hats_hash
+	attr_reader :hats_hash, :hat_types, :hat_levels, :skill_types, :skill_levels, :skills_hash
 
 	def initialize
-		@hat_decorator = HatDecorator.new
-		#@skill_decorator = SkillDecorator.new
+		@hat_levels = Hash[HatLevel.all.map{|hl| [hl.id, hl]}]
+		@hat_types = HatType.enable.group_by{|ht| ht.hat_level_id}
 	end
 
 	def build_hats_hash(model,id)
-		@hats_hash=Hat.hats_hash(model,id,@hat_decorator)
+		@hats_hash=Hat.hats_hash(model,id,self)
 	end
 end
 
