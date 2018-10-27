@@ -1,5 +1,9 @@
+class UnexpectedCallerError < Exception::StandardError
+
+end
+
 module SkillHatContainer
-	attr_reader :hats_hash, :hat_types, :hat_levels, :skill_types, :skill_levels, :skills_hash
+	attr_reader :hats_hashes, :hat_types, :hat_levels, :skill_types, :skill_levels, :skills_hash
 
 	def initialize
 		@hat_levels = Hash[HatLevel.all.map{|hl| [hl.id, hl]}]
@@ -7,7 +11,13 @@ module SkillHatContainer
 	end
 
 	def build_hats_hash(model,id)
-		@hats_hash=Hat.hats_hash(model,id,self)
+		@hats_hashes=Hat.hats_hash(model,id,self)
+	end
+
+	def hats_hash(model)
+		raise UnexpectedCallerError "initialize error : build_hats_hash has not called yet" if @hats_hashes.nil?
+		raise UnexpectedCallerError "hats_hash not defined for model : #{model}" unless @hats_hashes.key?(model)
+		@hats_hashes[model]
 	end
 end
 

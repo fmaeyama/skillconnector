@@ -1,11 +1,12 @@
 -# var.hats_hash, var.hat_levels, var.hat_types
 -# var.hat_types
+-# model : Model class (ex Business))
 - #var = BusinessDecorator.new
 Hat Description
 .sl-border-primary
 	.col-12
 		= Hat.model_name.human
-		- var.hats_hash[:levels].each do |hl_key, hl_val|
+		- var.hats_hash(model)[:levels].each do |hl_key, hl_val|
 			.sl-row-border-secondary.hat_holder
 				.col-12
 					.row
@@ -15,15 +16,15 @@ Hat Description
 								= title
 					.key_hat_holder
 						.hat_holder
-							= render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var}
+							= render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var, model:model}
 						.row
 							.offset-10
 								= sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_levels[hl_key]), key: hl_key, var: var
 		.row
 			.col-12
 				%span{class:'sl-title'}
-					=label_tag "hat['hat_supplement']['memo']", Hat.human_attribute_name("hat_supplement")
+					=label_tag "hat[hat_supplement][memo]", Hat.human_attribute_name("hat_supplement")
 		.row
 			.col-12
-				=text_area_tag "hat['hat_supplement']['memo']", var.hats_hash[:hat_supplement].memo, class:'sl-large'
-				=hidden_field_tag "hat['hat_supplement']['id']", var.hats_hash[:hat_supplement].id
+				=text_area_tag "hat[hat_supplement][memo]", var.hats_hash(model)[:hat_supplement].memo, class:'sl-large'
+				=hidden_field_tag "hat[hat_supplement][id]", var.hats_hash(model)[:hat_supplement].id

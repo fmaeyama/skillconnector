@@ -47,19 +47,25 @@ class HatTest < ActiveSupport::TestCase
 			bus.save!
 		end
 
+		hs = bus.build_hat_supplement
+		hs.memo = "test"
+		hs.save!
+
+		p hs
+
 		hat_array = Hat.hats_hash Business,1, @var
-		hat_array[:levels].each do |hl_key, hl_val|
+		hat_array[Business][:levels].each do |hl_key, hl_val|
 			p hl_val
 			hl_val.each do |hat|
 				p hat.hat_type
 			end
 		end
 
-		assert_equal hat_array[:levels].size, 2
-		assert_equal hat_array[:levels][1][0].level.id, 1
-		assert_nil hat_array[:levels][1][0].hat_type
-		assert_equal hat_array[:levels][2][0].level.id, 2
-		assert_nil hat_array[:levels][2][0].hat_type
+		assert_equal hat_array[Business][:levels].size, 2
+		assert_equal hat_array[Business][:levels][1][0].level.id, 1
+		assert_nil hat_array[Business][:levels][1][0].hat_type
+		assert_equal hat_array[Business][:levels][2][0].level.id, 2
+		assert_nil hat_array[Business][:levels][2][0].hat_type
 
 	end
 
@@ -68,11 +74,11 @@ class HatTest < ActiveSupport::TestCase
 		puts "　○　check for hat_hash result"
 		p hat_array
 
-		assert_equal hat_array[:levels].size, 2
-		assert_equal hat_array[:levels][1][0].level.id, 1
-		assert_nil hat_array[:levels][1][0].hat_type
-		assert_equal hat_array[:levels][2][0].level.id, 2
-		assert_nil hat_array[:levels][2][0].hat_type
+		assert_equal hat_array[Business][:levels].size, 2
+		assert_equal hat_array[Business][:levels][1][0].level.id, 1
+		assert_nil hat_array[Business][:levels][1][0].hat_type
+		assert_equal hat_array[Business][:levels][2][0].level.id, 2
+		assert_nil hat_array[Business][:levels][2][0].hat_type
 
 	end
 
