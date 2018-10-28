@@ -1,3 +1,5 @@
+require 'pp'
+
 module CondEnum
 	LIKE = 'like'.freeze
 	EQ = 'eq'.freeze

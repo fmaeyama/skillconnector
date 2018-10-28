@@ -1,9 +1,9 @@
 class Career < ApplicationRecord
 
-	include HatSkillContainer
-
 	belongs_to :engineer
 	belongs_to :skill, required:false
+	has_many :hats, as: :hat_reference
+	has_one :hat_supplement, as: :hat_supplemental
 	after_initialize :set_default_value, if: :new_record?
 
 	def history

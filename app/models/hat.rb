@@ -10,35 +10,36 @@ class Hat < ApplicationRecord
 	end
 
 	# retunr Hash of {levels:{level_key:{array of hat}}, hat_supplement:{id:(), memo:()}}
-	def self.hats_hash(model, id, hat_decorator)
-		hats_hash = Hash.new
-		hats_hash[model] = Hash.new
-		hats_hash[model][:levels] = Hash.new
+	def self.hats_hash(model, id, hat_decorator, ret_hash)
+		id_i = id.to_i
 		var = hat_decorator
-		id = id.to_i
+
+		ret_hash[model] = Hash.new if ret_hash[model].nil?
+		ret_hash[model][id] = Hash.new if ret_hash[model][id].nil?
+		ret_hash[model][id][:levels] = Hash.new if ret_hash[model][id][:levels].nil?
 		memo=nil
-		if id > 0
-			focused = model.find(id).hats.group_by{|ht| ht.hat_type.hat_level_id}
-			memo = model.find(id).hat_supplement
+		if id_i > 0
+			focused = model.find(id_i).hats.group_by{|ht| ht.hat_type.hat_level_id}
+			memo = model.find(id_i).hat_supplement
 		end
 		if memo.nil?
 			memo = HatSupplement.new
 			memo.id = -1
 		end
-		hats_hash[model][:hat_supplement] = memo
+		ret_hash[model][id][:hat_supplement] = memo
 
 		var.hat_levels.each do |hl_key, hl_val|
-			hats_hash[model][:levels][hl_key] = Array.new
+			ret_hash[model][id][:levels][hl_key] = Array.new
 			if focused.nil? || !focused.key?(hl_key) || focused[hl_key].size == 0
 				hat_obj = Hat.new
 				hat_obj.init_level =hl_val
-				hats_hash[model][:levels][hl_key] << hat_obj
+				ret_hash[model][id][:levels][hl_key] << hat_obj
 			else
-				hats_hash[model][:levels][hl_key].concat(focused[hl_key])
+				ret_hash[model][id][:levels][hl_key].concat(focused[hl_key])
 			end
 		end
 
-		hats_hash
+		ret_hash
 
 	end
 
@@ -49,8 +50,9 @@ class Hat < ApplicationRecord
 	end
 
 	def self.update_by_reference(model, id, params, hat_decorator)
-		params.require(:hat)
-		params[:hat].each do |st_key, hat_arr|
+		key = model.model_name.human+"-"+id
+		params[key].require(:hat)
+		params[key][:hat].each do |st_key, hat_arr|
 			(Hat.hat_supplement_updater(model, id, hat_arr) && next) if st_key == 'hat_supplement'
 			p " ** update_by_reference #{hat_arr}"
 			flg_level_saved = false

@@ -11,13 +11,18 @@ module SkillHatContainer
 	end
 
 	def build_hats_hash(model,id)
-		@hats_hashes=Hat.hats_hash(model,id,self)
+		@hats_hashes = Hash.new if @hats_hashes.nil?
+		Hat.hats_hash model,id.to_s,self, @hats_hashes
 	end
 
-	def hats_hash(model)
-		raise UnexpectedCallerError "initialize error : build_hats_hash has not called yet" if @hats_hashes.nil?
-		raise UnexpectedCallerError "hats_hash not defined for model : #{model}" unless @hats_hashes.key?(model)
-		@hats_hashes[model]
+	def update_by_reference(model, id, params)
+		Hat.update_by_reference model, id.to_s, params,self
+	end
+
+	def hats_hash(model,id)
+		raise UnexpectedCallerError.new "initialize error : build_hats_hash has not called yet" if @hats_hashes.nil?
+		raise UnexpectedCallerError.new "hats_hash not defined for model : #{model}/#{id} #{pp @hats_hashes}" unless (@hats_hashes.key?(model) && @hats_hashes[model].key?(id.to_s))
+		@hats_hashes[model][id.to_s]
 	end
 end
 
