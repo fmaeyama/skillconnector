@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  skill_level: one
+  parent_skill: one
+  status: 1
+
+two:
+  name: MyString
+  description: MyString
+  skill_level: two
+  parent_skill: two
+  status: 1

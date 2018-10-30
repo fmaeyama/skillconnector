@@ -1,4 +1,5 @@
 <!-- create or edit Office -->
+<%= render "application/jpostal_common" %>
 <h1> <%= @var.title %></h1>
 <div class="my-3 p-3 bg-white rounded box-shadow">
 
@@ -106,19 +107,19 @@
 					<h3>事業所所在地</h3>
 					<div class="row">
 						<div class="col-5">
-							<%= address.label :postal_code, '郵便番号：' %><%= address.text_field :postal_code %>
+							<%= address.label :postal_code, '郵便番号：' %><%= address.text_field :postal_code, id:"postcode" %>
 						</div>
 						<div class="col-3">
 							<%= address.label :prefecture_id, '都道府県' %>
-							<%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, size: 30 %>
+							<%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, size: 30, id:"address1" %>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<%= address.label :address, '市区町村・番地:' %><%= address.text_field :address, style:"width:70%" %>
+							<%= address.label :address, '市区町村・番地:' %><%= address.text_field :address, style:"width:70%", id:"address2" %>
 						</div>
 						<div class="col-6">
-							<%= address.label :building, '建物名:' %><%= address.text_field :building, style:"width:70%"     %>
+							<%= address.label :building, '建物名:' %><%= address.text_field :building, style:"width:70%", id:"address3"     %>
 						</div>
 					</div>
 					<% #追加住所は一旦許容しない %>

@@ -36,6 +36,11 @@ rails generate controller hat
 rails generate model hat_supplement hat_supplemental:reference{polymorphic} memo:string
 rails generate decorator HatSkill
 
-
+rails generate model skill_types name:string description:string skill_level:references parent_skill:references status:integer
+rails generate model skill_supplement skill_supplemental:reference{polymorphic} memo:string
+rails generate migration ModifySkills
+rails generate migration AddHatLevels
+rails destroy migration AddColumnSkillTypes
+rails generate migration AddDeleteAtToSkillTypes deleted_at:date
 
 

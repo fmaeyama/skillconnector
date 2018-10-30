@@ -65,10 +65,15 @@ ja:
         hat_reference: '役割参照元'
       hat:
         hat_supplement: '役割補足'
+      skill_type:
+        parent_skill: '技能グループ'
       skill:
         name: 'タイトル'
         description: '技能詳細'
         parent: '親技能'
+        skill_type: '技能種別'
+        skill_reference: '技能参照元'
+        skill_supplement: '技能補足'
       staff:
         staff_cd: 'スタッフコード'
         enable_from: '入職（予定）日'

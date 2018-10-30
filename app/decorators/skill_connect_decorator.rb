@@ -3,16 +3,23 @@ class UnexpectedCallerError < Exception::StandardError
 end
 
 module SkillHatContainer
-	attr_reader :hats_hashes, :hat_types, :hat_levels, :skill_types, :skill_levels, :skills_hash
+	attr_reader :hats_hashes, :hat_types, :hat_levels, :skill_types, :skill_levels, :skills_hashes
 
 	def initialize
 		@hat_levels = Hash[HatLevel.all.map{|hl| [hl.id, hl]}]
 		@hat_types = HatType.enable.group_by{|ht| ht.hat_level_id}
+		@skill_levels = Hash[SkillLevel.all.map{|sl| [sl.id,sl]}]
+		@skill_types = SkillType.enable.group_by{|st| st.skill_level_id}
+		@hats_hashes = Hash.new
+		@skills_hashes = Hash.new
 	end
 
 	def build_hats_hash(model,id)
-		@hats_hashes = Hash.new if @hats_hashes.nil?
 		Hat.hats_hash model,id.to_s,self, @hats_hashes
+	end
+
+	def build_skills_hash(model,id)
+		Skill.skills_hash model, id.to_s,self,@skills_hashes
 	end
 
 	def update_by_reference(model, id, params)
@@ -23,6 +30,10 @@ module SkillHatContainer
 		raise UnexpectedCallerError.new "initialize error : build_hats_hash has not called yet" if @hats_hashes.nil?
 		raise UnexpectedCallerError.new "hats_hash not defined for model : #{model}/#{id} #{pp @hats_hashes}" unless (@hats_hashes.key?(model) && @hats_hashes[model].key?(id.to_s))
 		@hats_hashes[model][id.to_s]
+	end
+
+	def skills_hash(model,id)
+
 	end
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_054222) do
+ActiveRecord::Schema.define(version: 2018_10_28_212802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -369,16 +369,37 @@ ActiveRecord::Schema.define(version: 2018_10_24_054222) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "constraint"
+  end
+
+  create_table "skill_supplements", force: :cascade do |t|
+    t.string "skill_supplemental_type"
+    t.bigint "skill_supplemental_id"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_supplemental_type", "skill_supplemental_id"], name: "index_skill_supplementals"
+  end
+
+  create_table "skill_types", comment: "技能種別", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "skill_level_id", comment: "技能階層"
+    t.bigint "parent_skill_id", comment: "技能グループ"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "deleted_at"
+    t.index ["parent_skill_id"], name: "index_skill_types_on_parent_skill_id"
+    t.index ["skill_level_id"], name: "index_skill_types_on_skill_level_id"
   end
 
   create_table "skills", comment: "技能", force: :cascade do |t|
-    t.string "name", comment: "タイトル"
-    t.string "description", comment: "技能詳細"
-    t.bigint "parent_id", comment: "親技能"
-    t.integer "sort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_skills_on_parent_id"
+    t.string "skill_type", comment: "技能種別"
+    t.string "skill_reference_type"
+    t.bigint "skill_reference_id", comment: "技能参照元"
   end
 
   create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|
@@ -448,7 +469,8 @@ ActiveRecord::Schema.define(version: 2018_10_24_054222) do
   add_foreign_key "proposals", "engineers"
   add_foreign_key "proposals", "offers"
   add_foreign_key "proposals", "staffs", column: "offered_staff_id"
-  add_foreign_key "skills", "skills", column: "parent_id"
+  add_foreign_key "skill_types", "skill_levels"
+  add_foreign_key "skill_types", "skill_types", column: "parent_skill_id"
   add_foreign_key "staffs", "person_infos"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"

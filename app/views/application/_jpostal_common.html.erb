@@ -1,0 +1,15 @@
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<script type="text/javascript">
+	$(window).ready( function() {
+		$('#postcode').jpostal({
+			postcode : [
+				'#postcode'
+			],
+			address : {
+				'#address1'  : '%3',
+				'#address2'  : '%4',
+				'#address3'  : '%5'
+			}
+		});
+	});
+</script>
