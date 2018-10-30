@@ -1,4 +1,3 @@
-<!-- create or edit Office -->
 <%= render "application/jpostal_common" %>
 <h1> <%= @var.title %></h1>
 <div class="my-3 p-3 bg-white rounded box-shadow">
@@ -106,12 +105,12 @@
 				<div class="col-sm-10">
 					<h3>事業所所在地</h3>
 					<div class="row">
-						<div class="col-5">
-							<%= address.label :postal_code, '郵便番号：' %><%= address.text_field :postal_code, id:"postcode" %>
+						<div class="col-auto">
+							<%= address.label :postal_code, '郵便番号(ハイフン無し)：' %><%= address.text_field :postal_code, id:"postcode", placeholder:"1000001" %>
 						</div>
-						<div class="col-3">
+						<div class="col-auto">
 							<%= address.label :prefecture_id, '都道府県' %>
-							<%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, size: 30, id:"address1" %>
+							<%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, {},{class:"address1"} %>
 						</div>
 					</div>
 					<div class="row">
