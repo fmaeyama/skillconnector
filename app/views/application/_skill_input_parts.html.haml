@@ -1,16 +1,16 @@
 - num = hat_iteration.index
-- selected_id = hat.hat_type_id.blank? ? -1 : hat.hat_type_id
+- selected_id = skill.skill_type_id.blank? ? -1 : skill.skill_type_id
 .hat_input
 	.sl-row-border-secondary
 		.col-12
 			%span{class:"sl_title"}
-				= var.hat_decorator.hat_levels[key].name
+				= var.skill_levels[key].name
 			%span{class:"sl_content"}
-				= collection_select "skill[#{key}][#{num}]", 'skill_type_id', var.hat_decorator.hat_types[key], :id,  :name, include_blank: t("cmn_sentence.no_selected", model:Hat.model_name.human), selected: selected_id
+				= collection_select "skill[#{key}][#{num}]", 'skill_type_id', var.skill_types[key], :id,  :name, include_blank: t("cmn_sentence.no_selected", model:Skill.model_name.human), selected: selected_id
 			%span{class:"sl_title"}
-				= HatType.human_attribute_name("memo")
+				= SkillType.human_attribute_name("memo")
 			%span{class:"sl_content"}
-				= text_field_tag "skill[#{key}][#{num}][memo]", hat.memo
+				= text_field_tag "skill[#{key}][#{num}][memo]", skill.memo
 	.row
 		.col-12
-			= link_to t("cmn_sentence.deleteTitle", model: Hat.model_name.human), "javascript.void(0);"
+			= link_to t("cmn_sentence.deleteTitle", model: Skill.model_name.human), "javascript.void(0);"

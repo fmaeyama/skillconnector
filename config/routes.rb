@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 	resources :offer
 	resources :proposal
 
+	get 'grid/hat_levels'
+
 	devise_for :users
 	get 'home/index'
 	get 'home/sysadmin'
