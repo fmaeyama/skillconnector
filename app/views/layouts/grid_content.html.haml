@@ -1,6 +1,17 @@
 -content_for :content do
-	This is grid content
-	%hr
-	=yield
-	%hr
+  = stylesheet_link_tag "lib/smoothness/jquery-ui-1.11.3.custom.css"
+  = stylesheet_link_tag "lib/slick.grid.css"
+  = javascript_include_tag "lib/firebugx.js"
+  = javascript_include_tag "lib/jquery-ui-1.11.3.js"
+  = javascript_include_tag "lib/jquery.event.drag-2.3.0.js"
+  = javascript_include_tag "lib/slick.core.js"
+  = javascript_include_tag "lib/slick.dataview.js"
+  = javascript_include_tag "lib/slick.grid.js"
+  
+  This is grid content
+  %hr
+  =yield
+  #myGrid{style:"height:100px"}
+  =render "slickgrid"
+  %hr
 = render template: 'layouts/application'
