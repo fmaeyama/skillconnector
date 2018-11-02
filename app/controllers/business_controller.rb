@@ -106,7 +106,7 @@ class BusinessController < ApplicationController
                 raise e if Rails.env == "development"
                 flash.now[:alert] = e.message
                 respond_to do |format|
-                    format.html {render 'new'}
+                    format.html {render'new'}
                     format.json {render json: format, status: :unprocessable_entity}
                 end
             end

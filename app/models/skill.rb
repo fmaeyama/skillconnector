@@ -39,9 +39,14 @@ class Skill < ApplicationRecord
     end
 
     def self.skill_supplement_updater(model, id, ss_param)
-        ss = (ss_param['id'].to_i == -1 ?
-            model.find(id).build_skill_supplement :
-            SkillSupplement.find(ss_param['id']))
+        begin
+            ss = (ss_param['id'].to_i == -1 ?
+                model.find(id).build_skill_supplement :
+                SkillSupplement.find(ss_param['id']))
+        rescue ActiveRecord::RecordNotFound => e
+            p e
+            ss = model.find(id).build_skill_supplement
+        end
         ss.memo = ss_param['memo']
         ss.save!
     end
@@ -49,41 +54,40 @@ class Skill < ApplicationRecord
     def self.update_by_reference(model, id, params, hs_decorator)
         params.require(:skill)
         params[:skill].each do |st_key, skill_arr|
-            (Skill.skill_supplement_updater(model, id, skill_arr) && next)
-            if st_key == 'skill_supplement'
-                ## pp " ** update_by_reference #{hat_arr}"
-                flg_level_saved = false
-                sl = hs_decorator.skill_levels
-                sl = sl[st_key.to_i]
-                skill_arr.each do |key, skill|
-                    if (key[0, 2] == "new") || (skill["id"].to_i == -1)
-                        next if skill["_destroy"].to_i == 1
+            (Skill.skill_supplement_updater(model, id, skill_arr) && next) if st_key == 'skill_supplement'
+            ## pp " ** update_by_reference #{hat_arr}"
+            flg_level_saved = false
+            sl = hs_decorator.skill_levels
+            sl = sl[st_key.to_i]
+            skill_arr.each do |key, skill|
+                if (key[0, 2] == "new") || (skill["id"].to_i == -1)
+                    next if skill["_destroy"].to_i == 1
+                    next if skill["skill_type_id"].blank?
+                    parent_tbl = model.find(id)
+                    @skill = parent_tbl.skills.create
+                else
+                    begin
+                        @skill = Skill.find(skill["id"])
+                    rescue ActiveRecord::RecordNotFound => ex
+                        p ex
                         parent_tbl = model.find(id)
-                        @skill = parent_tbl.skill.create
-                    else
-                        begin
-                            @skill = Hat.find(skill["id"])
-                        rescue ActiveRecord::RecordNotFound => ex
-                            p ex
-                            parent_tbl = model.find(id)
-                            @skill = parent_tbl.skills.create
-                        end
-                        (@skill.destroy && next) if skill["_destroy"] == 1
-                        next if (skill["skill_type_id"] == @skill.skill_type_id.to_s) && (skill["memo"] == @skill.memo)
+                        @skill = parent_tbl.skills.create
                     end
-                    @skill.skill_type_id = skill["hat_type_id"].to_i
-                    @skill.memo = skill["memo"]
-                    p "key : #{key} hat: #{hat}"
-                    p @skill
-                    @skill.save!
+                    (@skill.destroy && next) if skill["_destroy"] == 1
                     flg_level_saved = true
+                    next if (skill["skill_type_id"] == @skill.skill_type_id.to_s) && (skill["memo"] == @skill.memo)
                 end
-                if !flg_level_saved && sl.required?
-                    raise ValidationError.new "skill_level #{sl.name} is required!"
-                end
-
+                @skill.skill_type_id = skill["skill_type_id"].to_i
+                @skill.memo = skill["memo"]
+                # p "key : #{key} hat: #{hat}"
+                pp @skill
+                @skill.save!
+                flg_level_saved = true
+            end
+            pp sl
+            if !flg_level_saved && sl.required?
+                raise ActiveModel::ValidationError.new "skill_level #{sl.name} is required!"
             end
         end
-
     end
 end

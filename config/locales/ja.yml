@@ -65,6 +65,7 @@ ja:
         hat_reference: '役割参照元'
       hat:
         hat_supplement: '役割補足'
+        memo: '備考'
       skill_type:
         parent_skill: '技能グループ'
       skill:

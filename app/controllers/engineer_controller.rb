@@ -33,6 +33,8 @@ class EngineerController < ApplicationController
 		@var.mode="new"
 		@var.build_hats_hash Career, -1
 		@var.build_hats_hash EngineerHopeBusiness, -1
+		@var.build_skills_hash Career, -1
+		@var.build_skills_hash EngineerHopeBusiness, -1
 		@engineer=Engineer.new
 	end
 
@@ -63,6 +65,8 @@ class EngineerController < ApplicationController
 		@var.mode = params[:id]
 		@var.build_hats_hash Career, params[:id]
 		@var.build_hats_hash EngineerHopeBusiness, params[:id]
+		@var.build_skills_hash Career, params[:id]
+		@var.build_skills_hash EngineerHopeBusiness, params[:id]
 		@engineer = Engineer.find(params[:id])
 		render action: "new"
 
