@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_212802) do
+ActiveRecord::Schema.define(version: 2018_10_28_211335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -378,7 +378,7 @@ ActiveRecord::Schema.define(version: 2018_10_28_212802) do
     t.string "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["skill_supplemental_type", "skill_supplemental_id"], name: "index_skill_supplementals"
+    t.index ["skill_supplemental_type", "skill_supplemental_id"], name: "index_skill_supplemental"
   end
 
   create_table "skill_types", comment: "技能種別", force: :cascade do |t|
@@ -387,9 +387,9 @@ ActiveRecord::Schema.define(version: 2018_10_28_212802) do
     t.bigint "skill_level_id", comment: "技能階層"
     t.bigint "parent_skill_id", comment: "技能グループ"
     t.integer "status"
+    t.date "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "deleted_at"
     t.index ["parent_skill_id"], name: "index_skill_types_on_parent_skill_id"
     t.index ["skill_level_id"], name: "index_skill_types_on_skill_level_id"
   end
@@ -397,9 +397,10 @@ ActiveRecord::Schema.define(version: 2018_10_28_212802) do
   create_table "skills", comment: "技能", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "skill_type", comment: "技能種別"
+    t.bigint "skill_type_id", comment: "技能種別"
     t.string "skill_reference_type"
     t.bigint "skill_reference_id", comment: "技能参照元"
+    t.string "memo"
   end
 
   create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|

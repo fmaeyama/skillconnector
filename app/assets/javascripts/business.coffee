@@ -5,13 +5,15 @@
 $ ->
 	$(document).on 'turbolinks:load', ->
 
-	$('form').on 'click', '.hat_remove_fields', (event) ->
+	$('form').on 'click', '.remove_fields', (event) ->
+		model = $(this).attr('data-model')
 		$(this).prev('input[type=hidden]').val('1')
-		$(this).closest('.hat_input').hide()
+		$(this).closest('.'+model+'_input').hide()
 		event.preventDefault()
 
-	$('form').on 'click', '.hat_add_fields', (event) ->
+	$('form').on 'click', '.add_fields', (event) ->
 		time = new Date().getTime()
+		model = $(this).attr('data-model')
 		regexp = new RegExp($(this).data('id'), 'g')
-		$(this).closest('.key_hat_holder').children('.hat_holder').append($(this).data('fields').replace(regexp,time))
+		$(this).closest('.key_'+model+'_holder').children('.'+model+'_holder').append($(this).data('fields').replace(regexp,time))
 		event.preventDefault()

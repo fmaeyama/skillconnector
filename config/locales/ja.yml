@@ -110,10 +110,10 @@ ja:
     noResult: '検索結果は0件でした。全件を取得しました。'
     no_selected: '選択されていません'
   cmn_dict:
-    office: '事業所'
-    business: '事業'
+    office: '顧客'
+    business: '案件'
     property: '属性'
-    project: '案件'
+    project: '案件詳細'
     search: '検索'
     freeword: 'フリーワード'
     stauts: 'Status'

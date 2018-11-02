@@ -49,14 +49,13 @@ class Hat < ApplicationRecord
 		hs.save!
 	end
 
-	def self.update_by_reference(model, id, params, hat_decorator)
-		key = model.model_name.human+"-"+id
-		params[key].require(:hat)
-		params[key][:hat].each do |st_key, hat_arr|
+	def self.update_by_reference(model, id, params, hs_decorator)
+		params.require(:hat)
+		params[:hat].each do |st_key, hat_arr|
 			(Hat.hat_supplement_updater(model, id, hat_arr) && next) if st_key == 'hat_supplement'
-			p " ** update_by_reference #{hat_arr}"
+			# p " ** update_by_reference #{hat_arr}"
 			flg_level_saved = false
-			hl=hat_decorator.hat_levels
+			hl=hs_decorator.hat_levels
 			hl=hl[st_key.to_i]
 			hat_arr.each do |key,hat|
 				if (key[0,2] == "new") || (hat["id"].to_i==-1)
@@ -67,7 +66,7 @@ class Hat < ApplicationRecord
 					begin
 						@hat = Hat.find(hat["id"])
 					rescue ActiveRecord::RecordNotFound => ex
-						p ex
+						pp ex
 						bus = model.find(id)
 						@hat = bus.hats.create
 					end
@@ -76,8 +75,8 @@ class Hat < ApplicationRecord
 				end
 				@hat.hat_type_id = hat["hat_type_id"].to_i
 				@hat.memo = hat["memo"]
-				p "key : #{key} hat: #{hat}"
-				p @hat
+				# p "key : #{key} hat: #{hat}"
+				# p @hat
 				@hat.save!
 				flg_level_saved = true
 			end
