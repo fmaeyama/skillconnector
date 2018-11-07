@@ -29,13 +29,21 @@ class GridController < ApplicationController
             {field:"updated_at", name:"updated_at", minWidth:20, cssClass: "row-hd"},
             {field:"created_at", name:"created_at", minWidth:20, cssClass: "row-hd"}
         ]
+        hl_temp = HatLevel.constraints.map{|k,v| [k,v]}.to_h
+        @var.select_arr << HatLevel.constraints.map{|k,v| [v,I18n.t("level_constraint.#{k}")]}.to_h
         where_chain = HatLevel.all
         i=0
         where_chain.find_each do |row|
             @var.data[i]=Hash.new
             @var.columns.each do |col|
                  field = col[:field]
-                 row.respond_to?(field) ? (@var.data[i][field] = row[field]) : (pp " ** field is #{field}")
+                 case field
+                     when "constraint"
+                         @var.data[i][field] = hl_temp[row[field]]
+                         @var.data[i]["constraint_val"] = @var.select_arr[0][hl_temp[row[field]]]
+                     else
+                         row.respond_to?(field) ? (@var.data[i][field] = row[field]) : (pp " ** field is #{field}")
+                 end
             end
             i = i.next
         end

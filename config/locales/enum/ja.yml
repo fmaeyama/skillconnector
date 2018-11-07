@@ -19,3 +19,8 @@ ja:
     inactive: '休止'
     active: '活動中'
     dormant: '休眠中'
+  level_constraint:
+    free: '任意・複数選択可'
+    only_one: '任意・複数不可'
+    required: '必須・複数選択可'
+    required_only_one: '必須・複数不可'
