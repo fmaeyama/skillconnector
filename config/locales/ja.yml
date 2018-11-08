@@ -22,6 +22,7 @@ ja:
       skill_level: '技能階層'
       skill_type: '技能種別'
       staff: 'SKILLCONNECTメンバー'
+      trained_type: '習熟度'
       offer: '求人'
       offer_skill: '求人に必要な技能'
       offer_status: '求人状況'
@@ -75,6 +76,7 @@ ja:
         skill_type: '技能種別'
         skill_reference: '技能参照元'
         skill_supplement: '技能補足'
+        trained_type: '習熟度'
       staff:
         staff_cd: 'スタッフコード'
         enable_from: '入職（予定）日'

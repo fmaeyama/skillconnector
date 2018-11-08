@@ -43,4 +43,7 @@ rails generate migration AddHatLevels
 rails destroy migration AddColumnSkillTypes
 rails generate migration AddDeleteAtToSkillTypes deleted_at:date
 
+rails generate model trained_types name:string description:string rate:integer status:integer
+
+rails generate migration AddColumnSkills trained_type_id:integer
 

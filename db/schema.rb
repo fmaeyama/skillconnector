@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_211335) do
+ActiveRecord::Schema.define(version: 2018_11_08_064950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -413,6 +413,15 @@ ActiveRecord::Schema.define(version: 2018_10_28_211335) do
     t.date "disable_from", default: "9999-12-31", comment: "離職日"
     t.integer "status", comment: "staff_enum.staff_status"
     t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
+  end
+
+  create_table "trained_types", comment: "習熟度", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "rate"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_privilege_groups", comment: "ログインユーザー毎権限設定", force: :cascade do |t|
