@@ -7,7 +7,7 @@ class GridDecorator < SkillConnectDecorator
         super
         @columns = Array.new
         @data = Array.new
-        @select_arr = Array.new
+        @select_arr = Hash.new
         self.model_name = I18n.t('cmn_dict.business')
     end
 end

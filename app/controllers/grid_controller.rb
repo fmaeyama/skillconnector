@@ -26,16 +26,16 @@ class GridController < ApplicationController
       preHeaderPanelHeight: 23
     }
     @var.columns = [
-      {field: "id", id: "id", name: "", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox"},
-      {field: "name", id: "name", name: "level name", minWidth: 60, editor: "Slick.Editors.Text"},
-      {field: "description", name: "description", minWidth: 100, editor: "Slick.Editors.Text"},
-      {field: "constraint", name: "constraint", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox"},
-      {field: "constraint_val", name: "constraint", minWidth: 20, cssClass: "row-hd", formatter: "Select2Formatter", editor:"Select2Editor", dataSource:"selList[0]"},
+      {field: "id", id: "id", name: "", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup:""},
+      {field: "name", id: "name", name: "level name", minWidth: 60, editor: "Slick.Editors.Text", columnGroup:""},
+      {field: "description", name: "description", minWidth: 100, editor: "Slick.Editors.Text", columnGroup:""},
+      {field: "constraint", name: "id", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup:"constraint"},
+      {field: "constraint_val", name: "value", minWidth: 20, cssClass: "row-hd", formatter: "Select2Formatter", editor:"Select2Editor", dataSource:"selList[0]", columnGroup:"constraint"},
       {field: "updated_at", name: "updated_at", minWidth: 20, cssClass: "row-hd"},
       {field: "created_at", name: "created_at", minWidth: 20, cssClass: "row-hd"}
     ]
     hl_temp = HatLevel.constraints.map {|k, v| [k, v]}.to_h
-    @var.select_arr << HatLevel.constraints.map {|k, v| [v, I18n.t("level_constraint.#{k}")]}.to_h
+    @var.select_arr['constraint'] = HatLevel.constraints.map {|k, v| [v, I18n.t("level_constraint.#{k}")]}.to_h
     where_chain = HatLevel.all
     i = 0
     where_chain.find_each do |row|

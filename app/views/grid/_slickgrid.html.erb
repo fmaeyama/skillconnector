@@ -29,17 +29,7 @@
     var dataView;
     var grid;
     var options = <%=var.table_options.to_json.html_safe %>
-    // var options = {
-    //     editable: true,
-    //     enableAddRow: true,
-    //     autoEdit: false,
-    //     enableCellNavigation: true,
-    //     enableColumnReorder: false,
-    //     createPreHeaderPanel: true,
-    //     showPreHeaderPanel: true,
-    //     preHeaderPanelHeight: 23,
-    //     explicitInitialization: true
-    // };
+
     $(function () {
         dataView = new Slick.Data.DataView();
         grid = new Slick.Grid("#myGrid", dataView, columns, options);

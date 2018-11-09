@@ -43,23 +43,31 @@
     =@var.title
     
   %hr
-  =button_tag 'undo'
-  %select.js-example-basic-single{name:"state"}
-    %option{value:"AL"}
-      Alabama
-    %option{value:"WY"}
-      Wyoming
-      
+  
+  =button_tag 'undo', type:'button', onclick:"undoRedoBuffer.undo()" do
+    =image_tag "icons/arrow_undo.png"
+  =button_tag 'rndo', type:'button', onclick:"redoRedoBuffer.undo()" do
+    =image_tag "icons/arrow_redo.png"
+
   #myGrid{style:"height:500px"}
+  #select_section.row
+    - @var.select_arr.each do |key, select_hash|
+      .col-auto
+        %h4
+          ="key and value for #{key}"
+        %table{data:{select_opt:"#{select_hash.to_json}"}, border:1}
+          -select_hash.each do |id, key|
+            %tr
+              %td
+                =id
+              %td
+                =key
   %hr
   =yield
 
   #json_data{data:{columns:"#{@var.columns.to_json}",
     table_opt:"#{@var.table_options.to_json}",
-    data_arr:"#{@var.data.to_json}",helper_get_select_hash({1:1})}}
-  - @var.select_arr.each do |select_hash|
-    #select_data{}
-  
+    data_arr:"#{@var.data.to_json}"}}
 
   :javascript
     var grid_func = function(){
@@ -68,8 +76,10 @@
       var data = $("#json_data").data("data-arr");
       var options = $("#json_data").data("table-opt");
       var columns = $("#json_data").data("columns");
-      var selList = new Array();
-      selList[0] ={2:"必須だと",3:"必須かも"};
+      var selList =[];
+      $('#select_section').find('table').each(function(){
+        selList.push($(this).data("select-opt"));
+      });
     
       columns.forEach(function(col){
         col.editor = eval(col.editor);
