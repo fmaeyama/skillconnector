@@ -2,7 +2,7 @@ class Offer < ApplicationRecord
   belongs_to :business
   belongs_to :offer_status
   has_many :proposals
-  belongs_to :skill, required: false
+  has_and_belongs_to_many :skills
 
 	def self.parameters(param_hash,key)
 		param_hash.require(key).permit(

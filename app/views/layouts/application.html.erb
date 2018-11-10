@@ -11,8 +11,9 @@
 	<%= csp_meta_tag %>
 
 	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag 'offcanvas' %>
+	<%= stylesheet_link_tag 'lib/offcanvas' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 </head>
 
 <body class="bg-light">
@@ -96,7 +97,7 @@
 </div>
 <main role="main" class="container" style="min-width: 800px">
 	<div class="d-flex align-items-end p-3 my-3 text-white-50 bg-purple rounded box-shadow">
-		<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+		<%= image_tag "brand/logo.png", alt:"", width:"48", height:"48", class:"mr-3" %>
 		<div class="d-flex mb-0 text-white lh-100">
 			<h1>
 				SILVERION <%= @var.nil? ? "" : @var.title %>
@@ -132,7 +133,7 @@
 			</div>
 		</div>
 	<% end %>
-	<%= yield %>
+	<%= content_for?(:content) ? yield(:content) : yield %>
 
 </main>
 

@@ -63,6 +63,10 @@ class Engineer < ApplicationRecord
 		self.engineer_status_type.name
 	end
 
+	def associate_hat_skill(hat_decorator)
+
+	end
+
 	private
 	def set_default_value
 		self.build_engineer_hiring(office: Office.first)

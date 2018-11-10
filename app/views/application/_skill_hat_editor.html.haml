@@ -1,0 +1,52 @@
+-# var.hats_hash, var.hat_levels, var.hat_types
+-# var.hat_types
+-# model : Model class (ex Business))
+- #var = BusinessDecorator.new
+.sl-border-primary.align-items-start
+  %h4
+    = Hat.model_name.human
+  .col-12
+    - var.hats_hash(model,id)[:levels].each do |hl_key, hl_val|
+      .row
+        .col-12
+          %span{class:"sl-title"}
+            - title=var.hat_levels[hl_key].name
+            = title
+      .key_hat_holder
+        .hat_holder
+          = render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var, model:model}
+        .row
+          .offset-10
+            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_levels[hl_key]), key: hl_key, var: var, id:id
+    .row
+      .col-12
+        %span{class:'sl-title'}
+          =label_tag "hat[hat_supplement][memo]", Hat.human_attribute_name("hat_supplement")
+    .row
+      .col-12
+        =text_area_tag "hat[hat_supplement][memo]", var.hats_hash(model, id)[:hat_supplement].memo, class:'sl-large'
+        =hidden_field_tag "hat[hat_supplement][id]", var.hats_hash(model, id)[:hat_supplement].id
+.sl-border-primary.align-items-start
+  %h4
+    = Skill.model_name.human
+  .col-12
+    - var.skills_hash(model,id)[:levels].each do |sl_key, sl_val|
+      .row
+        .col-12
+          %span{class:"sl-title"}
+            - title=var.skill_levels[sl_key].name
+            = title
+      .key_skill_holder
+        .skill_holder
+          = render partial: "application/skill_input_parts", collection: sl_val, as:'skill', locals:{key:sl_key, var:var, model:model}
+        .row
+          .offset-10
+            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "skill", skill: Skill.new(init_level:var.skill_levels[sl_key]), key: sl_key, var: var, id:id
+    .row
+      .col-12
+        %span{class:'sl-title'}
+          =label_tag "skill[skill_supplement][memo]", Skill.human_attribute_name("skill_supplement")
+    .row
+      .col-12
+        =text_area_tag "skill[skill_supplement][memo]", var.skills_hash(model, id)[:skill_supplement].memo, class:'sl-large'
+        =hidden_field_tag "skill[skill_supplement][id]", var.skills_hash(model, id)[:skill_supplement].id

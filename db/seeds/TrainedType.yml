@@ -1,0 +1,29 @@
+- id: 1
+  rate: 1
+  name: Trained
+  description: 理解している
+  status: 1
+
+- id: 2
+  rate: 2
+  name: Supportive
+  description: 指導の下で実行可能
+  status: 1
+
+- id: 3
+  rate: 3
+  name: executable
+  description: 自己で実行可能
+  status: 1
+
+- id: 4
+  rate: 4
+  name: Expertise
+  description: 専門家として活動できる
+  status: 1
+
+- id: 5
+  rate: 5
+  name: Managable
+  description: 他者への教育や管理が可能
+  status: 1

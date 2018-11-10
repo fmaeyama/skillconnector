@@ -1,3 +1,5 @@
+require 'pp'
+
 module CondEnum
 	LIKE = 'like'.freeze
 	EQ = 'eq'.freeze
@@ -79,7 +81,7 @@ class ApplicationController < ActionController::Base
 						current_user.privilage_level += PRIV_SYSADMIN
 					when 2
 						current_user.privilage_level += PRIV_BIZADMIN
-					when 2
+					when 3
 						current_user.privilage_level += PRIV_USER
 				end
 				privGroup.control_privileges do |control|

@@ -1,11 +1,9 @@
 module ProposalHelper
 
 	def helper_get_office_contacts(proposal)
-		result = [{id:-1,name:I18n.t("cmn_dict.not_defined")}]
-		return result if proposal.offer.nil?
-		return result if proposal.offer.business.nil?
-		return result if proposal.offer.business.office.nil?
-		Contact.office_contact(proposal.offer.business.office.id)
+		id = proposal.get_related_office_id
+		return [{id:-1,contact_name:I18n.t("cmn_dict.not_defined")}] if id == -1
+		Contact.office_contact(id)
 	end
 
 	def helper_get_proposal_link(proposal)
