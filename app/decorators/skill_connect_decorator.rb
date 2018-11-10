@@ -11,7 +11,7 @@ module SkillHatContainer
     @hat_types = HatType.enable.group_by {|ht| ht.hat_level_id}
     @skill_levels = Hash[SkillLevel.all.map {|sl| [sl.id, sl]}]
     @skill_types = SkillType.enable.group_by {|st| st.skill_level_id}
-    @trained_types = TrainedType.active.map {|tt| [tt.id, I18n.t("trained_type.#{tt.name}")].to_h}
+    @trained_types = TrainedType.active.map {|tt| [I18n.t("trained_type.#{tt.name}"),tt.id]}.to_h
     @hats_hashes = Hash.new
     @skills_hashes = Hash.new
   end
