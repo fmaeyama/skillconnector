@@ -55,7 +55,7 @@
       .col-auto
         %h4
           ="key and value for #{key}"
-        %table{data:{select_opt:"#{select_hash.to_json}"}, border:1}
+        %table{data:{select_opt:"#{select_hash.to_json}",select_key:"#{key}"}, border:1}
           -select_hash.each do |id, key|
             %tr
               %td
@@ -76,9 +76,9 @@
       var data = $("#json_data").data("data-arr");
       var options = $("#json_data").data("table-opt");
       var columns = $("#json_data").data("columns");
-      var selList =[];
+      var selList ={};
       $('#select_section').find('table').each(function(){
-        selList.push($(this).data("select-opt"));
+        selList[$(this).data("select-key")] = $(this).data("select-opt");
       });
     
       columns.forEach(function(col){

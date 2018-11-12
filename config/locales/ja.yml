@@ -15,6 +15,7 @@ ja:
       engineer_person_info: '要員個人情報'
       engineer_registration_type: '要員流入種別'
       engineer_status_type: '要員紹介可能状況'
+      grid: '表編集'
       hat: '役割'
       hat_level: '役割階層'
       hat_type: '役割種別'
@@ -123,6 +124,7 @@ ja:
     all_for_select: 'ALL'
     personalContract : '個人契約'
     corporateContract : '法人契約'
+    main_data: '主要管理項目'
     menu_new: "new"
     menu_list: "list"
     menu_table: "table"
