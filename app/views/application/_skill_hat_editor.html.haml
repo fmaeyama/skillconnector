@@ -18,7 +18,7 @@
           = render partial: "application/hat_input_parts", collection: hl_val, as:'hat', locals:{key:hl_key, var:var, model:model_name,id:id}
         .row
           .offset-10
-            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_levels[hl_key]), key: hl_key, var: var, id:id
+            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "hat", hat: Hat.new(init_level:var.hat_levels[hl_key]), key: hl_key, var: var,model:model_name,  id:id
     .row
       .col-12
         %span{class:'sl-title'}
@@ -42,7 +42,7 @@
           = render partial: "application/skill_input_parts", collection: sl_val, as:'skill', locals:{key:sl_key, var:var, model:model_name, id:id}
         .row
           .offset-10
-            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "skill", skill: Skill.new(init_level:var.skill_levels[sl_key]), key: sl_key, var: var, id:id
+            = sc_helper_link_to_add_parts t("cmn_sentence.add_form_title", model:title) , "skill", skill: Skill.new(init_level:var.skill_levels[sl_key]), key: sl_key, var: var, model:model_name, id:id
     .row
       .col-12
         %span{class:'sl-title'}

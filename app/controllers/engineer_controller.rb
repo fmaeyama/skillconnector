@@ -115,10 +115,10 @@ class EngineerController < ApplicationController
         @engineer.attributes = Engineer.parameters(params, :engineer)
         @engineer.save!
         @engineer.careers.each do |career|
-          @var.update_by_reference Career, career.id, params[(params.key?("career-1") ?"career-1": "career#{career.id}")]
+          @var.update_by_reference Career, career.id, params
         end
         @engineer.engineer_hope_businesses.each do |ehp|
-          @var.update_by_reference EngineerHopeBusiness, ehp.id, params[(params.key?("engineer_hope_business-1") ?"engineer_hope_business-1": "engineer_hope_business#{ehp.id}")]
+          @var.update_by_reference EngineerHopeBusiness, ehp.id, params
         end
       end
     end

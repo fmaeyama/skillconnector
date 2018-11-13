@@ -25,8 +25,8 @@ module SkillHatContainer
   end
 
   def update_by_reference(model, id, params)
-    Hat.update_by_reference model, id.to_s, params, self
-    Skill.update_by_reference model, id.to_s, params, self
+    Hat.update_by_reference model, id.to_s, params[(params.key?("#{model.name}#{id}")?"#{model.name}#{id}":"#{model.name}-1")], self
+    Skill.update_by_reference model, id.to_s, params[(params.key?("#{model.name}#{id}")?"#{model.name}#{id}":"#{model.name}-1")], self
   end
 
   def hats_hash(model, id)

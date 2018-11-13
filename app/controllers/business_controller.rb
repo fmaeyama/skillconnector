@@ -96,7 +96,7 @@ class BusinessController < ApplicationController
         Business.transaction do
           @business.attributes = Business.business_params(params, :business)
           @business.save!
-          @var.update_by_reference Business, @business.id, params["business#{@business.id}"]
+          @var.update_by_reference Business, @business.id, params
           respond_to do |format|
             format.html {redirect_to(action: 'edit', id: @business.id)}
             format.json {render :show, status: :created, location: @business}
@@ -116,8 +116,8 @@ class BusinessController < ApplicationController
     def save_business(params)
       Business.transaction do
         @business.attributes = Business.business_params(params, :business)
-        @var.update_by_reference Business, @business.id, params
         @business.save!
+        @var.update_by_reference Business, @business.id, params
       end
     end
 
