@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  engineer: 
+  office: one
+  hiring_position: MyString
+  hiring_devision: MyString
+  hiring_memo: MyString
+  hiring_contact: one
+  hired_from: 2018-09-11
+  hired_until: 2018-09-11
+  status: 1
+
+two:
+  engineer: 
+  office: two
+  hiring_position: MyString
+  hiring_devision: MyString
+  hiring_memo: MyString
+  hiring_contact: two
+  hired_from: 2018-09-11
+  hired_until: 2018-09-11
+  status: 1
