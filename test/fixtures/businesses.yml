@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  name_kana: MyString
+  long_name: MyString
+  long_name_kana: MyString
+  parent: one
+  business_type: one
+  address: one
+  primary_contact: one
+  enable_date: 2018-07-31
+
+two:
+  name: MyString
+  name_kana: MyString
+  long_name: MyString
+  long_name_kana: MyString
+  parent: two
+  business_type: two
+  address: two
+  primary_contact: two
+  enable_date: 2018-07-31

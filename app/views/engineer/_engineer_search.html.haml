@@ -1,6 +1,6 @@
 .d-flex
 	=form_tag({controller: 'engineer', action: 'search'}, remote:true) do
-		- if modal_var.is_a?(OfferDecorator) && !(modal_var.offer_object.blank?)
+		- unless modal_var.offer_object.blank?
 			= hidden_field_tag 'offer_id', modal_var.offer_object.id
 		.px-3
 			%span.sl-title
@@ -10,5 +10,4 @@
 		.px-3
 			=submit_tag t('cmn_sentence.searchButton',model:Engineer.model_name.human)
 #engineer_search_list.d-flex
-	.px-3
-		検索結果
+	検索結果

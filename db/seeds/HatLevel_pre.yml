@@ -1,9 +1,0 @@
-- id: 1
-  name: 役割1
-  description: 社内外区分
-  constraint: 3
-
-- id: 2
-  name: 役割2
-  description: プロジェクトでの役割
-  constraint: 2

@@ -17,22 +17,14 @@
 			<div class="media-body app-datablock">
 				<div class="app-data-title">
 					id: <span id="business-id-<%=engineer.id%>"> <%=engineer.id%></span>
-					<%= link_to controller:"engineer", action:"edit", id:engineer.id do %>
-						<span class="sl-content"><%= engineer.person_info.getFullName %></span>
-					<% end %>
-					<span class="sl-content"><%=engineer.engineer_registration_type.name %></span>
-					<span class="sl-content"><%=engineer.registration_memo %></span>
-					<span class="sl-content"><%=engineer.engineer_status_type.name %></span>
 				</div>
-				<% unless engineer.office.blank? then %>
-					<div class="d-block p-4">
+				<div class="d-block p-4">
+					<% if engineer.office.blank? then
+					%>
+					<% else %>
 						<%= engineer.office.cd %> : <%= engineer.office.name %>
-					</div>
-				<% end %>
-				<h4> <%=Career.model_name.human %></h4>
-				<%= render partial: "career_description", collection:engineer.careers, as:"career" %>
-				<h4> <%=EngineerHopeBusiness.model_name.human %></h4>
-				<%= render partial: "hope_business_description", collection:engineer.engineer_hope_businesses, as:"hope" %>
+					<% end %>
+				</div>
 			</div>
 
 		</div>

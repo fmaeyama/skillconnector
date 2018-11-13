@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  parent: one
+  sort: 1
+
+two:
+  name: MyString
+  description: MyString
+  parent: two
+  sort: 1

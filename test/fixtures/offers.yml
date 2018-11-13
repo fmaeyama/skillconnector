@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business: one
+  title: MyString
+  description: MyString
+  offer_status: one
+  want_from: 2018-09-18
+  want_until: 2018-09-18
+  work_at: MyString
+
+two:
+  business: two
+  title: MyString
+  description: MyString
+  offer_status: two
+  want_from: 2018-09-18
+  want_until: 2018-09-18
+  work_at: MyString
