@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  privilege_group: one
+  controller_name: MyString
+  privilege_type: 1
+
+two:
+  privilege_group: two
+  controller_name: MyString
+  privilege_type: 1

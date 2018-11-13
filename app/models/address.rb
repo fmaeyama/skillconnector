@@ -26,4 +26,5 @@ class Address < ApplicationRecord
 		(self.prefecture.blank? ? "":self.prefecture.name) +
 			self.address
 	end
+
 end

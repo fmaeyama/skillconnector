@@ -6,65 +6,70 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 CmnPropertyType.find_or_create_by(
-    title: '住所・郵便番号',
-    description: '都道府県、住所、郵便番号はaddressモデルからの取得とする',
-    property_datatype: :class_id,
-    data_class: 'address'
+		title:'住所・郵便番号',
+		description: '都道府県、住所、郵便番号はaddressモデルからの取得とする',
+		property_datatype: :class_id,
+		data_class: 'address'
 )
 
 CmnPropertyType.find_or_create_by(
-    title: '生年月日',
-    description: '誕生日の場合、年については0000',
-    property_datatype: :date
+		title:'生年月日',
+		description: '誕生日の場合、年については0000',
+		property_datatype: :date
 )
 
-# if required
+privGroup=PrivilegeGroup.find_or_create_by(
+									title: 'system admin',
+									descriptions: 'サイト管理スタッフ'
+)
 
-def create_first_admin
-    UserPrivilegeGroup.find_or_create_by(
-        id: 1,
-        user_id: 1,
-        privilege_group_id: 1
-    )
-end
+ControlPrivilege.find_or_create_by(
+										privilege_group_id: privGroup.id,
+										controller_name: 'home',
+										privilege_type: :allow_all
+)
 
-def build_pre_required_table(table_name)
-    build_data_from_file("#{Rails.root}/db/seeds/#{table_name}_pre.yml")
-end
+privGroup=PrivilegeGroup.find_or_create_by(
+		title: 'biz admin',
+		descriptions: '企業ユーザー'
+)
 
-def build_data_from_file(yaml_filename)
-    puts yaml_filename
-    model_name =
-        (yaml_filename[-8, 8] == "_pre.yml") ?
-            File.basename(yaml_filename,"_pre.yml") :
-            File.basename(yaml_filename,".yml")
-    targetmodel = model_name.classify.constantize
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name} CASCADE")
+ControlPrivilege.find_or_create_by(
+		privilege_group_id: privGroup.id,
+		controller_name: 'home',
+		privilege_type: :allow_all
+)
 
-    File.open(yaml_filename) do |load_target_yaml|
-        records = YAML.load(load_target_yaml)
-        records.each do |record|
-            puts record
-            if record.has_key? "sql"
-                ActiveRecord::Base.connection.execute(record["sql"])
-            else
-                model = targetmodel.create(record)
-                model.save!
-            end
-        end
-    end
 
-end
+privGroup=PrivilegeGroup.find_or_create_by(
+		title: 'usr',
+		descriptions: 'エンジニア'
+)
 
-build_pre_required_table("PrivilegeGroup")
-build_pre_required_table("HatLevel")
-build_pre_required_table("SkillLevel")
+ControlPrivilege.find_or_create_by(
+		privilege_group_id: privGroup.id,
+		controller_name: 'home',
+		privilege_type: :allow_all
+)
 
 Dir.glob("#{Rails.root}/db/seeds/*.yml").each do |yaml_filename|
-    next if yaml_filename[-8,8] == "_pre.yml"
-    build_data_from_file(yaml_filename)
-end
 
-create_first_admin
+	puts yaml_filename
+
+	targetmodel=File.basename(yaml_filename,".yml").classify.constantize
+	ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{targetmodel.table_name} CASCADE")
+
+	File.open(yaml_filename) do |load_target_yaml|
+		records = YAML.load(load_target_yaml)
+		records.each do |record|
+			puts record
+			if record.has_key? "sql"
+				ActiveRecord::Base.connection.execute(record["sql"])
+			else
+				model = targetmodel.create(record)
+				model.save!
+			end
+		end
+	end
+end

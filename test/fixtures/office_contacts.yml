@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  office_id: one
+  contact_id: one
+
+two:
+  id: MyString
+  office_id: two
+  contact_id: two

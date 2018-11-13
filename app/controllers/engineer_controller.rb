@@ -31,10 +31,6 @@ class EngineerController < ApplicationController
 	def new
 		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
 		@var.mode="new"
-		@var.build_hats_hash Career, -1
-		@var.build_hats_hash EngineerHopeBusiness, -1
-		@var.build_skills_hash Career, -1
-		@var.build_skills_hash EngineerHopeBusiness, -1
 		@engineer=Engineer.new
 	end
 
@@ -63,10 +59,6 @@ class EngineerController < ApplicationController
 			id:params[:id]
 		)
 		@var.mode = params[:id]
-		@var.build_hats_hash Career, params[:id]
-		@var.build_hats_hash EngineerHopeBusiness, params[:id]
-		@var.build_skills_hash Career, params[:id]
-		@var.build_skills_hash EngineerHopeBusiness, params[:id]
 		@engineer = Engineer.find(params[:id])
 		render action: "new"
 
@@ -74,7 +66,6 @@ class EngineerController < ApplicationController
 
 	def search
 		@var.title =t("cmn_sentence.searchResult",model:Engineer.model_name.human)
-		@var.model_name=Offer.model_name.human
 		@var.mode = params[:offer_id]
 		cond_list = {cd: CondEnum::LIKE}
 		free_word = {keyword: [:eng_cd ]}
@@ -114,12 +105,6 @@ class EngineerController < ApplicationController
 		Engineer.transaction do
 			@engineer.attributes = Engineer.parameters(params, :engineer)
 			@engineer.save!
-			@engineer.careers.each do |career|
-				@var.update_by_reference Career, career.id, params["career-#{career.id}"]
-			end
-			@engineer.engineer_hope_businesses.each do |ehp|
-				@var.update_by_reference Career, ehp.id, params["career-#{ehp.id}"]
-			end
 		end
 	end
 end

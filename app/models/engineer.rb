@@ -1,12 +1,11 @@
 class Engineer < ApplicationRecord
-	belongs_to :engineer_registration_type
+	has_one :engineer_registration_type
 	belongs_to :engineer_status_type
 	has_one :engineer_hiring, autosave: true
 	has_one :office, through: :engineer_hiring
 	belongs_to :person_info, autosave: true
 	has_many :careers
 	has_many :engineer_hope_businesses
-	has_many :proposals
 	accepts_nested_attributes_for :engineer_hiring, :person_info, update_only: true
 	accepts_nested_attributes_for :careers, allow_destroy: true,
 		reject_if: proc {|attr| attr['skill_id'].blank? }
@@ -61,10 +60,6 @@ class Engineer < ApplicationRecord
 	def get_status
 		return I18n.t("cmn_dict.not_defined") if self .engineer_status_type.blank?
 		self.engineer_status_type.name
-	end
-
-	def associate_hat_skill(hat_decorator)
-
 	end
 
 	private

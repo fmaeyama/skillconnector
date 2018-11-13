@@ -19,31 +19,3 @@ rails destroy model offer
 rails generate controller staff
 rails generate controller offer
 rails generate controller proposal
-
-rails generate migration AddStaffCdToStaffs staff_cd:string
-
-rails generate decorator CommonUser
-
-rails generate model hat_level name:string description:string
-rails generate model hat name:string description:string hat_level:referenses parent_hat:referenses status:integer deleted_at:date
-rails generate model hat_types name:string description:string hat_level:referenses parent_hat:referenses status:integer deleted_at:date
-rails generate model skill_level name:string description:string
-
-rails generate controller hat
-
- rails test test/controllers/businesses_controller_test.rb
-
-rails generate model hat_supplement hat_supplemental:reference{polymorphic} memo:string
-rails generate decorator HatSkill
-
-rails generate model skill_types name:string description:string skill_level:references parent_skill:references status:integer
-rails generate model skill_supplement skill_supplemental:reference{polymorphic} memo:string
-rails generate migration ModifySkills
-rails generate migration AddHatLevels
-rails destroy migration AddColumnSkillTypes
-rails generate migration AddDeleteAtToSkillTypes deleted_at:date
-
-rails generate model trained_types name:string description:string rate:integer status:integer
-
-rails generate migration AddColumnSkills trained_type_id:integer
-
