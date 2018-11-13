@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_214155) do
+ActiveRecord::Schema.define(version: 2018_11_08_064950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,6 +198,47 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
     t.index ["person_info_id"], name: "index_engineers_on_person_info_id"
   end
 
+  create_table "hat_levels", comment: "役割階層", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "constraint"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hat_supplements", force: :cascade do |t|
+    t.string "hat_supplemental_type"
+    t.bigint "hat_supplemental_id"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hat_supplemental_type", "hat_supplemental_id"], name: "index_hat_supplemental"
+  end
+
+  create_table "hat_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "hat_level_id"
+    t.bigint "parent_hat_id"
+    t.integer "status"
+    t.date "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hat_level_id"], name: "index_hat_types_on_hat_level_id"
+    t.index ["parent_hat_id"], name: "index_hat_types_on_parent_hat_id"
+  end
+
+  create_table "hats", comment: "役割", force: :cascade do |t|
+    t.bigint "hat_type_id", comment: "役割種別"
+    t.string "hat_reference_type"
+    t.bigint "hat_reference_id", comment: "役割参照元"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hat_reference_type", "hat_reference_id"], name: "index_hats_on_hat_reference_type_and_hat_reference_id"
+    t.index ["hat_type_id"], name: "index_hats_on_hat_type_id"
+  end
+
   create_table "offer_skills", comment: "求人に必要な技能", force: :cascade do |t|
     t.bigint "offer_id"
     t.bigint "skill_id"
@@ -323,14 +364,43 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skills", comment: "技能", force: :cascade do |t|
-    t.string "name", comment: "タイトル"
-    t.string "description", comment: "技能詳細"
-    t.bigint "parent_id", comment: "親技能"
-    t.integer "sort"
+  create_table "skill_levels", comment: "技能階層", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_skills_on_parent_id"
+    t.integer "constraint"
+  end
+
+  create_table "skill_supplements", force: :cascade do |t|
+    t.string "skill_supplemental_type"
+    t.bigint "skill_supplemental_id"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_supplemental_type", "skill_supplemental_id"], name: "index_skill_supplemental"
+  end
+
+  create_table "skill_types", comment: "技能種別", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "skill_level_id", comment: "技能階層"
+    t.bigint "parent_skill_id", comment: "技能グループ"
+    t.integer "status"
+    t.date "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_skill_id"], name: "index_skill_types_on_parent_skill_id"
+    t.index ["skill_level_id"], name: "index_skill_types_on_skill_level_id"
+  end
+
+  create_table "skills", comment: "技能", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "skill_type_id", comment: "技能種別"
+    t.string "skill_reference_type"
+    t.bigint "skill_reference_id", comment: "技能参照元"
+    t.string "memo"
   end
 
   create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|
@@ -338,7 +408,20 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
     t.string "history"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "staff_cd", comment: "スタッフコード"
+    t.date "enable_from", comment: "入職（予定）日"
+    t.date "disable_from", default: "9999-12-31", comment: "離職日"
+    t.integer "status", comment: "staff_enum.staff_status"
     t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
+  end
+
+  create_table "trained_types", comment: "習熟度", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "rate"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_privilege_groups", comment: "ログインユーザー毎権限設定", force: :cascade do |t|
@@ -396,7 +479,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_214155) do
   add_foreign_key "proposals", "engineers"
   add_foreign_key "proposals", "offers"
   add_foreign_key "proposals", "staffs", column: "offered_staff_id"
-  add_foreign_key "skills", "skills", column: "parent_id"
+  add_foreign_key "skill_types", "skill_levels"
+  add_foreign_key "skill_types", "skill_types", column: "parent_skill_id"
   add_foreign_key "staffs", "person_infos"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"

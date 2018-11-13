@@ -15,3 +15,18 @@ ja:
     few: '出来れば'
     middle: '普通'
     hight: '是非'
+  staff_status:
+    inactive: '休止'
+    active: '活動中'
+    dormant: '休眠中'
+  level_constraint:
+    free: '任意・複数選択可'
+    only_one: '任意・複数不可'
+    required: '必須・複数選択可'
+    required_only_one: '必須・複数不可'
+  trained_type:
+    Trained: '理解している'
+    Supportive: '指導の下で実行可能'
+    executable: '自己で実行可能'
+    Expertise: '専門家として活動できる'
+    Managable: '他者への教育や管理が可能'

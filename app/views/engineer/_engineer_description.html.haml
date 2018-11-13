@@ -1,0 +1,11 @@
+-# engineer: engineer object
+Engineer Description
+.row
+	.col-8
+		= "Engineer:[#{engineer.id}]#{engineer.person_info.getFullName}"
+	.col-4
+		= link_to url:{controller:"engineer", action: "edit", id:engineer.id}, html_option:"target=_blank" do
+			%span.btn.btn-primary
+				= t("cmn_sentence.editTitle", model:Engineer.model_name.human,id:engineer.id)
+		= button_tag t("cmn_sentence.untieButton",model:Proposal.model_name.human,model2:Engineer.model_name.human),
+		onclick:"deleteEngineer(#{engineer.id})"

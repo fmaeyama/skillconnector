@@ -1,0 +1,6 @@
+-# engineer: engineer object
+Engineer Description
+.row
+	.col-12
+		= link_to url:"proposal", action:"edit", id:engineer.proposalid do
+			= "Engineer:[#{engineer.id}]#{engineer.person_info.getFullName}"

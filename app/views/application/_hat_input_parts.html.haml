@@ -1,0 +1,20 @@
+- num = hat_iteration.index if defined? hat_iteration
+- selected_id = hat.hat_type_id.blank? ? -1 : hat.hat_type_id
+- return if (!hat.level.multi? && (!defined?(hat_iteration) || !hat_iteration.first?))
+.row.hat_input
+  .col-1
+  .col-9
+    .row
+      .col-auto
+        %span{class:"sl_content"}
+          = collection_select "hat[#{key}][#{num}]", 'hat_type_id', var.hat_types[key], :id,  :name, include_blank: t("cmn_sentence.no_selected", model:Hat.model_name.human), selected: selected_id
+      .col-auto
+        %span{class:"sl_title"}
+          = HatType.human_attribute_name("memo")
+        %span{class:"sl_content"}
+          = text_field_tag "hat[#{key}][#{num}][memo]", hat.memo
+  .col-2
+    = hidden_field_tag "hat[#{key}][#{num}][id]", hat.id.blank? ?  -1 : hat.id
+    = hidden_field_tag "hat[#{key}][#{num}][_destroy]", 0
+    - if hat.level.multi? && !(hat.level.required? && defined?(hat_iteration) && hat_iteration.first?)
+      = link_to t("cmn_sentence.deleteTitle", model: Hat.model_name.human), "javascript.void(0);", class:'remove_fields btn btn-outline-danger', data:{model:"hat"}

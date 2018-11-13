@@ -28,6 +28,11 @@
 				.px-1
 					= f.collection_select :offer_status_id, @var.offer_statuses, :id,  :name,
 					 include_blank:t('cmn_sentence.select_prompt', model:OfferStatus.model_name.human)
+				- fields_for @offer.skill do skill
+					.px-1
+						= skill.label :skill_id, Skill.model_name.human
+					.px-1
+						= skill.collection_select :skill_id, @var.skills, :id, :name,  include_blank:t("cmn_sentence.select_prompt", model:Skill.model_name.human)
 				.px-1
 					= f.label :work_at, Offer.human_attribute_name('work_at')
 				.px-1

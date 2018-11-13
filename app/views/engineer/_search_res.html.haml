@@ -1,30 +1,39 @@
 -# modal_var=@var, eng_result
-.row
+.px-2
+	.row
 	- if eng_result.nil?
 		.col-12
 			= modal_var.modal_dlg_message unless modal_var.modal_dlg_message.blank?
 	- else
-		- offer_id = modal_var.mode
 		.col-12
 			= "#{eng_result.size}件 : "
 			= modal_var.modal_dlg_message unless modal_var.modal_dlg_message.blank?
 		- eng_result.each do |engineer|
-			.row
+			.sl-border-primary
 				.col-12
-					= engineer.eng_cd +    "[#{engineer.get_status}]"
-					= link_to(engineer.person_info.getFullName,url_for(controller: "proposal", action:"new",offer:offer_id, engineer:engineer.id))
+					.row
+						.col-12
+							= engineer.eng_cd + "[#{engineer.get_status}]"
+					.row
+						.col-12
+							= helper_get_link_from_var engineer,modal_var
+					.row
+						.col-12
+							= engineer.get_engineer_hiring
 				- if false
-					.col-12
-						= engineer.get_engineer_hiring
-					.col-12
-						%span.sl-title
-							= Career.model_name.human
-						%span.sl-content
-							= engineer.get_career_summary
-					.col-12
-						%span.sl-title
-							=EngineerHopeBusiness.model_name.human
-						%span.sl-content
-							=engineer.get_hope_business_summary
+					.row
+						.col-12
+							%span.sl-title
+								= Career.model_name.human
+							%span.sl-content
+								= engineer.get_career_summary
+					.row
+						.col-12
+							%span.sl-title
+								=EngineerHopeBusiness.model_name.human
+							%span.sl-content
+								=engineer.get_hope_business_summary
 				- else
-					TEST
+					.row
+						.col-12
+							Need To Debug on engineer\_search_res.html.haml
