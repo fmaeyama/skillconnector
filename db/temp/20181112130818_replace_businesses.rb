@@ -1,6 +1,6 @@
-class CreateBusinesses < ActiveRecord::Migration[5.2]
-  def change
-    create_table :businesses, comment: Business.model_name.human do |t|
+class ReplaceBusinesses < ActiveRecord::Migration[5.2]
+  def up
+    create_table :businesses, comment: "業務" do |t|
       t.string :name, null:false, comment: "業務タイトル"
       t.string :description, null:false, comment: "詳細内容"
       t.string :welcome, null:false, comment: "歓迎技術者"
@@ -21,6 +21,9 @@ class CreateBusinesses < ActiveRecord::Migration[5.2]
       t.date :expire_schedule, default: '9999-12-31', comment: "データ削除予定日"
 
       t.timestamps
-    end
+  end
+
+  def down
+    drop_table :businesses
   end
 end

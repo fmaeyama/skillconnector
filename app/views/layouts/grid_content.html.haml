@@ -38,32 +38,35 @@
       background: rgba(0,0,255,0.2);
       -webkit-transition: 0.5s background
     }
-
-  %h2
-    =@var.title
-    
-  %hr
+  .row
+    .col-10
+      %h2
+        =@var.title
+        
+      %hr
   
-  =button_tag 'undo', type:'button', onclick:"undoRedoBuffer.undo()" do
-    =image_tag "icons/arrow_undo.png"
-  =button_tag 'rndo', type:'button', onclick:"redoRedoBuffer.undo()" do
-    =image_tag "icons/arrow_redo.png"
+      =button_tag 'undo', type:'button', onclick:"undoRedoBuffer.undo()" do
+        =image_tag "icons/arrow_undo.png"
+      =button_tag 'rndo', type:'button', onclick:"redoRedoBuffer.undo()" do
+        =image_tag "icons/arrow_redo.png"
 
-  #myGrid{style:"height:500px"}
-  #select_section.row
-    - @var.select_arr.each do |key, select_hash|
-      .col-auto
-        %h4
-          ="key and value for #{key}"
-        %table{data:{select_opt:"#{select_hash.to_json}",select_key:"#{key}"}, border:1}
-          -select_hash.each do |id, key|
-            %tr
-              %td
-                =id
-              %td
-                =key
-  %hr
-  =yield
+      #myGrid{style:"height:500px"}
+      #select_section.row
+        - @var.select_arr.each do |key, select_hash|
+          .col-auto
+            %h4
+              ="key and value for #{key}"
+            %table{data:{select_opt:"#{select_hash.to_json}",select_key:"#{key}"}, border:1}
+              -select_hash.each do |id, key|
+                %tr
+                  %td
+                    =id
+                  %td
+                    =key
+      %hr
+      =yield
+    .col-2
+      =render "grid/grid_list"
 
   #json_data{data:{columns:"#{@var.columns.to_json}",
     table_opt:"#{@var.table_options.to_json}",

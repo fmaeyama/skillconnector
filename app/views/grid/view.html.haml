@@ -1,1 +1,5 @@
-=# grid#view template may never be called..
+-if !@var.notice.nil?
+  %h3
+    補足
+  .sl-content
+    =@var.notice

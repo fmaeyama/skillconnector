@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'grid_controller'
 
 CmnPropertyType.find_or_create_by(
     title: '住所・郵便番号',
