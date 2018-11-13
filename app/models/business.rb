@@ -23,6 +23,7 @@ class Business < ApplicationRecord
   def init_new_instance(params)
     self.business_status_id = BusinessStatus.select(:id).first(1)
     self.business_type_id = BusinessType.select(:id).first(1)
+    self.id = -1
     if params.key?("office_id")
       self.office_id = params["office_id"]
     end

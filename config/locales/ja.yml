@@ -19,6 +19,7 @@ ja:
       hat: '役割'
       hat_level: '役割階層'
       hat_type: '役割種別'
+      project_partisipation_types: '想定参画携帯'
       skill: '技能'
       skill_level: '技能階層'
       skill_type: '技能種別'

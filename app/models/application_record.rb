@@ -1,3 +1,5 @@
+require 'grid_controller'
+
 module HatSkillContainer
   def associate_to_hat_skill(hs_decorator)
     raise Exception.new "hs_decorator should be a instance of SkillHatContainer" unless hs_decorator.is_a?(SkillHatContainer)
