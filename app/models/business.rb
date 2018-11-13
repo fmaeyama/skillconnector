@@ -11,12 +11,19 @@ class Business < ApplicationRecord
   belongs_to :business_status
   belongs_to :office
 
+  enum scheduled_project_span_type: {day:0, month:1, year:2, open:3}
+
+  def self.span_type_hashes
+    self.scheduled_project_span_types.map {|k,v| [I18n.t("scheduled_project_span_type.#{k}"),v]}
+  end
+
   def self.business_params(param_hash, key)
     param_hash.require(key).permit(
       :id, :name, :description, :welcome, :office_id,
       :business_type_id, :business_status_id, :parent_business_id,
       :max_quantity, :proper_quantity, :budget, :open_date,
-      :enable_date, :end_date, :expire_schedule
+      :enable_date, :end_date, :expire_schedule, :project_participation_type_id,
+      :scheduled_project_start, :scheduled_project_end
     )
   end
 

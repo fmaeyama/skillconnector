@@ -7,8 +7,8 @@ class BusinessController < ApplicationController
       I18n.t("cmn_sentence.listTitle", model: Business.model_name.human) => {controller: "business", action: "index"},
       I18n.t("cmn_sentence.newTitle", model: Business.model_name.human) => {controller: "business", action: "new"},
       I18n.t('cmn_sentence.listTitle', model: Office.model_name.human) => {controller: 'office', action: 'index'},
-      I18n.t('cmn_sentence.listTitle', model: Offer.model_name.human) => {controller: 'offer', action: 'index'},
-      I18n.t('cmn_sentence.listTitle', model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'}
+      I18n.t('cmn_sentence.listTitle', model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'},
+      I18n.t('cmn_sentence.listTitle', model: Proposal.model_name.human) => {controller: 'proposal', action: 'index'}
     }
 
   end
@@ -95,8 +95,8 @@ class BusinessController < ApplicationController
       begin
         Business.transaction do
           @business.attributes = Business.business_params(params, :business)
-          @var.update_by_reference Business, @business.id, params
           @business.save!
+          @var.update_by_reference Business, @business.id, params["business#{@business.id}"]
           respond_to do |format|
             format.html {redirect_to(action: 'edit', id: @business.id)}
             format.json {render :show, status: :created, location: @business}

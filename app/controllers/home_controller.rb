@@ -3,30 +3,27 @@ class HomeController < ApplicationController
   def sysadmin
     # システム管理者メニュー
     @link = {
-        'ユーザー管理' => [
-            {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
-            #{title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
-            #{title: "登録者情報作成・編集", controller: "common_users", action: "index"},
-            {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
-            {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
-        t("cmn_sentence.menuParents", model:Staff.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Staff.model_name.human) , controller: "staff", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Staff.model_name.human) , controller: "staff", action: "new"}],
-        t("cmn_sentence.menuParents", model:Office.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model:Office.model_name.human), controller: "office", action: "index"},
-            {title: t("cmn_sentence.newTitle", model:Office.model_name.human), controller: "office", action: "new"}],
-        t("cmn_sentence.menuParents", model:Business.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model:Business.model_name.human), controller: "business", action: "index"},
-            {title: t("cmn_sentence.newTitle", model:Business.model_name.human), controller: "business", action: "new"}],
-        t("cmn_sentence.menuParents", model:Offer.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}],
-        t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
-        t("cmn_sentence.menuParents", model:Proposal.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Proposal.model_name.human) , controller: "proposal", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Proposal.model_name.human) , controller: "proposal", action: "new"}]
+      'ユーザー管理' => [
+        {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
+        #{title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
+        #{title: "登録者情報作成・編集", controller: "common_users", action: "index"},
+        {title: 'ユーザー権限割当', controller: 'common_users', action: 'assign_role'},
+        {title: '権限設定画面', controller: 'privilege', action: 'assign_role'}],
+      t("cmn_sentence.menuParents", model: Staff.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Staff.model_name.human), controller: "staff", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Staff.model_name.human), controller: "staff", action: "new"}],
+      t("cmn_sentence.menuParents", model: Office.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Office.model_name.human), controller: "office", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Office.model_name.human), controller: "office", action: "new"}],
+      t("cmn_sentence.menuParents", model: Business.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Business.model_name.human), controller: "business", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Business.model_name.human), controller: "business", action: "new"}],
+      t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human), controller: "engineer", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human), controller: "engineer", action: "new"}],
+      t("cmn_sentence.menuParents", model: Proposal.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Proposal.model_name.human), controller: "proposal", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Proposal.model_name.human), controller: "proposal", action: "new"}]
     }
     # TODO: ユーザー認証により表示させるか、404を表示する
     @currentIndex = 'sysadmin'
@@ -40,15 +37,15 @@ class HomeController < ApplicationController
   def bizadmin
     # 企業管理者メニュー
     @link = {
-        t(:business, scope: [:cmn_dict]) + '管理' => [
-            {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "business", action: "index"},
-            {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "business", action: "new"}],
-        t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human) , controller: "engineer", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human) , controller: "engineer", action: "new"}],
-        t("cmn_sentence.menuParents", model:Offer.model_name.human) => [
-            {title: t("cmn_sentence.listTitle", model: Offer.model_name.human) , controller: "offer", action: "index"},
-            {title: t("cmn_sentence.newTitle", model: Offer.model_name.human) , controller: "offer", action: "new"}]
+      t(:business, scope: [:cmn_dict]) + '管理' => [
+        {title: t(:business, scope: [:cmn_dict]) + '一覧', controller: "business", action: "index"},
+        {title: t(:business, scope: [:cmn_dict]) + '新規作成', controller: "business", action: "new"}],
+      t("cmn_sentence.menuParents", model: Engineer.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Engineer.model_name.human), controller: "engineer", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Engineer.model_name.human), controller: "engineer", action: "new"}],
+      t("cmn_sentence.menuParents", model: Offer.model_name.human) => [
+        {title: t("cmn_sentence.listTitle", model: Offer.model_name.human), controller: "offer", action: "index"},
+        {title: t("cmn_sentence.newTitle", model: Offer.model_name.human), controller: "offer", action: "new"}]
     }
 
     @currentIndex = 'bizadmin'
@@ -63,9 +60,9 @@ class HomeController < ApplicationController
     @page_title = "SILVERION menu"
     @title = '技術者メニュー'
     @link = {'ユーザー管理' => [
-        {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
-        {title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
-        {title: "登録者情報作成・編集", controller: "common_users", action: "index"}]
+      {title: 'ログインユーザー一覧', controller: 'common_users', action: 'index'},
+      {title: 'ログインユーザー新規作成', controller: 'common_users', action: 'add'},
+      {title: "登録者情報作成・編集", controller: "common_users", action: "index"}]
     }
 
     render action: 'index'
@@ -92,13 +89,14 @@ class HomeController < ApplicationController
   end
 
   private
-  def getSysadminMenu()
-    @link = {'ユーザー管理' => [
-        { title:"ログインユーザー一覧", contoller:"common_users" , action:"index"},
-        { title:"ログインユーザー新規作成", contoller:"common_users" , action:"add"},
-        { title:"登録者情報作成・編集", controller:"common_users", action:"new"}]
-    }
 
-  end
+    def getSysadminMenu()
+      @link = {'ユーザー管理' => [
+        {title: "ログインユーザー一覧", contoller: "common_users", action: "index"},
+        {title: "ログインユーザー新規作成", contoller: "common_users", action: "add"},
+        {title: "登録者情報作成・編集", controller: "common_users", action: "new"}]
+      }
+
+    end
 
 end

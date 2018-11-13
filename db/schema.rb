@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_064950) do
+ActiveRecord::Schema.define(version: 2018_11_08_063808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["parent_id"], name: "index_business_types_on_parent_id"
   end
 
-  create_table "businesses", comment: "業務", force: :cascade do |t|
+  create_table "businesses", comment: "案件", force: :cascade do |t|
     t.string "name", null: false, comment: "業務タイトル"
     t.string "description", null: false, comment: "詳細内容"
     t.string "welcome", null: false, comment: "歓迎技術者"
@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.integer "max_quantity", comment: "受入可能人数"
     t.integer "proper_quantity", comment: "希望募集人数"
     t.money "budget", scale: 2, comment: "予算"
+    t.bigint "project_participation_type_id", comment: "想定参画形態"
+    t.date "scheduled_project_start", comment: "開始時期"
+    t.date "scheduled_project_end", comment: "終了時期"
+    t.integer "scheduled_project_span_type", comment: "期間計算単位 {day;0, month;1, year:2, open:3"
     t.date "open_date", default: -> { "CURRENT_DATE" }, comment: "受付開始日"
     t.date "enable_date", default: -> { "CURRENT_DATE" }, comment: "受入可能日"
     t.date "end_date", default: "9999-12-31", comment: "受付締切日"
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["business_type_id"], name: "index_businesses_on_business_type_id"
     t.index ["office_id"], name: "index_businesses_on_office_id"
     t.index ["parent_business_id"], name: "index_businesses_on_parent_business_id"
+    t.index ["project_participation_type_id"], name: "index_businesses_on_project_participation_type_id"
   end
 
   create_table "careers", comment: "経歴", force: :cascade do |t|
@@ -127,12 +132,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["privilege_group_id"], name: "index_control_privileges_on_privilege_group_id"
   end
 
-  create_table "engineer_hirings", comment: "技術者雇用所属(派遣元)", force: :cascade do |t|
+  create_table "engineer_hirings", comment: "要員雇用所属(派遣元)", force: :cascade do |t|
     t.bigint "engineer_id"
-    t.bigint "office_id", comment: "技術者雇用先（派遣元）"
+    t.bigint "office_id", comment: "要員雇用先（派遣元）"
     t.string "hiring_position", comment: "雇用先役職"
     t.string "hiring_division", comment: "雇用先所属"
-    t.string "hiring_memo", comment: "技術者雇用メモ"
+    t.string "hiring_memo", comment: "要員雇用メモ"
     t.bigint "hiring_contact_id", comment: "派遣元連絡先"
     t.date "hired_from", comment: "雇用開始時期"
     t.date "hired_until", comment: "退職(予定)日"
@@ -144,7 +149,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["office_id"], name: "index_engineer_hirings_on_office_id"
   end
 
-  create_table "engineer_hope_businesses", comment: "技術者志向", force: :cascade do |t|
+  create_table "engineer_hope_businesses", comment: "要員志向", force: :cascade do |t|
     t.bigint "engineer_id"
     t.bigint "business_type_id", comment: "従事したい業務"
     t.bigint "skill_id", comment: "発揮したい技能"
@@ -158,7 +163,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["skill_id"], name: "index_engineer_hope_businesses_on_skill_id"
   end
 
-  create_table "engineer_person_infos", comment: "技術者個人情報", force: :cascade do |t|
+  create_table "engineer_person_infos", comment: "要員個人情報", force: :cascade do |t|
     t.bigint "engineer_id"
     t.bigint "person_info_id"
     t.datetime "created_at", null: false
@@ -167,7 +172,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["person_info_id"], name: "index_engineer_person_infos_on_person_info_id"
   end
 
-  create_table "engineer_registration_types", comment: "技術者流入種別", force: :cascade do |t|
+  create_table "engineer_registration_types", comment: "要員流入種別", force: :cascade do |t|
     t.string "name", comment: "流入種別"
     t.string "description", comment: "流入種別詳細"
     t.integer "sort", comment: "並び順"
@@ -185,12 +190,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "engineers", comment: "技術者", force: :cascade do |t|
-    t.string "eng_cd", comment: "技術者登録コード"
-    t.bigint "engineer_registration_type_id", comment: "技術者流入種別"
+  create_table "engineers", comment: "要員", force: :cascade do |t|
+    t.string "eng_cd", comment: "要員登録コード"
+    t.bigint "engineer_registration_type_id", comment: "要員流入種別"
     t.string "registration_memo", comment: "流入情報補足"
-    t.bigint "engineer_status_type_id", comment: "技術者紹介可能状況"
-    t.bigint "person_info_id", comment: "技術者個人情報"
+    t.bigint "engineer_status_type_id", comment: "要員紹介可能状況"
+    t.bigint "person_info_id", comment: "要員個人情報"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["engineer_registration_type_id"], name: "index_engineers_on_engineer_registration_type_id"
@@ -231,7 +236,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
   create_table "hats", comment: "役割", force: :cascade do |t|
     t.bigint "hat_type_id", comment: "役割種別"
     t.string "hat_reference_type"
-    t.bigint "hat_reference_id", comment: "役割参照元"
+    t.bigint "hat_reference_id", comment: "Hat reference"
     t.string "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -259,7 +264,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
   end
 
   create_table "offers", comment: "求人", force: :cascade do |t|
-    t.bigint "business_id", comment: "事業"
+    t.bigint "business_id", comment: "案件"
     t.string "title", comment: "案件名"
     t.string "description"
     t.bigint "offer_status_id", comment: "求人状況"
@@ -345,9 +350,18 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_participation_types", comment: "想定参画形態", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "status"
+    t.date "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "proposals", comment: "提案", force: :cascade do |t|
     t.bigint "offer_id", comment: "求人"
-    t.bigint "engineer_id", comment: "技術者"
+    t.bigint "engineer_id", comment: "要員"
     t.bigint "offered_staff_id", comment: "担当スタッフ"
     t.bigint "office_contact_id", comment: "Office contacts"
     t.string "history"
@@ -359,17 +373,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
     t.index ["office_contact_id"], name: "index_proposals_on_office_contact_id"
   end
 
-  create_table "skill_connects", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "skill_levels", comment: "技能階層", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "constraint"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "constraint"
   end
 
   create_table "skill_supplements", force: :cascade do |t|
@@ -395,23 +404,30 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
   end
 
   create_table "skills", comment: "技能", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "skill_type_id", comment: "技能種別"
     t.string "skill_reference_type"
     t.bigint "skill_reference_id", comment: "技能参照元"
+    t.bigint "parent_id", comment: "親技能"
+    t.bigint "trained_type_id", comment: "習熟度"
     t.string "memo"
+    t.integer "sort"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_skills_on_parent_id"
+    t.index ["skill_reference_type", "skill_reference_id"], name: "index_skills_on_skill_reference_type_and_skill_reference_id"
+    t.index ["skill_type_id"], name: "index_skills_on_skill_type_id"
+    t.index ["trained_type_id"], name: "index_skills_on_trained_type_id"
   end
 
   create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|
+    t.string "staff_cd", comment: "スタッフコード"
     t.bigint "person_info_id"
     t.string "history"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "staff_cd", comment: "スタッフコード"
     t.date "enable_from", comment: "入職（予定）日"
     t.date "disable_from", default: "9999-12-31", comment: "離職日"
     t.integer "status", comment: "staff_enum.staff_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
   end
 
@@ -481,6 +497,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_064950) do
   add_foreign_key "proposals", "staffs", column: "offered_staff_id"
   add_foreign_key "skill_types", "skill_levels"
   add_foreign_key "skill_types", "skill_types", column: "parent_skill_id"
+  add_foreign_key "skills", "skills", column: "parent_id"
   add_foreign_key "staffs", "person_infos"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"

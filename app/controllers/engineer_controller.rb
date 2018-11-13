@@ -1,125 +1,125 @@
 class EngineerController < ApplicationController
 
-	def initialize
-		super
-		@var = EngineerDecorator.new
-		@var.link = {
-			I18n.t("cmn_sentence.listTitle", model:Engineer.model_name.human)=>{controller:"engineer", action:"index"},
-			I18n.t("cmn_sentence.newTitle", model:Engineer.model_name.human)=>{controller:"engineer", action:"new"},
-			I18n.t("cmn_sentence.listTitle", model:Office.model_name.human)=>{controller:"office", action:"index"},
-			I18n.t('cmn_sentence.listTitle',model: Business.model_name.human) => {controller:'business', action:'index'},
-			I18n.t('cmn_sentence.listTitle', model: Offer.model_name.human) => {controller:'offer', action: 'index'}
-		}
-	end
+  def initialize
+    super
+    @var = EngineerDecorator.new
+    @var.link = {
+      I18n.t("cmn_sentence.listTitle", model: Engineer.model_name.human) => {controller: "engineer", action: "index"},
+      I18n.t("cmn_sentence.newTitle", model: Engineer.model_name.human) => {controller: "engineer", action: "new"},
+      I18n.t("cmn_sentence.listTitle", model: Office.model_name.human) => {controller: "office", action: "index"},
+      I18n.t('cmn_sentence.listTitle', model: Business.model_name.human) => {controller: 'business', action: 'index'},
+      I18n.t('cmn_sentence.listTitle', model: Proposal.model_name.human) => {controller: 'proposal', action: 'index'}
+    }
+  end
 
-	def index
-		@var.title = t('cmn_sentence.listTitle',model:Engineer.model_name.human)
-		if request.post?
-			cond_list = {cd: CondEnum::LIKE}
-			free_word = {keyword: [:eng_cd, :person_info, ]}
-			cond_set = self.createCondition(params, cond_list,free_word)
-			@engineers = Engineer.where(cond_set[:cond_arr])
-			@var.search_cond = cond_set[:cond_param]
-		else
-			@var.search_cond = nil
-		end
+  def index
+    @var.title = t('cmn_sentence.listTitle', model: Engineer.model_name.human)
+    if request.post?
+      cond_list = {cd: CondEnum::LIKE}
+      free_word = {keyword: [:eng_cd, :person_info,]}
+      cond_set = self.createCondition(params, cond_list, free_word)
+      @engineers = Engineer.where(cond_set[:cond_arr])
+      @var.search_cond = cond_set[:cond_param]
+    else
+      @var.search_cond = nil
+    end
 
-		@engineers = Engineer.all if @var.search_cond.nil?
-		@var.view_count = @engineers.count
-	end
+    @engineers = Engineer.all if @var.search_cond.nil?
+    @var.view_count = @engineers.count
+  end
 
-	def new
-		@var.title=t("cmn_sentence.newTitle",model:Engineer.model_name.human)
-		@var.mode="new"
-		@var.build_hats_hash Career, -1
-		@var.build_hats_hash EngineerHopeBusiness, -1
-		@var.build_skills_hash Career, -1
-		@var.build_skills_hash EngineerHopeBusiness, -1
-		@engineer=Engineer.new
-	end
+  def new
+    @var.title = t("cmn_sentence.newTitle", model: Engineer.model_name.human)
+    @var.mode = "new"
+    @var.build_hats_hash Career, -1
+    @var.build_hats_hash EngineerHopeBusiness, -1
+    @var.build_skills_hash Career, -1
+    @var.build_skills_hash EngineerHopeBusiness, -1
+    @engineer = Engineer.new
+  end
 
-	def create
-		@engineer=Engineer.new
-		save_engineer(params)
-		respond_to do |format|
-			format.html {redirect_to action: "edit", id: @engineer.id}
-			format.json {render :show, status: :created, location: @engineer}
-		end
-	rescue => e
-		raise e if Rails.env == 'development'
-		respond_to do |format|
-			format.html {render 'new'}
-			format.json {render json: format, status: :unprocessable_entity}
-		end
-	end
+  def create
+    @engineer = Engineer.new
+    save_engineer(params)
+    respond_to do |format|
+      format.html {redirect_to action: "edit", id: @engineer.id}
+      format.json {render :show, status: :created, location: @engineer}
+    end
+  rescue => e
+    raise e if Rails.env == 'development'
+    respond_to do |format|
+      format.html {render 'new'}
+      format.json {render json: format, status: :unprocessable_entity}
+    end
+  end
 
-	def show
+  def show
 
-	end
+  end
 
-	def edit
-		@var.title = I18n.t("cmn_sentence.editTitle",
-			model:Engineer.model_name.human,
-			id:params[:id]
-		)
-		@var.mode = params[:id]
-		@var.build_hats_hash Career, params[:id]
-		@var.build_hats_hash EngineerHopeBusiness, params[:id]
-		@var.build_skills_hash Career, params[:id]
-		@var.build_skills_hash EngineerHopeBusiness, params[:id]
-		@engineer = Engineer.find(params[:id])
-		render action: "new"
+  def edit
+    @var.title = I18n.t("cmn_sentence.editTitle",
+      model: Engineer.model_name.human,
+      id: params[:id]
+    )
+    @var.mode = params[:id]
+    @var.build_hats_hash Career, params[:id]
+    @var.build_hats_hash EngineerHopeBusiness, params[:id]
+    @var.build_skills_hash Career, params[:id]
+    @var.build_skills_hash EngineerHopeBusiness, params[:id]
+    @engineer = Engineer.find(params[:id])
+    render action: "new"
 
-	end
+  end
 
-	def search
-		@var.title =t("cmn_sentence.searchResult",model:Engineer.model_name.human)
-		@var.model_name=Offer.model_name.human
-		@var.mode = params[:offer_id]
-		cond_list = {cd: CondEnum::LIKE}
-		free_word = {keyword: [:eng_cd ]}
-		cond_set = self.createCondition(params, cond_list,free_word)
-		@engineers = Engineer.where(cond_set[:cond_arr])
-		@var.search_cond = cond_set[:cond_param]
-		if @engineers.size == 0
-			@var.modal_dlg_message = t("cmn_sentence.noResult")
-			@engineers = Engineer.all
-		end
-	rescue => e
-		@var.modal_dlg_message = e.message
-	end
+  def search
+    @var.title = t("cmn_sentence.searchResult", model: Engineer.model_name.human)
+    @var.model_name = Offer.model_name.human
+    @var.mode = params[:offer_id]
+    cond_list = {cd: CondEnum::LIKE}
+    free_word = {keyword: [:eng_cd]}
+    cond_set = self.createCondition(params, cond_list, free_word)
+    @engineers = Engineer.where(cond_set[:cond_arr])
+    @var.search_cond = cond_set[:cond_param]
+    if @engineers.size == 0
+      @var.modal_dlg_message = t("cmn_sentence.noResult")
+      @engineers = Engineer.all
+    end
+  rescue => e
+    @var.modal_dlg_message = e.message
+  end
 
-	def update
-		@engineer = Engineer.find(params[:id])
-		save_engineer(params)
-		respond_to do |format|
-			format.html {redirect_to action: "edit", id: params[:id]}
-			format.json {render :show, status: :created, location: @engineer}
-		end
-	rescue => e
-		raise e if Rails.env == 'development'
-		respond_to do |format|
-			format.html {redirect_to action: "edit", id: params[:id]}
-			format.json {render json: format, status: :unprocessable_entity}
-		end
-	end
+  def update
+    @engineer = Engineer.find(params[:id])
+    save_engineer(params)
+    respond_to do |format|
+      format.html {redirect_to action: "edit", id: params[:id]}
+      format.json {render :show, status: :created, location: @engineer}
+    end
+  rescue => e
+    raise e if Rails.env == 'development'
+    respond_to do |format|
+      format.html {redirect_to action: "edit", id: params[:id]}
+      format.json {render json: format, status: :unprocessable_entity}
+    end
+  end
 
-	def destroy
+  def destroy
 
-	end
+  end
 
-	private
+  private
 
-	def save_engineer(params)
-		Engineer.transaction do
-			@engineer.attributes = Engineer.parameters(params, :engineer)
-			@engineer.save!
-			@engineer.careers.each do |career|
-				@var.update_by_reference Career, career.id, params["career-#{career.id}"]
-			end
-			@engineer.engineer_hope_businesses.each do |ehp|
-				@var.update_by_reference Career, ehp.id, params["career-#{ehp.id}"]
-			end
-		end
-	end
+    def save_engineer(params)
+      Engineer.transaction do
+        @engineer.attributes = Engineer.parameters(params, :engineer)
+        @engineer.save!
+        @engineer.careers.each do |career|
+          @var.update_by_reference Career, career.id, params[(params.key?("career-1") ?"career-1": "career#{career.id}")]
+        end
+        @engineer.engineer_hope_businesses.each do |ehp|
+          @var.update_by_reference EngineerHopeBusiness, ehp.id, params[(params.key?("engineer_hope_business-1") ?"engineer_hope_business-1": "engineer_hope_business#{ehp.id}")]
+        end
+      end
+    end
 end
