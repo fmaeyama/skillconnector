@@ -1,7 +1,5 @@
 class EngineerHopeBusiness < ApplicationRecord
 
-  include HatSkillContainer
-
   belongs_to :engineer
   belongs_to :business_type, required: false
   has_many :hats, as: :hat_reference
@@ -11,6 +9,12 @@ class EngineerHopeBusiness < ApplicationRecord
   has_one :skill_supplement, as: :skill_supplemental
 
   enum hope_strength: {few: 0, middle: 1, high: 2}
+
+  def get_hats_list
+
+  end
+
+
   class Grid < InnerGrid
     def grid_info
       raise NotImplementedError, "method grid_info should be overwritten"

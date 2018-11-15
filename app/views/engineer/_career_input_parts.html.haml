@@ -18,7 +18,6 @@
 						= child.label :description, Career.human_attribute_name("description")
 					.p-1.sl-large
 						= child.text_area :description, class:"sl-large"
-			- pp child.object
 			= render "application/skill_hat_editor", var:@var, model:Career,
 			 id:(child.object.id.nil? ? -1 : child.object.id)
 			.row

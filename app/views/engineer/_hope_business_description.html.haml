@@ -1,3 +1,18 @@
-.d-flex.px-4
-	= "[#{hope.skill.name}" unless hope.skill.blank?
-	= hope.description
+.row
+  .col-auto
+    =Hat.model_name.human + " for id:#{hope.id}"
+  .col-auto
+    = "#{helper_get_hat_strings(hope.hats, @var)}" unless hope.hats.blank?
+.row
+  .col-auto
+    = hope.hat_supplement.memo
+.row
+  .col-auto
+    =Skill.model_name.human + " for id:#{hope.id}"
+  .col-auto
+    = "#{helper_get_skill_strings(hope.skills, @var).to_s}" unless hope.skills.blank?
+.row
+  .col-auto
+    = hope.skill_supplement.memo
+.row
+  = hope.description

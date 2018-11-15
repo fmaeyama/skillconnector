@@ -63,19 +63,22 @@ class EngineerController < ApplicationController
       id: params[:id]
     )
     @var.mode = params[:id]
-    @var.build_hats_hash Career, params[:id]
-    @var.build_hats_hash EngineerHopeBusiness, params[:id]
-    @var.build_skills_hash Career, params[:id]
-    @var.build_skills_hash EngineerHopeBusiness, params[:id]
-    @engineer = Engineer.find(params[:id])
+    # Care, EngineerHopeBusinessの追加の可能性もあるので、-1での構築も必要
+    @var.build_hats_hash Career, -1
+    @var.build_hats_hash EngineerHopeBusiness, -1
+    @var.build_skills_hash Career, -1
+    @var.build_skills_hash EngineerHopeBusiness, -1
+    @engineer = Engineer.engineer_with_skill_hat(params[:id], @var)
+    # p " ** edit **"
+    # pp @var.hats_hashes
     render action: "new"
 
   end
 
   def search
     @var.title = t("cmn_sentence.searchResult", model: Engineer.model_name.human)
-    @var.model_name = Offer.model_name.human
-    @var.mode = params[:offer_id]
+    @var.model_name = Business.model_name.human
+    @var.mode = params[:id]
     cond_list = {cd: CondEnum::LIKE}
     free_word = {keyword: [:eng_cd]}
     cond_set = self.createCondition(params, cond_list, free_word)
