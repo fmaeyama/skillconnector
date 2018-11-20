@@ -1,13 +1,19 @@
 class Skill < ApplicationRecord
   belongs_to :skill_type
   belongs_to :skill_reference, polymorphic: true
-  has_many :evaluation
+  has_many :trained_histories, ->{order(evaluated_at: :desc)} ,as: :evaluation
 
   attr_writer :init_level
 
   def level
     return self.skill_type.skill_level unless self.skill_type.nil?
     @init_level
+  end
+
+  def trained_type
+    nil if self.level.no_evaluation?
+    nil if self.trained_histories.size == 0
+    self.traind_histories[0]
   end
 
   def self.skills_hash(model, id, hs_decorator, ret_hash)
@@ -31,6 +37,7 @@ class Skill < ApplicationRecord
       if focused.nil? || !focused.key?(sl_key) || focused[sl_key].size == 0
         skill_obj = Skill.new
         skill_obj.init_level = sl_val
+
         ret_hash[model][id][:levels][sl_key] << skill_obj
       else
         ret_hash[model][id][:levels][sl_key].concat(focused[sl_key])

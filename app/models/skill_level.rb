@@ -1,6 +1,7 @@
 class SkillLevel < ApplicationRecord
   has_many :skill_types
   enum constraint: HatLevel.constraints
+  enum evaluation_type: ApplicationRecord.cmn_evaluation_types
 
   def required?
     (self.constraint_before_type_cast & SkillLevel.constraints[:required]) == SkillLevel.constraints[:required]
@@ -9,6 +10,11 @@ class SkillLevel < ApplicationRecord
   def multi?
     (self.constraint_before_type_cast & SkillLevel.constraints[:only_one]) != SkillLevel.constraints[:only_one]
   end
+
+  def with_trained?
+    self.trained_type?
+  end
+
   class Grid < InnerGrid
     def grid_info
       raise NotImplementedError, "method grid_info should be overwritten"
