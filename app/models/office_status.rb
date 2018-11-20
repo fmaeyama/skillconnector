@@ -2,6 +2,7 @@ class OfficeStatus < ApplicationRecord
   has_many :offices
   scope :active, -> {order("sort_id")}
   scope :enable, -> {where("disable_from > ?", datetime).order("sort_id")}
+
   class Grid < InnerGrid
     def grid_info
       raise NotImplementedError, "method grid_info should be overwritten"

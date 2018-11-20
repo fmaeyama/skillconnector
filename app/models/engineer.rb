@@ -57,9 +57,18 @@ class Engineer < ApplicationRecord
   def get_career_summary
     result = []
     self.careers.each do |career|
-      result << career.name
+      if career.description.nil?
+        career.skills.each do |skill|
+          result << skill.skill_type.name
+        end
+        career.hats.each do |hat|
+          result << hat.hat_type.name
+        end
+      else
+        result << career
+      end
     end
-    result.join(",")
+    result.join(",").truncate(30)
   end
 
   def get_hope_business_summary

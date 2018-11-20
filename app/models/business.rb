@@ -11,7 +11,7 @@ class Business < ApplicationRecord
   has_many :skills, as: :skill_reference
   has_one :hat_supplement, as: :hat_supplemental
   has_one :skill_supplement, as: :skill_supplemental
-
+  accepts_nested_attributes_for :offers
 
   enum scheduled_project_span_type: {day:0, month:1, year:2, open:3}
 
@@ -32,6 +32,7 @@ class Business < ApplicationRecord
   def init_new_instance(params)
     self.business_status_id = BusinessStatus.select(:id).first(1)
     self.business_type_id = BusinessType.select(:id).first(1)
+    self.offers.build
     self.id = -1
     if params.key?("office_id")
       self.office_id = params["office_id"]
@@ -42,6 +43,14 @@ class Business < ApplicationRecord
   def get_parent_business_name
     return if self.parent_id == 0
     self.parent.name
+  end
+
+  def has_default_offer?
+    (self.offers.size > 0) && self.offers[0].persisted?
+  end
+
+  def default_offer
+    self.has_default_offer? ? self.offers[0] : nil
   end
 
   class Grid < InnerGrid

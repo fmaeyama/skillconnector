@@ -34,8 +34,9 @@ class ProposalController < ApplicationController
     offer_id = params.has_key?(:offer) ? params[:offer] : -1
     engineer_id = params.has_key?(:engineer) ? params[:engineer] : -1
     @proposal = Proposal.new(offer_id: offer_id, engineer_id: engineer_id)
-    office_id = Office.joins(:business).find_by(id: offer_id)
-    @var.contacts = Contact.office_contact()
+    office = Office.
+      joins("left join businesses b on offices.id=b.office_id LEFT join offers on offers.business_id=b.id").find_by("offers.id"=> offer_id)
+    @var.contacts = Contact.office_contact(office.id)
   end
 
   def create

@@ -106,7 +106,7 @@ ja:
         description: '詳細内容'
         start_from: '入場希望時期'
         want_until: '募集終了日'
-        wort_at: '勤務地'
+        work_at: '勤務地'
       proposal:
         offered_staff: '担当スタッフ'
         office_contact: '企業側担当'
@@ -143,6 +143,9 @@ ja:
     menu_table: "table"
     not_defined: "未設定"
     update: '更新'
+  business:
+    new:
+      proposal: '%{engineer}を検索して%{proposal}'
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"

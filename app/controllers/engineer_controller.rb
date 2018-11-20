@@ -77,8 +77,13 @@ class EngineerController < ApplicationController
 
   def search
     @var.title = t("cmn_sentence.searchResult", model: Engineer.model_name.human)
-    @var.model_name = Business.model_name.human
-    @var.mode = params[:id]
+    if params.key?(:offer_id)
+      @var.model_name = Offer.model_name.human
+      @var.mode = params[:offer_id]
+    else
+      @var.model_name = Business.model_name.human
+      @var.mode = params[:id]
+    end
     cond_list = {cd: CondEnum::LIKE}
     free_word = {keyword: [:eng_cd]}
     cond_set = self.createCondition(params, cond_list, free_word)

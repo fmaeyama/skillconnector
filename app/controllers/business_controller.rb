@@ -38,7 +38,8 @@ class BusinessController < ApplicationController
     @business = Business.new
     return insert_new_business(params) if request.post?
     @business.init_new_instance(params)
-
+    pp "  ** business new offers ** "
+    pp @business.offers.size
   end
 
   def edit
@@ -96,6 +97,14 @@ class BusinessController < ApplicationController
         Business.transaction do
           @business.attributes = Business.business_params(params, :business)
           @business.save!
+          @business.offers.create!(
+            title:@business.name,
+            description:@business.description,
+            offer_status_id: OfferStatus::STATUS_OPEN,
+            start_from: @business.scheduled_project_start, #予定開始日
+            want_until: @business.end_date, #受付締切
+            work_at: params[:business][:offers_attributes]["0"][:work_at]
+          )
           @var.update_by_reference Business, @business.id, params
           respond_to do |format|
             format.html {redirect_to(action: 'edit', id: @business.id)}
@@ -117,6 +126,13 @@ class BusinessController < ApplicationController
       Business.transaction do
         @business.attributes = Business.business_params(params, :business)
         @business.save!
+        @business.offers[0].update(
+          title:@business.name,
+          description:@business.description,
+          start_from: @business.scheduled_project_start, #予定開始日
+          want_until: @business.end_date, #受付締切
+          work_at: params[:business][:offers_attributes]["0"][:work_at]
+        )
         @var.update_by_reference Business, @business.id, params
       end
     end

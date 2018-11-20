@@ -384,6 +384,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   create_table "skill_supplements", force: :cascade do |t|
     t.string "skill_supplemental_type"
     t.bigint "skill_supplemental_id"
+    t.bigint "trained_type_id", comment: "習熟度"
     t.string "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
