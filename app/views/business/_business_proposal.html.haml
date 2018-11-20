@@ -1,4 +1,6 @@
-%h2=@var.title
-.y-3.p-3.bg-white.rounded.box-shadow
-  .row
-    .col-auto
+.row
+  .col-auto
+    =link_to controller: "proposal", action:"edit", id:offer.proposalid do
+      = "#{Business.model_name.human}:[#{offer.id}#{offer.title}"
+    
+    

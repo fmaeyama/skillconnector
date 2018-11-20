@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_063808) do
+ActiveRecord::Schema.define(version: 2018_11_20_115657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
 
   create_table "careers", comment: "経歴", force: :cascade do |t|
     t.bigint "engineer_id"
-    t.bigint "skill_id"
     t.string "description", comment: "経歴詳細"
+    t.integer "span_type", comment: "期間計算単位 cmn_span_types"
     t.date "career_from", comment: "経験歴（開始時期)"
+    t.date "career_until", comment: "期間"
     t.string "career_at", comment: "主な職場"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["engineer_id"], name: "index_careers_on_engineer_id"
-    t.index ["skill_id"], name: "index_careers_on_skill_id"
   end
 
   create_table "cmn_properties", comment: "属性情報", force: :cascade do |t|
@@ -152,15 +152,15 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   create_table "engineer_hope_businesses", comment: "要員志向", force: :cascade do |t|
     t.bigint "engineer_id"
     t.bigint "business_type_id", comment: "従事したい業務"
-    t.bigint "skill_id", comment: "発揮したい技能"
     t.string "description", comment: "志望業務内容"
+    t.integer "span_type", comment: "期間計算単位 cmn_span_types"
     t.date "hope_since", comment: "希望開始時期"
+    t.date "hope_until", comment: "期間"
     t.integer "hope_strength", comment: "志向度合い"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_type_id"], name: "index_engineer_hope_businesses_on_business_type_id"
     t.index ["engineer_id"], name: "index_engineer_hope_businesses_on_engineer_id"
-    t.index ["skill_id"], name: "index_engineer_hope_businesses_on_skill_id"
   end
 
   create_table "engineer_person_infos", comment: "要員個人情報", force: :cascade do |t|
@@ -206,7 +206,8 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   create_table "hat_levels", comment: "役割階層", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "constraint"
+    t.integer "constraint", comment: "選択制約 HatLevel.constraints"
+    t.integer "evaluation_type", comment: "評価軸 cmn_evaluation_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -244,15 +245,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
     t.index ["hat_type_id"], name: "index_hats_on_hat_type_id"
   end
 
-  create_table "offer_skills", comment: "求人に必要な技能", force: :cascade do |t|
-    t.bigint "offer_id"
-    t.bigint "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["offer_id"], name: "index_offer_skills_on_offer_id"
-    t.index ["skill_id"], name: "index_offer_skills_on_skill_id"
-  end
-
   create_table "offer_statuses", comment: "求人状況", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -267,10 +259,11 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
     t.bigint "business_id", comment: "案件"
     t.string "title", comment: "案件名"
     t.string "description"
+    t.string "welcome", comment: "歓迎技術者"
     t.bigint "offer_status_id", comment: "求人状況"
     t.date "start_from", default: -> { "CURRENT_DATE" }
     t.date "want_until", default: "9999-12-31", comment: "募集終了日"
-    t.string "work_at", comment: "Work at"
+    t.string "work_at", comment: "勤務地"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_offers_on_business_id"
@@ -376,7 +369,8 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   create_table "skill_levels", comment: "技能階層", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "constraint"
+    t.integer "constraint", comment: "選択制約 HatLevel.constraints"
+    t.integer "evaluation_type", comment: "評価軸 cmn_evaluation_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -384,7 +378,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   create_table "skill_supplements", force: :cascade do |t|
     t.string "skill_supplemental_type"
     t.bigint "skill_supplemental_id"
-    t.bigint "trained_type_id", comment: "習熟度"
     t.string "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -409,7 +402,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
     t.string "skill_reference_type"
     t.bigint "skill_reference_id", comment: "技能参照元"
     t.bigint "parent_id", comment: "親技能"
-    t.bigint "trained_type_id", comment: "習熟度"
     t.string "memo"
     t.integer "sort"
     t.datetime "created_at", null: false
@@ -417,7 +409,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
     t.index ["parent_id"], name: "index_skills_on_parent_id"
     t.index ["skill_reference_type", "skill_reference_id"], name: "index_skills_on_skill_reference_type_and_skill_reference_id"
     t.index ["skill_type_id"], name: "index_skills_on_skill_type_id"
-    t.index ["trained_type_id"], name: "index_skills_on_trained_type_id"
   end
 
   create_table "staffs", comment: "SKILLCONNECTメンバー", force: :cascade do |t|
@@ -430,6 +421,17 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_info_id"], name: "index_staffs_on_person_info_id"
+  end
+
+  create_table "trained_histories", force: :cascade do |t|
+    t.bigint "trained_type_id"
+    t.string "evaluation_type"
+    t.bigint "evaluation_id"
+    t.date "evaluated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluation_type", "evaluation_id"], name: "index_trained_histories_on_evaluation_type_and_evaluation_id"
+    t.index ["trained_type_id"], name: "index_trained_histories_on_trained_type_id"
   end
 
   create_table "trained_types", comment: "習熟度", force: :cascade do |t|
@@ -478,14 +480,11 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   add_foreign_key "engineer_hirings", "offices"
   add_foreign_key "engineer_hope_businesses", "business_types"
   add_foreign_key "engineer_hope_businesses", "engineers"
-  add_foreign_key "engineer_hope_businesses", "skills"
   add_foreign_key "engineer_person_infos", "engineers"
   add_foreign_key "engineer_person_infos", "person_infos"
   add_foreign_key "engineers", "engineer_registration_types"
   add_foreign_key "engineers", "engineer_status_types"
   add_foreign_key "engineers", "person_infos"
-  add_foreign_key "offer_skills", "offers"
-  add_foreign_key "offer_skills", "skills"
   add_foreign_key "offer_statuses", "offer_statuses", column: "parent_id"
   add_foreign_key "offers", "businesses"
   add_foreign_key "offers", "offer_statuses"
@@ -500,6 +499,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_063808) do
   add_foreign_key "skill_types", "skill_types", column: "parent_skill_id"
   add_foreign_key "skills", "skills", column: "parent_id"
   add_foreign_key "staffs", "person_infos"
+  add_foreign_key "trained_histories", "trained_types"
   add_foreign_key "user_privilege_groups", "privilege_groups"
   add_foreign_key "user_privilege_groups", "users"
 end

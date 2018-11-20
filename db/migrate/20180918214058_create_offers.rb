@@ -4,6 +4,7 @@ class CreateOffers < ActiveRecord::Migration[5.2]
       t.references :business, foreign_key: true, comment:Business.model_name.human
       t.string :title, comment:Offer.human_attribute_name("title")
       t.string :description, commnet:Offer.human_attribute_name("description")
+      t.string :welcome, comment:Offer.human_attribute_name("welcome")
       t.references :offer_status, foreign_key: true, comment:OfferStatus.model_name.human
       t.date :start_from, default:->{'CURRENT_DATE'}, commnet:Offer.human_attribute_name("start_from")
       t.date :want_until, default:'9999-12-31', comment:Offer.human_attribute_name("want_until")

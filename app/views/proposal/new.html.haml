@@ -67,8 +67,8 @@
 	.sl-border-primary
 		.col-12
 			=t('.other_offer')
-			- if @proposal.other_offers.size > 0
-				=render partial: 'offer/offer_proposal', collection: @proposal.other_offers, as: "offer"
+			- if @proposal.other_businesses.size > 0
+				=render partial: 'business/business_proposal', collection: @proposal.other_businesses, as: "offer"
 			- else
 				= t('cmn_sentence.noResult',model:Offer.model_name.human)
 	-# modal object

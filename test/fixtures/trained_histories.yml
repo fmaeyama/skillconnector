@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  traind_type: one
+  evaluation_for: one
+  evaluated_at: 2018-11-20
+
+two:
+  traind_type: two
+  evaluation_for: two
+  evaluated_at: 2018-11-20

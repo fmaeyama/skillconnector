@@ -13,7 +13,7 @@ class Business < ApplicationRecord
   has_one :skill_supplement, as: :skill_supplemental
   accepts_nested_attributes_for :offers
 
-  enum scheduled_project_span_type: {day:0, month:1, year:2, open:3}
+  enum scheduled_project_span_type: ApplicationRecord.cmn_span_types
 
   def self.span_type_hashes
     self.scheduled_project_span_types.map {|k,v| [I18n.t("scheduled_project_span_type.#{k}"),v]}

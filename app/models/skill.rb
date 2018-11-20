@@ -1,7 +1,7 @@
 class Skill < ApplicationRecord
   belongs_to :skill_type
   belongs_to :skill_reference, polymorphic: true
-  belongs_to :trained_type, optional: true;
+  has_many :evaluation
 
   attr_writer :init_level
 
