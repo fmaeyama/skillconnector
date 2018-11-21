@@ -1,7 +1,7 @@
 class Skill < ApplicationRecord
   belongs_to :skill_type
   belongs_to :skill_reference, polymorphic: true
-  has_many :trained_histories, ->{order(evaluated_at: :desc)} ,as: :evaluation
+  has_many :trained_histories,->{order(evaluated_at: :desc)}, as: :evaluation
 
   attr_writer :init_level
 
@@ -11,9 +11,9 @@ class Skill < ApplicationRecord
   end
 
   def trained_type
-    nil if self.level.no_evaluation?
-    nil if self.trained_histories.size == 0
-    self.traind_histories[0]
+    return nil if self.level.no_evaluation?
+    return nil if self.trained_histories.size == 0
+    self.trained_histories[0].trained_type_id
   end
 
   def self.skills_hash(model, id, hs_decorator, ret_hash)
@@ -87,9 +87,15 @@ class Skill < ApplicationRecord
         end
         @skill.skill_type_id = skill["skill_type_id"].to_i
         @skill.memo = skill["memo"]
-        # p "key : #{key} hat: #{hat}"
-        pp @skill
         @skill.save!
+        if @skill.level.with_trained?
+          if @skill.trained_type.nil? || (@skill.trained_type.trained_type_id != skill["trained_type_id"])
+            @skill.trained_histories.create!(
+              trained_type_id: skill["trained_type_id"].blank? ? nil : skill["trained_type_id"],
+              evaluated_at: Date.today.strftime('%Y-%m-%d')
+            )
+          end
+        end
         flg_level_saved = true
       end
       pp sl

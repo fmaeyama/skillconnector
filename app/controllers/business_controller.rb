@@ -38,8 +38,8 @@ class BusinessController < ApplicationController
     @business = Business.new
     return insert_new_business(params) if request.post?
     @business.init_new_instance(params)
-    pp "  ** business new offers ** "
-    pp @business.offers.size
+    # pp "  ** business new offers ** "
+    # pp @business.offers.size
   end
 
   def edit
