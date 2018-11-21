@@ -3,26 +3,36 @@ class Business < ApplicationRecord
   has_one :parent, class_name: "Business", foreign_key: "parent_business_id"
   has_many :children, class_name: "Business", foreign_key: "parent_business_id"
   has_many :offers
+  belongs_to :business_type
+  belongs_to :business_status
+  belongs_to :office
+
   has_many :hats, as: :hat_reference
   has_many :skills, as: :skill_reference
   has_one :hat_supplement, as: :hat_supplemental
   has_one :skill_supplement, as: :skill_supplemental
-  belongs_to :business_type
-  belongs_to :business_status
-  belongs_to :office
+  accepts_nested_attributes_for :offers
+
+  enum scheduled_project_span_type: ApplicationRecord.cmn_span_types
+
+  def self.span_type_hashes
+    self.scheduled_project_span_types.map {|k,v| [I18n.t("scheduled_project_span_type.#{k}"),v]}
+  end
 
   def self.business_params(param_hash, key)
     param_hash.require(key).permit(
       :id, :name, :description, :welcome, :office_id,
       :business_type_id, :business_status_id, :parent_business_id,
       :max_quantity, :proper_quantity, :budget, :open_date,
-      :enable_date, :end_date, :expire_schedule
+      :enable_date, :end_date, :expire_schedule, :project_participation_type_id,
+      :scheduled_project_start, :scheduled_project_end
     )
   end
 
   def init_new_instance(params)
     self.business_status_id = BusinessStatus.select(:id).first(1)
     self.business_type_id = BusinessType.select(:id).first(1)
+    self.offers.build
     self.id = -1
     if params.key?("office_id")
       self.office_id = params["office_id"]
@@ -33,6 +43,14 @@ class Business < ApplicationRecord
   def get_parent_business_name
     return if self.parent_id == 0
     self.parent.name
+  end
+
+  def has_default_offer?
+    (self.offers.size > 0) && self.offers[0].persisted?
+  end
+
+  def default_offer
+    self.has_default_offer? ? self.offers[0] : nil
   end
 
   class Grid < InnerGrid

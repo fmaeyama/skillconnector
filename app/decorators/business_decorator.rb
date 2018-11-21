@@ -1,6 +1,7 @@
 class BusinessDecorator < SkillConnectDecorator
 	delegate_all
 	attr_reader :business_types, :business_statuses
+	attr_accessor :offer_object
 	include SkillHatContainer
 
 	def initialize

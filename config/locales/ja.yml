@@ -19,12 +19,13 @@ ja:
       hat: '役割'
       hat_level: '役割階層'
       hat_type: '役割種別'
-      project_partisipation_types: '想定参画携帯'
+      project_participation_type: '想定参画形態'
       skill: '技能'
       skill_level: '技能階層'
       skill_type: '技能種別'
       staff: 'SKILLCONNECTメンバー'
       trained_type: '習熟度'
+      trained_history: '習熟度履歴'
       offer: '求人'
       offer_skill: '求人に必要な技能'
       offer_status: '求人状況'
@@ -36,9 +37,21 @@ ja:
       office:
         business: '募集案件'
       business:
+        name: '業務タイトル'
+        description: '業務詳細'
         office: '募集顧客'
         parent: '親案件'
         business_type: '案件種別'
+        max_quantity: '受入可能人数'
+        proper_quantity: '希望募集人数'
+        budget: '予算'
+        scheduled_project_start: '開始時期'
+        scheduled_project_end: '終了時期'
+        scheduled_project_span: '期間単位'
+        welcome: '歓迎技術者'
+        open_date: '募集受付開始日'
+        end_date: '募集受付締切日'
+        enable_date: '要員受入可能日'
       contact:
         contact_name: '担当者名'
         contact_kana: '担当者ふりがな'
@@ -60,6 +73,7 @@ ja:
       career:
         description: '経歴詳細'
         career_from: '経験歴（開始時期)'
+        career_until: '期間'
         career_at: '主な職場'
         history: '経験歴'
       hat_type:
@@ -88,13 +102,15 @@ ja:
         skill: '発揮したい技能'
         description: '志望業務内容'
         hope_since: '希望開始時期'
+        hope_until: '期間'
         hope_strength: '志向度合い'
       offer:
         title: '案件名'
         description: '詳細内容'
         start_from: '入場希望時期'
         want_until: '募集終了日'
-        wort_at: '勤務地'
+        welcome: '歓迎技術者'
+        work_at: '勤務地'
       proposal:
         offered_staff: '担当スタッフ'
         office_contact: '企業側担当'
@@ -112,7 +128,8 @@ ja:
     otherTitie: 'その他の%{model}'
     menuParents: '%{model}管理'
     noRelatedTitle: '関連がある%{model}はありません'
-    noResult: '検索結果は0件でした。全件を取得しました。'
+    noResult: '検索結果は0件でした。'
+    noResult_get_all: '検索結果は0件でした。全件を取得しました'
     no_selected: '選択されていません'
   cmn_dict:
     office: '顧客'
@@ -131,6 +148,9 @@ ja:
     menu_table: "table"
     not_defined: "未設定"
     update: '更新'
+  business:
+    new:
+      proposal: '%{engineer}を検索して%{proposal}'
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
@@ -139,8 +159,8 @@ ja:
     new:
       no_offer: "%{office} -> %{business} -> %{offer} より登録してください。もしくは既存のものを検索して下さい。"
       no_engineer: "新規%{engineer}を登録するか、登録済みの%{engineer}を検索してください。"
-      other_engineer: "同じ求人を持つ技術者"
-      other_offer: "この技術者の他の求人"
+      other_engineer: "同じ案件を提案中の技術者"
+      other_offer: "この技術者の他の案件"
   common_users:
     assign_role:
       title: '権限一覧'

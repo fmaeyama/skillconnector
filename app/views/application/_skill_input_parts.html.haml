@@ -1,6 +1,6 @@
 - num = skill_iteration.index if defined? skill_iteration
 - selected_id = skill.skill_type_id.blank? ? -1 : skill.skill_type_id
-- current_trained_type = skill.trained_type.blank? ? -1 : skill.trained_type
+- current_trained_type = skill.trained_type.nil? ? -1 : skill.trained_type
 - return if (!skill.level.multi? && (!defined?(skill_iteration) || !skill_iteration.first?))
 .row.skill_input
   .col-1
@@ -8,18 +8,18 @@
     .row
       .col-auto
         %span{class:"sl_content"}
-          = collection_select "skill[#{key}][#{num}]", 'skill_type_id', var.skill_types[key], :id,  :name, include_blank: t("cmn_sentence.select_prompt", model:Skill.model_name.human), selected: selected_id
-      .col-auto
-        %span{class:"sl_content"}
-          = select_tag "skill[#{key}][#{num}]trained_type_id", options_for_select(var.trained_types), include_blank: t("cmn_sentence.select_prompt", model:TrainedType.model_name.human),
-           selected: current_trained_type
+          = collection_select "#{model}#{id}[skill][#{key}][#{num}]", 'skill_type_id', var.skill_types[key], :id,  :name, include_blank: t("cmn_sentence.select_prompt", model:Skill.model_name.human), selected: selected_id
+      - if skill.level.with_trained?
+        .col-auto
+          %span{class:"sl_content"}
+            = select_tag "#{model}#{id}[skill][#{key}][#{num}][trained_type_id]", options_for_select(var.trained_types, selected: current_trained_type),include_blank: t("cmn_sentence.select_prompt", model:TrainedType.model_name.human)
       .col-auto
         %span{class:"sl_title"}
           = SkillType.human_attribute_name("memo")
         %span{class:"sl_content"}
-          = text_field_tag "skill[#{key}][#{num}][memo]", skill.memo
+          = text_field_tag "#{model}#{id}[skill][#{key}][#{num}][memo]", skill.memo
   .col-2
-    = hidden_field_tag "skill[#{key}][#{num}][id]", skill.id.blank? ?  -1 : skill.id
-    = hidden_field_tag "skill[#{key}][#{num}][_destroy]", 0
+    = hidden_field_tag "#{model}#{id}[skill][#{key}][#{num}][id]", skill.id.blank? ?  -1 : skill.id
+    = hidden_field_tag "#{model}#{id}[skill][#{key}][#{num}][_destroy]", 0
     - if skill.level.multi? && !(skill.level.required? && defined?(skill_iteration) && skill_iteration.first?)
       = link_to t("cmn_sentence.deleteTitle", model: Skill.model_name.human), "javascript.void(0);", class:'remove_fields btn btn-outline-danger', data:{model:"skill"}

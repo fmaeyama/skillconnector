@@ -65,6 +65,7 @@ class Hat < ApplicationRecord
       hat_arr.each do |key, hat|
         if (key[0, 2] == "new") || (hat["id"].to_i == -1)
           next if hat["_destroy"].to_i == 1
+          next if hat["hat_type_id"].blank?
           bus = model.find(id)
           @hat = bus.hats.create
         else

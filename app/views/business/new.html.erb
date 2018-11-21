@@ -1,71 +1,89 @@
 <h2> <%= @var.title %></h2>
 <div class="my-3 p-3 bg-white rounded box-shadow">
-	<%= form_for(@business,
-		url: (@var.mode=="new" ? url_for(action: 'new') : url_for(action:'update', id:@var.mode) )) do |f| %>
-		<div class="row">
-			<div class="col-12">
-				<%= f.collection_select :business_status_id, @var.business_statuses, :id, :name, class:'px-4' %>
-				<%= f.collection_select :business_type_id, @var.business_types, :id, :name, class:'px-4'  %>
-				<%= f.label :name, '業務タイトル' %><%= f.text_field :name, class:'px-4'  %>
-				<% if @business.parent.blank? %>
-					<%= button_tag t(
-						'cmn_sentence.searchButton',
-						model: Business.human_attribute_name(:parent)),
-						onclick: 'SearchParentBusiness()'
-					 %>
-				<% else %>
-					<span class="sl-title"><%= Business.human_attribute_name(:parent) %>:</span>
-					<span class="sl-content" id="parent_business"><%= f.parent_business.name %></span>
-				<% end %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<%= f.label :description, '業務タイトル' %>
-				<%= f.text_area :description, class:"sl-large-input" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<%= f.label :welcome, '歓迎技術者' %>
-				<%= f.text_area :welcome, class:"sl-large-input" %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<%= f.label :max_quantity, '受入可能人数', class:'px-4' %>
-				<%= f.number_field :max_quantity, class:"sl-small-field" %>名
-				<%= f.label :proper_quantity, '希望募集人数', class:'px-4'  %>
-				<%= f.number_field :proper_quantity, class:"sl-small-field" %>名
-				<%= f.label :budget, '予算', class:'px-4'  %>
-				<%= f.number_field :budget %>円
-			</div>
-		</div>
-		<%= render "application/skill_hat_editor", var:@var, model:Business, id:@business.id %>
-		<div class="sl-border-primary">
-			<div class="col-12">
-				<div class="row">
-					<div class="col-6">
-						<h3><%=t('cmn_sentence.listTitle',model:Offer.model_name.human) %></h3>
-					</div>
-					<div class="col-6">
-						<%= link_to t('cmn_sentence.newTitle', model:Offer.model_name.human),
-							url_for(controller:'offer', action:'new', business_id:@business.id),
-							class:'btn btn-primary'
-						%>
-					</div>
-				</div>
-				<%= helper_call_offer_title_if_exists %>
-			</div>
-		</div>
-		<div class="sl-border-primary">
-			<%= f.hidden_field :office_id %>
-			<%= render "/office/office_description",
-				office: @business.office,
-				title: Business.human_attribute_name(:office) %>
-		</div>
-		<div class="sl-row-rightAlign">
-			<div class="col-3"><%= f.submit %></div>
-		</div>
-	<% end %>
+    <%= form_for(@business,
+        url: (@var.mode == "new" ? url_for(action: 'new') : url_for(action: 'update', id: @var.mode))) do |f| %>
+        <div class="fixed-top" style="top:250px;left:1000px;"><%= button_tag "案件の更新", class:"btn btn-primary btn-lg" %>
+        <% if @business.has_default_offer? %>
+            <% @var.offer_object = @business.default_offer %>
+            <%= button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human), type:"button", class:'btn btn-secondary btn-lg', data:{toggle:'modal',target:'#bootstrapModalforEngineer'} %>
+        <%end %></div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.collection_select :business_status_id, @var.business_statuses, :id, :name, class: 'mx-4' %>
+                <%= f.collection_select :business_type_id, @var.business_types, :id, :name, class: 'mx-4' %>
+                <%= f.label :name, Business.human_attribute_name('name') %><%= f.text_field :name, class: 'mx-4' %>
+                <% if @business.parent.blank? %>
+                    <%= button_tag t(
+                        'cmn_sentence.searchButton',
+                        model: Business.human_attribute_name(:parent)),
+                        onclick: 'SearchParentBusiness()'
+                    %>
+                <% else %>
+                    <span class="sl-title"><%= Business.human_attribute_name(:parent) %>:</span>
+                    <span class="sl-content" id="parent_business"><%= f.parent_business.name %></span>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.label :open_date, Business.human_attribute_name('open_date'), class: 'px-4' %>
+                <%= f.date_field :open_date, class: "mx-4" %>
+                <%= f.label :end_date, Business.human_attribute_name('end_date'), class: 'px-4' %>
+                <%= f.date_field :end_date, class: "mx-4" %>
+                <%= f.label :enable_date, Business.human_attribute_name('enable_date'), class: 'px-4' %>
+                <%= f.date_field :enable_date, class: "mx-4" %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.label :description, Business.human_attribute_name('description') %>
+                <%= f.text_area :description, class: "sl-large-input" %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.label :welcome, Business.human_attribute_name('welcome') %>
+                <%= f.text_area :welcome, class: "sl-large-input" %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.collection_select :project_participation_type_id, ProjectParticipationType.enable, :id, :name, include_blank: t('cmn_sentence.select_prompt', model: ProjectParticipationType.model_name.human), class: 'px-4' %>
+                <%= f.label :max_quantity, Business.human_attribute_name('max_quantity'), class: 'px-4' %>
+                <%= f.number_field :max_quantity, class: "sl-small-field" %>名
+                <%= f.label :proper_quantity, Business.human_attribute_name('proper_quantity'), class: 'px-4' %>
+                <%= f.number_field :proper_quantity, class: "sl-small-field" %>名
+                <%= f.label :budget, Business.human_attribute_name('budget'), class: 'px-4' %>
+                <%= f.number_field :budget %>円
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <%= f.select :scheduled_project_span_type, Business.span_type_hashes, include_blank: t('cmn_sentence.select_prompt', model: Business.human_attribute_name('scheduled_project_span')) %>
+                <%= f.label :scheduled_project_start, Business.human_attribute_name('scheduled_project_start'), class: 'px-4' %>
+                <%= f.date_field :scheduled_project_start, class: "px-4" %>
+                <%= f.label :scheduled_project_end, Business.human_attribute_name('scheduled_project_end'), class: 'px-4' %>
+                <%= f.date_field :scheduled_project_end, class: "px-4" %>
+                <% if @business.offers.size == 1 %>
+                    <%= f.fields_for :offers, @business.offers[0] do |offer_field| %>
+                        <%= offer_field.label :work_at, Offer.human_attribute_name('work_at') %>
+                        <%= offer_field.text_field :work_at %>
+                    <% end %>
+                <% else %>
+                    <%= "Error! offier size excpected 1, actual #{@business.offers.size}" %>
+                <% end %>
+            </div>
+        </div>
+        <h3>必要とする役割と技能</h3>
+        <%= render "application/skill_hat_editor", var: @var, model: Business, id: @business.id %>
+        <div class="sl-border-primary">
+            <%= f.hidden_field :office_id %>
+            <%= render "/office/office_description",
+                office: @business.office,
+                title: Business.human_attribute_name(:office) %>
+        </div>
+    <% end %>
+    <% if @business.has_default_offer? %>
+        <%= render partial: 'engineer/engineer_search', layout: 'search_modal_bootstrap', locals: {modal_var:@var,modal_id:"bootstrapModalforEngineer"} %>
+    <% end %>
 </div>

@@ -9,15 +9,18 @@ class Proposal < ApplicationRecord
     Engineer.select("engineers.*", "proposals.id as proposalid").joins(:proposals).where("proposals.offer_id=?", self.offer_id).where.not({proposals: {id: self.id}})
   end
 
-  def other_offers
-    Offer.select("offers.*", "proposals.id as proposalid").joins(:proposals).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
+  def other_businesses
+    Business.select("businesses.*", "proposals.id as proposalid").joins(offers:[:proposals]).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
   end
+
+  #こちらは一旦廃止中
+  # def other_offers
+  #   Offer.select("offers.*", "proposals.id as proposalid").joins(:proposals).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
+  # end
 
 
   def get_related_office_id
-    office = Office.joins(businesses: [offers: [:proposals]]).where("proposals.id=?", self.id)
-    return -1 if office.size == 0
-    office.first!.id
+    Proposal.get_office_id_from_offer self.offer_id
   end
 
   def description
@@ -28,6 +31,12 @@ class Proposal < ApplicationRecord
     return res
   end
 
+  def self.get_office_id_from_offer(offer_id)
+    office = Office.joins(businesses: [:offers]).where("offers.id=?", offer_id)
+    return -1 if office.size == 0
+    office.first!.id
+
+  end
   def self.parameters(params, key)
     params.require(key).permit(
       :offer_id, :engineer_id, :offered_staff_id, :office_contact_id,

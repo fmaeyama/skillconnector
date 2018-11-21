@@ -7,8 +7,8 @@ class BusinessController < ApplicationController
       I18n.t("cmn_sentence.listTitle", model: Business.model_name.human) => {controller: "business", action: "index"},
       I18n.t("cmn_sentence.newTitle", model: Business.model_name.human) => {controller: "business", action: "new"},
       I18n.t('cmn_sentence.listTitle', model: Office.model_name.human) => {controller: 'office', action: 'index'},
-      I18n.t('cmn_sentence.listTitle', model: Offer.model_name.human) => {controller: 'offer', action: 'index'},
-      I18n.t('cmn_sentence.listTitle', model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'}
+      I18n.t('cmn_sentence.listTitle', model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'},
+      I18n.t('cmn_sentence.listTitle', model: Proposal.model_name.human) => {controller: 'proposal', action: 'index'}
     }
 
   end
@@ -38,7 +38,8 @@ class BusinessController < ApplicationController
     @business = Business.new
     return insert_new_business(params) if request.post?
     @business.init_new_instance(params)
-
+    # pp "  ** business new offers ** "
+    # pp @business.offers.size
   end
 
   def edit
@@ -95,8 +96,16 @@ class BusinessController < ApplicationController
       begin
         Business.transaction do
           @business.attributes = Business.business_params(params, :business)
-          @var.update_by_reference Business, @business.id, params
           @business.save!
+          @business.offers.create!(
+            title:@business.name,
+            description:@business.description,
+            offer_status_id: OfferStatus::STATUS_OPEN,
+            start_from: @business.scheduled_project_start, #予定開始日
+            want_until: @business.end_date, #受付締切
+            work_at: params[:business][:offers_attributes]["0"][:work_at]
+          )
+          @var.update_by_reference Business, @business.id, params
           respond_to do |format|
             format.html {redirect_to(action: 'edit', id: @business.id)}
             format.json {render :show, status: :created, location: @business}
@@ -116,8 +125,15 @@ class BusinessController < ApplicationController
     def save_business(params)
       Business.transaction do
         @business.attributes = Business.business_params(params, :business)
-        @var.update_by_reference Business, @business.id, params
         @business.save!
+        @business.offers[0].update(
+          title:@business.name,
+          description:@business.description,
+          start_from: @business.scheduled_project_start, #予定開始日
+          want_until: @business.end_date, #受付締切
+          work_at: params[:business][:offers_attributes]["0"][:work_at]
+        )
+        @var.update_by_reference Business, @business.id, params
       end
     end
 

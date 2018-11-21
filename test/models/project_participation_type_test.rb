@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProjectPartisipationTypeTest < ActiveSupport::TestCase
+class ProjectParticipationTypeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

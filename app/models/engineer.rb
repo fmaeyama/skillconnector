@@ -13,6 +13,18 @@ class Engineer < ApplicationRecord
   accepts_nested_attributes_for :engineer_hope_businesses, allow_destroy: true, reject_if: :all_blank
   after_initialize :set_default_value, if: :new_record?
 
+  def self.engineer_with_skill_hat(id, sh_decorator)
+    eng=self.find(id)
+    eng.careers.each do |c|
+      sh_decorator.build_hats_hash Career, c.id
+      sh_decorator.build_skills_hash Career, c.id
+    end
+    eng.engineer_hope_businesses.each do |ehb|
+      sh_decorator.build_hats_hash EngineerHopeBusiness, ehb.id
+      sh_decorator.build_skills_hash EngineerHopeBusiness, ehb.id
+    end
+    eng
+  end
 
   def self.parameters(param_hash, key)
     param_hash.require(key).permit(
@@ -45,9 +57,18 @@ class Engineer < ApplicationRecord
   def get_career_summary
     result = []
     self.careers.each do |career|
-      result << career.name
+      if career.description.nil?
+        career.skills.each do |skill|
+          result << skill.skill_type.name
+        end
+        career.hats.each do |hat|
+          result << hat.hat_type.name
+        end
+      else
+        result << career
+      end
     end
-    result.join(",")
+    result.join(",").truncate(30)
   end
 
   def get_hope_business_summary
