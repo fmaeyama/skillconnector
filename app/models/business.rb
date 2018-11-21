@@ -3,7 +3,6 @@ class Business < ApplicationRecord
   has_one :parent, class_name: "Business", foreign_key: "parent_business_id"
   has_many :children, class_name: "Business", foreign_key: "parent_business_id"
   has_many :offers
-  belongs_to :business_type
   belongs_to :business_status
   belongs_to :office
 
@@ -31,7 +30,6 @@ class Business < ApplicationRecord
 
   def init_new_instance(params)
     self.business_status_id = BusinessStatus.select(:id).first(1)
-    self.business_type_id = BusinessType.select(:id).first(1)
     self.offers.build
     self.id = -1
     if params.key?("office_id")

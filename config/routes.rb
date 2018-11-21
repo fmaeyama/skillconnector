@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'business/edit_own'
   get 'business/contact_list'
   post 'business/search'
+
   resources :staff
   resources :offer
   resources :proposal

@@ -3,39 +3,7 @@
 <div class="my-3 p-3 bg-white rounded box-shadow">
 	<h6 class="border-bottom border-gray pb-2 mb-0">Resgeterd Skilled Person List</h6>
 
-	<%=form_tag('/update') do %>
-		<%=render partial:'user',collection: @allusers %>
-		<% 	@allusers.each do |user| %>
-			<div class="media text-muted pt-3">
-				<img alt="32x32" class="mr-2 rounded" src="<%= image_path(user.getUserImages["main"]) %>" style="width: 128px; height: 128px;">
-				<div class="media-body app-datablock">
-					<div class="app-data-title">
-						id: <span id="userid-<%=user.id%>"> <%=user.id%></span>
-					</div>
-					<div class="app-data-title">
-						<strong><span class="app-data-label">loginid:</span><span class="app-data-content"><%=user.email %></span></strong>
-					</div>
-					<div class="d-block p-4">
-						<% if user.person_info.blank? then
-						     # モデル userにperson_infoが関連付いていない場合
-						%>
-							<div class="d-block warning m-2">login user is not assosiated to person profile!</div>
-							<div class="d-flex justify-content-end">
-								<button type="button" id="assosiate_person" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"> <%=t("cmn_sentence.select_prompt", model:PersonInfo.model_name.human) %>検索 </button>
-								<button type="button" id="create_person" class="btn btn-application" onClick="location.href='<%=url_for(controller: "common_users", action: "new") %>'"> <%= t("cmn_sentence.newTitle", model:PersonInfo.model_name.human) %></button>
-							</div>
-						<% else
-						# モデルuserとperson_infoが関連付いている
-						%>
-							<%= label_tag(:first_name, "first_name") %>
-							<%= text_field_tag(:first_name)%>
-						<% end %>
-					</div>
-				</div>
-
-			</div>
-		<% end %>
-	<% end%>
+    <%=render partial:'user',collection: @allusers %>
 <%
 	#TODO search person for assosiate
 	#TODO edit person profile

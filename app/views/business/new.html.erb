@@ -2,15 +2,16 @@
 <div class="my-3 p-3 bg-white rounded box-shadow">
     <%= form_for(@business,
         url: (@var.mode == "new" ? url_for(action: 'new') : url_for(action: 'update', id: @var.mode))) do |f| %>
-        <div class="fixed-top" style="top:250px;left:1000px;"><%= button_tag "案件の更新", class:"btn btn-primary btn-lg" %>
-        <% if @business.has_default_offer? %>
-            <% @var.offer_object = @business.default_offer %>
-            <%= button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human), type:"button", class:'btn btn-secondary btn-lg', data:{toggle:'modal',target:'#bootstrapModalforEngineer'} %>
-        <%end %></div>
+        <div class="fixed-top" style="top:250px;left:1000px;">
+            <%= button_tag "案件の更新", class:"btn btn-primary btn-lg" %>
+            <% if @business.has_default_offer? %>
+                <% @var.offer_object = @business.default_offer %>
+                <%= button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human), type:"button", class:'btn btn-secondary btn-lg', data:{toggle:'modal',target:'#bootstrapModalforEngineer'} %>
+            <%end %>
+        </div>
         <div class="row">
             <div class="col-12">
                 <%= f.collection_select :business_status_id, @var.business_statuses, :id, :name, class: 'mx-4' %>
-                <%= f.collection_select :business_type_id, @var.business_types, :id, :name, class: 'mx-4' %>
                 <%= f.label :name, Business.human_attribute_name('name') %><%= f.text_field :name, class: 'mx-4' %>
                 <% if @business.parent.blank? %>
                     <%= button_tag t(
@@ -21,6 +22,14 @@
                 <% else %>
                     <span class="sl-title"><%= Business.human_attribute_name(:parent) %>:</span>
                     <span class="sl-content" id="parent_business"><%= f.parent_business.name %></span>
+                <% end %>
+                <% if @business.offers.size == 1 %>
+                    <%= f.fields_for :offers, @business.offers[0] do |offer_field| %>
+                        <%= offer_field.label :work_at, Offer.human_attribute_name('work_at') %>
+                        <%= offer_field.text_field :work_at %>
+                    <% end %>
+                <% else %>
+                    <%= "Error! offier size excpected 1, actual #{@business.offers.size}" %>
                 <% end %>
             </div>
         </div>
@@ -64,14 +73,6 @@
                 <%= f.date_field :scheduled_project_start, class: "px-4" %>
                 <%= f.label :scheduled_project_end, Business.human_attribute_name('scheduled_project_end'), class: 'px-4' %>
                 <%= f.date_field :scheduled_project_end, class: "px-4" %>
-                <% if @business.offers.size == 1 %>
-                    <%= f.fields_for :offers, @business.offers[0] do |offer_field| %>
-                        <%= offer_field.label :work_at, Offer.human_attribute_name('work_at') %>
-                        <%= offer_field.text_field :work_at %>
-                    <% end %>
-                <% else %>
-                    <%= "Error! offier size excpected 1, actual #{@business.offers.size}" %>
-                <% end %>
             </div>
         </div>
         <h3>必要とする役割と技能</h3>
