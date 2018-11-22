@@ -5,20 +5,20 @@ module SkillConnectsHelper
     paramSet[key]
   end
 
-  def helper_get_skill_strings(skills,sh_decorator)
+  def helper_get_skill_strings(skills,skill_levels)
     skills_hash = skills.map{|row| [row.skill_type.skill_level_id, (row.memo.blank? ? row.skill_type.name : "#{row.skill_type.name}/#{row.memo}")]}
       .group_by{|arr| arr[0]}
     res = ""
-    sh_decorator.skill_levels.each do |sl_key, sl_val|
-      res +=  "#{sl_val.name}:#{skills_hash[sl_key].map{|sk| sk[1]}.to_s} "
+    skill_levels.each do |sl_key, sl_val|
+      res +=  "#{sl_val.name}:#{skills_hash[sl_key].map{|sk| sk[1]}.to_s} " unless skills_hash[sl_key].nil?
     end
     res
   end
 
-  def helper_get_hat_strings(hats,sh_decorator)
+  def helper_get_hat_strings(hats,hat_levels)
     hats_hash = hats.map{|row| [row.hat_type.hat_level_id, (row.memo.blank? ? row.hat_type.name : "#{row.hat_type.name}/#{row.memo}")]}.group_by{|arr| arr[0]}
     res = ""
-    sh_decorator.hat_levels.each do |hl_key, hl_val|
+    hat_levels.each do |hl_key, hl_val|
       res +=  "#{hl_val.name}:#{hats_hash[hl_key].map{|sk| sk[1]}.to_s} "
     end
     res
@@ -45,9 +45,9 @@ module SkillConnectsHelper
     # pp "  ** debug sc_helper_link_to add parts "
     # pp temp_hash
 
-    fields = render partial: "#{part_name}_input_parts", locals: temp_hash
+    fields = render partial: "#{part_name}_input_tables", locals: temp_hash
     link_to(part_title, 'javascript:void(0)',
-      class: "add_fields btn btn-secondary",
+      class: "add_fields btn btn-secondary btn-lg",
       data: {id: id, model: part_name, fields: fields.gsub("\n", "")}) unless fields.nil?
   end
 end

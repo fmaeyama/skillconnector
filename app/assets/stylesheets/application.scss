@@ -74,6 +74,12 @@
   width: 5em
 }
 
+.sl-fixed-submit-button{
+  @extend .fixed-top;
+  top: 250px;
+  left: 1000px;
+}
+
 label.sl-auto-input{
   width: 25%;
 }

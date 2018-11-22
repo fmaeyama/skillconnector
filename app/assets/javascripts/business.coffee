@@ -15,5 +15,5 @@ $ ->
 		time = new Date().getTime()
 		model = $(this).attr('data-model')
 		regexp = new RegExp($(this).data('id'), 'g')
-		$(this).closest('.key_'+model+'_holder').children('.'+model+'_holder').append($(this).data('fields').replace(regexp,time))
+		$(this).closest('.key_'+model+'_holder').find('.'+model+'_holder').append($(this).data('fields').replace(regexp,time))
 		event.preventDefault()

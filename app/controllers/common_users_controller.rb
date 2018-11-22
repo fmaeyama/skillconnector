@@ -9,7 +9,8 @@ class CommonUsersController < ApplicationController
       I18n.t('cmn_sentence.listTitle', model: Office.model_name.human) => {controller: 'office', action: 'index'},
       I18n.t('cmn_sentence.listTitle', model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'},
       I18n.t('cmn_sentence.listTitle', model: Business.model_name.human) => {controller: 'business', action: 'index'},
-      I18n.t("cmn_sentence.listTitle", model: Staff.model_name.human) => {controller: "staff", action: "index"}
+      I18n.t("cmn_sentence.listTitle", model: Staff.model_name.human) => {controller: "staff", action: "index"},
+      I18n.t('cmn_sentence.listTitle', model: '表編集') => {controller: 'grid', action: 'index'}
     }
   end
 

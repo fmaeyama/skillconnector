@@ -7,7 +7,8 @@ class OfferController < ApplicationController
       I18n.t("cmn_sentence.listTitle", model: Offer.model_name.human) => {controller: "offer", action: "index"},
       I18n.t("cmn_sentence.newTitle", model: Engineer.model_name.human) => {controller: "offer", action: "new"},
       I18n.t('cmn_sentence.listTitle', model: Office.model_name.human) => {controller: 'office', action: 'index'},
-      I18n.t('cmn_sentence.listTitle', model: Business.model_name.human) => {controller: 'business', action: 'index'}
+      I18n.t('cmn_sentence.listTitle', model: Business.model_name.human) => {controller: 'business', action: 'index'},
+      I18n.t('cmn_sentence.listTitle', model: '表編集') => {controller: 'grid', action: 'index'}
     }
   end
 

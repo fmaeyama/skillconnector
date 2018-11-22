@@ -10,7 +10,8 @@ class OfficeController < ApplicationController
       I18n.t('cmn_sentence.listTitle', model: Proposal.model_name.human) => {controller: 'proposal', action: 'index'},
       I18n.t("cmn_sentence.listTitle", model: Engineer.model_name.human) => {controller: 'engineer', action: 'index'},
       t("cmn_sentence.listTitle", model: Staff.model_name.human) => {controller: "staff", action: "index"},
-      I18n.t("cmn_sentence.listTitle", model:User.model_name.human)=>{controller:"common_users", action:"index"}
+      I18n.t("cmn_sentence.listTitle", model:User.model_name.human)=>{controller:"common_users", action:"index"},
+      I18n.t('cmn_sentence.listTitle', model: '表編集') => {controller: 'grid', action: 'index'}
     }
   end
 

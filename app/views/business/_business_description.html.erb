@@ -2,7 +2,8 @@
 	<div class="col-8">
 		<span class="sl-title"><%= business.name %></span>
 		<span class="sl-content px-4"><%= business.description %></span>
-		<%= business.business_type.name %>
+		<%= helper_get_hat_strings(business.hats, HatLevel.all.map{|hl| [hl.id, hl]}.to_h) %>
+        <%= helper_get_skill_strings(business.skills, SkillLevel.all.map{|hl| [hl.id, hl]}.to_h) %>
 	</div>
 	<div class="col-4">
 		<%= link_to url:{controller:"business", action: "edit", id:business.id}, html_options:"target=_blank" do %>
