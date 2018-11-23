@@ -117,8 +117,10 @@ class BusinessController < ApplicationController
         end
       rescue => e
         raise e if Rails.env == "development"
+        pp e
         flash.now[:alert] = e.message
         respond_to do |format|
+          @business.id = -1
           format.html {render 'new'}
           format.json {render json: format, status: :unprocessable_entity}
         end
