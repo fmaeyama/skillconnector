@@ -96,8 +96,11 @@ class BusinessController < ApplicationController
     def insert_new_business(params)
       begin
         Business.transaction do
+          p " ** start insert new business "
           @business.attributes = Business.business_params(params, :business)
+          p " ** after set attribute "
           @business.save!
+          p " ** after save "
           @business.offers.create!(
             title:@business.name,
             description:@business.description,
