@@ -1,146 +1,147 @@
 <%
-	# sample : https://getbootstrap.com/docs/4.1/examples/offcanvas/#
+    # sample : https://getbootstrap.com/docs/4.1/examples/offcanvas/#
 %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><%= @var.nil? ? "SkillConnect" : @var.title %></title>
-	<%= csrf_meta_tags %>
-	<%= csp_meta_tag %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= @var.nil? ? "SkillConnect" : @var.title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag 'offcanvas' %>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'lib/offcanvas' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 </head>
 
 <body class="bg-light">
 <div class="header" role="banner" data-header-area="acquisition">
-	<div class="header-lyt-column">
-		<div class="col">
-			<div class="header-inner">
-				<div class="logo"><a href="/index.html">[Logo.png]
-					<!-- img src="/common_a/img/header/logo.png" alt="SILVERION"--> </a></div>
-				<!-- /header-inner --></div>
-			<!-- /col --></div>
+    <div class="header-lyt-column">
+        <div class="col">
+            <div class="header-inner">
+                <div class="logo"><a href="/index.html">[Logo.png]
+                    <!-- img src="/common_a/img/header/logo.png" alt="SILVERION"--> </a></div>
+                <!-- /header-inner --></div>
+            <!-- /col --></div>
 
-		<div class="col wide">
-			<div class="header-menu js-header-menu">
-				<div class="header-menu-inner">
-					<div class="header-menu-hook">
-						<button class="header-menu-txt"><span>メニュー</span></button>
-					</div>
-					<div class="header-menu-contents" style="opacity: 1;">
-						<div class="header-search">
-							<a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><!--img src="/common_a/img/header/btn-search-02.png" alt="検索"-->
-								btnsearch.png</a>
-							<div class="header-search-inner">
-								<div class="modal-search">
-									<div class="modal-search-inner">
-										<form name="search_form" action="https://search-yayoi-kk.dga.jp/" class="iSearchAssist" method="GET" onsubmit="return mysearch_ssl(this);">
-											<input title="サイト内検索" type="text" name="kw" value="" class="searchBox ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-											<input type="hidden" name="ie" value="s">
-											<!--input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn"-->
-											btn-search.png
-										</form>
-										<!-- /modal-search-inner --></div>
-									<!-- /modal-search --></div>
-								<!-- /header-search-inner --></div>
-							<!-- /header-search --></div>
+        <div class="col wide">
+            <div class="header-menu js-header-menu">
+                <div class="header-menu-inner">
+                    <div class="header-menu-hook">
+                        <button class="header-menu-txt"><span>メニュー</span></button>
+                    </div>
+                    <div class="header-menu-contents" style="opacity: 1;">
+                        <div class="header-search">
+                            <!--a href=".modal-search-inner" class="js-modal-search header-search-btn cboxElement"><img src="/common_a/img/header/btn-search-02.png" alt="検索">
+                                btnsearch.png</a-->
+                            <div class="header-search-inner">
+                                <div class="modal-search">
+                                    <div class="modal-search-inner">
+                                        <!--form-- name="search_form" action="https://search-yayoi-kk.dga.jp/" class="iSearchAssist" method="GET" onsubmit="return mysearch_ssl(this);">
+                                            <input title="サイト内検索" type="text" name="kw" value="" class="searchBox ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                            <input type="hidden" name="ie" value="s">
+                                            <input type="image" src="/common_a/img/header/btn-modal-search.png" alt="検索" class="search-btn">
+                                            btn-search.png
+                                        </form-->
+                                        <!-- /modal-search-inner --></div>
+                                    <!-- /modal-search --></div>
+                                <!-- /header-search-inner --></div>
+                            <!-- /header-search --></div>
 
-						<!-- ========================= Navigation Global ========================= -->
-						<nav>
-							<div class="nav-global js-global-dropdown">
-								<div class="nav-global-inner">
-									<ul class="nav-global-list js-current js-global-toggle">
+                        <!-- ========================= Navigation Global ========================= -->
+                        <nav>
+                            <div class="nav-global js-global-dropdown">
+                                <div class="nav-global-inner">
+                                    <ul class="nav-global-list js-current js-global-toggle">
 
-										<li style="height: 41px;"><%= link_to('SILVERION', id: 'link_to_home', controller: '/home', action: 'index', style: "height: 41px;") %></li>
-										<% if user_signed_in? %>
-											<li class="global-dropdown global-toggle is-current" style="height: 41px;">
-												<div class="global-toggle-hook-wrap">
-													<%= link_to('システム設定', id: 'link-to-sysadmin', controller: '/home', action: 'sysadmin', style: 'height: 41px;') %>
-												</div>
-											</li>
-											<li class="global-dropdown global-toggle" style="height: 41px;">
-												<div class="global-toggle-hook-wrap">
-													<%= link_to('求人設定', id: 'link-to-bizadmin', controller: '/home', action: 'bizadmin', style: 'height: 41px;') %>
-												</div>
-											</li>
-											<li class="global-dropdown global-toggle" style="height: 41px;">
-												<div class="global-toggle-hook-wrap">
-													<%= link_to('個人設定', id: 'link-to-useradmin', controller: '/home', action: 'useradmin', style: 'height: 41px;') %>
-												</div>
-											</li>
-											<li class="global-link-list">
-												<%= link_to 'logout', destroy_user_session_path, method: :delete %>
-											</li>
-										<% else %>
-											<li class="global-link-list">
-												<%= link_to 'sign_up', new_user_registration_path %>
-											</li>
-											<li class="global-link-list">
-												<%= link_to 'login', new_user_session_path %>
-											</li>
-										<% end %>
+                                        <li style="height: 41px;"><%= link_to('SILVERION', id: 'link_to_home', controller: '/home', action: 'index', style: "height: 41px;") %></li>
+                                        <% if user_signed_in? %>
+                                            <li class="global-dropdown global-toggle is-current" style="height: 41px;">
+                                                <div class="global-toggle-hook-wrap">
+                                                    <%= link_to('システム設定', {controller: 'home', action: 'sysadmin'}, id: 'link-to-sysadmin', style: 'height: 41px;') %>
+                                                </div>
+                                            </li>
+                                            <li class="global-dropdown global-toggle" style="height: 41px;">
+                                                <div class="global-toggle-hook-wrap">
+                                                    <%= link_to('求人設定', {controller: 'home', action: 'bizadmin'}, id: 'link-to-bizadmin', style: 'height: 41px;') %>
+                                                </div>
+                                            </li>
+                                            <li class="global-dropdown global-toggle" style="height: 41px;">
+                                                <div class="global-toggle-hook-wrap">
+                                                    <%= link_to('個人設定', {controller: 'home', action: 'user'}, id: 'link-to-useradmin', style: 'height: 41px;') %>
+                                                </div>
+                                            </li>
+                                            <li class="global-link-list">
+                                                <%= link_to 'logout:' + current_user.email, destroy_user_session_path, method: :delete %>
+                                            </li>
+                                        <% else %>
+                                            <li class="global-link-list">
+                                                <%= link_to 'sign_up', new_user_registration_path %>
+                                            </li>
+                                            <li class="global-link-list">
+                                                <%= link_to 'login', new_user_session_path %>
+                                            </li>
+                                        <% end %>
 
-									</ul>
-								</div>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <main role="main" class="container" style="min-width: 800px">
-	<div class="d-flex align-items-end p-3 my-3 text-white-50 bg-purple rounded box-shadow">
-		<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
-		<div class="d-flex mb-0 text-white lh-100">
-			<h1>
-				SILVERION <%= @var.nil? ? "" : @var.title %>
-			</h1>
-		</div>
+    <div class="d-flex align-items-end p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+        <%= image_tag "brand/logo.png", alt: "site-logo", width: "36", height: "36", class: "mr-3" %>
+        <div class="d-flex mb-0 text-white lh-100">
+            <h1>
+                SILVERION <%= @var.nil? ? "" : @var.title %>
+            </h1>
+        </div>
 
-		<div class="d-flex lh-100">
-			<small>Since 2018</small>
-		</div>
-		<div class="d-flex mx-5">
-			<%= @var.nav_menu unless @var.nil? %>
-		</div>
-	</div>
-	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-		<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Notifications</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+        <div class="d-flex lh-100">
+            <small>Since <br/>2018</small>
+        </div>
+        <div class="d-flex mx-2">
+            <%= @var.nav_menu unless @var.nil? %>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Notifications</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
-	<% unless alert.blank? && notice.blank? %>
-		<div class="d-flex">
-			<div class="lh-100">
-				<p class="notice app-notice"><%= notice %></p>
-				<p class="alert app-alert"><%= alert %></p>
-			</div>
-		</div>
-	<% end %>
-	<%= yield %>
+    <% unless alert.blank? && notice.blank? %>
+        <div class="d-flex">
+            <div class="lh-100">
+                <p class="notice app-notice"><%= notice %></p>
+                <p class="alert app-alert"><%= alert %></p>
+            </div>
+        </div>
+    <% end %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
 
 </main>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
-	<defs>
-		<style type="text/css"></style>
-	</defs>
-	<text x="0" y="2" style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text>
+    <defs>
+        <style type="text/css"></style>
+    </defs>
+    <text x="0" y="2" style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text>
 </svg>
 </body>
 </html>

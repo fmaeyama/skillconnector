@@ -5,9 +5,6 @@
 			.row
 				.col-4.d-flex.flex-column
 					.px-1
-						= child.collection_select :skill_id, var.skills, :id, :name,
-										 include_blank: t('cmn_sentence.select_prompt',model:Skill.model_name.human)
-					.px-1
 						= child.label :career_from, Career.human_attribute_name("career_from")
 					.px-1
 						= child.date_field :career_from
@@ -21,8 +18,10 @@
 						= child.label :description, Career.human_attribute_name("description")
 					.p-1.sl-large
 						= child.text_area :description, class:"sl-large"
-				.row
-					.col-12
-						= child.hidden_field(:id)
-						= child.hidden_field :_destroy
-						= link_to t("cmn_sentence.deleteTitle", model:Career.model_name.human), 'javascript:void(0)', class:"career_remove_fields"
+			= render "application/skill_hat_editor", var:@var, model:Career,
+			 id:(child.object.id.nil? ? -1 : child.object.id)
+			.row
+				.col-12
+					= child.hidden_field(:id)
+					= child.hidden_field :_destroy
+					= link_to t("cmn_sentence.deleteTitle", model:Career.model_name.human), 'javascript:void(0)', class:"career_remove_fields"

@@ -1,0 +1,89 @@
+- id: 1
+  name: 農業
+  description: 農業
+  skill_level_id: 1
+  status: 1
+
+- id: 2
+  name: 林業
+  description: 林業
+  skill_level_id: 1
+  status: 1
+
+- id: 3
+  name: 漁業
+  description: 漁業
+  skill_level_id: 1
+  status: 1
+
+- id: 4
+  name: 鉱業
+  description: 鉱業
+  skill_level_id: 1
+  status: 1
+
+- id: 5
+  name: 建設業
+  description: 建設業
+  skill_level_id: 1
+  status: 1
+
+- id: 6
+  name: ERP
+  description: ERP
+  skill_level_id: 2
+  status: 1
+
+- id: 7
+  name: SCM
+  description: SCM
+  skill_level_id: 2
+  status: 1
+
+- id: 8
+  name: CRM
+  description: CRM
+  skill_level_id: 2
+  status: 1
+
+- id: 9
+  name: SFA
+  description: SFA
+  skill_level_id: 2
+  status: 1
+
+- id: 10
+  name: EC-EDI
+  description: EC-EDI
+  skill_level_id: 2
+  status: 1
+
+- id: 11
+  name: BASIC、LISP
+  description: BASIC、LISP
+  skill_level_id: 3
+  status: 1
+
+- id: 12
+  name: COBOL、FORTRAN
+  description: COBOL、FORTRAN
+  skill_level_id: 3
+  status: 1
+
+- id: 13
+  name: VB、VBA、Delphi
+  description: VB、VBA、Delphi
+  skill_level_id: 3
+  status: 1
+
+- id: 14
+  name: C、C++
+  description: C、C++
+  skill_level_id: 3
+  status: 1
+
+- id: 15
+  name: C#
+  description: C#
+  skill_level_id: 3
+  status: 1

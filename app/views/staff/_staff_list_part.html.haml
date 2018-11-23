@@ -1,14 +1,15 @@
 .media.text-muted.pt-3
-	.media-body.app-datablock
-		.app-data-title
-			=staff.id
-			id:
-			%span{id: "staff-id-#{staff.id}"}
-				=staff.id
-		.d-block.p-4
-			= staff.person_info.getFullName
-			= "(#{staff.person_info.getFullKana})"
-		.d-block.p-4
-			= staff.history
-		.d-block.p-4
-			="created at #{staff.created_at}"
+  .media-body.app-datablock
+    .app-data-title
+      =staff.id
+      id:
+      %span{id: "staff-id-#{staff.id}"}
+        =staff.id
+    .d-block.p-4
+      %h4=link_to staff.person_info.getFullName,
+        url_for(controller:"staff", action:"edit", id:staff.id)
+        = "(#{staff.person_info.getFullKana})"
+    .d-block.p-4
+      = staff.history
+    .d-block.p-4
+      ="created at #{staff.created_at}"

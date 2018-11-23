@@ -1,0 +1,2 @@
+class HatController < ApplicationController
+end

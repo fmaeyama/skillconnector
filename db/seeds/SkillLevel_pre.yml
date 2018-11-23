@@ -1,0 +1,17 @@
+- id: 1
+  name: スキル1
+  description: 業界でのくくり
+  constraint: 3
+  evaluation_type: 0
+
+- id: 2
+  name: スキル2
+  description: システム種別
+  constraint: 2
+  evaluation_type: 0
+
+- id: 3
+  name: スキル3
+  description: 言語
+  constraint: 0
+  evaluation_type: 1

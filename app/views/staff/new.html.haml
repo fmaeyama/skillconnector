@@ -1,34 +1,48 @@
 %h2=@var.title
 .y-3.p-3.bg-white.rounded.box-shadow
-	=form_for @staff,url:(@var.mode="new"?url_for(action:"create"):url_for(action:"update",id:@var.mode)) do |f|
-		.row
-			.col-6
-				= f.fields_for :person_info do |person_info|
-					.row
-						.col-4
-							= person_info.label :last_name, '姓'
-							= person_info.text_field :last_name
-						.col-4
-							= person_info.label :first_name, '名'
-							= person_info.text_field :first_name
-						.col-4
-							= person_info.label :middle_name, 'ミドルネーム'
-							= person_info.text_field :middle_name
-					.row
-						.col-4
-							= person_info.label :kana_last_name, 'せい（かな）'
-							= person_info.text_field :kana_last_name
-						.col-4
-							= person_info.label :kana_first_name, 'めい（かな）'
-							= person_info.text_field :kana_first_name
-						.col-4
-							= person_info.label :kana_middle_name, 'みどるねーむ（かな）'
-							= person_info.text_field :kana_middle_name
-			.col-6.d-flex.flex-column
-				.p-1
-					= f.label :history
-				.p-1.sl-large
-					= f.text_area :history, class:"sl-large"
-		.row.sl-row-rightAlign
-			.col-
-				= f.submit
+  =form_for @staff,url:(@var.mode=="new"?url_for(action:"create"):url_for(action:"update",id:@var.mode)) do |f|
+    .sl-fixed-submit-btn
+      = f.submit class:"btn btn-primary btn-lg"
+    .row
+      .col-6
+        = f.fields_for :person_info do |person_info|
+          .row
+            .col-12
+              = f.select :status, Staff.statuses.to_a.map  {|s| [t("staff_status.#{s[0]}"),s[0]]}
+              = f.label :staff_cd, Staff.human_attribute_name('staff_cd')
+              = f.text_field :staff_cd
+          .row
+            .col-4
+              = person_info.label :last_name, '姓'
+              = person_info.text_field :last_name
+            .col-4
+              = person_info.label :first_name, '名'
+              = person_info.text_field :first_name
+            .col-4
+              = person_info.label :middle_name, 'ミドルネーム'
+              = person_info.text_field :middle_name
+          .row
+            .col-4
+              = person_info.label :kana_last_name, 'せい（かな）'
+              = person_info.text_field :kana_last_name
+            .col-4
+              = person_info.label :kana_first_name, 'めい（かな）'
+              = person_info.text_field :kana_first_name
+            .col-4
+              = person_info.label :kana_middle_name, 'みどるねーむ（かな）'
+              = person_info.text_field :kana_middle_name
+          .row
+            .col-12.d-flex
+              .p-1
+                = f.label :enable_from
+              .p-1
+                = f.date_field :enable_from
+              - if @staff.persisted?
+                .p-1
+                  = f.label :disable_from
+                  = f.date_select :disable_from
+      .col-6.d-flex.flex-column
+        .p-1
+          = f.label :history
+        .p-1.sl-large
+          = f.text_area :history, class:"sl-large"

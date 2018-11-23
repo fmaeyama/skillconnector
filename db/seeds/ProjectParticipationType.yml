@@ -1,0 +1,14 @@
+- id: 1
+  name: 常駐
+  description: 現場80%～100%常駐
+  status: 1
+
+- id: 2
+  name: 半常駐
+  description: 現場10%～80%常駐
+  status: 1
+
+- id: 3
+  name: 非常駐
+  description: 現場に座席無し。基本訪問のみ
+  status: 1
