@@ -19,6 +19,7 @@ class Business < ApplicationRecord
   end
 
   def self.business_params(param_hash, key)
+    p " ** business_params start "
     param_hash.require(key).permit(
       :id, :name, :description, :welcome, :office_id,
       :business_type_id, :business_status_id, :parent_business_id,
@@ -27,8 +28,7 @@ class Business < ApplicationRecord
       :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type,
       offers_attributes: [:work_at]
     )
-  rescue => e
-    pp e
+    p " ** business_params end "
   end
 
   def init_new_instance(params)
