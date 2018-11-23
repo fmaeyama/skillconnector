@@ -27,6 +27,8 @@ class Business < ApplicationRecord
       :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type,
       offers_attributes: [:work_at]
     )
+  rescue => e
+    pp e
   end
 
   def init_new_instance(params)
