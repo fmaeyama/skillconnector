@@ -4,7 +4,6 @@ class Business < ApplicationRecord
   has_many :children, class_name: "Business", foreign_key: "parent_business_id"
   has_many :offers
   belongs_to :business_status
-  belongs_to :business_type
   belongs_to :office
 
   has_many :hats, as: :hat_reference
