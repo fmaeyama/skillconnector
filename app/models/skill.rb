@@ -98,7 +98,6 @@ class Skill < ApplicationRecord
         end
         flg_level_saved = true
       end
-      pp sl
       if !flg_level_saved && sl.required?
         raise ActiveModel::ValidationError.new "skill_level #{sl.name} is required!"
       end
