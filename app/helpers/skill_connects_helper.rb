@@ -45,7 +45,7 @@ module SkillConnectsHelper
     # pp "  ** debug sc_helper_link_to add parts "
     # pp temp_hash
 
-    fields = render partial: "#{part_name}_input_tables", locals: temp_hash
+    fields = render partial: "#{part_name}_input_parts", locals: temp_hash
     link_to(part_title, 'javascript:void(0)',
       class: "add_fields btn btn-secondary btn-lg",
       data: {id: id, model: part_name, fields: fields.gsub("\n", "")}) unless fields.nil?
