@@ -25,8 +25,7 @@ class Business < ApplicationRecord
       :business_type_id, :business_status_id, :parent_business_id,
       :max_quantity, :proper_quantity, :budget, :open_date,
       :enable_date, :end_date, :expire_schedule, :project_participation_type_id,
-      :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type,
-      offers_attributes: [:work_at]
+      :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type
     )
     p " ** business_params end "
   end
