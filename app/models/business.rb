@@ -15,19 +15,19 @@ class Business < ApplicationRecord
   enum scheduled_project_span_type: ApplicationRecord.cmn_span_types
 
   def self.span_type_hashes
-    self.scheduled_project_span_types.map {|k,v| [I18n.t("scheduled_project_span_type.#{k}"),v]}
+    self.scheduled_project_span_types.map {|k,v| [I18n.t("scheduled_project_span_type.#{k}"),k]}
   end
 
   def self.business_params(param_hash, key)
-    p " ** business_params start "
-    param_hash.require(key).permit(
+    res = param_hash.require(key).permit(
       :id, :name, :description, :welcome, :office_id,
       :business_type_id, :business_status_id, :parent_business_id,
       :max_quantity, :proper_quantity, :budget, :open_date,
       :enable_date, :end_date, :expire_schedule, :project_participation_type_id,
       :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type
     )
-    p " ** business_params end "
+    p ' ** business_params! '
+    pp res
   end
 
   def init_new_instance(params)
