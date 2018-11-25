@@ -91,7 +91,7 @@ class Skill < ApplicationRecord
         if @skill.level.with_trained?
           if @skill.trained_type.nil? || (@skill.trained_type.trained_type_id != skill["trained_type_id"])
             @skill.trained_histories.create!(
-              trained_type_id: skill["trained_type_id"].blank? ? nil : skill["trained_type_id"],
+              trained_type_id: skill["trained_type_id"].blank? ? 0 : skill["trained_type_id"], # set default value
               evaluated_at: Date.today.strftime('%Y-%m-%d')
             )
           end
