@@ -37,6 +37,7 @@ class EngineerController < ApplicationController
     @var.build_skills_hash EngineerHopeBusiness, -1
     flash.now[:alert] = @var.alert unless @var.alert.blank?
     @engineer = Engineer.new
+    p " ** engineer new! "
   end
 
   def create
