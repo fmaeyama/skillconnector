@@ -54,7 +54,7 @@ class EngineerController < ApplicationController
     pp e
     flash.now[:alert] = e.message
     respond_to do |format|
-      format.html {render 'new', id:-1}
+      format.html {redirect_to action: "new"}
       format.json {render json: format, status: :unprocessable_entity}
     end
   end
