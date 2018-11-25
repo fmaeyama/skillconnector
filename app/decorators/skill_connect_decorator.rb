@@ -4,7 +4,7 @@ end
 
 module SkillHatContainer
   attr_reader :hats_hashes, :hat_types, :hat_levels, :skill_types, :skill_levels,
-    :skills_hashes, :trained_types
+    :skills_hashes, :trained_types, :alert
 
   def initialize
     @hat_levels = Hash[HatLevel.all.map {|hl| [hl.id, hl]}]

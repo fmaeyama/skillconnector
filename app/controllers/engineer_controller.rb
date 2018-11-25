@@ -35,6 +35,7 @@ class EngineerController < ApplicationController
     @var.build_hats_hash EngineerHopeBusiness, -1
     @var.build_skills_hash Career, -1
     @var.build_skills_hash EngineerHopeBusiness, -1
+    flash.now[;alsert]=@var.alert unless @var.alert.blank?
     @engineer = Engineer.new
   end
 
@@ -52,11 +53,9 @@ class EngineerController < ApplicationController
     raise e if Rails.env == 'development'
     p " ** engineer_controller.rb create error! "
     pp e
-    @var.title = "Error! " + t("cmn_sentence.newTitle", model: Engineer.model_name.human)
-    @var.mode = "new"
-    flash.now[:alert] = e.message
+    @var.alert = e.message
     respond_to do |format|
-      format.html {render 'new'}
+      format.html {redirect_to action: 'new'}
       format.json {render json: format, status: :unprocessable_entity}
     end
   end
