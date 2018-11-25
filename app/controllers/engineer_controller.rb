@@ -29,15 +29,16 @@ class EngineerController < ApplicationController
   end
 
   def new
+    p " ** engineer new! "
     @var.title = t("cmn_sentence.newTitle", model: Engineer.model_name.human)
     @var.mode = "new"
+    p " ** engineer new 2! "
     @var.build_hats_hash Career, -1
     @var.build_hats_hash EngineerHopeBusiness, -1
     @var.build_skills_hash Career, -1
     @var.build_skills_hash EngineerHopeBusiness, -1
     flash.now[:alert] = @var.alert unless @var.alert.blank?
     @engineer = Engineer.new
-    p " ** engineer new! "
   end
 
   def create
