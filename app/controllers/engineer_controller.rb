@@ -52,9 +52,11 @@ class EngineerController < ApplicationController
     raise e if Rails.env == 'development'
     p " ** engineer_controller.rb create error! "
     pp e
+    @var.title = "Error! " + t("cmn_sentence.newTitle", model: Engineer.model_name.human)
+    @var.mode = "new"
     flash.now[:alert] = e.message
     respond_to do |format|
-      format.html {redirect_to action: "new"}
+      format.html {render 'new'}
       format.json {render json: format, status: :unprocessable_entity}
     end
   end
