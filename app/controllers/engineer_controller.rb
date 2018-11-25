@@ -35,7 +35,7 @@ class EngineerController < ApplicationController
     @var.build_hats_hash EngineerHopeBusiness, -1
     @var.build_skills_hash Career, -1
     @var.build_skills_hash EngineerHopeBusiness, -1
-    flash.now[;alsert]=@var.alert unless @var.alert.blank?
+    flash.now[:alert] = @var.alert unless @var.alert.blank?
     @engineer = Engineer.new
   end
 
