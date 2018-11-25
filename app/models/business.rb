@@ -19,15 +19,13 @@ class Business < ApplicationRecord
   end
 
   def self.business_params(param_hash, key)
-    res = param_hash.require(key).permit(
+    param_hash.require(key).permit(
       :id, :name, :description, :welcome, :office_id,
       :business_type_id, :business_status_id, :parent_business_id,
       :max_quantity, :proper_quantity, :budget, :open_date,
       :enable_date, :end_date, :expire_schedule, :project_participation_type_id,
       :scheduled_project_start, :scheduled_project_end, :scheduled_project_span_type
     )
-    p ' ** business_params! '
-    pp res
   end
 
   def init_new_instance(params)

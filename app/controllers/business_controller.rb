@@ -96,11 +96,11 @@ class BusinessController < ApplicationController
     def insert_new_business(params)
       begin
         Business.transaction do
-          p " ** start insert new business "
+          #p " ** start insert new business "
           @business.attributes = Business.business_params(params, :business)
-          p " ** after set attribute "
+          #p " ** after set attribute "
           @business.save!
-          p " ** after save "
+          #p " ** after save "
           @business.offers.create!(
             title:@business.name,
             description:@business.description,
@@ -120,7 +120,7 @@ class BusinessController < ApplicationController
         pp e
         flash.now[:alert] = e.message
         respond_to do |format|
-          @business.id = -1
+          @business.id = -1 # for not error in new for html...
           format.html {render 'new'}
           format.json {render json: format, status: :unprocessable_entity}
         end

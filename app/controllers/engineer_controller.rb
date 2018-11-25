@@ -50,8 +50,11 @@ class EngineerController < ApplicationController
     end
   rescue => e
     raise e if Rails.env == 'development'
+    p " ** engineer_controller.rb create error! "
+    pp e
+    flash.now[:alert] = e.message
     respond_to do |format|
-      format.html {render 'new'}
+      format.html {render 'new', id:-1}
       format.json {render json: format, status: :unprocessable_entity}
     end
   end
@@ -109,6 +112,9 @@ class EngineerController < ApplicationController
     end
   rescue => e
     raise e if Rails.env == 'development'
+    p " ** engineer_controller.rb update error! "
+    pp e
+    flash.now[:alert] = e.message
     respond_to do |format|
       format.html {redirect_to action: "edit", id: params[:id]}
       format.json {render json: format, status: :unprocessable_entity}
