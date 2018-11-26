@@ -1,3 +1,9 @@
+- id: 0
+  rate: 0
+  name: NotEvaluated
+  description: 未評価
+  status: 1
+
 - id: 1
   rate: 1
   name: Trained
