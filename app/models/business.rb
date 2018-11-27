@@ -35,7 +35,6 @@ class Business < ApplicationRecord
     if params.key?("office_id")
       self.office_id = params["office_id"]
     end
-
   end
 
   def get_parent_business_name
@@ -49,6 +48,17 @@ class Business < ApplicationRecord
 
   def default_offer
     self.has_default_offer? ? self.offers[0] : nil
+  end
+
+  def add_new_offer(work_at)
+    self.offers.create!(
+      title:self.name,
+      description:self.description,
+      offer_status_id: OfferStatus::STATUS_OPEN,
+      start_from: self.scheduled_project_start, #予定開始日
+      want_until: self.end_date, #受付締切
+      work_at: work_at
+    )
   end
 
   class Grid < InnerGrid

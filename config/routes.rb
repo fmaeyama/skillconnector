@@ -26,14 +26,17 @@ Rails.application.routes.draw do
 
   resources :engineer
   post 'engineer/search'
-  resources :business
+  #resources :business
   get 'business/index'
   get 'business/new'
   post 'business/new'
+  post 'business/update'
+  get 'business/:id/edit', to: 'engineer#edit'
   get 'business/edit'
   get 'business/edit_own'
   get 'business/contact_list'
   post 'business/search'
+  get 'business/add_offer'
 
   resources :staff
   resources :offer

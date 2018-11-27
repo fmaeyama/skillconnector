@@ -55,6 +55,15 @@ class BusinessController < ApplicationController
     render "new"
   end
 
+
+  def add_offer
+    id = params[:id]
+    @business = Business.find(id)
+    @business.add_new_offer ""
+    render "new"
+#    redirect_to action:"edit", id: id
+  end
+
   def update
     @business = Business.find(params[:id])
     save_business(params)
@@ -93,6 +102,7 @@ class BusinessController < ApplicationController
       Business.where(cond_set[:cond_arr])
     end
 
+
     def insert_new_business(params)
       begin
         Business.transaction do
@@ -101,14 +111,7 @@ class BusinessController < ApplicationController
           #p " ** after set attribute "
           @business.save!
           #p " ** after save "
-          @business.offers.create!(
-            title:@business.name,
-            description:@business.description,
-            offer_status_id: OfferStatus::STATUS_OPEN,
-            start_from: @business.scheduled_project_start, #予定開始日
-            want_until: @business.end_date, #受付締切
-            work_at: params[:business][:offers_attributes]["0"][:work_at]
-          )
+          @business.add_new_offer params[:business][:offers_attributes]["0"][:work_at]
           @var.update_by_reference Business, @business.id, params
           respond_to do |format|
             format.html {redirect_to(action: 'edit', id: @business.id)}

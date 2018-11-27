@@ -30,6 +30,9 @@
                     <% end %>
                 <% else %>
                     <%= "Error! offier size excpected 1, actual #{@business.offers.size}" %>
+                    <a href="<%= url_for action: "add_offer", id:@business.id %>">
+                    <%= button_tag "recovery", type: "button"  %>
+                    </a>
                 <% end %>
             </div>
         </div>

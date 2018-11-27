@@ -3,6 +3,11 @@ class EngineerController < ApplicationController
   def initialize
     super
     @var = EngineerDecorator.new
+    # Care, EngineerHopeBusinessの追加の可能性もあるので、-1での構築も必要
+    @var.build_hats_hash Career, -1
+    @var.build_hats_hash EngineerHopeBusiness, -1
+    @var.build_skills_hash Career, -1
+    @var.build_skills_hash EngineerHopeBusiness, -1
     @var.link = {
       I18n.t("cmn_sentence.listTitle", model: Engineer.model_name.human) => {controller: "engineer", action: "index"},
       I18n.t("cmn_sentence.newTitle", model: Engineer.model_name.human) => {controller: "engineer", action: "new"},
@@ -29,15 +34,8 @@ class EngineerController < ApplicationController
   end
 
   def new
-    p " ** engineer new! "
     @var.title = t("cmn_sentence.newTitle", model: Engineer.model_name.human)
     @var.mode = "new"
-    p " ** engineer new 2! "
-    @var.build_hats_hash Career, -1
-    @var.build_hats_hash EngineerHopeBusiness, -1
-    @var.build_skills_hash Career, -1
-    @var.build_skills_hash EngineerHopeBusiness, -1
-    flash.now[:alert] = @var.alert unless @var.alert.blank?
     @engineer = Engineer.new
   end
 
@@ -58,10 +56,6 @@ class EngineerController < ApplicationController
     @var.title = t("cmn_sentence.newTitle", model: Engineer.model_name.human)
     @var.mode = "new"
     p " ** engineer new 2! "
-    @var.build_hats_hash Career, -1
-    @var.build_hats_hash EngineerHopeBusiness, -1
-    @var.build_skills_hash Career, -1
-    @var.build_skills_hash EngineerHopeBusiness, -1
     flash.now[:alert] = e.message
     respond_to do |format|
       format.html {render action: 'new'}
@@ -79,11 +73,6 @@ class EngineerController < ApplicationController
       id: params[:id]
     )
     @var.mode = params[:id]
-    # Care, EngineerHopeBusinessの追加の可能性もあるので、-1での構築も必要
-    @var.build_hats_hash Career, -1
-    @var.build_hats_hash EngineerHopeBusiness, -1
-    @var.build_skills_hash Career, -1
-    @var.build_skills_hash EngineerHopeBusiness, -1
     @engineer = Engineer.engineer_with_skill_hat(params[:id], @var)
     # p " ** edit **"
     # pp @var.hats_hashes
