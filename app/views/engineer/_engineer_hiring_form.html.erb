@@ -18,6 +18,8 @@
 			<%= office.long_name %>
 			(<%= office.location_short %>)
 		</span>
+    <%= button_tag t("cmn_sentence.searchButton", model:Office.model_name.human), type:"button", class:"btn",
+    data:{toggle:"modal", target:"#bootstrapModalforOffice"}%>
 	</div>
 </div>
 <div class="row">

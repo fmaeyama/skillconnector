@@ -1,14 +1,14 @@
 -# modal_var, modal_id
-.modal.fade{id: "#{modal_id}" ,tabindex:-1,role:'dialog','aria-labelledby':'#{modal_id}','aria-hidden':'true'}
-	.modal-dialog{role:'document'}
-		.modal-content
-			.modal-header
-				%h5.modal-title
-					= modal_var.modal_title.blank? ? modal_var.title : modal_var.modal_title
-				=button_tag type:"button",class:"close", data:{dismiss:'modal'}, 'aria-label':'Close' do
-					%span{'aria-hidden':true}
-						×
-			.modal-body
-				=yield
-			.modal-footer
-				=button_tag 'Close', type:'button', class:'btn btn-secondary', data:{dismiss:'modal'}
+.modal.fade{id: "#{modal_id}" ,tabindex:-1,role:'dialog','aria-labelledby':"#{modal_id}",'aria-hidden':'true'}
+  .modal-dialog{role:'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title
+          = modal_var.modal_title.blank? ? modal_var.title : modal_var.modal_title
+        =button_tag type:"button",class:"close", data:{dismiss:'modal'}, 'aria-label':'Close' do
+          %span{'aria-hidden':true}
+            ×
+      .modal-body
+        =yield
+      .modal-footer
+        =button_tag 'Close', type:'button', class:'btn btn-secondary', data:{dismiss:'modal'}

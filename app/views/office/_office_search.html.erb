@@ -1,21 +1,21 @@
 <% # @var に OfficeDecoratorが入っていること %>
 <div class="row">
-	<div class="col-4">
-		<%= label_tag('name', '事業所名:') %><%= text_field_tag(:name, getParamCondVal(@var.search_cond,:name)) %>
-	</div>
-	<div class="col-4">
-		<%= label_tag('cd', '事業所CD:') %><%= text_field_tag(:cd, getParamCondVal(@var.search_cond,:cd)) %>
-	</div>
-	<div class="col-4">
-		<%= label_tag 'office_status_id', 'Status:' %>
-		<%= select_tag 'office_status_id', options_from_collection_for_select(@var.office_statuses,:id, :name),include_blank: t("cmn_dict.all_for_select") %>
-	</div>
+  <div class="col-4">
+    <%= label_tag('name', '事業所名:') %><%= text_field_tag(:name, getParamCondVal(@var.search_cond, :name)) %>
+  </div>
+  <div class="col-4">
+    <%= label_tag('cd', '事業所CD:') %><%= text_field_tag(:cd, getParamCondVal(@var.search_cond, :cd)) %>
+  </div>
+  <div class="col-4">
+    <%= label_tag 'office_status_id', 'Status:' %>
+    <%= select_tag 'office_status_id', options_from_collection_for_select(@var.office_statuses, :id, :name), include_blank: t("cmn_dict.all_for_select") %>
+  </div>
 </div>
 <div class="row">
-	<div class="col-8">
-		<%= label_tag('keyword', t('cmn_dict.freeword')+':') %><%= text_field_tag(:keyword, getParamCondVal(@var.search_cond,:keyword), size: 50) %>
-	</div>
-	<div class="col-4">
-		<%= submit_tag(t("cmn_dict.search")) %>
-	</div>
+  <div class="col-8">
+    <%= label_tag('keyword', t('cmn_dict.freeword') + ':') %><%= text_field_tag(:keyword, getParamCondVal(@var.search_cond, :keyword), size: 50) %>
+  </div>
+  <div class="col-4">
+    <%= submit_tag(t("cmn_dict.search")) %>
+  </div>
 </div>

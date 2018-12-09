@@ -1,0 +1,12 @@
+.flex-column
+  .p-1
+  - if offices.nil?
+    .p-2
+      =t("cmn_sentence.noResult")
+  -else
+    .p-2
+      = "#{offices.size}件:#{msg}"
+    -offices.each do |office|
+      .flex-row
+        .p-1
+          = office

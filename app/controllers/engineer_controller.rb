@@ -41,10 +41,10 @@ class EngineerController < ApplicationController
 
   def create
     @engineer = Engineer.new
-    p " *** engineer create start! "
-    save_engineer(params)
-    p " *** engineer create : "
-    pp @engineer
+    # p " *** engineer create start! "
+    # save_engineer(params)
+    # p " *** engineer create : "
+    # pp @engineer
     respond_to do |format|
       format.html {redirect_to action: "edit", id: @engineer.id}
       format.json {render :show, status: :created, location: @engineer}

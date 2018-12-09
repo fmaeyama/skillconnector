@@ -122,7 +122,7 @@ class Engineer < ApplicationRecord
   private
 
     def set_default_value
-      self.build_engineer_hiring(office: Office.first)
+      self.build_engineer_hiring
       self.build_person_info
       self.engineer_registration_type_id = EngineerRegistrationType.select(:id).first
       self.engineer_status_type_id = EngineerStatusType.select(:id).first

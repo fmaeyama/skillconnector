@@ -129,7 +129,19 @@ class OfficeController < ApplicationController
     end
   end
 
+  def modal_search
+    @offices = search_by_post @var
+    @offices = Office.all if @offices.size == 0
+    @msg = "検索完了"
+  rescue => e
+    logger.debug(e)
+    @msg = e.message
+  end
+
   private
+    def search_by_post(var)
+      cond_list = {name: CondEnum::LIKE, cd: CondEnum::EQ, name_kana: CondEnum::LIKE, long_name: CondEnum::LIKE }
+    end
 
     def officeParams
       params.require(:office).permit(

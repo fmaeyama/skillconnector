@@ -1,0 +1,16 @@
+.d-flex.flex-column
+  =#form_tag({controller: 'office', action: 'modal_search'}, {remote:true, authenticity_token:'office_search', id:"office_search"}) do
+  =form_tag({controller: 'office', action: 'modal_search'}, {remote:true, id:"office_search"}) do
+    .px-3
+      =text_field_tag 'keyword'
+    .px-3
+      =button_tag t('cmn_sentence.searchButton',model:Business.model_name.human), class:"btn btn-secondary", onclick:"on_office_search_click()"
+      =submit_tag "submit!"
+  #office_search_message.px-3
+    検索後下のリストから選択して下さい
+#office_search_list.d-flex
+
+-#:javascript
+-#  function on_office_search_click(){
+-#    $('#office_search_message').text("検索中...")
+-#  }

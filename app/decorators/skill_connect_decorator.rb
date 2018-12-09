@@ -6,12 +6,39 @@ module SkillHatContainer
   attr_reader :hats_hashes, :hat_types, :hat_levels, :skill_types, :skill_levels,
     :skills_hashes, :trained_types, :alert
 
+  @@hat_levels = nil
+  @@hat_types = nil
+  @@skill_levels = nil
+  @skill_types = nil
+  @@trained_types = nil
+  @@sk_cache = false
+
+  def self.get_cached_info
+    p "  +++ called SkillHatContainer::get_cached_info ++++ "
+    unless @@sk_cache
+      Rails.cache.fetch("SkillHatContainer/sk_decorator",expires_in:12.hours) do
+        p "  +++ create SkillHatContainer::get_cached_info cache!! ++++ "
+        @@hat_levels = Hash[HatLevel.all.map {|hl| [hl.id, hl]}]
+        @@hat_types = HatType.enable.group_by {|ht| ht.hat_level_id}
+        @@skill_levels = Hash[SkillLevel.all.map {|sl| [sl.id, sl]}]
+        @@skill_types = SkillType.enable.group_by {|st| st.skill_level_id}
+        @@trained_types = TrainedType.active.map {|tt| [I18n.t("trained_type.#{tt.name}"),tt.id]}.to_h
+      end
+      @@sk_cache = true
+    end
+  end
+
+  def self.cache_refresh
+    @@sk_cache = false
+  end
+
   def initialize
-    @hat_levels = Hash[HatLevel.all.map {|hl| [hl.id, hl]}]
-    @hat_types = HatType.enable.group_by {|ht| ht.hat_level_id}
-    @skill_levels = Hash[SkillLevel.all.map {|sl| [sl.id, sl]}]
-    @skill_types = SkillType.enable.group_by {|st| st.skill_level_id}
-    @trained_types = TrainedType.active.map {|tt| [I18n.t("trained_type.#{tt.name}"),tt.id]}.to_h
+    SkillHatContainer::get_cached_info
+    @hat_levels = @@hat_levels
+    @hat_types = @@hat_types
+    @skill_levels = @@skill_levels
+    @skill_types = @@skill_types
+    @trained_types = @@trained_types
     @hats_hashes = Hash.new
     @skills_hashes = Hash.new
   end

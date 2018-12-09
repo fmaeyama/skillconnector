@@ -17,12 +17,16 @@ class Skill < ApplicationRecord
   end
 
   def self.skills_hash(model, id, hs_decorator, ret_hash)
+    id_i = id.to_i
     ret_hash[model] = Hash.new if ret_hash[model].nil?
-    ret_hash[model][id] = Hash.new if ret_hash[model][id].nil?
+    if ret_hash[model][id].nil?
+      ret_hash[model][id] = Hash.new
+    elsif id_i > 0
+      return ret_hash
+    end
     ret_hash[model][id][:levels] = Hash.new if ret_hash[model][id][:levels].nil?
 
     memo = nil
-    id_i = id.to_i
     if id_i > 0
       focused = model.find(id_i).skills.group_by {|st| st.skill_type.skill_level_id}
       memo = model.find(id_i).skill_supplement

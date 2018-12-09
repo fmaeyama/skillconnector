@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'office/new(.:format)', to: 'office#new'
   patch 'office/update(.:format)', to: 'office#update'
   get 'office/:id', to: 'office#edit'
+  post 'office/modal_search', to: 'office#modal_search'
 
   get 'common_users/index'
   get 'common_users/add'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :engineer
   post 'engineer/search'
+
   #resources :business
   get 'business/index'
   get 'business/new'

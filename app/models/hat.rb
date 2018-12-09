@@ -15,7 +15,11 @@ class Hat < ApplicationRecord
     var = hat_decorator
 
     ret_hash[model] = Hash.new if ret_hash[model].nil?
-    ret_hash[model][id] = Hash.new if ret_hash[model][id].nil?
+    if ret_hash[model][id].nil?
+      ret_hash[model][id] = Hash.new
+    elsif id_i > 0
+      return ret_hash
+    end
     ret_hash[model][id][:levels] = Hash.new if ret_hash[model][id][:levels].nil?
     memo = nil
     if id_i > 0
