@@ -9,12 +9,16 @@
     -offices.each do |office|
       .flex-row
         .p-1
-          = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
+          - if current_id.to_i == office.id.to_i
+            (current)
+            = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
+          - else
+            = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
 
 
 :javascript
   function set_parent_office(office_id, office_name){
-    $('#new_engineer_hiring').val(office_id);
+    $('#engineer_engineer_hiring_attributes_office_id').val(office_id);
     $('#engineer_hiring_area').html(
       office_name
     );

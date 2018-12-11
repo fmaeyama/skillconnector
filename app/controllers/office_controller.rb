@@ -131,6 +131,7 @@ class OfficeController < ApplicationController
 
   def modal_search
     @offices = search_by_post @var
+    @current_id = params[:current_office_id]
     @offices = Office.all if @offices.size == 0
     @msg = "検索完了"
   rescue => e

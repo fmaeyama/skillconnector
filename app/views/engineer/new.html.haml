@@ -39,7 +39,6 @@
     .sl-border-primary
       .col-12
         %h3= EngineerHiring.model_name.human
-        = hidden_field_tag "new_engineer_hiring", ''
         - if @engineer.engineer_hiring.nil?
           .sl-row-rightAlign
             .col-3
@@ -73,6 +72,7 @@
         = f.submit
 -# modal object
 =render partial:'office/office_modal_search',
-layout: 'search_modal_bootstrap', locals:{modal_var:@var, modal_id:"bootstrapModalforOffice"}
+layout: 'search_modal_bootstrap', locals:{modal_var:@var,
+ current_office_id: @engineer.engineer_hiring.office_id,modal_id:"bootstrapModalforOffice"}
 
 

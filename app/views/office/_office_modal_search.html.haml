@@ -4,8 +4,8 @@
     .px-3
       =text_field_tag 'keyword'
     .px-3
-      =button_tag t('cmn_sentence.searchButton',model:Business.model_name.human), class:"btn btn-secondary", onclick:"on_office_search_click()"
-      =submit_tag "submit!"
+      = hidden_field_tag 'current_office_id', current_office_id
+      = button_tag t('cmn_sentence.searchButton',model:Business.model_name.human), class:"btn btn-secondary", onclick:"on_office_search_click()"
   #office_search_message.px-3
     検索後下のリストから選択して下さい
 #office_search_list.d-flex
