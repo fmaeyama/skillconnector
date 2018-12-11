@@ -1,73 +1,72 @@
-<% # var: hiring, office%>
+<% # var: hiring, office %>
 <%= hiring.hidden_field :office_id %>
 <div class="row">
-	<div class="col-3">
-		<%= hiring.select :status,
-			ApplicationRecord.cmn_statuses.to_a.map {
-				|s| [t("cmn_enum.status.#{s[0]}"), s[0]]
-			} %>
-	</div>
-	<div class="col-9">
-		<span class="sl-title">
-			<%= Office.model_name.human %>
-		</span>
-		<span class="sl-content">
-			<%= office.cd %>
-		</span>
-		<span class="sl-content">
-			<%= office.long_name %>
-			(<%= office.location_short %>)
-		</span>
-    <%= button_tag t("cmn_sentence.searchButton", model:Office.model_name.human), type:"button", class:"btn",
-    data:{toggle:"modal", target:"#bootstrapModalforOffice"}%>
-	</div>
+  <div class="col-3">
+    <%= hiring.select :status,
+                      ApplicationRecord.cmn_statuses.to_a.map {
+                          |s| [t("cmn_enum.status.#{s[0]}"), s[0]]
+                      } %>
+  </div>
+  <div class="col-9">
+    <span class="sl-title">
+      <%= Office.model_name.human %>
+    </span>
+    <span class="sl-content">
+      <%= office.cd %>
+    </span>
+    <span class="sl-content" id="engineer_hiring_area">
+      <%= office.long_name %>
+      (<%= office.location_short %>)
+    </span>
+    <%= button_tag t("cmn_sentence.searchButton", model: Office.model_name.human), type: "button", class: "btn",data: {toggle: "modal", target: "#bootstrapModalforOffice"} %>
+  </div>
 </div>
 <div class="row">
-	<div class="col-6">
-		<%= hiring.label :hiring_position,
-			EngineerHiring.human_attribute_name("hiring_position"),
-			class: "sl-auto-input" %>
-		<%= hiring.text_field :hiring_position, class: "sl-auto-input" %>
-	</div>
-	<div class="col-6">
-		<%= hiring.label :hiring_division,
-			EngineerHiring.human_attribute_name("hiring_division"),
-			class: "sl-auto-input" %>
-		<%= hiring.text_field :hiring_division, class: "sl-auto-input" %>
-	</div>
+  <div class="col-6">
+    <%= hiring.label :hiring_position,
+                     EngineerHiring.human_attribute_name("hiring_position"),
+                     class: "sl-auto-input" %>
+    <%= hiring.text_field :hiring_position, class: "sl-auto-input" %>
+  </div>
+  <div class="col-6">
+    <%= hiring.label :hiring_division,
+                     EngineerHiring.human_attribute_name("hiring_division"),
+                     class: "sl-auto-input" %>
+    <%= hiring.text_field :hiring_division, class: "sl-auto-input" %>
+  </div>
 </div>
 <div class="row">
-	<div class="col-5">
-		<div class="row">
-			<div class="col-12">
-				<%= hiring.label :hiring_contact,
-					EngineerHiring.human_attribute_name("hiring_contact")
-				%>
-				<%= hiring.collection_select :hiring_contact_id,
-					Contact.includes(:offices).where(offices: {id: @engineer.engineer_hiring.office_id}),
-					:id, :contact_name,
-					{include_blank: t('cmn_sentence.select_prompt',model:Contact.model_name.human)}
-				%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<%= hiring.label :hired_from,
-					EngineerHiring.human_attribute_name("hired_from") %>
-				<%= hiring.date_field :hired_from %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<%= hiring.label :hired_until,
-					EngineerHiring.human_attribute_name("hired_until") %>
-				<%= hiring.date_field :hired_until %>
-			</div>
-		</div>
-	</div>
-	<div class="col-7">
-		<%= hiring.label :hiring_memo,
-			EngineerHiring.human_attribute_name("hiring_memo") %>
-		<%= hiring.text_area :hiring_memo, size: "50x5" %>
-	</div>
+  <div class="col-5">
+    <div class="row">
+      <div class="col-12">
+        <%= hiring.label :hiring_contact,
+                         EngineerHiring.human_attribute_name("hiring_contact")
+        %>
+        <%= hiring.collection_select :hiring_contact_id,
+                                     Contact.includes(:offices).where(offices: {id: @engineer.engineer_hiring.office_id}),
+                                     :id, :contact_name,
+                                     {include_blank: t('cmn_sentence.select_prompt', model: Contact.model_name.human)}
+        %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <%= hiring.label :hired_from,
+                         EngineerHiring.human_attribute_name("hired_from") %>
+        <%= hiring.date_field :hired_from %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <%= hiring.label :hired_until,
+                         EngineerHiring.human_attribute_name("hired_until") %>
+        <%= hiring.date_field :hired_until %>
+      </div>
+    </div>
+  </div>
+  <div class="col-7">
+    <%= hiring.label :hiring_memo,
+                     EngineerHiring.human_attribute_name("hiring_memo") %>
+    <%= hiring.text_area :hiring_memo, size: "50x5" %>
+  </div>
 </div>

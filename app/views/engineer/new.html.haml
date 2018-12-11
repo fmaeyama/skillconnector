@@ -39,14 +39,16 @@
     .sl-border-primary
       .col-12
         %h3= EngineerHiring.model_name.human
+        = hidden_field_tag "new_engineer_hiring", ''
         - if @engineer.engineer_hiring.nil?
           .sl-row-rightAlign
             .col-3
+              #engineer_hiring_area
+                -# place for office name
               = button_tag '派遣元追加', type: 'button', onclick: 'addHiring'
         -else
           = f.fields_for :engineer_hiring do |e_hiring|
             = render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office
-
     .sl-border-primary
       .col-12.career_holder
         %h3= Career.model_name.human

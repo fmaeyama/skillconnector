@@ -140,7 +140,15 @@ class OfficeController < ApplicationController
 
   private
     def search_by_post(var)
-      cond_list = {name: CondEnum::LIKE, cd: CondEnum::EQ, name_kana: CondEnum::LIKE, long_name: CondEnum::LIKE }
+      cond_list = {
+          name: CondEnum::LIKE,
+          cd: CondEnum::EQ,
+          name_kana: CondEnum::LIKE,
+          long_name: CondEnum::LIKE }
+      free_word = {keyword: [:name, :cd, :name_kana, :long_name]}
+      cond_set = self.createCondition(params,cond_list, free_word)
+      var.search_cond = cond_set[:cond_param]
+      Office.where(cond_set[:cond_arr])
     end
 
     def officeParams

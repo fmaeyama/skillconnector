@@ -10,7 +10,14 @@
     検索後下のリストから選択して下さい
 #office_search_list.d-flex
 
--#:javascript
--#  function on_office_search_click(){
--#    $('#office_search_message').text("検索中...")
--#  }
+:javascript
+  function on_office_search_click(){
+    $('#office_search_message').text("検索中...")
+  }
+  function set_hiring_office(office_id, office_name){
+    $('#new_engineer_hiring').val(office_id);
+    $('#engineer_hiring_area').html(
+      office_name
+    );
+    $('#bootstarpModalforOffice').modal('hide');
+  }

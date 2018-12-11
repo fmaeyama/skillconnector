@@ -9,4 +9,14 @@
     -offices.each do |office|
       .flex-row
         .p-1
-          = office
+          = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
+
+
+:javascript
+  function set_parent_office(office_id, office_name){
+    $('#new_engineer_hiring').val(office_id);
+    $('#engineer_hiring_area').html(
+      office_name
+    );
+    $('#bootstrapModalforOffice').modal('hide');
+  }
