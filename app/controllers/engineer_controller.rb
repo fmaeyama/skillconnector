@@ -42,7 +42,7 @@ class EngineerController < ApplicationController
   def create
     @engineer = Engineer.new
     # p " *** engineer create start! "
-    # save_engineer(params)
+    save_engineer(params)
     # p " *** engineer create : "
     # pp @engineer
     respond_to do |format|

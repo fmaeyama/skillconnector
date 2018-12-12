@@ -2,52 +2,31 @@
 .y-3.p-3.bg-white.rounded.box-shadow
   =form_for  @engineer,
 	 url: (@var.mode=="new"?url_for(action: 'create'):url_for(action:'update',id:@var.mode)) do |f|
-    .row
-      .col-3
-        =f.collection_select :engineer_status_type_id, @var.engineer_status_types, :id, :name
-      .col-2
-        = f.collection_select :engineer_registration_type_id, @var.engineer_registration_types, :id, :name
-      .col-4
-        = f.label :eng_cd, Engineer.human_attribute_name("eng_cd")
-        = f.text_field :eng_cd, size: 10
-
     = f.fields_for :person_info do |person_info|
       .row
-        .col-4
-          = person_info.label :last_name, '姓'
-          = person_info.text_field :last_name
-        .col-4
-          = person_info.label :first_name, '名'
-          = person_info.text_field :first_name
-        .col-4
-          = person_info.label :middle_name, 'ミドルネーム'
-          = person_info.text_field :middle_name
-        .row
-          .col-4
-            = person_info.label :kana_last_name, 'せい（かな）'
-            = person_info.text_field :kana_last_name
-          .col-4
-            = person_info.label :kana_first_name, 'めい（かな）'
-            = person_info.text_field :kana_first_name
-          .col-4
-            = person_info.label :kana_middle_name, 'みどるねーむ（かな）'
-            = person_info.text_field :kana_middle_name
-    .row
-      .col-5
-        = f.label :registration_memo, Engineer.human_attribute_name("registration_memo")
-        = f.text_field :registration_memo, size: 200
+        .col-8.d-flex.flex-column
+          .p-1
+            =f.collection_select :engineer_status_type_id, @var.engineer_status_types, :id, :name
+            = f.collection_select :engineer_registration_type_id, @var.engineer_registration_types, :id, :name
+            = f.text_field :eng_cd, size: 10, placeholder:Engineer.human_attribute_name("eng_cd")
+          .p-1
+            =person_info.label :last_name, "氏名"
+            = person_info.text_field :last_name, placeholder:"姓"
+            = person_info.text_field :first_name, placeholder:"名"
+            = person_info.text_field :middle_name, placeholder:"ミドルネーム"
+          .p-1
+            = person_info.label :kana_last_name, "かな"
+            = person_info.text_field :kana_last_name, placeholder: "せい（かな）"
+            = person_info.text_field :kana_first_name, placeholder:'めい（かな）'
+            = person_info.text_field :kana_middle_name, placeholder:'みどるねーむ（かな）'
+        .col-4.d-flex.flex-column
+          .p-1
+            = f.label :registration_memo, Engineer.human_attribute_name("registration_memo")
+          = f.text_area :registration_memo, class:"sl-large"
     .sl-border-primary
       .col-12
-        %h3= EngineerHiring.model_name.human
-        - if @engineer.engineer_hiring.office.nil?
-          .sl-row-rightAlign
-            .col-3
-              #engineer_hiring_area
-                -# place for office name
-              = button_tag '派遣元追加', type: 'button', class: "btn",data: {toggle: "modal", target: "#bootstrapModalforOffice"}
-        -else
-          = f.fields_for :engineer_hiring do |e_hiring|
-            = render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office
+        = f.fields_for :engineer_hiring do |e_hiring|
+          = render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office
     .sl-border-primary
       .col-12.career_holder
         %h3= Career.model_name.human

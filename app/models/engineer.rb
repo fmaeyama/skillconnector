@@ -128,5 +128,6 @@ class Engineer < ApplicationRecord
       self.engineer_status_type_id = EngineerStatusType.select(:id).first
       self.careers.build
       self.engineer_hope_businesses.build
+      self.eng_cd="(auto)"
     end
 end

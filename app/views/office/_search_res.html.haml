@@ -9,11 +9,8 @@
     -offices.each do |office|
       .flex-row
         .p-1
-          - if current_id.to_i == office.id.to_i
-            (current)
-            = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
-          - else
-            = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
+          = "(current)" if current_id.to_i == office.id.to_i
+          = link_to "#{office.get_long_name}", 'javascript:void(0)',onclick: "set_parent_office('#{office.id}', '#{office.get_long_name}')"
 
 
 :javascript
