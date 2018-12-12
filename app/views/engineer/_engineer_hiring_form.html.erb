@@ -1,36 +1,36 @@
 <% # var: hiring, office %>
 <%= hiring.hidden_field :office_id %>
 <div class="row">
-  <div class="col-3"><h3><%= EngineerHiring.model_name.human %></h3></div>
-  <div class="col-2">
+  <div class="col-auto"><h3><%= EngineerHiring.model_name.human %></h3></div>
+  <div class="col-auto">
     <%= hiring.select :status,
                       ApplicationRecord.cmn_statuses.to_a.map {
                           |s| [t("cmn_enum.status.#{s[0]}"), s[0]]
                       } %>
   </div>
-  <div class="col-7">
+  <div class="col-auto">
     <span class="sl-title">
       <%= Office.model_name.human %>
     </span>
     <span id="engineer_hiring_area">
+      <% helper_office_longname_html(office) unless office.nil?%>
     </span>
-    <% helper_office_longname_html(office) unless office.nil?%>
     <%= button_tag t("cmn_sentence.searchButton", model: "派遣元"), type: "button", class: "btn",data: {toggle: "modal", target: "#bootstrapModalforOffice"} %>
   </div>
 </div>
 <div class="row">
   <div class="col-6 d-flex flex-column">
     <div class="p-0">
-      <%= hiring.label :hiring_position,
-                       EngineerHiring.human_attribute_name("hiring_position"),
-                       class: "sl-auto-input" %>
-      <%= hiring.text_field :hiring_position, class: "sl-auto-input" %>
-    </div>
-    <div class="p-0">
       <%= hiring.label :hiring_division,
                        EngineerHiring.human_attribute_name("hiring_division"),
                        class: "sl-auto-input" %>
       <%= hiring.text_field :hiring_division, class: "sl-auto-input" %>
+    </div>
+    <div class="p-0">
+      <%= hiring.label :hiring_position,
+                       EngineerHiring.human_attribute_name("hiring_position"),
+                       class: "sl-auto-input" %>
+      <%= hiring.text_field :hiring_position, class: "sl-auto-input" %>
     </div>
     <div class="p-0">
       <%= hiring.label :hired_from,
