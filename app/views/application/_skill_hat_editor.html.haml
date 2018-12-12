@@ -28,8 +28,7 @@
           .d-flex.flex-column
             .px-1
               =label_tag "#{model_name}#{id}[hat][hat_supplement][memo]", Hat.human_attribute_name("hat_supplement")
-            .px-1
-              =text_area_tag "#{model_name}#{id}[hat][hat_supplement][memo]", var.hats_hash(model, id)[:hat_supplement].memo, class:'sl-large'
+            =text_area_tag "#{model_name}#{id}[hat][hat_supplement][memo]", var.hats_hash(model, id)[:hat_supplement].memo, class:'sl-large'
           =hidden_field_tag "#{model_name}#{id}[hat][hat_supplement][id]", var.hats_hash(model, id)[:hat_supplement].id
 .sl-border-primary.align-items-start
   %h4
@@ -56,6 +55,5 @@
           .d-flex.flex-column
             .px-1{class:'sl-title'}
               =label_tag "#{model_name}#{id}[skill][skill_supplement][memo]", Skill.human_attribute_name("skill_supplement")
-            .px-1
-              =text_area_tag "#{model_name}#{id}[skill][skill_supplement][memo]", var.skills_hash(model, id)[:skill_supplement].memo, class:'sl-large'
+            =text_area_tag "#{model_name}#{id}[skill][skill_supplement][memo]", var.skills_hash(model, id)[:skill_supplement].memo, class:'sl-large'
           =hidden_field_tag "#{model_name}#{id}[skill][skill_supplement][id]", var.skills_hash(model, id)[:skill_supplement].id

@@ -39,12 +39,12 @@
     .sl-border-primary
       .col-12
         %h3= EngineerHiring.model_name.human
-        - if @engineer.engineer_hiring.nil?
+        - if @engineer.engineer_hiring.office.nil?
           .sl-row-rightAlign
             .col-3
               #engineer_hiring_area
                 -# place for office name
-              = button_tag '派遣元追加', type: 'button', onclick: 'addHiring'
+              = button_tag '派遣元追加', type: 'button', class: "btn",data: {toggle: "modal", target: "#bootstrapModalforOffice"}
         -else
           = f.fields_for :engineer_hiring do |e_hiring|
             = render "engineer_hiring_form", hiring:e_hiring, office:@engineer.engineer_hiring.office

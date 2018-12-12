@@ -1,27 +1,26 @@
 -#- pp "engineer_hope_business_input_part"
 -#- pp @var.hats_hashes
 .sl-row-border-secondary.engineer_hope_business_input
-	.col-12
-		.row
-			.col-4.d-flex.flex-column
-				.px-1
-					= child.label :hope_since,EngineerHopeBusiness.human_attribute_name("hope_since")
-				.px-1
-					= child.date_field :hope_since
-				.px-1
-					= child.label :hope_strength
-				.px-1
-					= child.select :hope_strength,
+  .col-12
+    .row
+      .col-4.d-flex.flex-column
+        .px-1
+          = child.label :hope_since,EngineerHopeBusiness.human_attribute_name("hope_since")
+        .px-1
+          = child.date_field :hope_since
+        .px-1
+          = child.label :hope_strength
+        .px-1
+          = child.select :hope_strength,
 									 EngineerHopeBusiness.hope_strengths.to_a.map{|s| [t("hope_strength.#{s[0]}"),s[0]] }
-			.col-8.d-flex.flex-column
-				.px-0
-					= child.label :description,EngineerHopeBusiness.human_attribute_name("description")
-				.px-0.sl-large
-					= child.text_area :description, class:"sl-large"
-		= render "application/skill_hat_editor", var:@var, model:EngineerHopeBusiness, id:(child.object.id.nil? ? -1 : child.object.id)
-		.row
-			= child.hidden_field(:id)
-			= child.hidden_field(:_destroy)
-			= link_to t("cmn_sentence.deleteTitle",model:EngineerHopeBusiness.model_name.human),
+      .col-8.d-flex.flex-column
+        .px-0
+          = child.label :description,EngineerHopeBusiness.human_attribute_name("description")
+        = child.text_area :description, class:"sl-large"
+    = render "application/skill_hat_editor", var:@var, model:EngineerHopeBusiness, id:(child.object.id.nil? ? -1 : child.object.id)
+    .row
+      = child.hidden_field(:id)
+      = child.hidden_field(:_destroy)
+      = link_to t("cmn_sentence.deleteTitle",model:EngineerHopeBusiness.model_name.human),
 							 "javascript:void(0)",
 							 class:"engineer_hope_business_remove_fields"

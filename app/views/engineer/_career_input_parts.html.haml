@@ -1,27 +1,26 @@
 -# child, var
 .career_input
-	.sl-row-border-secondary
-		.col-12
-			.row
-				.col-4.d-flex.flex-column
-					.px-1
-						= child.label :career_from, Career.human_attribute_name("career_from")
-					.px-1
-						= child.date_field :career_from
-					.px-1
-						= child.label :career_at,
+  .sl-row-border-secondary
+    .col-12
+      .row
+        .col-4.d-flex.flex-column
+          .px-1
+            = child.label :career_from, Career.human_attribute_name("career_from")
+          .px-1
+            = child.date_field :career_from
+          .px-1
+            = child.label :career_at,
 											Career.human_attribute_name("career_at")
-					.px-1
-						= child.text_field :career_at, class:"sl-auto-input"
-				.col-8.d-flex.flex-column
-					.p-1
-						= child.label :description, Career.human_attribute_name("description")
-					.p-1.sl-large
-						= child.text_area :description, class:"sl-large"
-			= render "application/skill_hat_editor", var:@var, model:Career,
+          .px-1
+            = child.text_field :career_at, class:"sl-auto-input"
+        .col-8.d-flex.flex-column
+          .p-1
+            = child.label :description, Career.human_attribute_name("description")
+          = child.text_area :description, class:"sl-large"
+      = render "application/skill_hat_editor", var:@var, model:Career,
 			 id:(child.object.id.nil? ? -1 : child.object.id)
-			.row
-				.col-12
-					= child.hidden_field(:id)
-					= child.hidden_field :_destroy
-					= link_to t("cmn_sentence.deleteTitle", model:Career.model_name.human), 'javascript:void(0)', class:"career_remove_fields"
+      .row
+        .col-12
+          = child.hidden_field(:id)
+          = child.hidden_field :_destroy
+          = link_to t("cmn_sentence.deleteTitle", model:Career.model_name.human), 'javascript:void(0)', class:"career_remove_fields"
