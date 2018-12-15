@@ -1,11 +1,18 @@
 -# engineer: engineer object
-Engineer Description
-.row
-	.col-8
-		= "Engineer:[#{engineer.id}]#{engineer.person_info.getFullName}"
-	.col-4
-		= link_to url:{controller:"engineer", action: "edit", id:engineer.id}, html_option:"target=_blank" do
-			%span.btn.btn-primary
-				= t("cmn_sentence.editTitle", model:Engineer.model_name.human,id:engineer.id)
-		= button_tag t("cmn_sentence.untieButton",model:Proposal.model_name.human,model2:Engineer.model_name.human),
-		onclick:"deleteEngineer(#{engineer.id})"
+.d-flex.flex-row
+  - if @proposal.engineer.nil?
+    %h3.p-0
+      =Engineer.model_name.human
+    .p-2
+      =t('.no_engineer', engineer:Engineer.model_name.human)
+    .ml-auto.p-2
+      = link_to t('cmn_sentence.newTitle', model:Engineer.model_name.human), {controller:'engineer', action:'new'}, class:"mx-2", target:"_blank"
+      =button_tag t('cmn_sentence.searchButton', model:Engineer.model_name.human), type:"button", class:'btn btn-primary',date:{toggle:'modal',target:'#bootstrapEngineerModal'}
+  - else
+    %h3.p-0
+      =Engineer.model_name.human
+    .p-2
+      = link_to "ENG#{"%07d" % engineer.id}:#{engineer.person_info.getFullName}",
+       {controller:"engineer",action:"edit",id:engineer.id}, target:"_blank"
+    .ml-auto.p-2
+      = button_tag t("cmn_sentence.untieButton",model:Proposal.model_name.human,model2:Engineer.model_name.human),onclick:"deleteEngineer(#{engineer.id})"

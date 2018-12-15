@@ -56,6 +56,7 @@ class BusinessController < ApplicationController
   end
 
 
+  # FROM RECOVERY BUTTON
   def add_offer
     id = params[:id]
     @business = Business.find(id)

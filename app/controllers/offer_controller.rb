@@ -82,7 +82,10 @@ class OfferController < ApplicationController
   end
 
   def destroy
-
+    @offer = Offer.find(params[:id])
+    @offer.destroy!
+    #特殊なケースなのでまずはエラーハンドリングしない
+    render "index"
   end
 
   private

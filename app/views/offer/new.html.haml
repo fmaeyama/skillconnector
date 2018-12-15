@@ -27,11 +27,6 @@
           = f.text_field :title, size:30
         .px-1
           = f.collection_select :offer_status_id, @var.offer_statuses, :id,  :name,include_blank:t('cmn_sentence.select_prompt', model:OfferStatus.model_name.human)
-        - fields_for @offer.skill do skill
-          .px-1
-            = skill.label :skill_id, Skill.model_name.human
-          .px-1
-            = skill.collection_select :skill_id, @var.skills, :id, :name,  include_blank:t("cmn_sentence.select_prompt", model:Skill.model_name.human)
         .px-1
           = f.label :work_at, Offer.human_attribute_name('work_at')
         .px-1
@@ -55,6 +50,7 @@
         - if @offer.persisted?
           - @var.offer_object = @offer
           = button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human), type:"button", class:'btn', data:{toggle:'modal',target:'#bootstrapModalforEngineer'}
+          = link_to "削除", offer_path(@offer), method: :delete, class:"btn btn-secondary"
   -# その他の求人
   .sl-border-primary
     .col-12

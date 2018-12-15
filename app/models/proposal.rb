@@ -13,10 +13,9 @@ class Proposal < ApplicationRecord
     Business.select("businesses.*", "proposals.id as proposalid").joins(offers:[:proposals]).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
   end
 
-  #こちらは一旦廃止中
-  # def other_offers
-  #   Offer.select("offers.*", "proposals.id as proposalid").joins(:proposals).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
-  # end
+  def other_offers
+    Offer.select("offers.*","businesses.name as business_name","businesses.id as business_id", "proposals.id as proposalid").joins(:business).joins(:proposals).where({proposals: {engineer_id: self.engineer_id}}).where.not({proposals: {id: self.id}})
+  end
 
 
   def get_related_office_id

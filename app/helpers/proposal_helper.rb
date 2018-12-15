@@ -17,4 +17,11 @@ module ProposalHelper
       concat link_to(content_tag(:span, proposal.description, id: "proposal-title-#{proposal.id}", class: "sl-title"), url_for(action: "edit", id: proposal.id))
     end
   end
+
+  def helper_description_of_other_proposal(other_offer)
+    title = other_offer.title
+    title = "#{title}(#{other_offer.business_name})" unless other_offer.business_name == other_offer.title
+    "#{Business.model_name.human}:BSNS#{other_offer.id}#{title}"
+  end
+
 end

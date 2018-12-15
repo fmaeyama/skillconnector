@@ -1,5 +1,26 @@
 -# offer: offer object
-Offer Description
-.row
-	.col-12
-		= "Offer:[#{offer.id}]#{offer.title}"
+- if @proposal.offer.nil?
+  .d-flex.flex-row
+    %h3.p-0
+      =Business.model_name.human
+    .p-0
+      = t('.no_offer', office:Office.model_name.human,business:Business.model_name.human)
+    .ml-auto
+      = link_to t('cmn_sentence.listTitle',model:Office.model_name.human), {controller: 'office', action:'index'}, class:"mx-2", target:"_blank"
+      = button_tag t('cmn_sentence.searchButton', model:Offer.model_name.human), type:"button", class:'btn btn-primary', data:{toggle:'modal',target:'#bootstrapModal'}
+- else
+  .d-flex.flex-row
+    %h3.p-0
+      =Business.model_name.human
+    .p-2
+      = link_to url_for(controller: "business",action:"edit", id: offer.business.id), {class:"sl-title", target:"_blank"} do
+        = "BNS#{"%05d"%offer.business.id}:#{offer.title}"
+        = "(#{offer.business.name})" if offer.title == offer.business.name
+  .d-flex.flex-row
+    .p-0
+      = "#{offer.description}" unless offer.title == offer.business.name
+      = "#{offer.business.description}"
+    .p-0
+      = "#{Offer.human_attribute_name "work_at"}:#{offer.work_at}"
+    .p-0
+      = "#{Offer.human_attribute_name "start_from"}:#{offer.start_from}"

@@ -27,6 +27,8 @@
           = f.fields_for :offers, @business.offers[0] do |offer_field|
             = offer_field.label :work_at, Offer.human_attribute_name('work_at')
             = offer_field.text_field :work_at
+        -elsif @business.offers.size > 1
+          = link_to t(".call_proposal"), {controller: "offer", action:"index", business:@business.id},target:'_blank'
         -else
           = "Error! offier size excpected 1, actual #{@business.offers.size}"
           = link_to 'recovery', url_for(action: "add_offer", id:@business.id), class:"btn btn-secondary"

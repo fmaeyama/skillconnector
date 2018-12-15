@@ -7,7 +7,6 @@ class OfferDecorator < SkillConnectDecorator
 		self.model_name = Offer.model_name.human
 		@offer_statuses = OfferStatus.enable
 		@offer_object = nil
-		@skills = Skill.enable
 
 	end
 
