@@ -9,65 +9,71 @@
         = button_tag t('.proposal', engineer:Engineer.model_name.human, proposal:Proposal.model_name.human),
          type:"button", class:'btn btn-secondary btn-lg',
          data:{toggle:'modal',target:'#bootstrapModalforEngineer'}
-    .row
-      .col-12
-        = f.collection_select :business_status_id, @var.business_statuses, :id, :name, class: 'mx-4'
-        = f.label :name, Business.human_attribute_name('name')
-        = f.text_field :name, class: 'mx-4'
-        -if @business.parent.blank?
-          = button_tag t('cmn_sentence.searchButton',
-            model: Business.human_attribute_name(:parent)),
-            onclick: 'SearchParentBusiness()'
-        -else
-          %span.sl-title
-            = Business.human_attribute_name(:parent)
-          %span.sl-content#parent_business
-            = f.parent_business.name
-        -if @business.offers.size == 1
-          = f.fields_for :offers, @business.offers[0] do |offer_field|
-            = offer_field.label :work_at, Offer.human_attribute_name('work_at')
-            = offer_field.text_field :work_at
-        -elsif @business.offers.size > 1
-          = link_to t(".proposal",offer:Offer.model_name.human), {controller: "offer", action:"index", business:@business.id},target:'_blank'
-        -else
-          = "Error! offier size excpected 1, actual #{@business.offers.size}"
-          = link_to 'recovery', url_for(action: "add_offer", id:@business.id), class:"btn btn-secondary"
-    .row
-      .col-12
-        = f.label :open_date, Business.human_attribute_name('open_date'), class: 'px-4'
-        = f.date_field :open_date, class: "mx-4"
-        = f.label :end_date, Business.human_attribute_name('end_date'), class: 'px-4'
-        = f.date_field :end_date, class: "mx-4"
-        = f.label :enable_date, Business.human_attribute_name('enable_date'), class: 'px-4'
-        = f.date_field :enable_date, class: "mx-4"
-    .row
-      .col-12
-        = f.label :description, Business.human_attribute_name('description')
-        = f.text_area :description, class: "sl-large-input"
-    .row
-      .col-12
-        = f.label :welcome, Business.human_attribute_name('welcome')
-        = f.text_area :welcome, class: "sl-large-input"
-    .row
-      .col-12
-        = f.collection_select :project_participation_type_id, ProjectParticipationType.enable, :id, :name, include_blank: t('cmn_sentence.select_prompt', model: ProjectParticipationType.model_name.human), class: 'px-4'
-
-        = f.label :max_quantity, Business.human_attribute_name('max_quantity'), class: 'px-4'
-        = f.number_field :max_quantity, class: "sl-small-field"
-        名
-        = f.label :proper_quantity, Business.human_attribute_name('proper_quantity'), class: 'px-4'
-        = f.number_field :proper_quantity, class: "sl-small-field"
-        名
-        = f.label :budget, Business.human_attribute_name('budget'), class: 'px-4'
-        = f.number_field :budget
-        円
-    .row
-      .col-12
-        = f.select :scheduled_project_span_type, Business.span_type_hashes, include_blank: t('cmn_sentence.select_prompt', model: Business.human_attribute_name('scheduled_project_span'))
-        = f.label :scheduled_project_start, Business.human_attribute_name('scheduled_project_start'), class: 'px-4'
-        = f.date_field :scheduled_project_start, class: "px-4"
-        = f.label :scheduled_project_end, Business.human_attribute_name('scheduled_project_end'), class: 'px-4'
-        = f.date_field :scheduled_project_end, class: "px-4"
+    %table{width:"100%",height:"100%"}
+      %tr
+        %td{rowspan:"2", width:"50%"}
+          .d-flex.flex-column
+            .p-1
+              = f.collection_select :business_status_id, @var.business_statuses, :id, :name, class: 'mx-4'
+              = f.label :name, Business.human_attribute_name('name')
+              = f.text_field :name, class: 'mx-4'
+            .p-1
+              -if @business.parent.blank?
+                = button_tag t('cmn_sentence.searchButton',
+                  model: Business.human_attribute_name(:parent)),
+                  onclick: 'SearchParentBusiness()'
+              -else
+                %span.sl-title
+                  = Business.human_attribute_name(:parent)
+                %span.sl-content#parent_business
+                  = f.parent_business.name
+            .p-1
+              -if @business.offers.size == 1
+                = f.fields_for :offers, @business.offers[0] do |offer_field|
+                  = offer_field.label :work_at, Offer.human_attribute_name('work_at')
+                  = offer_field.text_field :work_at
+              -elsif @business.offers.size > 1
+                = link_to t(".offers",offer:Offer.model_name.human), {controller: "offer", action:"index", business:@business.id},target:'_blank'
+              -else
+                = "Error! offier size excpected 1, actual #{@business.offers.size}"
+                = link_to 'recovery', url_for(action: "add_offer", id:@business.id), class:"btn btn-secondary"
+              = f.collection_select :project_participation_type_id, ProjectParticipationType.enable, :id, :name, include_blank: t('cmn_sentence.select_prompt', model: ProjectParticipationType.model_name.human)
+            .p-0
+              = f.label :open_date, Business.human_attribute_name('open_date')
+              = f.date_field :open_date
+            .p-0
+              = f.label :end_date, Business.human_attribute_name('end_date')
+              = f.date_field :end_date
+            .p-0
+              = f.label :enable_date, Business.human_attribute_name('enable_date')
+              = f.date_field :enable_date
+            .p-0
+              = f.label :max_quantity, Business.human_attribute_name('max_quantity')
+              = f.number_field :max_quantity, class: "sl-small-field"
+              名
+              = f.label :proper_quantity, Business.human_attribute_name('proper_quantity')
+              = f.number_field :proper_quantity, class: "sl-small-field"
+              名
+            .p-1
+              = f.label :budget, Business.human_attribute_name('budget')
+              = f.number_field :budget
+              円
+            .p-1
+              = f.select :scheduled_project_span_type, Business.span_type_hashes, include_blank: t('cmn_sentence.select_prompt', model: Business.human_attribute_name('scheduled_project_span'))
+            .p-0
+              = f.label :scheduled_project_start, Business.human_attribute_name('scheduled_project_start')
+              = f.date_field :scheduled_project_start
+              = f.label :scheduled_project_end, Business.human_attribute_name('scheduled_project_end')
+              = f.date_field :scheduled_project_end
+        %td{width:"50%",height:"0 auto"}
+          .d-flex.flex-column{style:"height:150px"}
+            = f.label :description, Business.human_attribute_name('description')
+            = f.text_area :description, class: "sl-large"
+      %tr
+        %td
+          .d-flex.flex-column{style:"height:150px"}
+            = f.label :welcome, Business.human_attribute_name('welcome')
+            = f.text_area :welcome, class: "sl-large"
     %h3 必要とする役割と技能
     = render "application/skill_hat_editor", var: @var, model: Business, id: @business.id
     .sl-border-primary

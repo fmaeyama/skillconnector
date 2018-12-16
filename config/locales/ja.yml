@@ -150,8 +150,9 @@ ja:
     update: '更新'
   business:
     new:
-      proposal: "%{offer}一覧(複数存在)"
+      offers: "%{offer}一覧(複数存在)"
       call_proposal: "要員を検索して提案"
+      proposal: '%{engineer}を検索して%{proposal}'
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
