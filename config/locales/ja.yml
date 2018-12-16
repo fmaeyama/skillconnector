@@ -150,7 +150,8 @@ ja:
     update: '更新'
   business:
     new:
-      proposal: '%{offer}一覧(複数存在)'
+      proposal: "%{offer}一覧(複数存在)"
+      call_proposal: "要員を検索して提案"
   offer:
     new:
       no_business: "%{office} の %{business} より登録してください。もしくは既存のものを検索して下さい。"
@@ -165,6 +166,3 @@ ja:
     assign_role:
       title: '権限一覧'
     login_user_not_assosiated: 'ログインユーザーに個人情報が割り当てられていません'
-  business:
-    new:
-      call_proposal: "要員を検索して提案"
