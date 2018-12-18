@@ -56,8 +56,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    freekey = freeword.keys[0].to_s
-    unless (params[freekey].blank?)
+    unless (freeword.nil?)
+      freekey = freeword.keys[0].to_s
       find_cond[freekey.to_sym] = params[freekey]
       tmp_str = getFreewordSearchStringFromArray(freeword.values[0], params[freekey])
       cond << "(" + tmp_str + ")"

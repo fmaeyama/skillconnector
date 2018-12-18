@@ -21,7 +21,15 @@ class OfferController < ApplicationController
       @offers = Offer.where(cond_set[:cond_arr])
       @var.search_cond = cond_set[:cond_param]
     else
-      @var.search_cond = nil
+      if params[:business_id].blank?
+        cond_list = {business_id: CondEnum::EQ}
+        free_word = nil
+        cond_set = self.createCondition(params, cond_list, free_word)
+        @offers = Offer.where(cond_set[:cond_arr])
+        @var.search_cond = cond_set[:cond_param]
+      else
+        @var.search_cond = nil
+      end
     end
 
     @offers = Offer.all if @var.search_cond.nil?

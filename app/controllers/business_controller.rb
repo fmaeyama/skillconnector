@@ -61,8 +61,8 @@ class BusinessController < ApplicationController
     id = params[:id]
     @business = Business.find(id)
     @business.add_new_offer ""
-    render "new"
-#    redirect_to action:"edit", id: id
+    #render "new"
+    redirect_to action:"edit", id: id
   end
 
   def update
