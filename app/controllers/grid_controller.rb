@@ -120,7 +120,7 @@ class GridController < ApplicationController
   end
 
   def view
-    hat_levels
+    #hat_levels
     eval 'self.'+params[:action_name]
   end
   def business_statuses
