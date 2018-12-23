@@ -50,7 +50,10 @@
           =button_tag 'rndo', type:'button', onclick:"redoRedoBuffer.undo()" do
             =image_tag "icons/arrow_redo.png"
           .btn.btn-secondary
-            %a{id:"yaml", onclick:'download_file("contents","grid.yaml");'}
+            %a{id:"yaml", onclick:'download_csv("'+@var.title+'.csv");'}
+              csv出力
+          .btn.btn-secondary
+            %a{id:"yaml", onclick:'download_yaml("'+@var.title+'.yaml");'}
               yaml出力
         .p-1
           #myGrid{style:"height:500px"}
@@ -75,8 +78,6 @@
   #json_data{data:{columns:"#{@var.columns.to_json}",
     table_opt:"#{@var.table_options.to_json}",
     data_arr:"#{@var.data.to_json}"}}
-
-  link_to 'download', 'javascript:void(0);', onclick:'download_file'
 
   :javascript
 
@@ -277,6 +278,7 @@
       dataView.setItems(data);
       dataView.endUpdate();
       this.grid = grid; //外からアクセスさせるサンプル
+      this.GridData = dataView
     }
     grid_func();
   

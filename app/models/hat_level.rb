@@ -32,8 +32,8 @@ class HatLevel < ApplicationRecord
     def define_selector
       self.select_field = {constraint:"constraint_val", evaluation_type:"evaluation_type_val"}
       self.enum_field = {constraint:HatLevel.constraints, evaluation_type: HatLevel.evaluation_types}
-      @decorator.select_arr['constraint'] = HatLevel.constraints.map{|key,val| [val,key]}.to_h
-      @decorator.select_arr['evaluation_type']= HatLevel.evaluation_types.map{|key,val| [val,key]}.to_h
+      @decorator.select_arr['constraint'] = HatLevel.constraints.map{|key,val| [key,val]}.to_h
+      @decorator.select_arr['evaluation_type']= HatLevel.evaluation_types.map{|key,val| [key,val]}.to_h
       self.where_chain = HatLevel.all
     end
 
