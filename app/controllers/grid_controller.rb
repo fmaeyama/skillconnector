@@ -16,15 +16,18 @@ class InnerGrid
     self.check_and_set_select_field
   end
 
+
+  # @return
+  # select_field
   def check_and_set_select_field
     i=0
     @where_chain.find_each do |row|
       @decorator.data[i] = Hash.new
       @decorator.columns.each do |col|
         field = col[:field]
-        if !@select_field.nil? && @select_field.key?(field)
-          @decorator.data[i][field] = (!@enum_field.nil? && @enum_field.key?(field)) ? @enum_field[field][row[field]] : row[field]
-          @decorator.data[i][@select_field[field]] = @decorator.data[i][field]
+        if !@select_field.nil? && @select_field.key?(field.to_sym)
+          @decorator.data[i][field] = (!@enum_field.nil? && @enum_field.key?(field.to_sym)) ? @enum_field[field.to_sym][row[field]] : row[field]
+          @decorator.data[i][@select_field[field.to_sym]] = @decorator.data[i][field]
         elsif !@select_field.nil? && @select_field.value?(field)
           # do nothing
         else
