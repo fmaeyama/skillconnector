@@ -33,7 +33,24 @@ Things you may want to cover:
 columns(array of hash) 情報を取得する    
 
 * 必須項目
-	* field
+	* field 
+	* cssClass: "row-hd",
+	* formatter:"Select2Formatter"
+		* dataSourceを選択肢とするselect boxを表示
+	* dataSource : 
+		* Select2Formatterで利用する
+	* 
+* Editor
+	* テキスト
+		* editor: "Slick.Editors.Text",
+	* Integer
+		* editor: "Slick.Editors.Integer",
+	* Date
+		* editor: "Slick.Editors.Date",  
+
+
+
+
 ### 2. define_selector
 
 select項目とidのマッピングを定義する  

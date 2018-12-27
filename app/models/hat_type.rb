@@ -8,8 +8,8 @@ class HatType < ApplicationRecord
   class Grid < InnerGrid
 
     def define_selector
-      self.select_field = {"hat_level_id"=>"hat_level", "parent_hat_id"=>"parent_hat", "status" =>"status_val"}
-      self.enum_field = {"status" =>HatType.statuses}
+      self.select_field = {hat_level_id:"hat_level", parent_hat_id:"parent_hat", status:"status_val"}
+      self.enum_field = {status:HatType.statuses}
       self.select_arr['hat_level_id'] = HatLevel.all.map {|hl| [hl.id,hl.name]}.to_h
       self.select_arr['parent_hat_id'] = HatType.all.map{|ht| [ht.id, ht.name]}.to_h
       self.select_arr['status'] = HatType.statuses.map{|key,val| [val,key]}.to_h
@@ -21,7 +21,7 @@ class HatType < ApplicationRecord
         {field: "id", id: "id", name: "#", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: ""},
         {field: "name", id: "name", name: "level name", minWidth: 60, editor: "Slick.Editors.Text", columnGroup: ""},
         {field: "description", name: "description", minWidth: 100, editor: "Slick.Editors.Text", columnGroup: ""},
-        {field: "status", name: "id", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: "利用状況"},
+        {field: "status", name: "id", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Integer", columnGroup: "利用状況"},
         {field: "status_val", name: "status_val", minWidth: 20, cssClass: "row-hd",columnGroup: "利用状況",
           formatter:"Select2Formatter",editor: "Select2Editor", dataSource:"selList['status']"},
         {field: "hat_level_id", name: "id", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: HatLevel.model_name.human},

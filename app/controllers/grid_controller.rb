@@ -123,8 +123,8 @@ class GridController < ApplicationController
   end
 
   def view
-    #hat_levels
-    eval 'self.'+params[:action_name]
+    skill_levels
+    #eval 'self.'+params[:action_name]
   end
   def business_statuses
     grid = BusinessStatus::Grid.new(@var)
@@ -222,34 +222,8 @@ class GridController < ApplicationController
   end
 
   def skill_levels
-    general_grid SkillLevel
-    @var.columns = [
-      {field: "id", id: "id", name: "", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup:""},
-      {field: "name", id: "name", name: "level name", minWidth: 60, editor: "Slick.Editors.Text", columnGroup:""},
-      {field: "description", name: "description", minWidth: 100, editor: "Slick.Editors.Text", columnGroup:""},
-      {field: "constraint", name: "id", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup:"constraint"},
-      {field: "constraint_val", name: "value", minWidth: 20, cssClass: "row-hd", formatter: "Select2Formatter", editor:"Select2Editor", dataSource:"selList[0]", columnGroup:"constraint"},
-      {field: "updated_at", name: "updated_at", minWidth: 20, cssClass: "row-hd"},
-      {field: "created_at", name: "created_at", minWidth: 20, cssClass: "row-hd"}
-    ]
-    hl_temp = SkillLevel.constraints.map {|k, v| [k, v]}.to_h
-    @var.select_arr['constraint'] = SkillLevel.constraints.map {|k, v| [v, I18n.t("level_constraint.#{k}")]}.to_h
-    where_chain = SkillLevel.all
-    i = 0
-    where_chain.find_each do |row|
-      @var.data[i] = Hash.new
-      @var.columns.each do |col|
-        field = col[:field]
-        case field
-          when "constraint"
-            @var.data[i][field] = hl_temp[row[field]]
-            @var.data[i]["constraint_val"] = hl_temp[row[field]]
-          else
-            row.respond_to?(field) ? (@var.data[i][field] = row[field]) : (pp " ** field is #{field}")
-        end
-      end
-      i = i.next
-    end
+    grid = SkillLevel::Grid.new(@var)
+    grid.init SkillLevel
     render layout: "grid_content"
   end
 

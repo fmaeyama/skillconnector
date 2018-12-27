@@ -196,7 +196,7 @@
           editCommand.execute();
         },
         undo : function (){
-          if (this.commandCtr == 0){return;}
+          if (this.commandCtr === 0){return;}
           this.commandCtr--;
           var command = this.commandQueue[this.commandCtr];
           if (command && SlickGlobalEditorLock.cancelCurrentEdit()){
@@ -211,10 +211,10 @@
             command.execute();
           }
         }
-      }
+      };
     
       $(document).keydown(function(e){
-        if (e.which == 90 && (e.ctrlKey || e.metaKey)){ //CTRL + (shift) + Z}
+        if (e.which === 90 && (e.ctrlKey || e.metaKey)){ //CTRL + (shift) + Z}
           if(e.shiftKey){
             undoRedoBuffer.redo();
           } else {
@@ -226,7 +226,7 @@
       var newRowIds = 0;
       
       var pluginOptions = {
-        clipboardCommandHandler: function(editCommand){ undoRedoBUffer.queueAndExecuteCommand.call(undoRedoBuffer, editCommand);},
+        clipboardCommandHandler: function(editCommand){ undoRedoBuffer.queueAndExecuteCommand.call(undoRedoBuffer, editCommand);},
         readOnlyMode : false,
         includeHeaderWhenCopying : false,
         newRowCreator : function(count){
@@ -247,14 +247,14 @@
 
       grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
 
-      // grid.onAddNewRow.subscribe(function(e, args){
-      //     var item = args.item;
-      //     var column = args.column;
-      //     grid.invalidateRow(data.length);
-      //     data.push(item);
-      //     grid.updateRowCount();
-      //     grid.render();
-      // });
+      grid.onAddNewRow.subscribe(function(e, args){
+          var item = args.item;
+          var column = args.column;
+          grid.invalidateRow(data.length);
+          data.push(item);
+          grid.updateRowCount();
+          grid.render();
+      });
       
       dataView.onRowCountChanged.subscribe(function (e, args) {
           grid.updateRowCount();
@@ -279,7 +279,7 @@
       dataView.endUpdate();
       this.grid = grid; //外からアクセスさせるサンプル
       this.GridData = dataView
-    }
+    };
     grid_func();
   
 = render template: 'layouts/application'

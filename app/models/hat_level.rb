@@ -16,16 +16,16 @@ class HatLevel < ApplicationRecord
     def grid_info
       [
         {field: "id", id: "id", name: "#", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: ""},
-        {field: "name", id: "name", name: "level name", minWidth: 60, editor: "Slick.Editors.Text", columnGroup: ""},
-        {field: "description", name: "description", minWidth: 200, cssClass: "row-hd", columnGroup: ""},
-        {field: "constraint", name: "id", maxWidth: 20, cssClass: "row-hd", columnGroup: "レベル制約"},
+        {field: "name", id: "name", name: "level name", minWidth: 60,cssClass: "row-hd", editor: "Slick.Editors.Text", columnGroup: ""},
+        {field: "description", name: "description", minWidth: 200, editor: "Slick.Editors.Text", cssClass: "row-hd", columnGroup: ""},
+        {field: "constraint", name: "id", maxWidth: 20, cssClass: "row-hd",editor: "Slick.Editors.Integer", columnGroup: "レベル制約"},
         {field: "constraint_val", name: "constraint", minWidth: 20, cssClass: "row-hd", columnGroup: "レベル制約",
-          formatter:"Select2Formatter",editor: "Select2Editor", dataSource:"selList['constraint']"},
-        {field: "evaluation_type", name: "id", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.integer", columnGroup: "evaluation"},
+          formatter:"Select2Formatter", editor: "Select2Editor", cssClass: "row-hd", dataSource:"selList['constraint']"},
+        {field: "evaluation_type", name: "id", maxWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Integer", columnGroup: "evaluation"},
         {field: "evaluation_type_val", name: "type", minWidth: 20, cssClass: "row-hd", columnGroup: "evaluation",
-          formatter:"Select2Formatter",editor: "Select2Editor", dataSource:"selList['evaluation_type']"},
-        {field: "updated_at", name: "変更日", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: ""},
-        {field: "created_at", name: "作成日", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Checkbox", columnGroup: ""}
+          formatter:"Select2Formatter",editor: "Select2Editor", cssClass: "row-hd",dataSource:"selList['evaluation_type']"},
+        {field: "updated_at", name: "変更日", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Date", columnGroup: ""},
+        {field: "created_at", name: "作成日", minWidth: 20, cssClass: "row-hd", editor: "Slick.Editors.Date", columnGroup: ""}
       ]
     end
 
