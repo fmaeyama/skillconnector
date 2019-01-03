@@ -123,8 +123,8 @@ class GridController < ApplicationController
   end
 
   def view
-    skill_levels
-    #eval 'self.'+params[:action_name]
+    #skill_levels
+    eval 'self.'+params[:action_name]
   end
   def business_statuses
     grid = BusinessStatus::Grid.new(@var)

@@ -247,14 +247,14 @@
 
       grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
 
-      grid.onAddNewRow.subscribe(function(e, args){
-          var item = args.item;
-          var column = args.column;
-          grid.invalidateRow(data.length);
-          data.push(item);
-          grid.updateRowCount();
-          grid.render();
-      });
+      // grid.onAddNewRow.subscribe(function(e, args){
+      //     var item = args.item;
+      //     var column = args.column;
+      //     grid.invalidateRow(data.length);
+      //     data.push(item);
+      //     grid.updateRowCount();
+      //     grid.render();
+      // });
       
       dataView.onRowCountChanged.subscribe(function (e, args) {
           grid.updateRowCount();
